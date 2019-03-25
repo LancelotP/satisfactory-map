@@ -17,7 +17,7 @@ export const App = () => {
     const crs = L.CRS.Simple;
 
     // @ts-ignore
-    crs.transformation = new L.Transformation(1, -0, 1, 0);
+    crs.transformation = new L.Transformation(1, 0, 1, 0);
     crs.scale = function(zoom) {
       return Math.pow(2, zoom) / mapMinResolution;
     };
@@ -38,6 +38,19 @@ export const App = () => {
       bounds: [[0, 0], [4000, 4000]]
       // tms: false
     }).addTo(map);
+
+    const lines = new Array(15).fill("").map((_, i) => {
+      L.polyline([[0, 250 + i * 250], [4000, 250 + i * 250]], {
+        color: "red"
+      }).addTo(map);
+      L.polyline([[250 + i * 250, 0], [250 + i * 250, 4000]], {
+        color: "red"
+      }).addTo(map);
+    });
+
+    // var latlngs = [[0, 250], [4000, 250]];
+    // @ts-ignore
+    // var polyline = L.polyline(latlngs, { color: "red" }).addTo(map);
 
     map.fitBounds(bounds);
 
