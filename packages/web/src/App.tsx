@@ -56,19 +56,164 @@ export const App = () => {
 
     // @ts-ignore
     map.on("mousemove", ({ latlng }) => setLatLng(L.latLng(latlng)));
+    // @ts-ignore
+    map.on("click", ({ latlng }) => console.log([latlng.lat, latlng.lng]));
 
     // const ironNodeGroup = L.layerGroup();
 
     // ironNodeGroup.addTo(map);
 
-    // const ironIcon = L.icon({
-    //   iconUrl:
-    //     "https://www.conanexilesmap.com/data/images/icons/icon_ironstone.png",
+    const beauxiteIcon = L.icon({
+      iconUrl: "/icons/beauxite.png",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -10]
+    });
+    const cateriumIcon = L.icon({
+      iconUrl: "/icons/caterium.png",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -10]
+    });
+    const coalIcon = L.icon({
+      iconUrl: "/icons/coal.png",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -10]
+    });
+    const copperIcon = L.icon({
+      iconUrl: "/icons/copper_default.png",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -10]
+    });
+    const crudeOilIcon = L.icon({
+      iconUrl: "/icons/crude_oil.png",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -10]
+    });
+    const ironIcon = L.icon({
+      iconUrl: "/icons/iron_ore.png",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -10]
+    });
+    const limestoneIcon = L.icon({
+      iconUrl: "/icons/limestone.png",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -10]
+    });
+    const quartzIcon = L.icon({
+      iconUrl: "/icons/quartz.png",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -10]
+    });
+    const samIcon = L.icon({
+      iconUrl: "/icons/sam.png",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -10]
+    });
+    const sulfurIcon = L.icon({
+      iconUrl: "/icons/sulfur.png",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -10]
+    });
+    const uraniumIcon = L.icon({
+      iconUrl: "/icons/uranium.png",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -10]
+    });
 
-    //   iconSize: [32, 32],
-    //   iconAnchor: [16, 16],
-    //   popupAnchor: [0, -10]
-    // });
+    L.marker([2000, 2000], { icon: beauxiteIcon })
+      .bindPopup("Beauxite node")
+      .addTo(map);
+    L.marker([2000, 2100], { icon: coalIcon })
+      .bindPopup("Coal node")
+      .addTo(map);
+    L.marker([2000, 2150], { icon: copperIcon })
+      .bindPopup("Copper ore node")
+      .addTo(map);
+    L.marker([2000, 2200], { icon: crudeOilIcon })
+      .bindPopup("Crude oil node")
+      .addTo(map);
+    L.marker([2000, 2250], { icon: ironIcon })
+      .bindPopup("Iron node")
+      .addTo(map);
+    L.marker([2000, 2300], { icon: limestoneIcon })
+      .bindPopup("Limestone node")
+      .addTo(map);
+    L.marker([2000, 2350], { icon: quartzIcon })
+      .bindPopup("Quartz node")
+      .addTo(map);
+    L.marker([2000, 2400], { icon: samIcon })
+      .bindPopup("S.A.M node")
+      .addTo(map);
+    L.marker([2000, 2450], { icon: sulfurIcon })
+      .bindPopup("Sulfur node")
+      .addTo(map);
+    L.marker([2000, 2500], { icon: uraniumIcon })
+      .bindPopup("Uranium node")
+      .addTo(map);
+
+    const cateriumGroup = L.layerGroup();
+    const cateriumPure = L.layerGroup().addTo(cateriumGroup);
+    const cateriumNormal = L.layerGroup().addTo(cateriumGroup);
+    const cateriumImpure = L.layerGroup().addTo(cateriumGroup);
+    cateriumGroup.addTo(map);
+
+    L.marker([2885, 1092], { icon: cateriumIcon })
+      .bindPopup("Caterium node")
+      .addTo(cateriumPure);
+    L.marker([3157, 1288], { icon: cateriumIcon })
+      .bindPopup("Caterium node (blocked)")
+      .addTo(cateriumPure);
+
+    const copperGroup = L.layerGroup();
+    const copperPure = L.layerGroup().addTo(copperGroup);
+    const copperNormal = L.layerGroup().addTo(copperGroup);
+    const copperImpure = L.layerGroup().addTo(copperGroup);
+    copperGroup.addTo(map);
+
+    const copperNodes = [
+      [3129.2, 1333.9],
+      [3118.5, 1330.5],
+      [3234.3, 1566.3],
+      [3166.4, 1642.4]
+    ];
+
+    copperNodes.forEach(latlng => {
+      // @ts-ignore
+      L.marker(latlng, { icon: copperIcon })
+        .bindPopup("Copper node")
+        .addTo(copperPure);
+    });
+
+    const ironNodes = [
+      [3080, 1288.2],
+      [3090.5, 1279.5],
+      [3199.3, 1513.1],
+      [3263.5, 1497.4],
+      [3261.8, 1526.2]
+    ];
+
+    const ironGroup = L.layerGroup();
+    const ironPure = L.layerGroup().addTo(ironGroup);
+    const ironNormal = L.layerGroup().addTo(ironGroup);
+    const ironImpure = L.layerGroup().addTo(ironGroup);
+    ironGroup.addTo(map);
+
+    ironNodes.forEach(latlng => {
+      // @ts-ignore
+      L.marker(latlng, { icon: ironIcon })
+        .bindPopup("Iron node")
+        .addTo(ironPure);
+    });
 
     // L.marker([2000, 2000], { icon: ironIcon })
     //   .bindPopup("Pure icon")
@@ -80,18 +225,21 @@ export const App = () => {
   return (
     <div style={{ position: "relative" }}>
       <div id="test" style={{ height: "100vh" }} />
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          background: "red",
-          padding: 12,
-          zIndex: 100000
-        }}
-      >
-        {JSON.stringify(latLng)}
-      </div>
+      {latLng && (
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            background: "red",
+            padding: 12,
+            zIndex: 100000
+          }}
+        >
+          {Math.trunc(latLng.lat * 100) / 100},{" "}
+          {Math.trunc(latLng.lng * 100) / 100}
+        </div>
+      )}
     </div>
   );
 };
