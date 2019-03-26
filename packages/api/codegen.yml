@@ -1,0 +1,25 @@
+overwrite: true
+schema: "./src/schema.ts"
+require:
+  - ts-node/register/transpile-only
+document: null
+generates:
+  src/types.ts:
+    config:
+      noNamespaces: true
+      optionalType: undefined
+      # contextType: "../middlewares/graphql#GQLContext"
+      scalars:
+        DateTime: Date
+        Time: Date
+        Date: Date
+      mappers:
+        Deposit: ./deposit/deposit.model#Deposit
+        Item: ./item/item.model#Item
+        Map: ./map/map.model#Map
+        Marker: ./marker/marker.model#Marker
+        User: ./user/user.model#User
+    plugins:
+      - "typescript-common"
+      - "typescript-server"
+      - "typescript-resolvers"

@@ -1,0 +1,25 @@
+query Home {
+  defaultMap {
+    id
+    markers {
+      totalCount
+      edges {
+        node {
+          ... on Deposit {
+            id
+            lat
+            lng
+            quality
+            type
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation DepositeCreate($input: DepositCreateInput!) {
+  depositCreate(input: $input) {
+    id
+  }
+}
