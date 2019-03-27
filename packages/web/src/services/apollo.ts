@@ -27,7 +27,14 @@ export const apolloClient = new ApolloClient({
   //  `/graphql` endpoint on the same host
   // Pass the configuration option { uri: YOUR_GRAPHQL_API_URL } to the `HttpLink` to connect
   // to a different host
-  link: authLink.concat(new HttpLink()),
+  link: authLink.concat(
+    new HttpLink({
+      uri:
+        process.env.NODE_ENV === "production"
+          ? "https://api-satisfactory-map.lancelot.dev"
+          : "/graphql"
+    })
+  ),
   cache: new InMemoryCache({
     fragmentMatcher
   })
