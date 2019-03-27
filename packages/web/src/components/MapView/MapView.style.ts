@@ -25,37 +25,37 @@ export const Root = styled.div`
         drop-shadow(white 2px 0px 0px) drop-shadow(white -2px 0px 0px);
 
       &.iron {
-        ${generateIcon("#959aa8")}
+        ${generateIcon("#A8A8A8")}
       }
       &.copper {
-        ${generateIcon("#ad2d1f")}
+        ${generateIcon("#FF6A00")}
       }
       &.limestone {
-        ${generateIcon("#b2ad9e")}
+        ${generateIcon("#B7CEAD")}
       }
       &.coal {
-        ${generateIcon("#4d4a43")}
+        ${generateIcon("#4C4C4C")}
       }
       &.oil {
-        ${generateIcon("#711f13")}
+        ${generateIcon("#262626")}
       }
       &.sulphur {
-        ${generateIcon("#c3b43b")}
+        ${generateIcon("#FFE97F")}
       }
       &.caterium {
-        ${generateIcon("#7b550a")}
+        ${generateIcon("#FFC300")}
       }
       &.sam {
-        ${generateIcon("#150320")}
+        ${generateIcon("#A17FFF")}
       }
       &.quartz {
-        ${generateIcon("#922a52")}
+        ${generateIcon("#BF2B2B")}
       }
       &.beauxite {
-        ${generateIcon("#be9880")}
+        ${generateIcon("#B75C3A")}
       }
       &.uranium {
-        ${generateIcon("#679219")}
+        ${generateIcon("#48BC3E")}
       }
     }
   }
