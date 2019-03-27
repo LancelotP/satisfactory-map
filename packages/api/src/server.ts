@@ -18,7 +18,8 @@ export async function start() {
   await createConnection({
     type: "postgres",
     entities: [`${__dirname}/**/*.model.*s`],
-    synchronize: true
+    synchronize: true,
+    url: process.env.DATABASE_URL
   });
 
   applyAuthMiddleware(app);
