@@ -43,7 +43,8 @@ export const MarkerAdd = (props: Props) => {
       await depositCreate({
         variables: {
           input: {
-            ...position,
+            lat: parseInt(position!.lat.toFixed(), 10),
+            lng: parseInt(position!.lng.toFixed(), 10),
             type,
             quality
           }
