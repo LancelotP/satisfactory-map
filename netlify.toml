@@ -3,6 +3,10 @@
   command = "yarn build"
   publish = "packages/web/build"
 
+[[redirects]]
+  from = "/graphql/*"
+  to = "https://api-satisfactory-map.lancelot.dev/graphql/:splat"
+  status = 200
 
 # The following redirect is intended for use with most SPAs that handle
 # routing internally.
@@ -11,7 +15,3 @@
   to = "/index.html"
   status = 200
 
-[[redirects]]
-  from = "/graphql/*"
-  to = "https://api-satisfactory-map.lancelot.dev/graphql/:splat"
-  status = 200
