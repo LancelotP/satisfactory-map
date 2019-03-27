@@ -7,7 +7,7 @@
     "yarn": "1.13.0"
   },
   "scripts": {
-    "postinstall": "cd api/build && yarn install --production=false",
-    "heroku-postbuild": "cd api/build && yarn build"
+    "build": "cd packages/api && yarn build",
+    "postinstall": "cd package/api && yarn install --production=false"
   }
 }

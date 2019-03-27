@@ -3,6 +3,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
     "lib": ["es2017"],
     "module": "commonjs",
     "noImplicitAny": true,

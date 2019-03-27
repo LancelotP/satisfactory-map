@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "tsc",
     "dev": "nodemon --ext ts --watch src/ --exec ts-node -r dotenv/config src/index.ts",
     "gen": "nodemon --ext ts --watch 'src/**/*.typeDef.ts' --watch 'src/schema.ts' --exec gql-gen"
   },
