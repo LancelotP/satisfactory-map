@@ -4,6 +4,9 @@ import * as L from "leaflet";
 import * as S from "./MapView.style";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { T } from "../T/T";
+import { Legend } from "./components/Legend/Legend";
+import { Menu, MarkerSelection } from "./components/Menu/Menu";
+import { useMapView } from "../../__generated__";
 
 const MAX_ZOOM = 6;
 const MIN_ZOOM = 2;
@@ -29,11 +32,26 @@ type Props = {
 
 export const MapView = (props: Props) => {
   const { mapId } = props;
+  const [selection, setSelection] = useState<MarkerSelection>({
+    iron: true,
+    copper: true,
+    limestone: true,
+    coal: true,
+    oil: true,
+    sulphur: true,
+    caterium: true,
+    sam: true,
+    quartz: true,
+    beauxite: true,
+    uranium: true
+  });
   const [hoverPos, setHoverPos] = useState<L.LatLng>(L.latLng(0, 0));
 
   function handleMouseMove(event: L.LeafletMouseEvent) {
     setHoverPos(event.latlng);
   }
+
+  const { data } = useMapView();
 
   return (
     <S.Root>
@@ -53,51 +71,40 @@ export const MapView = (props: Props) => {
           maxZoom={MAX_ZOOM}
           bounds={[[0, 0], [4000, 4000]]}
         />
-        <Marker
-          icon={
-            new L.DivIcon({
-              html: "<div>C</div>",
-              className: "oil impure",
-              iconSize: [40, 40]
-              // popupAnchor: [0, -20]
+        {data &&
+          data.defaultMap &&
+          data.defaultMap.markers.edges
+            .filter(({ node }) => {
+              if (selection[node.type.toLowerCase() as keyof MarkerSelection]) {
+                return true;
+              }
+
+              return false;
             })
-          }
-          position={L.latLng(3255, 1409)}
-        >
-          <Popup>Test</Popup>
-        </Marker>
-        <Marker
-          icon={
-            new L.DivIcon({
-              html: "<div>C</div>",
-              className: "oil normal",
-              iconSize: [40, 40]
-              // popupAnchor: [0, -20]
-            })
-          }
-          position={L.latLng(3255, 1609)}
-        >
-          <Popup>Test</Popup>
-        </Marker>
-        <Marker
-          icon={
-            new L.DivIcon({
-              html: "<div>C</div>",
-              className: "oil pure",
-              iconSize: [40, 40]
-              // popupAnchor: [0, -20]
-            })
-          }
-          position={L.latLng(3255, 1209)}
-        >
-          <Popup>Test</Popup>
-        </Marker>
+            .map(({ node }) => (
+              <Marker
+                position={L.latLng(node.lat, node.lng)}
+                icon={
+                  new L.DivIcon({
+                    html: `<div>${node.type[0]}</div>`,
+                    className: `${node.type.toLowerCase()} ${node.quality.toLowerCase()}`,
+                    iconSize: [40, 40]
+                  })
+                }
+              >
+                <Popup>
+                  {node.quality.toLowerCase()} {node.type.toLowerCase()}
+                </Popup>
+              </Marker>
+            ))}
       </Map>
       <S.HoverPosWrapper>
         <T>
           {hoverPos.lat.toFixed()}, {hoverPos.lng.toFixed()}
         </T>
       </S.HoverPosWrapper>
+      <Legend />
+      <Menu onChange={setSelection} selection={selection} />
     </S.Root>
   );
 };

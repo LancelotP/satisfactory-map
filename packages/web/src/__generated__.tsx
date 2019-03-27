@@ -48,6 +48,50 @@ export type Time = string;
 // Documents
 // ====================================================
 
+export type MapViewVariables = {};
+
+export type MapViewQuery = {
+  __typename?: "Query";
+
+  defaultMap: MapViewDefaultMap;
+};
+
+export type MapViewDefaultMap = {
+  __typename?: "Map";
+
+  id: string;
+
+  markers: MapViewMarkers;
+};
+
+export type MapViewMarkers = {
+  __typename?: "MapMarkerConnection";
+
+  edges: MapViewEdges[];
+};
+
+export type MapViewEdges = {
+  __typename?: "MapMarkerEdge";
+
+  node: MapViewNode;
+};
+
+export type MapViewNode = MapViewDepositInlineFragment;
+
+export type MapViewDepositInlineFragment = {
+  __typename?: "Deposit";
+
+  id: string;
+
+  lat: number;
+
+  lng: number;
+
+  quality: DepositQuality;
+
+  type: DepositType;
+};
+
 export type HomeVariables = {};
 
 export type HomeQuery = {
@@ -117,6 +161,34 @@ import * as ReactApolloHooks from "react-apollo-hooks";
 // Components
 // ====================================================
 
+export const MapViewDocument = gql`
+  query MapView {
+    defaultMap {
+      id
+      markers {
+        edges {
+          node {
+            ... on Deposit {
+              id
+              lat
+              lng
+              quality
+              type
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+export function useMapView(
+  baseOptions?: ReactApolloHooks.QueryHookOptions<MapViewVariables>
+) {
+  return ReactApolloHooks.useQuery<MapViewQuery, MapViewVariables>(
+    MapViewDocument,
+    baseOptions
+  );
+}
 export const HomeDocument = gql`
   query Home {
     defaultMap {

@@ -17,11 +17,14 @@ export const Root = styled.div`
       /* border: 1px solid #fff; */
       /* position: relative; */
 
+      filter: drop-shadow(white 0px 2px 0px) drop-shadow(white 0px -2px 0px)
+        drop-shadow(white 2px 0px 0px) drop-shadow(white -2px 0px 0px);
+
       &.iron {
         ${generateIcon("#959aa8")}
       }
       &.copper {
-        ${generateIcon("#775a57")}
+        ${generateIcon("#ad2d1f")}
       }
       &.limestone {
         ${generateIcon("#b2ad9e")}
