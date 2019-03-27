@@ -31,7 +31,7 @@ export const apolloClient = new ApolloClient({
     new HttpLink({
       uri:
         process.env.NODE_ENV === "production"
-          ? "https://api-satisfactory-map.lancelot.dev"
+          ? "https://api-satisfactory-map.lancelot.dev/graphql"
           : "/graphql"
     })
   ),
