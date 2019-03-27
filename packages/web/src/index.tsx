@@ -4,8 +4,8 @@ import { ApolloProvider } from "react-apollo-hooks";
 
 import { Router } from "./routes/routes";
 import { apolloClient } from "./services/apollo";
-import { GlobalStyle, lightTheme } from "./themes/light";
-import { ThemeProvider } from "./themes/styled";
+import { lightTheme } from "./themes/light";
+import { ThemeProvider, GlobalStyle } from "./themes/styled";
 
 ReactDOM.render(
   <ApolloProvider client={apolloClient}>

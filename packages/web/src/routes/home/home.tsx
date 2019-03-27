@@ -10,6 +10,7 @@ import {
 
 import { Map, TileLayer, LayerGroup, Marker, Popup } from "react-leaflet";
 import * as L from "leaflet";
+import { MapView } from "../../components/MapView/MapView";
 
 export const HomeRoute = () => {
   const [hoverPos, setHoverPos] = useState<{ lat: number; lng: number }>({
@@ -69,6 +70,8 @@ export const HomeRoute = () => {
     });
   }
 
+  return <MapView mapId="1" />;
+
   return (
     <div style={{ position: "relative", height: "100vh" }}>
       <Map
@@ -76,8 +79,10 @@ export const HomeRoute = () => {
           height: "100vh",
           width: "100vw"
         }}
-        crs={L.CRS.Simple}
-        zoom={0}
+        crs={crs}
+        zoom={2}
+        minZoom={2}
+        maxZoom={6}
         center={[0, 0]}
         maxBounds={L.latLngBounds(L.latLng(0, 0), L.latLng(4000, 4000))}
         onMouseMove={(e: any) => setHoverPos(e.latlng)}
@@ -88,7 +93,7 @@ export const HomeRoute = () => {
       >
         <TileLayer
           url="/tiles/{z}/{x}/{y}.png"
-          minZoom={0}
+          minZoom={2}
           maxZoom={6}
           bounds={[[0, 0], [4000, 4000]]}
         />
