@@ -13,5 +13,5 @@
 
 [[redirects]]
   from = "/graphql/*"
-  to = "https://api.satisfactory-map.lancelot.dev/:splat"
+  to = "https://api-satisfactory-map.lancelot.dev/:splat"
   status = 200
