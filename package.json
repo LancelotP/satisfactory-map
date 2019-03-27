@@ -8,6 +8,6 @@
   },
   "scripts": {
     "build": "cd packages/api && yarn build",
-    "postinstall": "cd package/api && yarn install --production=false"
+    "postinstall": "cd packages/api && yarn install --production=false"
   }
 }
