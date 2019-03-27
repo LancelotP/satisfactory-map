@@ -1,0 +1,9 @@
+{
+  "name": "satisfactory-map",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "cd api/build && yarn install --production=false",
+    "heroku-postbuild": "cd api/build && yarn build"
+  }
+}
