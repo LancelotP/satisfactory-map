@@ -72,7 +72,8 @@ export const MarkerAdd = (props: Props) => {
       onClose();
     } catch (e) {
       console.error(e);
-      location.reload();
+      console.log(JSON.stringify(e, null, 2));
+      // location.reload();
     }
   }
 
