@@ -5,6 +5,7 @@ import { createServer } from "http";
 
 import { applyApolloMiddleware } from "./apollo";
 import { createConnection } from "typeorm";
+import { applyAuthMiddleware } from "./user/user.middleware";
 
 const PORT = parseInt(process.env.PORT || "4000");
 
@@ -20,6 +21,7 @@ export async function start() {
     synchronize: true
   });
 
+  applyAuthMiddleware(app);
   applyApolloMiddleware(app);
 
   await new Promise(r => server.listen(PORT, r));

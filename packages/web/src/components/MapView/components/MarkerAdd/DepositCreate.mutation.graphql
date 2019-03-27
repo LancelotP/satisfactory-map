@@ -1,0 +1,5 @@
+mutation DepositCreate($input: DepositCreateInput!) {
+  depositCreate(input: $input) {
+    ...DepositMarker
+  }
+}

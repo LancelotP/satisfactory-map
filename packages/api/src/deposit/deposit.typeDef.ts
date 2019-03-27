@@ -13,6 +13,8 @@ export const depositTypeDef = gql`
 
     quality: DepositQuality!
     type: DepositType!
+
+    addedBy: User
   }
 
   enum DepositQuality {

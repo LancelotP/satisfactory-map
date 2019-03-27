@@ -145,10 +145,14 @@ export interface Deposit extends IMarker {
   quality: DepositQuality;
 
   type: DepositType;
+
+  addedBy?: Maybe<User>;
 }
 
 export interface User extends Node {
   id: string;
+
+  userName?: Maybe<string>;
 
   createdAt?: Maybe<Date>;
 }
@@ -193,6 +197,8 @@ import { Item } from "./item/item.model";
 import { Map } from "./map/map.model";
 
 import { User } from "./user/user.model";
+
+import { GQLContext } from "./apollo";
 
 export type Resolver<Result, Parent = {}, TContext = {}, Args = {}> = (
   parent: Parent,
@@ -243,7 +249,7 @@ export type DirectiveResolverFn<TResult, TArgs = {}, TContext = {}> = (
   info: GraphQLResolveInfo
 ) => TResult | Promise<TResult>;
 
-export interface QueryResolvers<TContext = {}, TypeParent = {}> {
+export interface QueryResolvers<TContext = GQLContext, TypeParent = {}> {
   _empty?: Query_EmptyResolver<Maybe<string>, TypeParent, TContext>;
 
   item?: QueryItemResolver<Item, TypeParent, TContext>;
@@ -256,14 +262,13 @@ export interface QueryResolvers<TContext = {}, TypeParent = {}> {
 export type Query_EmptyResolver<
   R = Maybe<string>,
   Parent = {},
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
-export type QueryItemResolver<R = Item, Parent = {}, TContext = {}> = Resolver<
-  R,
-  Parent,
-  TContext,
-  QueryItemArgs
->;
+export type QueryItemResolver<
+  R = Item,
+  Parent = {},
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext, QueryItemArgs>;
 export interface QueryItemArgs {
   itemId: string;
 }
@@ -271,50 +276,50 @@ export interface QueryItemArgs {
 export type QueryDefaultMapResolver<
   R = Map,
   Parent = {},
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type QueryViewerResolver<
   R = Maybe<User>,
   Parent = {},
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
-export interface ItemResolvers<TContext = {}, TypeParent = Item> {
+export interface ItemResolvers<TContext = GQLContext, TypeParent = Item> {
   id?: ItemIdResolver<string, TypeParent, TContext>;
 
   name?: ItemNameResolver<string, TypeParent, TContext>;
 }
 
-export type ItemIdResolver<R = string, Parent = Item, TContext = {}> = Resolver<
-  R,
-  Parent,
-  TContext
->;
+export type ItemIdResolver<
+  R = string,
+  Parent = Item,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
 export type ItemNameResolver<
   R = string,
   Parent = Item,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
-export interface MapResolvers<TContext = {}, TypeParent = Map> {
+export interface MapResolvers<TContext = GQLContext, TypeParent = Map> {
   id?: MapIdResolver<string, TypeParent, TContext>;
 
   markers?: MapMarkersResolver<MapMarkerConnection, TypeParent, TContext>;
 }
 
-export type MapIdResolver<R = string, Parent = Map, TContext = {}> = Resolver<
-  R,
-  Parent,
-  TContext
->;
+export type MapIdResolver<
+  R = string,
+  Parent = Map,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
 export type MapMarkersResolver<
   R = MapMarkerConnection,
   Parent = Map,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
 export interface MapMarkerConnectionResolvers<
-  TContext = {},
+  TContext = GQLContext,
   TypeParent = MapMarkerConnection
 > {
   pageInfo?: MapMarkerConnectionPageInfoResolver<
@@ -339,20 +344,23 @@ export interface MapMarkerConnectionResolvers<
 export type MapMarkerConnectionPageInfoResolver<
   R = PageInfo,
   Parent = MapMarkerConnection,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type MapMarkerConnectionTotalCountResolver<
   R = number,
   Parent = MapMarkerConnection,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type MapMarkerConnectionEdgesResolver<
   R = MapMarkerEdge[],
   Parent = MapMarkerConnection,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
-export interface PageInfoResolvers<TContext = {}, TypeParent = PageInfo> {
+export interface PageInfoResolvers<
+  TContext = GQLContext,
+  TypeParent = PageInfo
+> {
   endCursor?: PageInfoEndCursorResolver<Maybe<string>, TypeParent, TContext>;
 
   hasNextPage?: PageInfoHasNextPageResolver<boolean, TypeParent, TContext>;
@@ -373,26 +381,26 @@ export interface PageInfoResolvers<TContext = {}, TypeParent = PageInfo> {
 export type PageInfoEndCursorResolver<
   R = Maybe<string>,
   Parent = PageInfo,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type PageInfoHasNextPageResolver<
   R = boolean,
   Parent = PageInfo,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type PageInfoHasPreviousPageResolver<
   R = boolean,
   Parent = PageInfo,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type PageInfoStartCursorResolver<
   R = Maybe<string>,
   Parent = PageInfo,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
 export interface MapMarkerEdgeResolvers<
-  TContext = {},
+  TContext = GQLContext,
   TypeParent = MapMarkerEdge
 > {
   cursor?: MapMarkerEdgeCursorResolver<string, TypeParent, TContext>;
@@ -403,15 +411,15 @@ export interface MapMarkerEdgeResolvers<
 export type MapMarkerEdgeCursorResolver<
   R = string,
   Parent = MapMarkerEdge,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type MapMarkerEdgeNodeResolver<
   R = Marker,
   Parent = MapMarkerEdge,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
-export interface DepositResolvers<TContext = {}, TypeParent = Deposit> {
+export interface DepositResolvers<TContext = GQLContext, TypeParent = Deposit> {
   id?: DepositIdResolver<string, TypeParent, TContext>;
 
   map?: DepositMapResolver<Map, TypeParent, TContext>;
@@ -427,67 +435,81 @@ export interface DepositResolvers<TContext = {}, TypeParent = Deposit> {
   quality?: DepositQualityResolver<DepositQuality, TypeParent, TContext>;
 
   type?: DepositTypeResolver<DepositType, TypeParent, TContext>;
+
+  addedBy?: DepositAddedByResolver<Maybe<User>, TypeParent, TContext>;
 }
 
 export type DepositIdResolver<
   R = string,
   Parent = Deposit,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type DepositMapResolver<
   R = Map,
   Parent = Deposit,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type DepositLatResolver<
   R = number,
   Parent = Deposit,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type DepositLngResolver<
   R = number,
   Parent = Deposit,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type DepositCreatedAtResolver<
   R = Date,
   Parent = Deposit,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type DepositUpdatedAtResolver<
   R = Date,
   Parent = Deposit,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type DepositQualityResolver<
   R = DepositQuality,
   Parent = Deposit,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type DepositTypeResolver<
   R = DepositType,
   Parent = Deposit,
-  TContext = {}
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type DepositAddedByResolver<
+  R = Maybe<User>,
+  Parent = Deposit,
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
-export interface UserResolvers<TContext = {}, TypeParent = User> {
+export interface UserResolvers<TContext = GQLContext, TypeParent = User> {
   id?: UserIdResolver<string, TypeParent, TContext>;
+
+  userName?: UserUserNameResolver<Maybe<string>, TypeParent, TContext>;
 
   createdAt?: UserCreatedAtResolver<Maybe<Date>, TypeParent, TContext>;
 }
 
-export type UserIdResolver<R = string, Parent = User, TContext = {}> = Resolver<
-  R,
-  Parent,
-  TContext
->;
+export type UserIdResolver<
+  R = string,
+  Parent = User,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type UserUserNameResolver<
+  R = Maybe<string>,
+  Parent = User,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
 export type UserCreatedAtResolver<
   R = Maybe<Date>,
   Parent = User,
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
-export interface MutationResolvers<TContext = {}, TypeParent = {}> {
+export interface MutationResolvers<TContext = GQLContext, TypeParent = {}> {
   _empty?: Mutation_EmptyResolver<Maybe<string>, TypeParent, TContext>;
 
   depositCreate?: MutationDepositCreateResolver<Deposit, TypeParent, TContext>;
@@ -496,25 +518,25 @@ export interface MutationResolvers<TContext = {}, TypeParent = {}> {
 export type Mutation_EmptyResolver<
   R = Maybe<string>,
   Parent = {},
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type MutationDepositCreateResolver<
   R = Deposit,
   Parent = {},
-  TContext = {}
+  TContext = GQLContext
 > = Resolver<R, Parent, TContext, MutationDepositCreateArgs>;
 export interface MutationDepositCreateArgs {
   input: DepositCreateInput;
 }
 
-export interface SubscriptionResolvers<TContext = {}, TypeParent = {}> {
+export interface SubscriptionResolvers<TContext = GQLContext, TypeParent = {}> {
   _empty?: Subscription_EmptyResolver<Maybe<string>, TypeParent, TContext>;
 }
 
 export type Subscription_EmptyResolver<
   R = Maybe<string>,
   Parent = {},
-  TContext = {}
+  TContext = GQLContext
 > = SubscriptionResolver<R, Parent, TContext>;
 
 export interface NodeResolvers {
@@ -523,7 +545,7 @@ export interface NodeResolvers {
 export type NodeResolveType<
   R = "Item" | "Map" | "User",
   Parent = Item | Map | User,
-  TContext = {}
+  TContext = GQLContext
 > = TypeResolveFn<R, Parent, TContext>;
 
 export interface ConnectionResolvers {
@@ -532,7 +554,7 @@ export interface ConnectionResolvers {
 export type ConnectionResolveType<
   R = "MapMarkerConnection",
   Parent = MapMarkerConnection,
-  TContext = {}
+  TContext = GQLContext
 > = TypeResolveFn<R, Parent, TContext>;
 
 export interface EdgeResolvers {
@@ -541,7 +563,7 @@ export interface EdgeResolvers {
 export type EdgeResolveType<
   R = "MapMarkerEdge",
   Parent = MapMarkerEdge,
-  TContext = {}
+  TContext = GQLContext
 > = TypeResolveFn<R, Parent, TContext>;
 
 export interface IMarkerResolvers {
@@ -550,7 +572,7 @@ export interface IMarkerResolvers {
 export type IMarkerResolveType<
   R = "Deposit",
   Parent = Deposit,
-  TContext = {}
+  TContext = GQLContext
 > = TypeResolveFn<R, Parent, TContext>;
 
 export interface MarkerResolvers {
@@ -559,14 +581,14 @@ export interface MarkerResolvers {
 export type MarkerResolveType<
   R = "Deposit",
   Parent = Deposit,
-  TContext = {}
+  TContext = GQLContext
 > = TypeResolveFn<R, Parent, TContext>;
 
 /** Directs the executor to skip this field or fragment when the `if` argument is true. */
 export type SkipDirectiveResolver<Result> = DirectiveResolverFn<
   Result,
   SkipDirectiveArgs,
-  {}
+  GQLContext
 >;
 export interface SkipDirectiveArgs {
   /** Skipped when true. */
@@ -577,7 +599,7 @@ export interface SkipDirectiveArgs {
 export type IncludeDirectiveResolver<Result> = DirectiveResolverFn<
   Result,
   IncludeDirectiveArgs,
-  {}
+  GQLContext
 >;
 export interface IncludeDirectiveArgs {
   /** Included when true. */
@@ -588,7 +610,7 @@ export interface IncludeDirectiveArgs {
 export type DeprecatedDirectiveResolver<Result> = DirectiveResolverFn<
   Result,
   DeprecatedDirectiveArgs,
-  {}
+  GQLContext
 >;
 export interface DeprecatedDirectiveArgs {
   /** Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted using the Markdown syntax (as specified by [CommonMark](https://commonmark.org/). */
@@ -606,7 +628,7 @@ export interface TimeScalarConfig extends GraphQLScalarTypeConfig<Time, any> {
   name: "Time";
 }
 
-export interface IResolvers<TContext = {}> {
+export interface IResolvers<TContext = GQLContext> {
   Query?: QueryResolvers<TContext>;
   Item?: ItemResolvers<TContext>;
   Map?: MapResolvers<TContext>;

@@ -8,7 +8,7 @@ generates:
     config:
       noNamespaces: true
       optionalType: undefined
-      # contextType: "../middlewares/graphql#GQLContext"
+      contextType: "./apollo#GQLContext"
       scalars:
         DateTime: Date
         Time: Date

@@ -48,6 +48,18 @@ export type Time = string;
 // Documents
 // ====================================================
 
+export type DepositCreateVariables = {
+  input: DepositCreateInput;
+};
+
+export type DepositCreateMutation = {
+  __typename?: "Mutation";
+
+  depositCreate: DepositCreateDepositCreate;
+};
+
+export type DepositCreateDepositCreate = DepositMarkerFragment;
+
 export type MapViewVariables = {};
 
 export type MapViewQuery = {
@@ -76,20 +88,20 @@ export type MapViewEdges = {
   node: MapViewNode;
 };
 
-export type MapViewNode = MapViewDepositInlineFragment;
+export type MapViewNode = DepositMarkerFragment;
 
-export type MapViewDepositInlineFragment = {
-  __typename?: "Deposit";
+export type AppVariables = {};
+
+export type AppQuery = {
+  __typename?: "Query";
+
+  viewer: Maybe<AppViewer>;
+};
+
+export type AppViewer = {
+  __typename?: "User";
 
   id: string;
-
-  lat: number;
-
-  lng: number;
-
-  quality: DepositQuality;
-
-  type: DepositType;
 };
 
 export type HomeVariables = {};
@@ -154,13 +166,75 @@ export type DepositeCreateDepositCreate = {
   id: string;
 };
 
+export type DepositMarkerFragment = {
+  __typename?: "Deposit";
+
+  id: string;
+
+  lat: number;
+
+  lng: number;
+
+  quality: DepositQuality;
+
+  type: DepositType;
+
+  addedBy: Maybe<DepositMarkerAddedBy>;
+};
+
+export type DepositMarkerAddedBy = {
+  __typename?: "User";
+
+  id: string;
+
+  userName: Maybe<string>;
+};
+
 import gql from "graphql-tag";
 import * as ReactApolloHooks from "react-apollo-hooks";
+
+// ====================================================
+// Fragments
+// ====================================================
+
+export const DepositMarkerFragmentDoc = gql`
+  fragment DepositMarker on Deposit {
+    id
+    lat
+    lng
+    quality
+    type
+    addedBy {
+      id
+      userName
+    }
+  }
+`;
 
 // ====================================================
 // Components
 // ====================================================
 
+export const DepositCreateDocument = gql`
+  mutation DepositCreate($input: DepositCreateInput!) {
+    depositCreate(input: $input) {
+      ...DepositMarker
+    }
+  }
+
+  ${DepositMarkerFragmentDoc}
+`;
+export function useDepositCreate(
+  baseOptions?: ReactApolloHooks.MutationHookOptions<
+    DepositCreateMutation,
+    DepositCreateVariables
+  >
+) {
+  return ReactApolloHooks.useMutation<
+    DepositCreateMutation,
+    DepositCreateVariables
+  >(DepositCreateDocument, baseOptions);
+}
 export const MapViewDocument = gql`
   query MapView {
     defaultMap {
@@ -168,24 +242,35 @@ export const MapViewDocument = gql`
       markers {
         edges {
           node {
-            ... on Deposit {
-              id
-              lat
-              lng
-              quality
-              type
-            }
+            ...DepositMarker
           }
         }
       }
     }
   }
+
+  ${DepositMarkerFragmentDoc}
 `;
 export function useMapView(
   baseOptions?: ReactApolloHooks.QueryHookOptions<MapViewVariables>
 ) {
   return ReactApolloHooks.useQuery<MapViewQuery, MapViewVariables>(
     MapViewDocument,
+    baseOptions
+  );
+}
+export const AppDocument = gql`
+  query App {
+    viewer {
+      id
+    }
+  }
+`;
+export function useApp(
+  baseOptions?: ReactApolloHooks.QueryHookOptions<AppVariables>
+) {
+  return ReactApolloHooks.useQuery<AppQuery, AppVariables>(
+    AppDocument,
     baseOptions
   );
 }

@@ -9,6 +9,10 @@ export const Root = styled.div`
     transform: translate(0);
     background-color: #474747;
 
+    & .leaflet-popup-content p {
+      margin: 0;
+    }
+
     & .leaflet-marker-icon {
       ${Paragraph};
       display: flex;

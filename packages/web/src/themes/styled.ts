@@ -34,4 +34,17 @@ export const GlobalStyle = createGlobalStyle`
   #root {
     height: 100vh;
   }
+
+  .ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity .242s ease;
+  }
+
+  .ReactModal__Overlay--after-open {
+      opacity: 1;
+  }
+
+  .ReactModal__Overlay--before-close {
+      opacity: 0;
+  }
 `;

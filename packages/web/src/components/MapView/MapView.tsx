@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import "leaflet-contextmenu";
+import "leaflet-contextmenu/dist/leaflet.contextmenu.css";
 import * as L from "leaflet";
 import * as S from "./MapView.style";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
@@ -7,6 +9,7 @@ import { T } from "../T/T";
 import { Legend } from "./components/Legend/Legend";
 import { Menu, MarkerSelection } from "./components/Menu/Menu";
 import { useMapView } from "../../__generated__";
+import { MarkerAdd } from "./components/MarkerAdd/MarkerAdd";
 
 const MAX_ZOOM = 6;
 const MIN_ZOOM = 2;
@@ -46,9 +49,14 @@ export const MapView = (props: Props) => {
     uranium: true
   });
   const [hoverPos, setHoverPos] = useState<L.LatLng>(L.latLng(0, 0));
+  const [addingPos, setAddingPos] = useState<L.LatLng | undefined>(undefined);
 
   function handleMouseMove(event: L.LeafletMouseEvent) {
     setHoverPos(event.latlng);
+  }
+
+  function handleMarkerAdd(event: L.LeafletMouseEvent) {
+    setAddingPos(event.latlng);
   }
 
   const { data } = useMapView();
@@ -61,6 +69,14 @@ export const MapView = (props: Props) => {
         minZoom={MIN_ZOOM}
         maxZoom={MAX_ZOOM}
         center={[2000, 2000]}
+        contextmenu={true}
+        contextmenuWidth={200}
+        contextmenuItems={[
+          {
+            text: "Add marker here",
+            callback: handleMarkerAdd
+          }
+        ]}
         attributionControl={false}
         onmousemove={handleMouseMove}
         maxBounds={L.latLngBounds(L.latLng(-2000, -2000), L.latLng(6000, 6000))}
@@ -84,6 +100,7 @@ export const MapView = (props: Props) => {
             .map(({ node }) => (
               <Marker
                 position={L.latLng(node.lat, node.lng)}
+                key={node.id}
                 icon={
                   new L.DivIcon({
                     html: `<div>${node.type[0]}</div>`,
@@ -93,7 +110,12 @@ export const MapView = (props: Props) => {
                 }
               >
                 <Popup>
-                  {node.quality.toLowerCase()} {node.type.toLowerCase()}
+                  <T align="center" transform="lowercase">
+                    {node.quality} {node.type}
+                  </T>
+                  {node.addedBy && (
+                    <T align="center">Added by {node.addedBy.userName}</T>
+                  )}
                 </Popup>
               </Marker>
             ))}
@@ -105,6 +127,7 @@ export const MapView = (props: Props) => {
       </S.HoverPosWrapper>
       <Legend />
       <Menu onChange={setSelection} selection={selection} />
+      <MarkerAdd onClose={() => setAddingPos(undefined)} position={addingPos} />
     </S.Root>
   );
 };

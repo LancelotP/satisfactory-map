@@ -4,15 +4,21 @@ query MapView {
     markers {
       edges {
         node {
-          ... on Deposit {
-            id
-            lat
-            lng
-            quality
-            type
-          }
+          ...DepositMarker
         }
       }
     }
+  }
+}
+
+fragment DepositMarker on Deposit {
+  id
+  lat
+  lng
+  quality
+  type
+  addedBy {
+    id
+    userName
   }
 }
