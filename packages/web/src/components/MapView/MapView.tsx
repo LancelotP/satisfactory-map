@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "leaflet-contextmenu";
 import "leaflet-contextmenu/dist/leaflet.contextmenu.css";
@@ -8,7 +8,7 @@ import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { T } from "../T/T";
 import { Legend } from "./components/Legend/Legend";
 import { Menu, MarkerSelection } from "./components/Menu/Menu";
-import { useMapView } from "../../__generated__";
+import { useMapView, MapViewMarkers, MapViewEdges } from "../../__generated__";
 import { MarkerAdd } from "./components/MarkerAdd/MarkerAdd";
 
 const MAX_ZOOM = 6;
@@ -50,9 +50,10 @@ export const MapView = (props: Props) => {
   });
   const [hoverPos, setHoverPos] = useState<L.LatLng>(L.latLng(0, 0));
   const [addingPos, setAddingPos] = useState<L.LatLng | undefined>(undefined);
+  const [markers, setMarkers] = useState<MapViewEdges[]>([]);
 
   function handleMouseMove(event: L.LeafletMouseEvent) {
-    setHoverPos(event.latlng);
+    // setHoverPos(event.latlng);
   }
 
   function handleMarkerAdd(event: L.LeafletMouseEvent) {
@@ -60,6 +61,19 @@ export const MapView = (props: Props) => {
   }
 
   const { data } = useMapView();
+
+  useEffect(() => {
+    if (data && data.defaultMap && data.defaultMap.markers) {
+      const edges = data.defaultMap.markers.edges.filter(({ node }) => {
+        if (selection[node.type.toLowerCase() as keyof MarkerSelection]) {
+          return true;
+        }
+
+        return false;
+      });
+      setMarkers(edges);
+    }
+  }, [data, selection, addingPos]);
 
   return (
     <S.Root>
@@ -87,44 +101,34 @@ export const MapView = (props: Props) => {
           maxZoom={MAX_ZOOM}
           bounds={[[0, 0], [4000, 4000]]}
         />
-        {data &&
-          data.defaultMap &&
-          data.defaultMap.markers.edges
-            .filter(({ node }) => {
-              if (selection[node.type.toLowerCase() as keyof MarkerSelection]) {
-                return true;
-              }
-
-              return false;
-            })
-            .map(({ node }) => (
-              <Marker
-                position={L.latLng(node.lat, node.lng)}
-                key={node.id}
-                icon={
-                  new L.DivIcon({
-                    html: `<div>${node.type[0]}</div>`,
-                    className: `${node.type.toLowerCase()} ${node.quality.toLowerCase()}`,
-                    iconSize: [40, 40]
-                  })
-                }
-              >
-                <Popup>
-                  <T align="center" transform="lowercase">
-                    {node.quality} {node.type}
-                  </T>
-                  {node.addedBy && (
-                    <T align="center">Added by {node.addedBy.userName}</T>
-                  )}
-                </Popup>
-              </Marker>
-            ))}
+        {markers.map(({ node }) => (
+          <Marker
+            position={L.latLng(node.lat, node.lng)}
+            key={node.id}
+            icon={
+              new L.DivIcon({
+                html: `<div>${node.type[0]}</div>`,
+                className: `${node.type.toLowerCase()} ${node.quality.toLowerCase()}`,
+                iconSize: [40, 40]
+              })
+            }
+          >
+            <Popup>
+              <T align="center" transform="lowercase">
+                {node.quality} {node.type}
+              </T>
+              {node.addedBy && (
+                <T align="center">Added by {node.addedBy.userName}</T>
+              )}
+            </Popup>
+          </Marker>
+        ))}
       </Map>
-      <S.HoverPosWrapper>
+      {/* <S.HoverPosWrapper>
         <T>
           {hoverPos.lat.toFixed()}, {hoverPos.lng.toFixed()}
         </T>
-      </S.HoverPosWrapper>
+      </S.HoverPosWrapper> */}
       <Legend />
       <Menu onChange={setSelection} selection={selection} />
       <MarkerAdd onClose={() => setAddingPos(undefined)} position={addingPos} />
