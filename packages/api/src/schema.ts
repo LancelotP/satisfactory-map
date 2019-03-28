@@ -8,10 +8,10 @@ const typesArray = fileLoader(__dirname, {
 });
 
 const resolversArray = [
-  ...fileLoader(`${__dirname}/**/*.resolver.ts`, { recursive: true }),
-  ...fileLoader(`${__dirname}/**/*.query.ts`, { recursive: true }),
-  ...fileLoader(`${__dirname}/**/*.mutation.ts`, { recursive: true }),
-  ...fileLoader(`${__dirname}/**/*.subscription.ts`, { recursive: true })
+  ...fileLoader(`${__dirname}/**/*.resolver.*s`, { recursive: true }),
+  ...fileLoader(`${__dirname}/**/*.query.*s`, { recursive: true }),
+  ...fileLoader(`${__dirname}/**/*.mutation.*s`, { recursive: true }),
+  ...fileLoader(`${__dirname}/**/*.subscription.*s`, { recursive: true })
 ];
 
 export default makeExecutableSchema({
