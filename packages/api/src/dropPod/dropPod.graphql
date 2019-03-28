@@ -1,0 +1,12 @@
+type DropPod implements IMarker {
+  id: ID!
+  map: Map!
+
+  lat: Int!
+  lng: Int!
+
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  addedBy: User
+}

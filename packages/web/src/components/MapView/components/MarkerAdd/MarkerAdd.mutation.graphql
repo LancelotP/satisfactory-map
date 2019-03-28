@@ -1,0 +1,7 @@
+mutation MarkerCreate($input: MarkerCreateInput!) {
+  markerCreate(input: $input) {
+    ...DepositMarker
+    ...DropPodMarker
+    ...SlugMarker
+  }
+}

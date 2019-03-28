@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "nodemon --ext ts --watch src/ --exec ts-node -r dotenv/config src/index.ts",
-    "gen": "nodemon --ext ts --watch 'src/**/*.typeDef.ts' --watch 'src/schema.ts' --exec gql-gen"
+    "gen": "nodemon --ext ts --ext graphql --watch 'src/**/*.graphql' --watch 'src/schema.ts' --exec gql-gen"
   },
   "dependencies": {
     "apollo-server-express": "^2.4.8",
@@ -17,6 +17,7 @@
     "graphql-shield": "^5.3.0",
     "jwks-rsa": "^1.4.0",
     "lodash": "^4.17.11",
+    "merge-graphql-schemas": "^1.5.8",
     "multer": "^1.4.1",
     "pg": "^7.8.2",
     "reflect-metadata": "^0.1.13",

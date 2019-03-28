@@ -1,7 +1,7 @@
 import { IResolvers } from "../../types";
 import { User } from "../../user/user.model";
 
-export const resolveTypeResolver: IResolvers = {
+export default {
   Node: {
     __resolveType: _ => {
       if (_ instanceof User) {
@@ -21,4 +21,4 @@ export const resolveTypeResolver: IResolvers = {
       return "MapMarkerEdge";
     }
   }
-};
+} as IResolvers;

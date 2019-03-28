@@ -52,6 +52,12 @@ const result: IntrospectionResultData = {
         possibleTypes: [
           {
             name: "Deposit"
+          },
+          {
+            name: "Slug"
+          },
+          {
+            name: "DropPod"
           }
         ]
       },
@@ -61,6 +67,12 @@ const result: IntrospectionResultData = {
         possibleTypes: [
           {
             name: "Deposit"
+          },
+          {
+            name: "Slug"
+          },
+          {
+            name: "DropPod"
           }
         ]
       }

@@ -1,0 +1,35 @@
+type Deposit implements IMarker {
+  id: ID!
+  map: Map!
+
+  lat: Int!
+  lng: Int!
+
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  quality: DepositQuality!
+  type: DepositType!
+
+  addedBy: User
+}
+
+enum DepositQuality {
+  IMPURE
+  NORMAL
+  PURE
+}
+
+enum DepositType {
+  IRON
+  COPPER
+  LIMESTONE
+  COAL
+  OIL
+  SULPHUR
+  CATERIUM
+  SAM
+  QUARTZ
+  BEAUXITE
+  URANIUM
+}

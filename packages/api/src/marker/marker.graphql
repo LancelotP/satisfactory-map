@@ -1,0 +1,39 @@
+interface IMarker {
+  id: ID!
+  map: Map!
+
+  lat: Int!
+  lng: Int!
+
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+union Marker = Deposit | Slug | DropPod
+
+type Mutation {
+  markerCreate(input: MarkerCreateInput!): Marker!
+}
+
+enum MarkerType {
+  DEPOSIT
+  SLUG
+  DROP_POD
+}
+
+input MarkerCreateInput {
+  type: MarkerType!
+  lat: Int!
+  lng: Int!
+  deposit: MarkerCreateDepositInput
+  slug: MarkerCreateSlugInput
+}
+
+input MarkerCreateDepositInput {
+  type: DepositType!
+  quality: DepositQuality!
+}
+
+input MarkerCreateSlugInput {
+  type: SlugType!
+}

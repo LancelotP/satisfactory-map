@@ -1,36 +1,20 @@
 import "reflect-metadata";
-
-import { merge } from "lodash";
 import { makeExecutableSchema } from "graphql-tools";
+import { fileLoader, mergeTypes, mergeResolvers } from "merge-graphql-schemas";
 
-import { commonTypeDef } from "./common/common.typeDef";
-import { itemTypeDef } from "./item/item.typeDef";
-import { mapTypeDef } from "./map/map.typeDef";
-import { markerTypeDef } from "./marker/marker.typeDef";
-import { userTypeDef } from "./user/user.typeDef";
+const typesArray = fileLoader(__dirname, {
+  recursive: true,
+  extensions: [".graphql"]
+});
 
-import { commonResolvers } from "./common/common.resolvers";
-import { userResolvers } from "./user/user.resolvers";
-import { mapResolvers } from "./map/map.resolvers";
-import { markerResolvers } from "./marker/marker.resolvers";
-import { depositTypeDef } from "./deposit/deposit.typeDef";
-import { depositResolvers } from "./deposit/deposit.resolvers";
+const resolversArray = [
+  ...fileLoader(`${__dirname}/**/*.resolver.ts`, { recursive: true }),
+  ...fileLoader(`${__dirname}/**/*.query.ts`, { recursive: true }),
+  ...fileLoader(`${__dirname}/**/*.mutation.ts`, { recursive: true }),
+  ...fileLoader(`${__dirname}/**/*.subscription.ts`, { recursive: true })
+];
 
 export default makeExecutableSchema({
-  typeDefs: [
-    commonTypeDef,
-    depositTypeDef,
-    itemTypeDef,
-    mapTypeDef,
-    markerTypeDef,
-    userTypeDef
-  ],
-  // @ts-ignore
-  resolvers: merge(
-    commonResolvers,
-    depositResolvers,
-    mapResolvers,
-    markerResolvers,
-    userResolvers
-  )
+  typeDefs: mergeTypes(typesArray, { all: true }),
+  resolvers: mergeResolvers(resolversArray)
 });

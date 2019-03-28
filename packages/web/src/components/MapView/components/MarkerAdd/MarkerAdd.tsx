@@ -8,45 +8,69 @@ import { Flex, Box } from "@rebass/grid";
 import {
   DepositType,
   DepositQuality,
-  useDepositCreate,
   MapViewDocument,
-  MapViewQuery
+  MapViewQuery,
+  useMarkerCreate,
+  MarkerType,
+  SlugType
 } from "../../../../__generated__";
 
 type Props = {
   position: undefined | L.LatLng;
   onClose: () => void;
+  type: MarkerType;
 };
 
 export const MarkerAdd = (props: Props) => {
-  const { position, onClose } = props;
+  const { position, onClose, type } = props;
   const viewer = useViewer();
 
-  const [quality, setQuality] = useState<DepositQuality | undefined>(undefined);
-  const [type, setType] = useState<DepositType | undefined>(undefined);
+  const [depositQuality, setDepositQuality] = useState<
+    DepositQuality | undefined
+  >(undefined);
+  const [depositType, setDepositType] = useState<DepositType | undefined>(
+    undefined
+  );
+  const [slugType, setSlugType] = useState<SlugType | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
-  const depositCreate = useDepositCreate();
+  const markerCreate = useMarkerCreate();
 
-  function handleQualityChange(e: ChangeEvent<HTMLSelectElement>) {
-    setQuality(e.target.value as DepositQuality);
+  function handleDepositQualityChange(e: ChangeEvent<HTMLSelectElement>) {
+    setDepositQuality(e.target.value as DepositQuality);
   }
 
-  function handleTypeChange(e: ChangeEvent<HTMLSelectElement>) {
-    setType(e.target.value as DepositType);
+  function handleDepositTypeChange(e: ChangeEvent<HTMLSelectElement>) {
+    setDepositType(e.target.value as DepositType);
+  }
+
+  function handleSlugTypeChange(e: ChangeEvent<HTMLSelectElement>) {
+    setSlugType(e.target.value as SlugType);
   }
 
   async function handleSubmit() {
     setLoading(true);
 
     try {
-      await depositCreate({
+      await markerCreate({
         variables: {
           input: {
             lat: parseInt(position!.lat.toFixed(), 10),
             lng: parseInt(position!.lng.toFixed(), 10),
             type,
-            quality
+            deposit:
+              type === MarkerType.Deposit
+                ? {
+                    type: depositType!,
+                    quality: depositQuality!
+                  }
+                : undefined,
+            slug:
+              type === MarkerType.Slug
+                ? {
+                    type: slugType!
+                  }
+                : undefined
           }
         },
         update: (proxy, mutationResult) => {
@@ -57,7 +81,7 @@ export const MarkerAdd = (props: Props) => {
           if (mapQuery && mutationResult.data) {
             mapQuery.defaultMap.markers.edges.push({
               __typename: "MapMarkerEdge",
-              node: mutationResult.data.depositCreate
+              node: mutationResult.data.markerCreate
             });
 
             proxy.writeQuery({
@@ -67,8 +91,9 @@ export const MarkerAdd = (props: Props) => {
           }
         }
       });
-      setQuality(undefined);
-      setType(undefined);
+      setDepositQuality(undefined);
+      setDepositType(undefined);
+      setSlugType(undefined);
       setLoading(false);
       onClose();
     } catch (e) {
@@ -92,45 +117,82 @@ export const MarkerAdd = (props: Props) => {
       )}
       {viewer !== null && (
         <Flex flexDirection="column">
-          <Box>
-            <select defaultValue="deposit" disabled={true}>
-              <option value="deposit">deposit</option>
-            </select>
-          </Box>
-          <Box>
-            <select defaultValue="" onChange={handleTypeChange}>
-              <option value="" disabled={true}>
-                select a type
-              </option>
-              <option value={DepositType.Iron}>Iron</option>
-              <option value={DepositType.Copper}>Copper</option>
-              <option value={DepositType.Limestone}>Limestone</option>
-              <option value={DepositType.Coal}>Coal</option>
-              <option value={DepositType.Oil}>Oil</option>
-              <option value={DepositType.Sulphur}>Sulphur</option>
-              <option value={DepositType.Caterium}>Caterium</option>
-              <option value={DepositType.Sam}>Sam</option>
-              <option value={DepositType.Quartz}>Quartz</option>
-              <option value={DepositType.Beauxite}>Beauxite</option>
-              <option value={DepositType.Uranium}>Uranium</option>
-            </select>
-          </Box>
-          <Box>
-            <select defaultValue="" onChange={handleQualityChange}>
-              <option value="" disabled={true}>
-                select a quality
-              </option>
-              <option value={DepositQuality.Pure}>Pure</option>
-              <option value={DepositQuality.Normal}>Normal</option>
-              <option value={DepositQuality.Impure}>Impure</option>
-            </select>
-          </Box>
-          <Button
-            onClick={handleSubmit}
-            label="add"
-            loading={loading}
-            disabled={!quality || !type}
-          />
+          <T mb={3} align="center" type="h3">
+            {type === MarkerType.Deposit && "Add deposit marker"}
+            {type === MarkerType.Slug && "Add slug marker"}
+          </T>
+          {type === MarkerType.Deposit && (
+            <React.Fragment>
+              <Box>
+                <select
+                  style={{ width: "100%" }}
+                  defaultValue=""
+                  onChange={handleDepositTypeChange}
+                >
+                  <option value="" disabled={true}>
+                    select a type
+                  </option>
+                  <option value={DepositType.Iron}>Iron</option>
+                  <option value={DepositType.Copper}>Copper</option>
+                  <option value={DepositType.Limestone}>Limestone</option>
+                  <option value={DepositType.Coal}>Coal</option>
+                  <option value={DepositType.Oil}>Oil</option>
+                  <option value={DepositType.Sulphur}>Sulphur</option>
+                  <option value={DepositType.Caterium}>Caterium</option>
+                  <option value={DepositType.Sam}>Sam</option>
+                  <option value={DepositType.Quartz}>Quartz</option>
+                  <option value={DepositType.Beauxite}>Beauxite</option>
+                  <option value={DepositType.Uranium}>Uranium</option>
+                </select>
+              </Box>
+              <Box mt={2}>
+                <select
+                  style={{ width: "100%" }}
+                  defaultValue=""
+                  onChange={handleDepositQualityChange}
+                >
+                  <option value="" disabled={true}>
+                    select a quality
+                  </option>
+                  <option value={DepositQuality.Pure}>Pure</option>
+                  <option value={DepositQuality.Normal}>Normal</option>
+                  <option value={DepositQuality.Impure}>Impure</option>
+                </select>
+              </Box>
+              <Button
+                mt={3}
+                onClick={handleSubmit}
+                label="Create marker"
+                loading={loading}
+                disabled={!depositQuality || !depositType}
+              />
+            </React.Fragment>
+          )}
+          {type === MarkerType.Slug && (
+            <React.Fragment>
+              <Box>
+                <select
+                  style={{ width: "100%" }}
+                  defaultValue=""
+                  onChange={handleSlugTypeChange}
+                >
+                  <option value="" disabled={true}>
+                    select a type
+                  </option>
+                  <option value={SlugType.Green}>Green</option>
+                  <option value={SlugType.Yellow}>Yellow</option>
+                  <option value={SlugType.Purple}>Purple</option>
+                </select>
+              </Box>
+              <Button
+                mt={3}
+                onClick={handleSubmit}
+                label="Create marker"
+                loading={loading}
+                disabled={!slugType}
+              />
+            </React.Fragment>
+          )}
         </Flex>
       )}
     </Modal>

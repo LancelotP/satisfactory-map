@@ -1,49 +1,40 @@
 import styled from "../../../../themes/styled";
 
-export const Menu = styled.div`
+export const Root = styled.div<{ isOpen: boolean }>`
+  width: ${({ isOpen }) => (isOpen ? 300 : 0)};
+  flex: 0 0 auto;
+  overflow: hidden;
+  background: ${({ theme }) => theme.colors.white};
   display: flex;
-  flex-direction: row-reverse;
-  align-items: flex-start;
+  transition: width 0.242s ease;
+  flex-direction: column;
+
+  @media (min-width: 1200px) {
+    width: 300px !important;
+  }
 `;
 
-export const Btn = styled.div`
-  padding: 16px;
-  border-radius: 4px;
-  background: #f69e28;
+export const Logo = styled.img`
+  width: 100%;
 `;
 
-export const Content = styled.div`
-  margin-right: 8px;
-  border-radius: 4px;
-  display: none;
-  background: #f69e28;
-  padding: 16px 24px;
+export const Header = styled.header`
+  padding: 24px;
+`;
+
+export const Body = styled.aside`
+  flex: 1 1 0;
+  padding: 0 24px;
+  overflow-y: auto;
 
   & > ul {
     margin: 0;
     padding: 0;
+  }
+
+  & ul {
     list-style: none;
-
-    & > li {
-      & > label {
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-
-        & > input {
-          margin-right: 8px;
-        }
-      }
-    }
   }
 `;
 
-export const Root = styled.div`
-  position: absolute;
-  top: 8px;
-  right: 8px;
-
-  &:hover ${Content} {
-    display: block;
-  }
-`;
+export const Footer = styled.footer``;

@@ -1,13 +1,25 @@
 export type Maybe<T> = T | undefined;
 
-export interface DepositCreateInput {
-  lat?: Maybe<number>;
+export interface MarkerCreateInput {
+  type: MarkerType;
 
-  lng?: Maybe<number>;
+  lat: number;
 
-  type?: Maybe<DepositType>;
+  lng: number;
 
-  quality?: Maybe<DepositQuality>;
+  deposit?: Maybe<MarkerCreateDepositInput>;
+
+  slug?: Maybe<MarkerCreateSlugInput>;
+}
+
+export interface MarkerCreateDepositInput {
+  type: DepositType;
+
+  quality: DepositQuality;
+}
+
+export interface MarkerCreateSlugInput {
+  type: SlugType;
 }
 
 export enum DepositQuality {
@@ -30,17 +42,25 @@ export enum DepositType {
   Uranium = "URANIUM"
 }
 
+export enum SlugType {
+  Green = "GREEN",
+  Yellow = "YELLOW",
+  Purple = "PURPLE"
+}
+
+export enum MarkerType {
+  Deposit = "DEPOSIT",
+  Slug = "SLUG",
+  DropPod = "DROP_POD"
+}
+
 export enum OrderDirection {
   Asc = "ASC",
   Desc = "DESC"
 }
 
-/** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 export type DateTime = Date;
 
-/** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
-
-/** A time string at UTC, such as 10:15:30Z, compliant with the `full-time` format outlined in section 5.6 of the RFC 3339profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
 export type Time = Date;
 
 // ====================================================
@@ -53,6 +73,10 @@ export type Time = Date;
 
 export interface Node {
   id: string;
+
+  createdAt: Date;
+
+  updatedAt: Date;
 }
 
 export interface Connection {
@@ -84,8 +108,6 @@ export interface IMarker {
 // ====================================================
 
 export interface Query {
-  _empty?: Maybe<string>;
-
   item: Item;
 
   defaultMap: Map;
@@ -96,11 +118,19 @@ export interface Query {
 export interface Item extends Node {
   id: string;
 
+  createdAt: Date;
+
+  updatedAt: Date;
+
   name: string;
 }
 
 export interface Map extends Node {
   id: string;
+
+  createdAt: Date;
+
+  updatedAt: Date;
 
   markers: MapMarkerConnection;
 }
@@ -154,17 +184,47 @@ export interface User extends Node {
 
   userName?: Maybe<string>;
 
-  createdAt?: Maybe<Date>;
+  createdAt: Date;
+
+  updatedAt: Date;
+}
+
+export interface Slug extends IMarker {
+  id: string;
+
+  map: Map;
+
+  lat: number;
+
+  lng: number;
+
+  createdAt: Date;
+
+  updatedAt: Date;
+
+  type: SlugType;
+
+  addedBy?: Maybe<User>;
+}
+
+export interface DropPod extends IMarker {
+  id: string;
+
+  map: Map;
+
+  lat: number;
+
+  lng: number;
+
+  createdAt: Date;
+
+  updatedAt: Date;
+
+  addedBy?: Maybe<User>;
 }
 
 export interface Mutation {
-  _empty?: Maybe<string>;
-
-  depositCreate: Deposit;
-}
-
-export interface Subscription {
-  _empty?: Maybe<string>;
+  markerCreate: Marker;
 }
 
 // ====================================================
@@ -174,15 +234,15 @@ export interface Subscription {
 export interface ItemQueryArgs {
   itemId: string;
 }
-export interface DepositCreateMutationArgs {
-  input: DepositCreateInput;
+export interface MarkerCreateMutationArgs {
+  input: MarkerCreateInput;
 }
 
 // ====================================================
 // Unions
 // ====================================================
 
-export type Marker = Deposit;
+export type Marker = Deposit | Slug | DropPod;
 
 import {
   GraphQLResolveInfo,
@@ -192,9 +252,13 @@ import {
 
 import { Deposit } from "./deposit/deposit.model";
 
+import { DropPod } from "./dropPod/dropPod.model";
+
 import { Item } from "./item/item.model";
 
 import { Map } from "./map/map.model";
+
+import { Slug } from "./slug/slug.model";
 
 import { User } from "./user/user.model";
 
@@ -250,8 +314,6 @@ export type DirectiveResolverFn<TResult, TArgs = {}, TContext = {}> = (
 ) => TResult | Promise<TResult>;
 
 export interface QueryResolvers<TContext = GQLContext, TypeParent = {}> {
-  _empty?: Query_EmptyResolver<Maybe<string>, TypeParent, TContext>;
-
   item?: QueryItemResolver<Item, TypeParent, TContext>;
 
   defaultMap?: QueryDefaultMapResolver<Map, TypeParent, TContext>;
@@ -259,11 +321,6 @@ export interface QueryResolvers<TContext = GQLContext, TypeParent = {}> {
   viewer?: QueryViewerResolver<Maybe<User>, TypeParent, TContext>;
 }
 
-export type Query_EmptyResolver<
-  R = Maybe<string>,
-  Parent = {},
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
 export type QueryItemResolver<
   R = Item,
   Parent = {},
@@ -287,11 +344,25 @@ export type QueryViewerResolver<
 export interface ItemResolvers<TContext = GQLContext, TypeParent = Item> {
   id?: ItemIdResolver<string, TypeParent, TContext>;
 
+  createdAt?: ItemCreatedAtResolver<Date, TypeParent, TContext>;
+
+  updatedAt?: ItemUpdatedAtResolver<Date, TypeParent, TContext>;
+
   name?: ItemNameResolver<string, TypeParent, TContext>;
 }
 
 export type ItemIdResolver<
   R = string,
+  Parent = Item,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type ItemCreatedAtResolver<
+  R = Date,
+  Parent = Item,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type ItemUpdatedAtResolver<
+  R = Date,
   Parent = Item,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
@@ -304,11 +375,25 @@ export type ItemNameResolver<
 export interface MapResolvers<TContext = GQLContext, TypeParent = Map> {
   id?: MapIdResolver<string, TypeParent, TContext>;
 
+  createdAt?: MapCreatedAtResolver<Date, TypeParent, TContext>;
+
+  updatedAt?: MapUpdatedAtResolver<Date, TypeParent, TContext>;
+
   markers?: MapMarkersResolver<MapMarkerConnection, TypeParent, TContext>;
 }
 
 export type MapIdResolver<
   R = string,
+  Parent = Map,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type MapCreatedAtResolver<
+  R = Date,
+  Parent = Map,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type MapUpdatedAtResolver<
+  R = Date,
   Parent = Map,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
@@ -490,7 +575,9 @@ export interface UserResolvers<TContext = GQLContext, TypeParent = User> {
 
   userName?: UserUserNameResolver<Maybe<string>, TypeParent, TContext>;
 
-  createdAt?: UserCreatedAtResolver<Maybe<Date>, TypeParent, TContext>;
+  createdAt?: UserCreatedAtResolver<Date, TypeParent, TContext>;
+
+  updatedAt?: UserUpdatedAtResolver<Date, TypeParent, TContext>;
 }
 
 export type UserIdResolver<
@@ -504,40 +591,139 @@ export type UserUserNameResolver<
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 export type UserCreatedAtResolver<
-  R = Maybe<Date>,
+  R = Date,
+  Parent = User,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type UserUpdatedAtResolver<
+  R = Date,
   Parent = User,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
-export interface MutationResolvers<TContext = GQLContext, TypeParent = {}> {
-  _empty?: Mutation_EmptyResolver<Maybe<string>, TypeParent, TContext>;
+export interface SlugResolvers<TContext = GQLContext, TypeParent = Slug> {
+  id?: SlugIdResolver<string, TypeParent, TContext>;
 
-  depositCreate?: MutationDepositCreateResolver<Deposit, TypeParent, TContext>;
+  map?: SlugMapResolver<Map, TypeParent, TContext>;
+
+  lat?: SlugLatResolver<number, TypeParent, TContext>;
+
+  lng?: SlugLngResolver<number, TypeParent, TContext>;
+
+  createdAt?: SlugCreatedAtResolver<Date, TypeParent, TContext>;
+
+  updatedAt?: SlugUpdatedAtResolver<Date, TypeParent, TContext>;
+
+  type?: SlugTypeResolver<SlugType, TypeParent, TContext>;
+
+  addedBy?: SlugAddedByResolver<Maybe<User>, TypeParent, TContext>;
 }
 
-export type Mutation_EmptyResolver<
-  R = Maybe<string>,
-  Parent = {},
+export type SlugIdResolver<
+  R = string,
+  Parent = Slug,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
-export type MutationDepositCreateResolver<
-  R = Deposit,
-  Parent = {},
+export type SlugMapResolver<
+  R = Map,
+  Parent = Slug,
   TContext = GQLContext
-> = Resolver<R, Parent, TContext, MutationDepositCreateArgs>;
-export interface MutationDepositCreateArgs {
-  input: DepositCreateInput;
+> = Resolver<R, Parent, TContext>;
+export type SlugLatResolver<
+  R = number,
+  Parent = Slug,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type SlugLngResolver<
+  R = number,
+  Parent = Slug,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type SlugCreatedAtResolver<
+  R = Date,
+  Parent = Slug,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type SlugUpdatedAtResolver<
+  R = Date,
+  Parent = Slug,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type SlugTypeResolver<
+  R = SlugType,
+  Parent = Slug,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type SlugAddedByResolver<
+  R = Maybe<User>,
+  Parent = Slug,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+
+export interface DropPodResolvers<TContext = GQLContext, TypeParent = DropPod> {
+  id?: DropPodIdResolver<string, TypeParent, TContext>;
+
+  map?: DropPodMapResolver<Map, TypeParent, TContext>;
+
+  lat?: DropPodLatResolver<number, TypeParent, TContext>;
+
+  lng?: DropPodLngResolver<number, TypeParent, TContext>;
+
+  createdAt?: DropPodCreatedAtResolver<Date, TypeParent, TContext>;
+
+  updatedAt?: DropPodUpdatedAtResolver<Date, TypeParent, TContext>;
+
+  addedBy?: DropPodAddedByResolver<Maybe<User>, TypeParent, TContext>;
 }
 
-export interface SubscriptionResolvers<TContext = GQLContext, TypeParent = {}> {
-  _empty?: Subscription_EmptyResolver<Maybe<string>, TypeParent, TContext>;
+export type DropPodIdResolver<
+  R = string,
+  Parent = DropPod,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type DropPodMapResolver<
+  R = Map,
+  Parent = DropPod,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type DropPodLatResolver<
+  R = number,
+  Parent = DropPod,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type DropPodLngResolver<
+  R = number,
+  Parent = DropPod,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type DropPodCreatedAtResolver<
+  R = Date,
+  Parent = DropPod,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type DropPodUpdatedAtResolver<
+  R = Date,
+  Parent = DropPod,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type DropPodAddedByResolver<
+  R = Maybe<User>,
+  Parent = DropPod,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+
+export interface MutationResolvers<TContext = GQLContext, TypeParent = {}> {
+  markerCreate?: MutationMarkerCreateResolver<Marker, TypeParent, TContext>;
 }
 
-export type Subscription_EmptyResolver<
-  R = Maybe<string>,
+export type MutationMarkerCreateResolver<
+  R = Marker,
   Parent = {},
   TContext = GQLContext
-> = SubscriptionResolver<R, Parent, TContext>;
+> = Resolver<R, Parent, TContext, MutationMarkerCreateArgs>;
+export interface MutationMarkerCreateArgs {
+  input: MarkerCreateInput;
+}
 
 export interface NodeResolvers {
   __resolveType: NodeResolveType;
@@ -570,8 +756,8 @@ export interface IMarkerResolvers {
   __resolveType: IMarkerResolveType;
 }
 export type IMarkerResolveType<
-  R = "Deposit",
-  Parent = Deposit,
+  R = "Deposit" | "Slug" | "DropPod",
+  Parent = Deposit | Slug | DropPod,
   TContext = GQLContext
 > = TypeResolveFn<R, Parent, TContext>;
 
@@ -579,8 +765,8 @@ export interface MarkerResolvers {
   __resolveType: MarkerResolveType;
 }
 export type MarkerResolveType<
-  R = "Deposit",
-  Parent = Deposit,
+  R = "Deposit" | "Slug" | "DropPod",
+  Parent = Deposit | Slug | DropPod,
   TContext = GQLContext
 > = TypeResolveFn<R, Parent, TContext>;
 
@@ -637,8 +823,9 @@ export interface IResolvers<TContext = GQLContext> {
   MapMarkerEdge?: MapMarkerEdgeResolvers<TContext>;
   Deposit?: DepositResolvers<TContext>;
   User?: UserResolvers<TContext>;
+  Slug?: SlugResolvers<TContext>;
+  DropPod?: DropPodResolvers<TContext>;
   Mutation?: MutationResolvers<TContext>;
-  Subscription?: SubscriptionResolvers<TContext>;
   Node?: NodeResolvers;
   Connection?: ConnectionResolvers;
   Edge?: EdgeResolvers;

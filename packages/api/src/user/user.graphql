@@ -1,0 +1,11 @@
+type User implements Node {
+  id: ID!
+  userName: String
+
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Query {
+  viewer: User
+}

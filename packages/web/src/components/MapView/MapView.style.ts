@@ -2,7 +2,9 @@ import styled, { css } from "../../themes/styled";
 import { readableColor } from "polished";
 import { Paragraph } from "../T/T.style";
 
-export const Root = styled.div`
+export const Wrapper = styled.div`
+  position: relative;
+
   & .leaflet-container {
     width: 100%;
     height: 100%;
@@ -13,6 +15,16 @@ export const Root = styled.div`
       margin: 0;
     }
 
+    & .leaflet-div-icon {
+      background: transparent;
+      border: none;
+
+      & > svg {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
     & .leaflet-marker-icon {
       ${Paragraph};
       display: flex;
@@ -21,8 +33,8 @@ export const Root = styled.div`
       /* border: 1px solid #fff; */
       /* position: relative; */
 
-      filter: drop-shadow(white 0px 2px 0px) drop-shadow(white 0px -2px 0px)
-        drop-shadow(white 2px 0px 0px) drop-shadow(white -2px 0px 0px);
+      /* filter: drop-shadow(white 0px 2px 0px) drop-shadow(white 0px -2px 0px)
+        drop-shadow(white 2px 0px 0px) drop-shadow(white -2px 0px 0px); */
 
       &.iron {
         ${generateIcon("#A8A8A8")}
@@ -63,6 +75,17 @@ export const Root = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+`;
+
+export const Root = styled.div`
+  display: flex;
+  height: 100%;
+`;
+
+export const Menu = styled.div`
+  width: 300px;
+  flex: 0 0 auto;
+  background: ${({ theme }) => theme.colors.white};
 `;
 
 export const HoverPosWrapper = styled.div`
@@ -162,3 +185,20 @@ function generateIcon(color: string) {
     }
   `;
 }
+
+export const MenuToggle = styled.div`
+  padding: 4px;
+  cursor: pointer;
+  top: 85px;
+  left: 10px;
+  background: white;
+  border-radius: 4px;
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  box-sizing: border-box;
+
+  @media (min-width: 1200px) {
+    display: none;
+  }
+`;

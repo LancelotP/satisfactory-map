@@ -1,0 +1,19 @@
+type Slug implements IMarker {
+  id: ID!
+  map: Map!
+
+  lat: Int!
+  lng: Int!
+
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  type: SlugType!
+  addedBy: User
+}
+
+enum SlugType {
+  GREEN
+  YELLOW
+  PURPLE
+}

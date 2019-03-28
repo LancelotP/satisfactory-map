@@ -1,0 +1,31 @@
+interface Node {
+  id: ID!
+
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+interface Connection {
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+interface Edge {
+  cursor: String!
+}
+
+enum OrderDirection {
+  ASC
+  DESC
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+scalar Date
+scalar DateTime
+scalar Time

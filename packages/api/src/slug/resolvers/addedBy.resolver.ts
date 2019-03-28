@@ -1,13 +1,13 @@
 import { IResolvers } from "../../types";
 import { getConnection } from "typeorm";
-import { Deposit } from "../deposit.model";
+import { Slug } from "../slug.model";
 
 export default {
-  Deposit: {
+  Slug: {
     addedBy: _ => {
       return getConnection()
-        .getRepository(Deposit)
-        .createQueryBuilder("deposit")
+        .getRepository(Slug)
+        .createQueryBuilder("slug")
         .relation("creator")
         .of(_)
         .loadOne();

@@ -1,9 +1,7 @@
 import { IResolvers } from "../../types";
 
-export const viewerQuery: IResolvers = {
+export default {
   Query: {
-    viewer: (_, args, ctx) => {
-      return ctx.viewer;
-    }
+    viewer: (_, args, ctx) => ctx.viewer
   }
-};
+} as IResolvers;

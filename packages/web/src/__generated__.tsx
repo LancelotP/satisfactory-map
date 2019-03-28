@@ -1,13 +1,25 @@
 export type Maybe<T> = T | null;
 
-export interface DepositCreateInput {
-  lat?: Maybe<number>;
+export interface MarkerCreateInput {
+  type: MarkerType;
 
-  lng?: Maybe<number>;
+  lat: number;
 
-  type?: Maybe<DepositType>;
+  lng: number;
 
-  quality?: Maybe<DepositQuality>;
+  deposit?: Maybe<MarkerCreateDepositInput>;
+
+  slug?: Maybe<MarkerCreateSlugInput>;
+}
+
+export interface MarkerCreateDepositInput {
+  type: DepositType;
+
+  quality: DepositQuality;
+}
+
+export interface MarkerCreateSlugInput {
+  type: SlugType;
 }
 
 export enum DepositQuality {
@@ -30,6 +42,18 @@ export enum DepositType {
   Uranium = "URANIUM"
 }
 
+export enum SlugType {
+  Green = "GREEN",
+  Yellow = "YELLOW",
+  Purple = "PURPLE"
+}
+
+export enum MarkerType {
+  Deposit = "DEPOSIT",
+  Slug = "SLUG",
+  DropPod = "DROP_POD"
+}
+
 export enum OrderDirection {
   Asc = "ASC",
   Desc = "DESC"
@@ -48,17 +72,20 @@ export type Time = string;
 // Documents
 // ====================================================
 
-export type DepositCreateVariables = {
-  input: DepositCreateInput;
+export type MarkerCreateVariables = {
+  input: MarkerCreateInput;
 };
 
-export type DepositCreateMutation = {
+export type MarkerCreateMutation = {
   __typename?: "Mutation";
 
-  depositCreate: DepositCreateDepositCreate;
+  markerCreate: MarkerCreateMarkerCreate;
 };
 
-export type DepositCreateDepositCreate = DepositMarkerFragment;
+export type MarkerCreateMarkerCreate =
+  | DepositMarkerFragment
+  | DropPodMarkerFragment
+  | SlugMarkerFragment;
 
 export type MapViewVariables = {};
 
@@ -88,7 +115,10 @@ export type MapViewEdges = {
   node: MapViewNode;
 };
 
-export type MapViewNode = DepositMarkerFragment;
+export type MapViewNode =
+  | DepositMarkerFragment
+  | SlugMarkerFragment
+  | DropPodMarkerFragment;
 
 export type AppVariables = {};
 
@@ -150,22 +180,6 @@ export type HomeDepositInlineFragment = {
   type: DepositType;
 };
 
-export type DepositeCreateVariables = {
-  input: DepositCreateInput;
-};
-
-export type DepositeCreateMutation = {
-  __typename?: "Mutation";
-
-  depositCreate: DepositeCreateDepositCreate;
-};
-
-export type DepositeCreateDepositCreate = {
-  __typename?: "Deposit";
-
-  id: string;
-};
-
 export type DepositMarkerFragment = {
   __typename?: "Deposit";
 
@@ -183,6 +197,48 @@ export type DepositMarkerFragment = {
 };
 
 export type DepositMarkerAddedBy = {
+  __typename?: "User";
+
+  id: string;
+
+  userName: Maybe<string>;
+};
+
+export type SlugMarkerFragment = {
+  __typename?: "Slug";
+
+  id: string;
+
+  lat: number;
+
+  lng: number;
+
+  slugType: SlugType;
+
+  addedBy: Maybe<SlugMarkerAddedBy>;
+};
+
+export type SlugMarkerAddedBy = {
+  __typename?: "User";
+
+  id: string;
+
+  userName: Maybe<string>;
+};
+
+export type DropPodMarkerFragment = {
+  __typename?: "DropPod";
+
+  id: string;
+
+  lat: number;
+
+  lng: number;
+
+  addedBy: Maybe<DropPodMarkerAddedBy>;
+};
+
+export type DropPodMarkerAddedBy = {
   __typename?: "User";
 
   id: string;
@@ -211,29 +267,58 @@ export const DepositMarkerFragmentDoc = gql`
   }
 `;
 
+export const SlugMarkerFragmentDoc = gql`
+  fragment SlugMarker on Slug {
+    id
+    lat
+    lng
+    slugType: type
+    addedBy {
+      id
+      userName
+    }
+  }
+`;
+
+export const DropPodMarkerFragmentDoc = gql`
+  fragment DropPodMarker on DropPod {
+    id
+    lat
+    lng
+    addedBy {
+      id
+      userName
+    }
+  }
+`;
+
 // ====================================================
 // Components
 // ====================================================
 
-export const DepositCreateDocument = gql`
-  mutation DepositCreate($input: DepositCreateInput!) {
-    depositCreate(input: $input) {
+export const MarkerCreateDocument = gql`
+  mutation MarkerCreate($input: MarkerCreateInput!) {
+    markerCreate(input: $input) {
       ...DepositMarker
+      ...DropPodMarker
+      ...SlugMarker
     }
   }
 
   ${DepositMarkerFragmentDoc}
+  ${DropPodMarkerFragmentDoc}
+  ${SlugMarkerFragmentDoc}
 `;
-export function useDepositCreate(
+export function useMarkerCreate(
   baseOptions?: ReactApolloHooks.MutationHookOptions<
-    DepositCreateMutation,
-    DepositCreateVariables
+    MarkerCreateMutation,
+    MarkerCreateVariables
   >
 ) {
   return ReactApolloHooks.useMutation<
-    DepositCreateMutation,
-    DepositCreateVariables
-  >(DepositCreateDocument, baseOptions);
+    MarkerCreateMutation,
+    MarkerCreateVariables
+  >(MarkerCreateDocument, baseOptions);
 }
 export const MapViewDocument = gql`
   query MapView {
@@ -243,6 +328,8 @@ export const MapViewDocument = gql`
         edges {
           node {
             ...DepositMarker
+            ...SlugMarker
+            ...DropPodMarker
           }
         }
       }
@@ -250,6 +337,8 @@ export const MapViewDocument = gql`
   }
 
   ${DepositMarkerFragmentDoc}
+  ${SlugMarkerFragmentDoc}
+  ${DropPodMarkerFragmentDoc}
 `;
 export function useMapView(
   baseOptions?: ReactApolloHooks.QueryHookOptions<MapViewVariables>
@@ -302,22 +391,4 @@ export function useHome(
     HomeDocument,
     baseOptions
   );
-}
-export const DepositeCreateDocument = gql`
-  mutation DepositeCreate($input: DepositCreateInput!) {
-    depositCreate(input: $input) {
-      id
-    }
-  }
-`;
-export function useDepositeCreate(
-  baseOptions?: ReactApolloHooks.MutationHookOptions<
-    DepositeCreateMutation,
-    DepositeCreateVariables
-  >
-) {
-  return ReactApolloHooks.useMutation<
-    DepositeCreateMutation,
-    DepositeCreateVariables
-  >(DepositeCreateDocument, baseOptions);
 }

@@ -1,0 +1,12 @@
+type Item implements Node {
+  id: ID!
+
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  name: String!
+}
+
+type Query {
+  item(itemId: ID!): Item!
+}

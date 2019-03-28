@@ -2,7 +2,7 @@ import { IResolvers } from "../../types";
 import { getConnection } from "typeorm";
 import { Map } from "../map.model";
 
-export const defaultMapQuery: IResolvers = {
+export default {
   Query: {
     defaultMap: () => {
       return getConnection()
@@ -10,4 +10,4 @@ export const defaultMapQuery: IResolvers = {
         .findOneOrFail(1);
     }
   }
-};
+} as IResolvers;

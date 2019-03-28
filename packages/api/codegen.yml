@@ -1,7 +1,5 @@
 overwrite: true
-schema: "./src/schema.ts"
-require:
-  - ts-node/register/transpile-only
+schema: "./src/**/*.graphql"
 document: null
 generates:
   src/types.ts:
@@ -15,9 +13,11 @@ generates:
         Date: Date
       mappers:
         Deposit: ./deposit/deposit.model#Deposit
+        DropPod: ./dropPod/dropPod.model#DropPod
         Item: ./item/item.model#Item
         Map: ./map/map.model#Map
         Marker: ./marker/marker.model#Marker
+        Slug: ./slug/slug.model#Slug
         User: ./user/user.model#User
     plugins:
       - "typescript-common"

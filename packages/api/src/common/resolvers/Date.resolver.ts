@@ -1,6 +1,6 @@
 import { IResolvers } from "../../types";
 import { GraphQLDate } from "graphql-iso-date";
 
-export const DateResolver: IResolvers = {
+export default {
   Date: GraphQLDate
-};
+} as IResolvers;

@@ -4,11 +4,18 @@ import "leaflet-contextmenu";
 import "leaflet-contextmenu/dist/leaflet.contextmenu.css";
 import * as L from "leaflet";
 import * as S from "./MapView.style";
-import { Map, TileLayer, Marker, Popup } from "react-leaflet";
-import { T } from "../T/T";
-import { Legend } from "./components/Legend/Legend";
-import { Menu, MarkerSelection } from "./components/Menu/Menu";
-import { useMapView, MapViewMarkers, MapViewEdges } from "../../__generated__";
+import { Map, TileLayer, LayerGroup } from "react-leaflet";
+import { Menu } from "./components/Menu/Menu";
+import {
+  useMapView,
+  MarkerType,
+  DepositType,
+  SlugType
+} from "../../__generated__";
+import { getDefaultMarkerSelection } from "../../utils/getDefaultMarkerSelection";
+import { getDefaultMarkers } from "../../utils/getDefaultMarkers";
+import { DepositMarker } from "./components/DepositMarker/DepositMarker";
+import { SlugMarker } from "./components/SlugMarker/SlugMarker";
 import { MarkerAdd } from "./components/MarkerAdd/MarkerAdd";
 
 const MAX_ZOOM = 6;
@@ -34,104 +41,125 @@ type Props = {
 };
 
 export const MapView = (props: Props) => {
-  const { mapId } = props;
-  const [selection, setSelection] = useState<MarkerSelection>({
-    iron: true,
-    copper: true,
-    limestone: true,
-    coal: true,
-    oil: true,
-    sulphur: true,
-    caterium: true,
-    sam: true,
-    quartz: true,
-    beauxite: true,
-    uranium: true
-  });
-  const [hoverPos, setHoverPos] = useState<L.LatLng>(L.latLng(0, 0));
-  const [addingPos, setAddingPos] = useState<L.LatLng | undefined>(undefined);
-  const [markers, setMarkers] = useState<MapViewEdges[]>([]);
+  const [selection, setSelection] = useState(getDefaultMarkerSelection());
+  const [markers, setMarkers] = useState(getDefaultMarkers());
 
-  function handleMouseMove(event: L.LeafletMouseEvent) {
-    // setHoverPos(event.latlng);
+  const [adding, setAdding] = useState<L.LatLng | undefined>(undefined);
+  const [markerType, setMarkerType] = useState<MarkerType | undefined>(
+    undefined
+  );
+
+  function handleMarkerAdd(type: MarkerType) {
+    return (event: L.LeafletMouseEvent) => {
+      setMarkerType(type);
+      setAdding(event.latlng);
+    };
   }
 
-  function handleMarkerAdd(event: L.LeafletMouseEvent) {
-    setAddingPos(event.latlng);
+  function handleMarkerAddClose() {
+    setMarkerType(undefined);
+    setAdding(undefined);
   }
 
   const { data } = useMapView();
 
   useEffect(() => {
     if (data && data.defaultMap && data.defaultMap.markers) {
-      const edges = data.defaultMap.markers.edges.filter(({ node }) => {
-        if (selection[node.type.toLowerCase() as keyof MarkerSelection]) {
-          return true;
-        }
+      const newMarkers = getDefaultMarkers();
 
-        return false;
+      data.defaultMap.markers.edges.forEach(edge => {
+        if (edge.node.__typename === "Slug") {
+          newMarkers.slugs[edge.node.slugType].push(edge.node);
+        } else if (edge.node.__typename === "Deposit") {
+          newMarkers.deposits[edge.node.type].push(edge.node);
+        }
       });
-      setMarkers(edges);
+
+      setMarkers(newMarkers);
     }
-  }, [data, selection, addingPos]);
+  }, [data, selection, adding]);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <S.Root>
-      <Map
-        crs={crs}
-        zoom={2}
-        minZoom={MIN_ZOOM}
-        maxZoom={MAX_ZOOM}
-        center={[2000, 2000]}
-        contextmenu={true}
-        contextmenuWidth={200}
-        contextmenuItems={[
-          {
-            text: "Add marker here",
-            callback: handleMarkerAdd
-          }
-        ]}
-        attributionControl={false}
-        onmousemove={handleMouseMove}
-        maxBounds={L.latLngBounds(L.latLng(-2000, -2000), L.latLng(6000, 6000))}
-      >
-        <TileLayer
-          url="/tiles/{z}/{x}/{y}.png"
+      <Menu isOpen={isMenuOpen} selection={selection} onChange={setSelection} />
+      <S.Wrapper>
+        <Map
+          iconSize={[20, 20]}
+          crs={crs}
+          zoom={2}
           minZoom={MIN_ZOOM}
           maxZoom={MAX_ZOOM}
-          bounds={[[0, 0], [4000, 4000]]}
-        />
-        {markers.map(({ node }) => (
-          <Marker
-            position={L.latLng(node.lat, node.lng)}
-            key={node.id}
-            icon={
-              new L.DivIcon({
-                html: `<div>${node.type[0]}</div>`,
-                className: `${node.type.toLowerCase()} ${node.quality.toLowerCase()}`,
-                iconSize: [40, 40]
-              })
+          center={[2000, 2000]}
+          contextmenu={true}
+          contextmenuWidth={200}
+          contextmenuItems={[
+            {
+              text: "Add deposit here",
+              callback: handleMarkerAdd(MarkerType.Deposit)
+            },
+            {
+              text: "Add slug here",
+              callback: handleMarkerAdd(MarkerType.Slug)
             }
-          >
-            <Popup>
-              <T align="center" transform="lowercase">
-                {node.quality} {node.type}
-              </T>
-              {node.addedBy && (
-                <T align="center">Added by {node.addedBy.userName}</T>
-              )}
-            </Popup>
-          </Marker>
-        ))}
-      </Map>
-      {/* <S.HoverPosWrapper>
-        <T>
-          {hoverPos.lat.toFixed()}, {hoverPos.lng.toFixed()}
-        </T>
-      </S.HoverPosWrapper> */}
-      <Legend />
-      <Menu onChange={setSelection} selection={selection} />
-      <MarkerAdd onClose={() => setAddingPos(undefined)} position={addingPos} />
+          ]}
+          attributionControl={false}
+          maxBounds={L.latLngBounds(
+            L.latLng(-2000, -2000),
+            L.latLng(6000, 6000)
+          )}
+        >
+          <TileLayer
+            url="/tiles/{z}/{x}/{y}.png"
+            minZoom={MIN_ZOOM}
+            maxZoom={MAX_ZOOM}
+            bounds={[[0, 0], [4000, 4000]]}
+          />
+          <LayerGroup>
+            {Object.keys(markers.deposits).map(
+              name =>
+                selection.deposits[name as DepositType] && (
+                  <LayerGroup key={name}>
+                    {markers.deposits[name as DepositType].map(marker => (
+                      <React.Fragment key={marker.id}>
+                        <DepositMarker marker={marker} />
+                      </React.Fragment>
+                    ))}
+                  </LayerGroup>
+                )
+            )}
+          </LayerGroup>
+          <LayerGroup>
+            {Object.keys(markers.slugs).map(
+              name =>
+                selection.slugs[name as SlugType] && (
+                  <LayerGroup key={name}>
+                    {markers.slugs[name as SlugType].map(slug => (
+                      <React.Fragment key={slug.id}>
+                        <SlugMarker marker={slug} />
+                      </React.Fragment>
+                    ))}
+                  </LayerGroup>
+                )
+            )}
+          </LayerGroup>
+        </Map>
+        <S.MenuToggle
+          onClick={() => {
+            setIsMenuOpen(!isMenuOpen);
+          }}
+        >
+          <img src={require("./MapViewMenu.svg")} />
+        </S.MenuToggle>
+      </S.Wrapper>
+      {adding && markerType && (
+        <MarkerAdd
+          onClose={handleMarkerAddClose}
+          type={markerType}
+          position={adding}
+        />
+      )}
     </S.Root>
   );
 };
