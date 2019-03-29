@@ -121,6 +121,22 @@ export type MapViewNode =
   | SlugMarkerFragment
   | DropPodMarkerFragment;
 
+export type InteractiveMapVariables = {
+  mapId: string;
+};
+
+export type InteractiveMapQuery = {
+  __typename?: "Query";
+
+  defaultMap: InteractiveMapDefaultMap;
+};
+
+export type InteractiveMapDefaultMap = {
+  __typename?: "Map";
+
+  id: string;
+};
+
 export type AppVariables = {};
 
 export type AppQuery = {
@@ -348,6 +364,21 @@ export function useMapView(
     MapViewDocument,
     baseOptions
   );
+}
+export const InteractiveMapDocument = gql`
+  query InteractiveMap($mapId: ID!) {
+    defaultMap {
+      id
+    }
+  }
+`;
+export function useInteractiveMap(
+  baseOptions?: ReactApolloHooks.QueryHookOptions<InteractiveMapVariables>
+) {
+  return ReactApolloHooks.useQuery<
+    InteractiveMapQuery,
+    InteractiveMapVariables
+  >(InteractiveMapDocument, baseOptions);
 }
 export const AppDocument = gql`
   query App {

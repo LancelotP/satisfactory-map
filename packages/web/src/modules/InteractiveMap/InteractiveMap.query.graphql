@@ -1,0 +1,5 @@
+query InteractiveMap($mapId: ID!) {
+  defaultMap {
+    id
+  }
+}

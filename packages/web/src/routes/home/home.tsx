@@ -4,9 +4,10 @@ import { useHome, DepositQuality, DepositType } from "../../__generated__";
 import { Map, TileLayer, LayerGroup, Marker, Popup } from "react-leaflet";
 import * as L from "leaflet";
 import { MapView } from "../../components/MapView/MapView";
+import { InteractiveMap } from "../../modules/InteractiveMap/InteractiveMap";
 
 export const HomeRoute = () => {
-  return <div>Hello World</div>;
+  return <InteractiveMap />;
 
   const [hoverPos, setHoverPos] = useState<{ lat: number; lng: number }>({
     lat: 0,

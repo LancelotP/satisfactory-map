@@ -5,6 +5,8 @@ import { useApp, Maybe, AppViewer } from "../__generated__";
 import { handleCallback, renewSession } from "../services/auth";
 import useRouter from "../utils/useRouter";
 import { apolloClient } from "../services/apollo";
+import { Layout } from "../components/Layout/Layout";
+import { Route, Switch, Redirect } from "react-router";
 
 export const AppContext = createContext<Maybe<AppViewer>>(null);
 
@@ -41,7 +43,12 @@ export const Router = () => {
 
   return (
     <AppContext.Provider value={get(data, "viewer", null)}>
-      <HomeRoute />
+      <Layout>
+        <Switch>
+          <Route path="/" exact={true} component={HomeRoute} />
+          <Redirect to="/" />
+        </Switch>
+      </Layout>
     </AppContext.Provider>
   );
 };
