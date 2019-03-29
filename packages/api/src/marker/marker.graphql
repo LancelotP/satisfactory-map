@@ -2,8 +2,8 @@ interface IMarker {
   id: ID!
   map: Map!
 
-  lat: Int!
-  lng: Int!
+  lat: Float!
+  lng: Float!
 
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -23,8 +23,8 @@ enum MarkerType {
 
 input MarkerCreateInput {
   type: MarkerType!
-  lat: Int!
-  lng: Int!
+  lat: Float!
+  lng: Float!
   deposit: MarkerCreateDepositInput
   slug: MarkerCreateSlugInput
 }
