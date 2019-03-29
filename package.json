@@ -7,7 +7,12 @@
     "yarn": "1.13.0"
   },
   "scripts": {
-    "build": "cd packages/api && yarn build",
-    "postinstall": "cd packages/api && yarn install --production=false"
+    "start": "cd packages/api && NODE_ENV=production  node -r dotenv/config build",
+    "build": "yarn build:api && yarn build:web",
+    "build:web": "cd packages/web && yarn build",
+    "build:api": "cd packages/api && yarn build",
+    "postinstall": "yarn postinstall:api && yarn postinstall:web",
+    "postinstall:api": "cd packages/api && yarn install --production=false",
+    "postinstall:web": "cd packages/web && yarn install --production=false"
   }
 }

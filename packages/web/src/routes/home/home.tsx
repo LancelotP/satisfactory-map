@@ -6,6 +6,8 @@ import * as L from "leaflet";
 import { MapView } from "../../components/MapView/MapView";
 
 export const HomeRoute = () => {
+  return <div>Hello World</div>;
+
   const [hoverPos, setHoverPos] = useState<{ lat: number; lng: number }>({
     lat: 0,
     lng: 0
