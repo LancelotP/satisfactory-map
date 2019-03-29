@@ -28,7 +28,7 @@ export const SlugMarker = (props: Props) => {
             </g>
           </svg>
           `,
-          iconSize: [30, 30]
+          iconSize: [20, 20]
         })
       }
     >
