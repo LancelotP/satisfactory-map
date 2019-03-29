@@ -132,17 +132,14 @@ export const MarkerAdd = (props: Props) => {
                   <option value="" disabled={true}>
                     select a type
                   </option>
-                  <option value={DepositType.Iron}>Iron</option>
-                  <option value={DepositType.Copper}>Copper</option>
-                  <option value={DepositType.Limestone}>Limestone</option>
-                  <option value={DepositType.Coal}>Coal</option>
-                  <option value={DepositType.Oil}>Oil</option>
-                  <option value={DepositType.Sulphur}>Sulphur</option>
-                  <option value={DepositType.Caterium}>Caterium</option>
-                  <option value={DepositType.Sam}>Sam</option>
-                  <option value={DepositType.Quartz}>Quartz</option>
-                  <option value={DepositType.Beauxite}>Beauxite</option>
-                  <option value={DepositType.Uranium}>Uranium</option>
+                  {Object.keys(DepositType).map(key => (
+                    <option
+                      key={key}
+                      value={DepositType[key as keyof typeof DepositType]}
+                    >
+                      {key}
+                    </option>
+                  ))}
                 </select>
               </Box>
               <Box mt={2}>
@@ -154,9 +151,14 @@ export const MarkerAdd = (props: Props) => {
                   <option value="" disabled={true}>
                     select a quality
                   </option>
-                  <option value={DepositQuality.Pure}>Pure</option>
-                  <option value={DepositQuality.Normal}>Normal</option>
-                  <option value={DepositQuality.Impure}>Impure</option>
+                  {Object.keys(DepositQuality).map(key => (
+                    <option
+                      key={key}
+                      value={DepositQuality[key as keyof typeof DepositQuality]}
+                    >
+                      {key}
+                    </option>
+                  ))}
                 </select>
               </Box>
               <Button
@@ -179,9 +181,14 @@ export const MarkerAdd = (props: Props) => {
                   <option value="" disabled={true}>
                     select a type
                   </option>
-                  <option value={SlugType.Green}>Green</option>
-                  <option value={SlugType.Yellow}>Yellow</option>
-                  <option value={SlugType.Purple}>Purple</option>
+                  {Object.keys(SlugType).map(key => (
+                    <option
+                      key={key}
+                      value={SlugType[key as keyof typeof SlugType]}
+                    >
+                      {key}
+                    </option>
+                  ))}
                 </select>
               </Box>
               <Button

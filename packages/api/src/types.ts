@@ -38,8 +38,9 @@ export enum DepositType {
   Caterium = "CATERIUM",
   Sam = "SAM",
   Quartz = "QUARTZ",
-  Beauxite = "BEAUXITE",
-  Uranium = "URANIUM"
+  Bauxite = "BAUXITE",
+  Uranium = "URANIUM",
+  Geyser = "GEYSER"
 }
 
 export enum SlugType {

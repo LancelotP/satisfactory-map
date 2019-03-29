@@ -30,6 +30,7 @@ enum DepositType {
   CATERIUM
   SAM
   QUARTZ
-  BEAUXITE
+  BAUXITE
   URANIUM
+  GEYSER
 }

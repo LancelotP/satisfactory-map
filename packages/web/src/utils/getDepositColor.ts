@@ -2,7 +2,7 @@ import { DepositType } from "../__generated__";
 
 export function getDepositColor(type: DepositType) {
   switch (type) {
-    case DepositType.Beauxite:
+    case DepositType.Bauxite:
       return "#D973A9";
     case DepositType.Caterium:
       return "#F1D448";
@@ -24,5 +24,7 @@ export function getDepositColor(type: DepositType) {
       return "#FDAC00";
     case DepositType.Uranium:
       return "#00E337";
+    case DepositType.Geyser:
+      return "#ff0000";
   }
 }
