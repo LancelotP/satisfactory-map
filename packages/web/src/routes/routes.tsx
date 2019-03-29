@@ -4,7 +4,6 @@ import get from "lodash.get";
 import { useApp, Maybe, AppViewer } from "../__generated__";
 import { handleCallback, renewSession } from "../services/auth";
 import useRouter from "../utils/useRouter";
-import { apolloClient } from "../services/apollo";
 import { Layout } from "../components/Layout/Layout";
 import { Route, Switch, Redirect } from "react-router";
 

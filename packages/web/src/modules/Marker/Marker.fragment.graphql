@@ -1,0 +1,19 @@
+fragment MarkerDeposit on Deposit {
+  id
+  lat
+  lng
+  depositType: type
+}
+
+fragment MarkerSlug on Slug {
+  id
+  lat
+  lng
+  slugType: type
+}
+
+fragment MarkerDropPod on DropPod {
+  id
+  lat
+  lng
+}

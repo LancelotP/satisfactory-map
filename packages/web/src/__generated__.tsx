@@ -121,9 +121,7 @@ export type MapViewNode =
   | SlugMarkerFragment
   | DropPodMarkerFragment;
 
-export type InteractiveMapVariables = {
-  mapId: string;
-};
+export type InteractiveMapVariables = {};
 
 export type InteractiveMapQuery = {
   __typename?: "Query";
@@ -135,7 +133,30 @@ export type InteractiveMapDefaultMap = {
   __typename?: "Map";
 
   id: string;
+
+  markers: InteractiveMapMarkers;
 };
+
+export type InteractiveMapMarkers = {
+  __typename?: "MapMarkerConnection";
+
+  totalCount: number;
+
+  edges: InteractiveMapEdges[];
+};
+
+export type InteractiveMapEdges = {
+  __typename?: "MapMarkerEdge";
+
+  cursor: string;
+
+  node: InteractiveMapNode;
+};
+
+export type InteractiveMapNode =
+  | MarkerDepositFragment
+  | MarkerSlugFragment
+  | MarkerDropPodFragment;
 
 export type AppVariables = {};
 
@@ -263,6 +284,40 @@ export type DropPodMarkerAddedBy = {
   userName: Maybe<string>;
 };
 
+export type MarkerDepositFragment = {
+  __typename?: "Deposit";
+
+  id: string;
+
+  lat: number;
+
+  lng: number;
+
+  depositType: DepositType;
+};
+
+export type MarkerSlugFragment = {
+  __typename?: "Slug";
+
+  id: string;
+
+  lat: number;
+
+  lng: number;
+
+  slugType: SlugType;
+};
+
+export type MarkerDropPodFragment = {
+  __typename?: "DropPod";
+
+  id: string;
+
+  lat: number;
+
+  lng: number;
+};
+
 import gql from "graphql-tag";
 import * as ReactApolloHooks from "react-apollo-hooks";
 
@@ -306,6 +361,32 @@ export const DropPodMarkerFragmentDoc = gql`
       id
       userName
     }
+  }
+`;
+
+export const MarkerDepositFragmentDoc = gql`
+  fragment MarkerDeposit on Deposit {
+    id
+    lat
+    lng
+    depositType: type
+  }
+`;
+
+export const MarkerSlugFragmentDoc = gql`
+  fragment MarkerSlug on Slug {
+    id
+    lat
+    lng
+    slugType: type
+  }
+`;
+
+export const MarkerDropPodFragmentDoc = gql`
+  fragment MarkerDropPod on DropPod {
+    id
+    lat
+    lng
   }
 `;
 
@@ -366,11 +447,26 @@ export function useMapView(
   );
 }
 export const InteractiveMapDocument = gql`
-  query InteractiveMap($mapId: ID!) {
+  query InteractiveMap {
     defaultMap {
       id
+      markers {
+        totalCount
+        edges {
+          cursor
+          node {
+            ...MarkerDeposit
+            ...MarkerSlug
+            ...MarkerDropPod
+          }
+        }
+      }
     }
   }
+
+  ${MarkerDepositFragmentDoc}
+  ${MarkerSlugFragmentDoc}
+  ${MarkerDropPodFragmentDoc}
 `;
 export function useInteractiveMap(
   baseOptions?: ReactApolloHooks.QueryHookOptions<InteractiveMapVariables>

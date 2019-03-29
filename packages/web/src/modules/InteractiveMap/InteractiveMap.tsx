@@ -1,59 +1,88 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import ReactDOMServer from "react-dom/server";
 
 import * as L from "leaflet";
+import "leaflet.markercluster";
+import "leaflet.markercluster/dist/MarkerCluster.css";
+import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import * as S from "./InteractiveMap.style";
+import { Marker, createMarker, createMarkerIcon } from "../Marker/Marker";
+import {
+  useInteractiveMap,
+  InteractiveMapMarkers,
+  MarkerType
+} from "../../__generated__";
 
 type Props = {
   embedded?: boolean;
 };
 
-type State = {};
+const CONTAINER_ID = "map-root";
 
-export class InteractiveMap extends React.PureComponent<Props, State> {
-  private containerId = "map-root";
-  private bounds: L.LatLngBounds;
-  private crs: L.CRS;
-  private map?: L.Map;
-  private backgroundLayer?: L.ImageOverlay;
-  private layers?: L.FeatureGroup;
+export const InteractiveMap = (props: Props) => {
+  const { data, loading } = useInteractiveMap();
 
-  constructor(props: Props) {
-    super(props);
+  const [markers, setMarkers] = useState<InteractiveMapMarkers>({
+    __typename: "MapMarkerConnection",
+    totalCount: 0,
+    edges: []
+  });
+  const [map, setMap] = useState<ReturnType<typeof renderMap> | undefined>(
+    undefined
+  );
 
-    this.state = {};
+  useEffect(() => {
+    if (data && data.defaultMap) {
+      setMarkers(data.defaultMap.markers);
+      if (!map) {
+        setMap(renderMap(CONTAINER_ID, data.defaultMap.markers));
+      }
+    }
+  }, [data]);
 
-    this.bounds = L.latLngBounds(
-      L.latLng([-3561.838893, -3561.838893]),
-      L.latLng([4574.857608, 4574.857608])
-    );
+  return (
+    <S.Root style={{ height: "100vh", width: "100vw" }} id={CONTAINER_ID} />
+  );
+};
 
-    // @ts-ignore
-    this.crs = L.extend({}, L.CRS.Simple, {
-      transformation: new L.Transformation(1, 1, 1, 0)
-    });
-  }
+function renderMap(containerId: string, markers: InteractiveMapMarkers) {
+  console.log("render map");
 
-  componentDidMount() {
-    this.backgroundLayer = L.imageOverlay("/tiles/0/0/0.png", this.bounds);
-    this.layers = L.featureGroup();
+  const bounds = L.latLngBounds(
+    [-3561.838893, -3561.838893],
+    [4574.857608, 4574.857608]
+  );
 
-    this.map = L.map(this.containerId, {
-      crs: this.crs,
-      minZoom: -3,
-      maxZoom: 1.5,
-      zoom: 0,
-      zoomSnap: 0.1,
-      maxBoundsViscosity: 0,
-      layers: [this.backgroundLayer, this.layers]
-    });
-  }
+  // @ts-ignore
+  const crs = L.extend({}, L.CRS.Simple, {
+    transformation: new L.Transformation(1, 1, 1, 0)
+  });
 
-  render() {
-    return (
-      <S.Root
-        style={{ height: "100vh", width: "100vw" }}
-        id={this.containerId}
-      />
-    );
-  }
+  const backgroundLayer = L.imageOverlay("/background.png", bounds);
+
+  const map = L.map(containerId, {
+    crs: crs,
+    minZoom: -3,
+    maxBounds: bounds,
+    center: [-1410, -470],
+    maxZoom: 1.5,
+    zoom: 1.5,
+    layers: [backgroundLayer]
+  });
+
+  const nodesGroup = L.featureGroup();
+
+  const ironNodes = L.markerClusterGroup({
+    iconCreateFunction: cluster =>
+      createMarkerIcon({
+        text: cluster.getChildCount(),
+        type: MarkerType.Deposit
+      })
+  })
+    .addLayers(markers.edges.map(edge => createMarker({ marker: edge.node })))
+    .addTo(nodesGroup);
+
+  nodesGroup.addTo(map);
+
+  return { map, backgroundLayer, nodesGroup };
 }

@@ -1,5 +1,16 @@
-query InteractiveMap($mapId: ID!) {
+query InteractiveMap {
   defaultMap {
     id
+    markers {
+      totalCount
+      edges {
+        cursor
+        node {
+          ...MarkerDeposit
+          ...MarkerSlug
+          ...MarkerDropPod
+        }
+      }
+    }
   }
 }
