@@ -254,6 +254,15 @@ export const InteractiveMapMenu = (props: Props) => {
           {openedMenus.creatures ? <ExpandLess /> : <ExpandMore />}
         </ListItemIcon>
       </ListItem> */}
+      <div style={{ padding: 16, textAlign: "center" }}>
+        <a
+          style={{ textDecoration: "none" }}
+          href="https://github.com/LancelotP/satisfactory-map"
+          target="__blank"
+        >
+          Github
+        </a>
+      </div>
     </List>
   );
 };
