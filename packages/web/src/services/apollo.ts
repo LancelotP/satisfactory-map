@@ -29,10 +29,7 @@ export const apolloClient = new ApolloClient({
   // to a different host
   link: authLink.concat(
     new HttpLink({
-      uri:
-        process.env.NODE_ENV === "production"
-          ? "https://api-satisfactory-map.lancelot.dev/graphql"
-          : "/graphql"
+      uri: "/graphql"
     })
   ),
   cache: new InMemoryCache({
