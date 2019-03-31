@@ -77,6 +77,9 @@ export const InteractiveMapMenu = (props: Props) => {
 
   return (
     <List component="nav">
+      <div style={{ padding: 16 }}>
+        <img width="100%" alt="satisfactory-map-logo" src="/logo.png" />
+      </div>
       <ListItem dense={true} style={{ paddingLeft: 32 }}>
         <ListItemIcon>
           <svg

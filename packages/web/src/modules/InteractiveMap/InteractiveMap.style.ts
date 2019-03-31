@@ -2,7 +2,7 @@ import styled from "../../themes/styled";
 
 export const Menu = styled.aside`
   overflow: auto;
-  height: calc(100vh - 64px);
+  height: 100vh;
   max-width: calc(100vw - 48px);
   transition: width 0.242s ease;
 `;
@@ -24,12 +24,12 @@ export const Root = styled.div<{ menuOpen: boolean }>`
   display: flex;
 
   & > ${Menu} {
-    width: ${({ menuOpen }) => (menuOpen ? 250 : 0)}px;
+    width: ${({ menuOpen }) => (menuOpen ? 300 : 0)}px;
   }
 
   @media (min-width: 1200px) {
     & > ${Menu} {
-      width: 250px;
+      width: 300px;
     }
 
     & ${MenuIcon} {
@@ -41,7 +41,7 @@ export const Root = styled.div<{ menuOpen: boolean }>`
 export const Content = styled.div`
   flex: 1 1 auto;
   position: relative;
-  background-color: #ddd;
+  background-color: #5f5e5a;
 
   & .leaflet-div-icon {
     background: transparent;

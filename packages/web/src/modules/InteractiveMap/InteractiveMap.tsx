@@ -122,7 +122,7 @@ function renderMap(
 
   const backgroundLayer = L.imageOverlay("/background_base.jpg", bounds);
 
-  const [lng = 0, lat = 0, zoom = -2] = location.hash
+  const [lng, lat, zoom] = location.hash
     .slice(1)
     .split("|")
     .map(s => parseFloat(s));
@@ -132,10 +132,11 @@ function renderMap(
     crs: crs,
     minZoom: -3,
     maxBounds: bounds,
-    center: [0, 0],
+    center: [lat || 0, lng || 0],
     maxZoom: 1.5,
-    zoom: -3,
-    layers: [backgroundLayer]
+    zoom: zoom || -2,
+    layers: [backgroundLayer],
+    attributionControl: false
   });
 
   map.on({
