@@ -18,10 +18,8 @@ export async function start() {
 
   await createConnection({
     type: "postgres",
-    ssl: {
-      // DO NOT DO THIS
-      // set up your ca correctly to trust the connection
-      rejectUnauthorized: false
+    extra: {
+      ssl: true
     },
     entities: [`${__dirname}/**/*.model.*s`],
     synchronize: true,
