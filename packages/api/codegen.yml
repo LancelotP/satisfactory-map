@@ -12,12 +12,15 @@ generates:
         Time: Date
         Date: Date
       mappers:
+        Creature: ./creature/creature.model#Creature
         Deposit: ./deposit/deposit.model#Deposit
         DropPod: ./dropPod/dropPod.model#DropPod
         Item: ./item/item.model#Item
         Map: ./map/map.model#Map
         Marker: ./marker/marker.model#Marker
         Slug: ./slug/slug.model#Slug
+        Spawner: ./spawner/spawner.model#Spawner
+        ResourceNode: ./resourceNode/resourceNode.model#ResourceNode
         User: ./user/user.model#User
     plugins:
       - "typescript-common"

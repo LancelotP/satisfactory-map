@@ -2,9 +2,9 @@ import React, { createContext, useContext, useEffect } from "react";
 import { HomeRoute } from "./home/home";
 import get from "lodash.get";
 import { useApp, Maybe, AppViewer } from "../__generated__";
-import { handleCallback, renewSession } from "../services/auth";
+// import { handleCallback, renewSession } from "../services/auth";
 import useRouter from "../utils/useRouter";
-import { apolloClient } from "../services/apollo";
+import { Route, Switch, Redirect } from "react-router";
 
 export const AppContext = createContext<Maybe<AppViewer>>(null);
 
@@ -14,34 +14,37 @@ export const Router = () => {
   const { data, refetch } = useApp();
   const { history } = useRouter();
 
-  useEffect(() => {
-    if (window.location.pathname.startsWith("/callback")) {
-      handleAuth();
-    } else {
-      handleRenew();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (window.location.pathname.startsWith("/callback")) {
+  //     handleAuth();
+  //   } else {
+  //     handleRenew();
+  //   }
+  // }, []);
 
-  async function handleAuth() {
-    const redirectTo = await handleCallback();
-    await refetch();
+  // async function handleAuth() {
+  //   const redirectTo = await handleCallback();
+  //   await refetch();
 
-    history.push(redirectTo || "/");
-  }
+  //   history.push(redirectTo || "/");
+  // }
 
-  async function handleRenew() {
-    await renewSession();
+  // async function handleRenew() {
+  //   await renewSession();
 
-    if (get(data, "viewer", null)) {
-      return;
-    }
+  //   if (get(data, "viewer", null)) {
+  //     return;
+  //   }
 
-    await refetch();
-  }
+  //   await refetch();
+  // }
 
   return (
     <AppContext.Provider value={get(data, "viewer", null)}>
-      <HomeRoute />
+      <Switch>
+        <Route path="/" exact={true} component={HomeRoute} />
+        <Redirect to="/" />
+      </Switch>
     </AppContext.Provider>
   );
 };

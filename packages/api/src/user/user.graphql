@@ -1,4 +1,4 @@
-type User implements Node {
+type User {
   id: ID!
   userName: String
 

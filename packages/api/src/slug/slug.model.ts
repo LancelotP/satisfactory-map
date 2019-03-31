@@ -1,19 +1,16 @@
-import { Entity, Column, ManyToOne, JoinColumn } from "typeorm";
-import { SlugType } from "../types";
-import { Marker } from "../marker/marker.model";
-import { Map } from "../map/map.model";
-import { User } from "../user/user.model";
+import { Entity, Column } from "typeorm";
+import { Resource } from "../common/common.model";
+// import { ItemYield } from "../itemYield/itemYield.model";
 
 @Entity()
-export class Slug extends Marker {
+export class Slug extends Resource {
+  @Column({ type: "text" })
+  type: "PURPLE" | "YELLOW" | "GREEN";
+
   @Column()
-  type: SlugType;
+  originId: string;
 
-  @ManyToOne(type => Map, map => map.deposits, { nullable: false })
-  @JoinColumn()
-  map: Map;
-
-  @ManyToOne(type => User)
-  @JoinColumn()
-  creator: User;
+  // @OneToOne(type => ItemYield)
+  // @JoinColumn()
+  // yield: ItemYield;
 }

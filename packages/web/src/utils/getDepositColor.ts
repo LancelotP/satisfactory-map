@@ -1,30 +1,32 @@
-import { DepositType } from "../__generated__";
+import { ResourceNodeType } from "../__generated__";
 
-export function getDepositColor(type: DepositType) {
+export function getDepositColor(type: ResourceNodeType) {
   switch (type) {
-    case DepositType.Bauxite:
+    case ResourceNodeType.Bauxite:
       return "#D973A9";
-    case DepositType.Caterium:
+    case ResourceNodeType.Caterium:
       return "#F1D448";
-    case DepositType.Coal:
+    case ResourceNodeType.Coal:
       return "#333333";
-    case DepositType.Copper:
+    case ResourceNodeType.Copper:
       return "#20B6EE";
-    case DepositType.Iron:
+    case ResourceNodeType.Iron:
       return "#E65500";
-    case DepositType.Limestone:
+    case ResourceNodeType.Limestone:
       return "#9F8B71";
-    case DepositType.Oil:
+    case ResourceNodeType.Oil:
       return "#333333";
-    case DepositType.Quartz:
+    case ResourceNodeType.Quartz:
       return "#00FFB0";
-    case DepositType.Sam:
+    case ResourceNodeType.Sam:
       return "#0073B7";
-    case DepositType.Sulphur:
+    case ResourceNodeType.Sulfur:
       return "#FDAC00";
-    case DepositType.Uranium:
+    case ResourceNodeType.Uranium:
       return "#00E337";
-    case DepositType.Geyser:
+    case ResourceNodeType.Geyser:
+      return "#ccc";
+    default:
       return "#ff0000";
   }
 }

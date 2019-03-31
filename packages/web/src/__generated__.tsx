@@ -1,58 +1,33 @@
 export type Maybe<T> = T | null;
 
-export interface MarkerCreateInput {
-  type: MarkerType;
-
-  lat: number;
-
-  lng: number;
-
-  deposit?: Maybe<MarkerCreateDepositInput>;
-
-  slug?: Maybe<MarkerCreateSlugInput>;
-}
-
-export interface MarkerCreateDepositInput {
-  type: DepositType;
-
-  quality: DepositQuality;
-}
-
-export interface MarkerCreateSlugInput {
-  type: SlugType;
-}
-
-export enum DepositQuality {
+export enum ResourceNodeQuality {
   Impure = "IMPURE",
   Normal = "NORMAL",
-  Pure = "PURE"
+  Pure = "PURE",
+  Unknown = "UNKNOWN"
 }
 
-export enum DepositType {
+export enum ResourceNodeType {
   Iron = "IRON",
   Copper = "COPPER",
   Limestone = "LIMESTONE",
-  Coal = "COAL",
-  Oil = "OIL",
-  Sulphur = "SULPHUR",
-  Caterium = "CATERIUM",
-  Sam = "SAM",
-  Quartz = "QUARTZ",
   Bauxite = "BAUXITE",
   Uranium = "URANIUM",
-  Geyser = "GEYSER"
+  Coal = "COAL",
+  Oil = "OIL",
+  Sulfur = "SULFUR",
+  Quartz = "QUARTZ",
+  Sam = "SAM",
+  Caterium = "CATERIUM",
+  Geyser = "GEYSER",
+  Unknown = "UNKNOWN"
 }
 
 export enum SlugType {
-  Green = "GREEN",
+  Purple = "PURPLE",
   Yellow = "YELLOW",
-  Purple = "PURPLE"
-}
-
-export enum MarkerType {
-  Deposit = "DEPOSIT",
-  Slug = "SLUG",
-  DropPod = "DROP_POD"
+  Green = "GREEN",
+  Unknown = "UNKNOWN"
 }
 
 export enum OrderDirection {
@@ -73,53 +48,60 @@ export type Time = string;
 // Documents
 // ====================================================
 
-export type MarkerCreateVariables = {
-  input: MarkerCreateInput;
-};
+export type InteractiveMapVariables = {};
 
-export type MarkerCreateMutation = {
-  __typename?: "Mutation";
-
-  markerCreate: MarkerCreateMarkerCreate;
-};
-
-export type MarkerCreateMarkerCreate =
-  | DepositMarkerFragment
-  | DropPodMarkerFragment
-  | SlugMarkerFragment;
-
-export type MapViewVariables = {};
-
-export type MapViewQuery = {
+export type InteractiveMapQuery = {
   __typename?: "Query";
 
-  defaultMap: MapViewDefaultMap;
+  markersConnection: InteractiveMapMarkersConnection;
 };
 
-export type MapViewDefaultMap = {
-  __typename?: "Map";
+export type InteractiveMapMarkersConnection = {
+  __typename?: "MarkersConnection";
+
+  totalCount: number;
+
+  edges: InteractiveMapEdges[];
+};
+
+export type InteractiveMapEdges = {
+  __typename?: "MarkersConnectionEdge";
+
+  cursor: string;
+
+  node: InteractiveMapNode;
+};
+
+export type InteractiveMapNode = {
+  __typename?: "Marker";
 
   id: string;
 
-  markers: MapViewMarkers;
+  target: InteractiveMapTarget;
+} & MarkerFragment;
+
+export type InteractiveMapTarget =
+  | InteractiveMapResourceNodeInlineFragment
+  | InteractiveMapSlugInlineFragment
+  | InteractiveMapDropPodInlineFragment;
+
+export type InteractiveMapResourceNodeInlineFragment = {
+  __typename: "ResourceNode";
+
+  nodeType: ResourceNodeType;
 };
 
-export type MapViewMarkers = {
-  __typename?: "MapMarkerConnection";
+export type InteractiveMapSlugInlineFragment = {
+  __typename: "Slug";
 
-  edges: MapViewEdges[];
+  slugType: SlugType;
 };
 
-export type MapViewEdges = {
-  __typename?: "MapMarkerEdge";
+export type InteractiveMapDropPodInlineFragment = {
+  __typename: "DropPod";
 
-  node: MapViewNode;
+  id: string;
 };
-
-export type MapViewNode =
-  | DepositMarkerFragment
-  | SlugMarkerFragment
-  | DropPodMarkerFragment;
 
 export type AppVariables = {};
 
@@ -135,116 +117,49 @@ export type AppViewer = {
   id: string;
 };
 
-export type HomeVariables = {};
-
-export type HomeQuery = {
-  __typename?: "Query";
-
-  defaultMap: HomeDefaultMap;
-};
-
-export type HomeDefaultMap = {
-  __typename?: "Map";
+export type MarkerFragment = {
+  __typename?: "Marker";
 
   id: string;
 
-  markers: HomeMarkers;
+  position: MarkerPosition;
+
+  target: MarkerTarget;
 };
 
-export type HomeMarkers = {
-  __typename?: "MapMarkerConnection";
+export type MarkerPosition = {
+  __typename?: "MarkerPoint";
 
-  totalCount: number;
+  x: number;
 
-  edges: HomeEdges[];
+  y: number;
+
+  z: number;
 };
 
-export type HomeEdges = {
-  __typename?: "MapMarkerEdge";
+export type MarkerTarget =
+  | MarkerResourceNodeInlineFragment
+  | MarkerSlugInlineFragment
+  | MarkerDropPodInlineFragment;
 
-  node: HomeNode;
+export type MarkerResourceNodeInlineFragment = {
+  __typename?: "ResourceNode";
+
+  nodeType: ResourceNodeType;
+
+  nodeQuality: ResourceNodeQuality;
 };
 
-export type HomeNode = HomeDepositInlineFragment;
-
-export type HomeDepositInlineFragment = {
-  __typename?: "Deposit";
-
-  id: string;
-
-  lat: number;
-
-  lng: number;
-
-  quality: DepositQuality;
-
-  type: DepositType;
-};
-
-export type DepositMarkerFragment = {
-  __typename?: "Deposit";
-
-  id: string;
-
-  lat: number;
-
-  lng: number;
-
-  quality: DepositQuality;
-
-  type: DepositType;
-
-  addedBy: Maybe<DepositMarkerAddedBy>;
-};
-
-export type DepositMarkerAddedBy = {
-  __typename?: "User";
-
-  id: string;
-
-  userName: Maybe<string>;
-};
-
-export type SlugMarkerFragment = {
+export type MarkerSlugInlineFragment = {
   __typename?: "Slug";
 
-  id: string;
-
-  lat: number;
-
-  lng: number;
-
   slugType: SlugType;
-
-  addedBy: Maybe<SlugMarkerAddedBy>;
 };
 
-export type SlugMarkerAddedBy = {
-  __typename?: "User";
-
-  id: string;
-
-  userName: Maybe<string>;
-};
-
-export type DropPodMarkerFragment = {
+export type MarkerDropPodInlineFragment = {
   __typename?: "DropPod";
 
   id: string;
-
-  lat: number;
-
-  lng: number;
-
-  addedBy: Maybe<DropPodMarkerAddedBy>;
-};
-
-export type DropPodMarkerAddedBy = {
-  __typename?: "User";
-
-  id: string;
-
-  userName: Maybe<string>;
 };
 
 import gql from "graphql-tag";
@@ -254,41 +169,25 @@ import * as ReactApolloHooks from "react-apollo-hooks";
 // Fragments
 // ====================================================
 
-export const DepositMarkerFragmentDoc = gql`
-  fragment DepositMarker on Deposit {
+export const MarkerFragmentDoc = gql`
+  fragment Marker on Marker {
     id
-    lat
-    lng
-    quality
-    type
-    addedBy {
-      id
-      userName
+    position {
+      x
+      y
+      z
     }
-  }
-`;
-
-export const SlugMarkerFragmentDoc = gql`
-  fragment SlugMarker on Slug {
-    id
-    lat
-    lng
-    slugType: type
-    addedBy {
-      id
-      userName
-    }
-  }
-`;
-
-export const DropPodMarkerFragmentDoc = gql`
-  fragment DropPodMarker on DropPod {
-    id
-    lat
-    lng
-    addedBy {
-      id
-      userName
+    target {
+      ... on ResourceNode {
+        nodeType: type
+        nodeQuality: quality
+      }
+      ... on Slug {
+        slugType: type
+      }
+      ... on DropPod {
+        id
+      }
     }
   }
 `;
@@ -297,57 +196,43 @@ export const DropPodMarkerFragmentDoc = gql`
 // Components
 // ====================================================
 
-export const MarkerCreateDocument = gql`
-  mutation MarkerCreate($input: MarkerCreateInput!) {
-    markerCreate(input: $input) {
-      ...DepositMarker
-      ...DropPodMarker
-      ...SlugMarker
-    }
-  }
-
-  ${DepositMarkerFragmentDoc}
-  ${DropPodMarkerFragmentDoc}
-  ${SlugMarkerFragmentDoc}
-`;
-export function useMarkerCreate(
-  baseOptions?: ReactApolloHooks.MutationHookOptions<
-    MarkerCreateMutation,
-    MarkerCreateVariables
-  >
-) {
-  return ReactApolloHooks.useMutation<
-    MarkerCreateMutation,
-    MarkerCreateVariables
-  >(MarkerCreateDocument, baseOptions);
-}
-export const MapViewDocument = gql`
-  query MapView {
-    defaultMap {
-      id
-      markers {
-        edges {
-          node {
-            ...DepositMarker
-            ...SlugMarker
-            ...DropPodMarker
+export const InteractiveMapDocument = gql`
+  query InteractiveMap {
+    markersConnection {
+      totalCount
+      edges {
+        cursor
+        node {
+          id
+          target {
+            ... on ResourceNode {
+              __typename
+              nodeType: type
+            }
+            ... on Slug {
+              __typename
+              slugType: type
+            }
+            ... on DropPod {
+              __typename
+              id
+            }
           }
+          ...Marker
         }
       }
     }
   }
 
-  ${DepositMarkerFragmentDoc}
-  ${SlugMarkerFragmentDoc}
-  ${DropPodMarkerFragmentDoc}
+  ${MarkerFragmentDoc}
 `;
-export function useMapView(
-  baseOptions?: ReactApolloHooks.QueryHookOptions<MapViewVariables>
+export function useInteractiveMap(
+  baseOptions?: ReactApolloHooks.QueryHookOptions<InteractiveMapVariables>
 ) {
-  return ReactApolloHooks.useQuery<MapViewQuery, MapViewVariables>(
-    MapViewDocument,
-    baseOptions
-  );
+  return ReactApolloHooks.useQuery<
+    InteractiveMapQuery,
+    InteractiveMapVariables
+  >(InteractiveMapDocument, baseOptions);
 }
 export const AppDocument = gql`
   query App {
@@ -361,35 +246,6 @@ export function useApp(
 ) {
   return ReactApolloHooks.useQuery<AppQuery, AppVariables>(
     AppDocument,
-    baseOptions
-  );
-}
-export const HomeDocument = gql`
-  query Home {
-    defaultMap {
-      id
-      markers {
-        totalCount
-        edges {
-          node {
-            ... on Deposit {
-              id
-              lat
-              lng
-              quality
-              type
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-export function useHome(
-  baseOptions?: ReactApolloHooks.QueryHookOptions<HomeVariables>
-) {
-  return ReactApolloHooks.useQuery<HomeQuery, HomeVariables>(
-    HomeDocument,
     baseOptions
   );
 }

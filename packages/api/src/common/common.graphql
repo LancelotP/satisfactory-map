@@ -1,10 +1,3 @@
-interface Node {
-  id: ID!
-
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
 interface Connection {
   pageInfo: PageInfo!
   totalCount: Int!

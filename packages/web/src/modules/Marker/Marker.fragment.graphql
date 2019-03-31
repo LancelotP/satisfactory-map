@@ -1,0 +1,20 @@
+fragment Marker on Marker {
+  id
+  position {
+    x
+    y
+    z
+  }
+  target {
+    ... on ResourceNode {
+      nodeType: type
+      nodeQuality: quality
+    }
+    ... on Slug {
+      slugType: type
+    }
+    ... on DropPod {
+      id
+    }
+  }
+}

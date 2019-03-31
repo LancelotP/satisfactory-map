@@ -1,15 +1,16 @@
-import { Entity, ManyToOne, JoinColumn } from "typeorm";
-import { Marker } from "../marker/marker.model";
-import { Map } from "../map/map.model";
-import { User } from "../user/user.model";
+import { Entity, Column } from "typeorm";
+import { Resource } from "../common/common.model";
+// import { ItemYield } from "../itemYield/itemYield.model";
 
 @Entity()
-export class DropPod extends Marker {
-  @ManyToOne(type => Map, map => map.deposits, { nullable: false })
-  @JoinColumn()
-  map: Map;
+export class DropPod extends Resource {
+  // @Column({ type: "text" })
+  // type: "PURPLE" | "YELLOW" | "GREEN";
 
-  @ManyToOne(type => User)
-  @JoinColumn()
-  creator: User;
+  @Column()
+  originId: string;
+
+  // @OneToOne(type => ItemYield)
+  // @JoinColumn()
+  // yield: ItemYield;
 }

@@ -1,39 +1,37 @@
-interface IMarker {
+type Marker {
   id: ID!
-  map: Map!
 
-  lat: Int!
-  lng: Int!
+  position: MarkerPoint!
+  target: MarkerTarget!
 
   createdAt: DateTime!
   updatedAt: DateTime!
 }
 
-union Marker = Deposit | Slug | DropPod
-
-type Mutation {
-  markerCreate(input: MarkerCreateInput!): Marker!
+type MarkerPoint {
+  x: Float!
+  y: Float!
+  z: Float!
 }
 
-enum MarkerType {
-  DEPOSIT
-  SLUG
-  DROP_POD
+union MarkerTarget = ResourceNode | Slug | DropPod
+
+type Query {
+  markersConnection(
+    first: Int
+    last: Int
+    before: String
+    after: String
+  ): MarkersConnection!
 }
 
-input MarkerCreateInput {
-  type: MarkerType!
-  lat: Int!
-  lng: Int!
-  deposit: MarkerCreateDepositInput
-  slug: MarkerCreateSlugInput
+type MarkersConnection implements Connection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [MarkersConnectionEdge!]!
 }
 
-input MarkerCreateDepositInput {
-  type: DepositType!
-  quality: DepositQuality!
-}
-
-input MarkerCreateSlugInput {
-  type: SlugType!
+type MarkersConnectionEdge implements Edge {
+  cursor: String!
+  node: Marker!
 }

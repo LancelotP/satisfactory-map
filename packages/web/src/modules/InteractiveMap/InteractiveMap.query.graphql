@@ -1,0 +1,26 @@
+query InteractiveMap {
+  markersConnection {
+    totalCount
+    edges {
+      cursor
+      node {
+        id
+        target {
+          ... on ResourceNode {
+            __typename
+            nodeType: type
+          }
+          ... on Slug {
+            __typename
+            slugType: type
+          }
+          ... on DropPod {
+            __typename
+            id
+          }
+        }
+        ...Marker
+      }
+    }
+  }
+}

@@ -1,10 +1,20 @@
 import { Resource } from "../common/common.model";
-import { Column } from "typeorm";
+import { Column, Entity } from "typeorm";
 
+@Entity()
 export class Marker extends Resource {
-  @Column()
-  lat: number;
+  @Column({ type: "text", enum: ["RESOURCE_NODE", "SLUG", "DROP_POD"] })
+  targetType: "RESOURCE_NODE" | "SLUG" | "DROP_POD";
 
   @Column()
-  lng: number;
+  targetId: number;
+
+  @Column({ type: "float" })
+  x: number;
+
+  @Column({ type: "float" })
+  y: number;
+
+  @Column({ type: "float" })
+  z: number;
 }

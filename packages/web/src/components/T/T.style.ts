@@ -38,7 +38,7 @@ const TypographyBase = css`
 
 const Legend = css`
   html & {
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
   }
 
   font-size: 80px;
@@ -47,7 +47,7 @@ const Legend = css`
 
 const Hero = css`
   html & {
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
   }
   font-size: 64px;
   line-height: 80px;
@@ -55,7 +55,7 @@ const Hero = css`
 
 const Heading1 = css`
   html & {
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
   }
   font-size: 40px;
   line-height: 52px;
@@ -63,7 +63,7 @@ const Heading1 = css`
 
 const Heading2 = css`
   html & {
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
   }
   font-size: 32px;
   line-height: 40px;
@@ -71,7 +71,7 @@ const Heading2 = css`
 
 const Heading3 = css`
   html & {
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
   }
   font-size: 24px;
   line-height: 36px;
@@ -79,7 +79,7 @@ const Heading3 = css`
 
 const Heading4 = css`
   html & {
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
   }
   font-size: 20px;
   line-height: 30px;
@@ -87,7 +87,7 @@ const Heading4 = css`
 
 const Heading5 = css`
   html & {
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
   }
   font-size: 18px;
   line-height: 30px;
@@ -95,7 +95,7 @@ const Heading5 = css`
 
 const Body = css`
   html & {
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
   }
   font-size: 16px;
   line-height: 24px;
@@ -103,7 +103,7 @@ const Body = css`
 
 export const Paragraph = css`
   html & {
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
   }
   font-size: 14px;
   line-height: 24px;
@@ -111,7 +111,7 @@ export const Paragraph = css`
 
 export const Note = css`
   html & {
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
   }
   font-size: 12px;
   line-height: 18px;

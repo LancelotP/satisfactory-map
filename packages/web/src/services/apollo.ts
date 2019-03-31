@@ -8,12 +8,12 @@ import { setContext } from "apollo-link-context";
 import introspectionResult from "../introspection-result";
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem("accessToken");
+  // const token = localStorage.getItem("accessToken");
 
   return {
     headers: {
-      ...headers,
-      Authorization: token ? `Bearer ${token}` : ""
+      ...headers
+      // Authorization: token ? `Bearer ${token}` : ""
     }
   };
 });
@@ -29,10 +29,7 @@ export const apolloClient = new ApolloClient({
   // to a different host
   link: authLink.concat(
     new HttpLink({
-      uri:
-        process.env.NODE_ENV === "production"
-          ? "https://api-satisfactory-map.lancelot.dev/graphql"
-          : "/graphql"
+      uri: "/graphql"
     })
   ),
   cache: new InMemoryCache({

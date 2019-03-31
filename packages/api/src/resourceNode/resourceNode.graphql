@@ -1,0 +1,29 @@
+type ResourceNode {
+  id: ID!
+
+  quality: ResourceNodeQuality!
+  type: ResourceNodeType!
+}
+
+enum ResourceNodeQuality {
+  IMPURE
+  NORMAL
+  PURE
+  UNKNOWN
+}
+
+enum ResourceNodeType {
+  IRON
+  COPPER
+  LIMESTONE
+  BAUXITE
+  URANIUM
+  COAL
+  OIL
+  SULFUR
+  QUARTZ
+  SAM
+  CATERIUM
+  GEYSER
+  UNKNOWN
+}

@@ -1,58 +1,33 @@
 export type Maybe<T> = T | undefined;
 
-export interface MarkerCreateInput {
-  type: MarkerType;
-
-  lat: number;
-
-  lng: number;
-
-  deposit?: Maybe<MarkerCreateDepositInput>;
-
-  slug?: Maybe<MarkerCreateSlugInput>;
-}
-
-export interface MarkerCreateDepositInput {
-  type: DepositType;
-
-  quality: DepositQuality;
-}
-
-export interface MarkerCreateSlugInput {
-  type: SlugType;
-}
-
-export enum DepositQuality {
+export enum ResourceNodeQuality {
   Impure = "IMPURE",
   Normal = "NORMAL",
-  Pure = "PURE"
+  Pure = "PURE",
+  Unknown = "UNKNOWN"
 }
 
-export enum DepositType {
+export enum ResourceNodeType {
   Iron = "IRON",
   Copper = "COPPER",
   Limestone = "LIMESTONE",
-  Coal = "COAL",
-  Oil = "OIL",
-  Sulphur = "SULPHUR",
-  Caterium = "CATERIUM",
-  Sam = "SAM",
-  Quartz = "QUARTZ",
   Bauxite = "BAUXITE",
   Uranium = "URANIUM",
-  Geyser = "GEYSER"
+  Coal = "COAL",
+  Oil = "OIL",
+  Sulfur = "SULFUR",
+  Quartz = "QUARTZ",
+  Sam = "SAM",
+  Caterium = "CATERIUM",
+  Geyser = "GEYSER",
+  Unknown = "UNKNOWN"
 }
 
 export enum SlugType {
-  Green = "GREEN",
+  Purple = "PURPLE",
   Yellow = "YELLOW",
-  Purple = "PURPLE"
-}
-
-export enum MarkerType {
-  Deposit = "DEPOSIT",
-  Slug = "SLUG",
-  DropPod = "DROP_POD"
+  Green = "GREEN",
+  Unknown = "UNKNOWN"
 }
 
 export enum OrderDirection {
@@ -72,14 +47,6 @@ export type Time = Date;
 // Interfaces
 // ====================================================
 
-export interface Node {
-  id: string;
-
-  createdAt: Date;
-
-  updatedAt: Date;
-}
-
 export interface Connection {
   pageInfo: PageInfo;
 
@@ -90,58 +57,22 @@ export interface Edge {
   cursor: string;
 }
 
-export interface IMarker {
-  id: string;
-
-  map: Map;
-
-  lat: number;
-
-  lng: number;
-
-  createdAt: Date;
-
-  updatedAt: Date;
-}
-
 // ====================================================
 // Types
 // ====================================================
 
 export interface Query {
-  item: Item;
-
-  defaultMap: Map;
+  markersConnection: MarkersConnection;
 
   viewer?: Maybe<User>;
 }
 
-export interface Item extends Node {
-  id: string;
-
-  createdAt: Date;
-
-  updatedAt: Date;
-
-  name: string;
-}
-
-export interface Map extends Node {
-  id: string;
-
-  createdAt: Date;
-
-  updatedAt: Date;
-
-  markers: MapMarkerConnection;
-}
-
-export interface MapMarkerConnection extends Connection {
-  pageInfo: PageInfo;
-
+export interface MarkersConnection extends Connection {
   totalCount: number;
 
-  edges: MapMarkerEdge[];
+  pageInfo: PageInfo;
+
+  edges: MarkersConnectionEdge[];
 }
 
 export interface PageInfo {
@@ -154,33 +85,51 @@ export interface PageInfo {
   startCursor?: Maybe<string>;
 }
 
-export interface MapMarkerEdge extends Edge {
+export interface MarkersConnectionEdge extends Edge {
   cursor: string;
 
   node: Marker;
 }
 
-export interface Deposit extends IMarker {
+export interface Marker {
   id: string;
 
-  map: Map;
+  position: MarkerPoint;
 
-  lat: number;
-
-  lng: number;
+  target: MarkerTarget;
 
   createdAt: Date;
 
   updatedAt: Date;
-
-  quality: DepositQuality;
-
-  type: DepositType;
-
-  addedBy?: Maybe<User>;
 }
 
-export interface User extends Node {
+export interface MarkerPoint {
+  x: number;
+
+  y: number;
+
+  z: number;
+}
+
+export interface ResourceNode {
+  id: string;
+
+  quality: ResourceNodeQuality;
+
+  type: ResourceNodeType;
+}
+
+export interface Slug {
+  id: string;
+
+  type: SlugType;
+}
+
+export interface DropPod {
+  id: string;
+}
+
+export interface User {
   id: string;
 
   userName?: Maybe<string>;
@@ -190,60 +139,25 @@ export interface User extends Node {
   updatedAt: Date;
 }
 
-export interface Slug extends IMarker {
-  id: string;
-
-  map: Map;
-
-  lat: number;
-
-  lng: number;
-
-  createdAt: Date;
-
-  updatedAt: Date;
-
-  type: SlugType;
-
-  addedBy?: Maybe<User>;
-}
-
-export interface DropPod extends IMarker {
-  id: string;
-
-  map: Map;
-
-  lat: number;
-
-  lng: number;
-
-  createdAt: Date;
-
-  updatedAt: Date;
-
-  addedBy?: Maybe<User>;
-}
-
-export interface Mutation {
-  markerCreate: Marker;
-}
-
 // ====================================================
 // Arguments
 // ====================================================
 
-export interface ItemQueryArgs {
-  itemId: string;
-}
-export interface MarkerCreateMutationArgs {
-  input: MarkerCreateInput;
+export interface MarkersConnectionQueryArgs {
+  first?: Maybe<number>;
+
+  last?: Maybe<number>;
+
+  before?: Maybe<string>;
+
+  after?: Maybe<string>;
 }
 
 // ====================================================
 // Unions
 // ====================================================
 
-export type Marker = Deposit | Slug | DropPod;
+export type MarkerTarget = ResourceNode | Slug | DropPod;
 
 import {
   GraphQLResolveInfo,
@@ -251,15 +165,13 @@ import {
   GraphQLScalarTypeConfig
 } from "graphql";
 
-import { Deposit } from "./deposit/deposit.model";
-
 import { DropPod } from "./dropPod/dropPod.model";
 
-import { Item } from "./item/item.model";
-
-import { Map } from "./map/map.model";
+import { Marker } from "./marker/marker.model";
 
 import { Slug } from "./slug/slug.model";
+
+import { ResourceNode } from "./resourceNode/resourceNode.model";
 
 import { User } from "./user/user.model";
 
@@ -315,131 +227,68 @@ export type DirectiveResolverFn<TResult, TArgs = {}, TContext = {}> = (
 ) => TResult | Promise<TResult>;
 
 export interface QueryResolvers<TContext = GQLContext, TypeParent = {}> {
-  item?: QueryItemResolver<Item, TypeParent, TContext>;
-
-  defaultMap?: QueryDefaultMapResolver<Map, TypeParent, TContext>;
+  markersConnection?: QueryMarkersConnectionResolver<
+    MarkersConnection,
+    TypeParent,
+    TContext
+  >;
 
   viewer?: QueryViewerResolver<Maybe<User>, TypeParent, TContext>;
 }
 
-export type QueryItemResolver<
-  R = Item,
+export type QueryMarkersConnectionResolver<
+  R = MarkersConnection,
   Parent = {},
   TContext = GQLContext
-> = Resolver<R, Parent, TContext, QueryItemArgs>;
-export interface QueryItemArgs {
-  itemId: string;
+> = Resolver<R, Parent, TContext, QueryMarkersConnectionArgs>;
+export interface QueryMarkersConnectionArgs {
+  first?: Maybe<number>;
+
+  last?: Maybe<number>;
+
+  before?: Maybe<string>;
+
+  after?: Maybe<string>;
 }
 
-export type QueryDefaultMapResolver<
-  R = Map,
-  Parent = {},
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
 export type QueryViewerResolver<
   R = Maybe<User>,
   Parent = {},
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
-export interface ItemResolvers<TContext = GQLContext, TypeParent = Item> {
-  id?: ItemIdResolver<string, TypeParent, TContext>;
-
-  createdAt?: ItemCreatedAtResolver<Date, TypeParent, TContext>;
-
-  updatedAt?: ItemUpdatedAtResolver<Date, TypeParent, TContext>;
-
-  name?: ItemNameResolver<string, TypeParent, TContext>;
-}
-
-export type ItemIdResolver<
-  R = string,
-  Parent = Item,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type ItemCreatedAtResolver<
-  R = Date,
-  Parent = Item,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type ItemUpdatedAtResolver<
-  R = Date,
-  Parent = Item,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type ItemNameResolver<
-  R = string,
-  Parent = Item,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-
-export interface MapResolvers<TContext = GQLContext, TypeParent = Map> {
-  id?: MapIdResolver<string, TypeParent, TContext>;
-
-  createdAt?: MapCreatedAtResolver<Date, TypeParent, TContext>;
-
-  updatedAt?: MapUpdatedAtResolver<Date, TypeParent, TContext>;
-
-  markers?: MapMarkersResolver<MapMarkerConnection, TypeParent, TContext>;
-}
-
-export type MapIdResolver<
-  R = string,
-  Parent = Map,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type MapCreatedAtResolver<
-  R = Date,
-  Parent = Map,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type MapUpdatedAtResolver<
-  R = Date,
-  Parent = Map,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type MapMarkersResolver<
-  R = MapMarkerConnection,
-  Parent = Map,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-
-export interface MapMarkerConnectionResolvers<
+export interface MarkersConnectionResolvers<
   TContext = GQLContext,
-  TypeParent = MapMarkerConnection
+  TypeParent = MarkersConnection
 > {
-  pageInfo?: MapMarkerConnectionPageInfoResolver<
-    PageInfo,
-    TypeParent,
-    TContext
-  >;
-
-  totalCount?: MapMarkerConnectionTotalCountResolver<
+  totalCount?: MarkersConnectionTotalCountResolver<
     number,
     TypeParent,
     TContext
   >;
 
-  edges?: MapMarkerConnectionEdgesResolver<
-    MapMarkerEdge[],
+  pageInfo?: MarkersConnectionPageInfoResolver<PageInfo, TypeParent, TContext>;
+
+  edges?: MarkersConnectionEdgesResolver<
+    MarkersConnectionEdge[],
     TypeParent,
     TContext
   >;
 }
 
-export type MapMarkerConnectionPageInfoResolver<
-  R = PageInfo,
-  Parent = MapMarkerConnection,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type MapMarkerConnectionTotalCountResolver<
+export type MarkersConnectionTotalCountResolver<
   R = number,
-  Parent = MapMarkerConnection,
+  Parent = MarkersConnection,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
-export type MapMarkerConnectionEdgesResolver<
-  R = MapMarkerEdge[],
-  Parent = MapMarkerConnection,
+export type MarkersConnectionPageInfoResolver<
+  R = PageInfo,
+  Parent = MarkersConnection,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type MarkersConnectionEdgesResolver<
+  R = MarkersConnectionEdge[],
+  Parent = MarkersConnection,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
@@ -485,89 +334,146 @@ export type PageInfoStartCursorResolver<
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
-export interface MapMarkerEdgeResolvers<
+export interface MarkersConnectionEdgeResolvers<
   TContext = GQLContext,
-  TypeParent = MapMarkerEdge
+  TypeParent = MarkersConnectionEdge
 > {
-  cursor?: MapMarkerEdgeCursorResolver<string, TypeParent, TContext>;
+  cursor?: MarkersConnectionEdgeCursorResolver<string, TypeParent, TContext>;
 
-  node?: MapMarkerEdgeNodeResolver<Marker, TypeParent, TContext>;
+  node?: MarkersConnectionEdgeNodeResolver<Marker, TypeParent, TContext>;
 }
 
-export type MapMarkerEdgeCursorResolver<
+export type MarkersConnectionEdgeCursorResolver<
   R = string,
-  Parent = MapMarkerEdge,
+  Parent = MarkersConnectionEdge,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
-export type MapMarkerEdgeNodeResolver<
+export type MarkersConnectionEdgeNodeResolver<
   R = Marker,
-  Parent = MapMarkerEdge,
+  Parent = MarkersConnectionEdge,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
-export interface DepositResolvers<TContext = GQLContext, TypeParent = Deposit> {
-  id?: DepositIdResolver<string, TypeParent, TContext>;
+export interface MarkerResolvers<TContext = GQLContext, TypeParent = Marker> {
+  id?: MarkerIdResolver<string, TypeParent, TContext>;
 
-  map?: DepositMapResolver<Map, TypeParent, TContext>;
+  position?: MarkerPositionResolver<MarkerPoint, TypeParent, TContext>;
 
-  lat?: DepositLatResolver<number, TypeParent, TContext>;
+  target?: MarkerTargetResolver<MarkerTarget, TypeParent, TContext>;
 
-  lng?: DepositLngResolver<number, TypeParent, TContext>;
+  createdAt?: MarkerCreatedAtResolver<Date, TypeParent, TContext>;
 
-  createdAt?: DepositCreatedAtResolver<Date, TypeParent, TContext>;
-
-  updatedAt?: DepositUpdatedAtResolver<Date, TypeParent, TContext>;
-
-  quality?: DepositQualityResolver<DepositQuality, TypeParent, TContext>;
-
-  type?: DepositTypeResolver<DepositType, TypeParent, TContext>;
-
-  addedBy?: DepositAddedByResolver<Maybe<User>, TypeParent, TContext>;
+  updatedAt?: MarkerUpdatedAtResolver<Date, TypeParent, TContext>;
 }
 
-export type DepositIdResolver<
+export type MarkerIdResolver<
   R = string,
-  Parent = Deposit,
+  Parent = Marker,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
-export type DepositMapResolver<
-  R = Map,
-  Parent = Deposit,
+export type MarkerPositionResolver<
+  R = MarkerPoint,
+  Parent = Marker,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
-export type DepositLatResolver<
-  R = number,
-  Parent = Deposit,
+export type MarkerTargetResolver<
+  R = MarkerTarget,
+  Parent = Marker,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
-export type DepositLngResolver<
-  R = number,
-  Parent = Deposit,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type DepositCreatedAtResolver<
+export type MarkerCreatedAtResolver<
   R = Date,
-  Parent = Deposit,
+  Parent = Marker,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
-export type DepositUpdatedAtResolver<
+export type MarkerUpdatedAtResolver<
   R = Date,
-  Parent = Deposit,
+  Parent = Marker,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
-export type DepositQualityResolver<
-  R = DepositQuality,
-  Parent = Deposit,
+
+export interface MarkerPointResolvers<
+  TContext = GQLContext,
+  TypeParent = MarkerPoint
+> {
+  x?: MarkerPointXResolver<number, TypeParent, TContext>;
+
+  y?: MarkerPointYResolver<number, TypeParent, TContext>;
+
+  z?: MarkerPointZResolver<number, TypeParent, TContext>;
+}
+
+export type MarkerPointXResolver<
+  R = number,
+  Parent = MarkerPoint,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
-export type DepositTypeResolver<
-  R = DepositType,
-  Parent = Deposit,
+export type MarkerPointYResolver<
+  R = number,
+  Parent = MarkerPoint,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
-export type DepositAddedByResolver<
-  R = Maybe<User>,
-  Parent = Deposit,
+export type MarkerPointZResolver<
+  R = number,
+  Parent = MarkerPoint,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+
+export interface ResourceNodeResolvers<
+  TContext = GQLContext,
+  TypeParent = ResourceNode
+> {
+  id?: ResourceNodeIdResolver<string, TypeParent, TContext>;
+
+  quality?: ResourceNodeQualityResolver<
+    ResourceNodeQuality,
+    TypeParent,
+    TContext
+  >;
+
+  type?: ResourceNodeTypeResolver<ResourceNodeType, TypeParent, TContext>;
+}
+
+export type ResourceNodeIdResolver<
+  R = string,
+  Parent = ResourceNode,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type ResourceNodeQualityResolver<
+  R = ResourceNodeQuality,
+  Parent = ResourceNode,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type ResourceNodeTypeResolver<
+  R = ResourceNodeType,
+  Parent = ResourceNode,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+
+export interface SlugResolvers<TContext = GQLContext, TypeParent = Slug> {
+  id?: SlugIdResolver<string, TypeParent, TContext>;
+
+  type?: SlugTypeResolver<SlugType, TypeParent, TContext>;
+}
+
+export type SlugIdResolver<
+  R = string,
+  Parent = Slug,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type SlugTypeResolver<
+  R = SlugType,
+  Parent = Slug,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+
+export interface DropPodResolvers<TContext = GQLContext, TypeParent = DropPod> {
+  id?: DropPodIdResolver<string, TypeParent, TContext>;
+}
+
+export type DropPodIdResolver<
+  R = string,
+  Parent = DropPod,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
@@ -602,145 +508,12 @@ export type UserUpdatedAtResolver<
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
-export interface SlugResolvers<TContext = GQLContext, TypeParent = Slug> {
-  id?: SlugIdResolver<string, TypeParent, TContext>;
-
-  map?: SlugMapResolver<Map, TypeParent, TContext>;
-
-  lat?: SlugLatResolver<number, TypeParent, TContext>;
-
-  lng?: SlugLngResolver<number, TypeParent, TContext>;
-
-  createdAt?: SlugCreatedAtResolver<Date, TypeParent, TContext>;
-
-  updatedAt?: SlugUpdatedAtResolver<Date, TypeParent, TContext>;
-
-  type?: SlugTypeResolver<SlugType, TypeParent, TContext>;
-
-  addedBy?: SlugAddedByResolver<Maybe<User>, TypeParent, TContext>;
-}
-
-export type SlugIdResolver<
-  R = string,
-  Parent = Slug,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type SlugMapResolver<
-  R = Map,
-  Parent = Slug,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type SlugLatResolver<
-  R = number,
-  Parent = Slug,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type SlugLngResolver<
-  R = number,
-  Parent = Slug,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type SlugCreatedAtResolver<
-  R = Date,
-  Parent = Slug,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type SlugUpdatedAtResolver<
-  R = Date,
-  Parent = Slug,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type SlugTypeResolver<
-  R = SlugType,
-  Parent = Slug,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type SlugAddedByResolver<
-  R = Maybe<User>,
-  Parent = Slug,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-
-export interface DropPodResolvers<TContext = GQLContext, TypeParent = DropPod> {
-  id?: DropPodIdResolver<string, TypeParent, TContext>;
-
-  map?: DropPodMapResolver<Map, TypeParent, TContext>;
-
-  lat?: DropPodLatResolver<number, TypeParent, TContext>;
-
-  lng?: DropPodLngResolver<number, TypeParent, TContext>;
-
-  createdAt?: DropPodCreatedAtResolver<Date, TypeParent, TContext>;
-
-  updatedAt?: DropPodUpdatedAtResolver<Date, TypeParent, TContext>;
-
-  addedBy?: DropPodAddedByResolver<Maybe<User>, TypeParent, TContext>;
-}
-
-export type DropPodIdResolver<
-  R = string,
-  Parent = DropPod,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type DropPodMapResolver<
-  R = Map,
-  Parent = DropPod,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type DropPodLatResolver<
-  R = number,
-  Parent = DropPod,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type DropPodLngResolver<
-  R = number,
-  Parent = DropPod,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type DropPodCreatedAtResolver<
-  R = Date,
-  Parent = DropPod,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type DropPodUpdatedAtResolver<
-  R = Date,
-  Parent = DropPod,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type DropPodAddedByResolver<
-  R = Maybe<User>,
-  Parent = DropPod,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-
-export interface MutationResolvers<TContext = GQLContext, TypeParent = {}> {
-  markerCreate?: MutationMarkerCreateResolver<Marker, TypeParent, TContext>;
-}
-
-export type MutationMarkerCreateResolver<
-  R = Marker,
-  Parent = {},
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext, MutationMarkerCreateArgs>;
-export interface MutationMarkerCreateArgs {
-  input: MarkerCreateInput;
-}
-
-export interface NodeResolvers {
-  __resolveType: NodeResolveType;
-}
-export type NodeResolveType<
-  R = "Item" | "Map" | "User",
-  Parent = Item | Map | User,
-  TContext = GQLContext
-> = TypeResolveFn<R, Parent, TContext>;
-
 export interface ConnectionResolvers {
   __resolveType: ConnectionResolveType;
 }
 export type ConnectionResolveType<
-  R = "MapMarkerConnection",
-  Parent = MapMarkerConnection,
+  R = "MarkersConnection",
+  Parent = MarkersConnection,
   TContext = GQLContext
 > = TypeResolveFn<R, Parent, TContext>;
 
@@ -748,26 +521,17 @@ export interface EdgeResolvers {
   __resolveType: EdgeResolveType;
 }
 export type EdgeResolveType<
-  R = "MapMarkerEdge",
-  Parent = MapMarkerEdge,
+  R = "MarkersConnectionEdge",
+  Parent = MarkersConnectionEdge,
   TContext = GQLContext
 > = TypeResolveFn<R, Parent, TContext>;
 
-export interface IMarkerResolvers {
-  __resolveType: IMarkerResolveType;
+export interface MarkerTargetResolvers {
+  __resolveType: MarkerTargetResolveType;
 }
-export type IMarkerResolveType<
-  R = "Deposit" | "Slug" | "DropPod",
-  Parent = Deposit | Slug | DropPod,
-  TContext = GQLContext
-> = TypeResolveFn<R, Parent, TContext>;
-
-export interface MarkerResolvers {
-  __resolveType: MarkerResolveType;
-}
-export type MarkerResolveType<
-  R = "Deposit" | "Slug" | "DropPod",
-  Parent = Deposit | Slug | DropPod,
+export type MarkerTargetResolveType<
+  R = "ResourceNode" | "Slug" | "DropPod",
+  Parent = ResourceNode | Slug | DropPod,
   TContext = GQLContext
 > = TypeResolveFn<R, Parent, TContext>;
 
@@ -817,21 +581,18 @@ export interface TimeScalarConfig extends GraphQLScalarTypeConfig<Time, any> {
 
 export interface IResolvers<TContext = GQLContext> {
   Query?: QueryResolvers<TContext>;
-  Item?: ItemResolvers<TContext>;
-  Map?: MapResolvers<TContext>;
-  MapMarkerConnection?: MapMarkerConnectionResolvers<TContext>;
+  MarkersConnection?: MarkersConnectionResolvers<TContext>;
   PageInfo?: PageInfoResolvers<TContext>;
-  MapMarkerEdge?: MapMarkerEdgeResolvers<TContext>;
-  Deposit?: DepositResolvers<TContext>;
-  User?: UserResolvers<TContext>;
+  MarkersConnectionEdge?: MarkersConnectionEdgeResolvers<TContext>;
+  Marker?: MarkerResolvers<TContext>;
+  MarkerPoint?: MarkerPointResolvers<TContext>;
+  ResourceNode?: ResourceNodeResolvers<TContext>;
   Slug?: SlugResolvers<TContext>;
   DropPod?: DropPodResolvers<TContext>;
-  Mutation?: MutationResolvers<TContext>;
-  Node?: NodeResolvers;
+  User?: UserResolvers<TContext>;
   Connection?: ConnectionResolvers;
   Edge?: EdgeResolvers;
-  IMarker?: IMarkerResolvers;
-  Marker?: MarkerResolvers;
+  MarkerTarget?: MarkerTargetResolvers;
   DateTime?: GraphQLScalarType;
   Date?: GraphQLScalarType;
   Time?: GraphQLScalarType;

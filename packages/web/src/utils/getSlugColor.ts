@@ -8,5 +8,7 @@ export function getSlugColor(slugType: SlugType) {
       return "#F9F903";
     case SlugType.Purple:
       return "#D100ED";
+    default:
+      return "red";
   }
 }
