@@ -8,7 +8,7 @@ import { setContext } from "apollo-link-context";
 import introspectionResult from "../introspection-result";
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem("accessToken");
+  // const token = localStorage.getItem("accessToken");
 
   return {
     headers: {
