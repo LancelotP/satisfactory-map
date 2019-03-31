@@ -1,5 +1,4 @@
 import { ResourceNodeType, SlugType } from "../__generated__";
-import { PartialDeep } from "lodash";
 
 export type MarkerSelection = {
   nodes: { [k in ResourceNodeType]: boolean };
@@ -8,21 +7,30 @@ export type MarkerSelection = {
 };
 
 export function getDefaultMarkerSelection() {
-  const markers: PartialDeep<MarkerSelection> = {
-    nodes: {},
-    slugs: {},
+  const markers: MarkerSelection = {
+    nodes: {
+      BAUXITE: false,
+      CATERIUM: false,
+      COAL: false,
+      COPPER: true,
+      GEYSER: false,
+      IRON: true,
+      LIMESTONE: true,
+      OIL: false,
+      QUARTZ: false,
+      SAM: false,
+      SULFUR: false,
+      UNKNOWN: false,
+      URANIUM: false
+    },
+    slugs: {
+      GREEN: false,
+      YELLOW: false,
+      PURPLE: false,
+      UNKNOWN: false
+    },
     pods: false
   };
-
-  Object.keys(ResourceNodeType).forEach(key => {
-    markers.nodes![
-      ResourceNodeType[key as keyof typeof ResourceNodeType]
-    ] = true;
-  });
-
-  Object.keys(SlugType).forEach(key => {
-    markers.slugs![SlugType[key as keyof typeof SlugType]] = false;
-  });
 
   return markers as MarkerSelection;
 }

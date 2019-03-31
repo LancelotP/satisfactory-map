@@ -24,5 +24,6 @@ enum ResourceNodeType {
   QUARTZ
   SAM
   CATERIUM
+  GEYSER
   UNKNOWN
 }

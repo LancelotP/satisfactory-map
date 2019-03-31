@@ -7,6 +7,18 @@ export const Menu = styled.aside`
   transition: width 0.242s ease;
 `;
 
+export const MenuIcon = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: 64px;
+  background: white;
+  padding: 12px;
+  z-index: 10000;
+  border-radius: 0 4px 4px 0;
+  display: flex;
+  cursor: pointer;
+`;
+
 export const Root = styled.div<{ menuOpen: boolean }>`
   flex: 1 1 auto;
   display: flex;
@@ -19,27 +31,20 @@ export const Root = styled.div<{ menuOpen: boolean }>`
     & > ${Menu} {
       width: 250px;
     }
+
+    & ${MenuIcon} {
+      display: none;
+    }
   }
 `;
 
 export const Content = styled.div`
   flex: 1 1 auto;
   position: relative;
+  background-color: #ddd;
 
   & .leaflet-div-icon {
     background: transparent;
     border: none;
   }
-`;
-
-export const MenuIcon = styled.div`
-  position: absolute;
-  left: 0;
-  bottom: 64px;
-  background: white;
-  padding: 12px;
-  z-index: 10000;
-  border-radius: 0 4px 4px 0;
-  display: flex;
-  cursor: pointer;
 `;

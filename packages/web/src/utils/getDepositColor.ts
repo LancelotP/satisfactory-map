@@ -24,6 +24,8 @@ export function getDepositColor(type: ResourceNodeType) {
       return "#FDAC00";
     case ResourceNodeType.Uranium:
       return "#00E337";
+    case ResourceNodeType.Geyser:
+      return "#ccc";
     default:
       return "#ff0000";
   }

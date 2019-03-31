@@ -9,6 +9,7 @@ export class ResourceNode extends Resource {
 
   @Column({ type: "text" })
   type:
+    | "GEYSER"
     | "IRON"
     | "COPPER"
     | "LIMESTONE"

@@ -50,11 +50,6 @@ export const InteractiveMap = (props: Props) => {
         const renderedMap = renderMap(CONTAINER_ID, data.markersConnection);
 
         setMap(renderedMap);
-        renderedMap.slugsGroup.removeLayer(renderedMap.slugs[SlugType.Green]);
-        renderedMap.slugsGroup.removeLayer(renderedMap.slugs[SlugType.Purple]);
-        renderedMap.slugsGroup.removeLayer(renderedMap.slugs[SlugType.Yellow]);
-        renderedMap.slugsGroup.removeLayer(renderedMap.slugs[SlugType.Unknown]);
-        renderedMap.dropPodsGroup.removeLayer(renderedMap.dropPods);
       }
     }
   }, [data]);
@@ -93,7 +88,7 @@ export const InteractiveMap = (props: Props) => {
     } else if (!selection.pods && map.dropPodsGroup.hasLayer(map.dropPods)) {
       map.dropPodsGroup.removeLayer(map.dropPods);
     }
-  }, [selection]);
+  }, [selection, map]);
 
   return (
     <S.Root menuOpen={menuOpen}>

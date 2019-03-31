@@ -19,6 +19,7 @@ export enum ResourceNodeType {
   Quartz = "QUARTZ",
   Sam = "SAM",
   Caterium = "CATERIUM",
+  Geyser = "GEYSER",
   Unknown = "UNKNOWN"
 }
 

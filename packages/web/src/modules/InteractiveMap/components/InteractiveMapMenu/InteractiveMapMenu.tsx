@@ -6,9 +6,8 @@ import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction/ListItemSecondaryAction";
 import Checkbox from "@material-ui/core/Checkbox/Checkbox";
 import ListItemIcon from "@material-ui/core/ListItemIcon/ListItemIcon";
-import Collapse from "@material-ui/core/Collapse/Collapse";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import ExpandLess from "@material-ui/icons/ExpandLess";
+import Divider from "@material-ui/core/Divider";
+
 import { MarkerSelection } from "../../../../utils/getDefaultMarkerSelection";
 import { ResourceNodeType, SlugType } from "../../../../__generated__";
 import { getDepositColor } from "../../../../utils/getDepositColor";
@@ -48,14 +47,14 @@ export const InteractiveMapMenu = (props: Props) => {
     { name: "Sam", key: ResourceNodeType.Sam },
     { name: "Sulfur", key: ResourceNodeType.Sulfur },
     { name: "Uranium", key: ResourceNodeType.Uranium },
+    { name: "Geysers", key: ResourceNodeType.Geyser },
     { name: "Unknown", key: ResourceNodeType.Unknown }
   ];
 
   const slugMenus: Array<{ name: string; key: SlugType }> = [
-    { name: "Green", key: SlugType.Green },
-    { name: "Yellow", key: SlugType.Yellow },
-    { name: "Purple", key: SlugType.Purple },
-    { name: "Unknown", key: SlugType.Unknown }
+    { name: "Green Slugs", key: SlugType.Green },
+    { name: "Yellow Slugs", key: SlugType.Yellow },
+    { name: "Purple Slugs", key: SlugType.Purple }
   ];
 
   function handleCollapseToggle(name: InteractiveMapMenuTopLevel) {
@@ -78,92 +77,131 @@ export const InteractiveMapMenu = (props: Props) => {
 
   return (
     <List component="nav">
-      <ListItem onClick={handleCollapseToggle("nodes")} button={true}>
-        <ListItemText primary="Nodes" />
-        <ListItemIcon style={{ marginRight: 0 }}>
-          {openedMenus.nodes ? <ExpandLess /> : <ExpandMore />}
+      <ListItem dense={true} style={{ paddingLeft: 32 }}>
+        <ListItemIcon>
+          <svg
+            viewBox="0 0 38 37"
+            height="30"
+            width="30"
+            version="1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M29 34l-2-11 9-8-12-2-5-11-5 11-12 2 9 8-2 11 10-5 10 5z"
+              fill="red"
+              stroke="#fff"
+              strokeWidth="2"
+              fillRule="evenodd"
+            />
+          </svg>
         </ListItemIcon>
+        <ListItemText primary="Pure" />
       </ListItem>
-      <Collapse timeout="auto" unmountOnExit={true} in={openedMenus.nodes}>
-        <List disablePadding={true}>
-          {nodeMenus.map(({ name, key }) => (
-            <ListItem
-              key={key}
+      <ListItem dense={true} style={{ paddingLeft: 32 }}>
+        <ListItemIcon>
+          <svg
+            viewBox="0 0 40 40"
+            height="30"
+            width="30"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.6 20L20 1.6 38.4 20 20 38.4z"
+              fill="red"
+              stroke="#fff"
+              strokeWidth="2"
+              fillRule="evenodd"
+            />
+          </svg>
+        </ListItemIcon>
+        <ListItemText primary="Normal" />
+      </ListItem>
+      <ListItem dense={true} style={{ paddingLeft: 32 }}>
+        <ListItemIcon>
+          <svg
+            viewBox="0 0 40 40"
+            height="30"
+            width="30"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 2.24L1.62 39h36.76L20 2.24z"
+              fill="red"
+              stroke="#fff"
+              strokeWidth="2"
+              fillRule="evenodd"
+            />
+          </svg>
+        </ListItemIcon>
+        <ListItemText primary="Impure" />
+      </ListItem>
+      <Divider style={{ marginTop: 16 }} />
+      {nodeMenus.map(({ name, key }) => (
+        <ListItem
+          key={key}
+          onClick={handleToggleFilter("nodes", key)}
+          style={{ paddingLeft: 32 }}
+          button={true}
+        >
+          <ListItemIcon>
+            <svg
+              viewBox="0 0 38 37"
+              height="30"
+              width="30"
+              version="1"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M29 34l-2-11 9-8-12-2-5-11-5 11-12 2 9 8-2 11 10-5 10 5z"
+                fill={getDepositColor(key)}
+                stroke="#fff"
+                strokeWidth="2"
+                fillRule="evenodd"
+              />
+            </svg>
+          </ListItemIcon>
+          <ListItemText primary={name} />
+          <ListItemSecondaryAction>
+            <Checkbox
               onClick={handleToggleFilter("nodes", key)}
-              style={{ paddingLeft: 32 }}
-              button={true}
+              checked={selection.nodes[key]}
+            />
+          </ListItemSecondaryAction>
+        </ListItem>
+      ))}
+      {slugMenus.map(({ name, key }) => (
+        <ListItem
+          key={key}
+          onClick={handleToggleFilter("slugs", key)}
+          style={{ paddingLeft: 32 }}
+          button={true}
+        >
+          <ListItemIcon>
+            <svg
+              viewBox="0 0 38 37"
+              height="30"
+              width="30"
+              version="1"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <ListItemIcon>
-                <svg
-                  viewBox="0 0 38 37"
-                  height="30"
-                  width="30"
-                  version="1"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M29 34l-2-11 9-8-12-2-5-11-5 11-12 2 9 8-2 11 10-5 10 5z"
-                    fill={getDepositColor(key)}
-                    stroke="#fff"
-                    strokeWidth="2"
-                    fillRule="evenodd"
-                  />
-                </svg>
-              </ListItemIcon>
-              <ListItemText primary={name} />
-              <ListItemSecondaryAction>
-                <Checkbox
-                  onClick={handleToggleFilter("nodes", key)}
-                  checked={selection.nodes[key]}
-                />
-              </ListItemSecondaryAction>
-            </ListItem>
-          ))}
-        </List>
-      </Collapse>
-      <ListItem onClick={handleCollapseToggle("slugs")} button={true}>
-        <ListItemText primary="Slugs" />
-        <ListItemIcon style={{ marginRight: 0 }}>
-          {openedMenus.slugs ? <ExpandLess /> : <ExpandMore />}
-        </ListItemIcon>
-      </ListItem>
-      <Collapse timeout="auto" unmountOnExit={true} in={openedMenus.slugs}>
-        <List disablePadding={true}>
-          {slugMenus.map(({ name, key }) => (
-            <ListItem
-              key={key}
+              <path
+                d="M29 34l-2-11 9-8-12-2-5-11-5 11-12 2 9 8-2 11 10-5 10 5z"
+                fill={getSlugColor(key)}
+                stroke="#fff"
+                strokeWidth="2"
+                fillRule="evenodd"
+              />
+            </svg>
+          </ListItemIcon>
+          <ListItemText primary={name} />
+          <ListItemSecondaryAction>
+            <Checkbox
               onClick={handleToggleFilter("slugs", key)}
-              style={{ paddingLeft: 32 }}
-              button={true}
-            >
-              <ListItemIcon>
-                <svg
-                  viewBox="0 0 38 37"
-                  height="30"
-                  width="30"
-                  version="1"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M29 34l-2-11 9-8-12-2-5-11-5 11-12 2 9 8-2 11 10-5 10 5z"
-                    fill={getSlugColor(key)}
-                    stroke="#fff"
-                    strokeWidth="2"
-                    fillRule="evenodd"
-                  />
-                </svg>
-              </ListItemIcon>
-              <ListItemText primary={name} />
-              <ListItemSecondaryAction>
-                <Checkbox
-                  onClick={handleToggleFilter("slugs", key)}
-                  checked={selection.slugs[key]}
-                />
-              </ListItemSecondaryAction>
-            </ListItem>
-          ))}
-        </List>
-      </Collapse>
+              checked={selection.slugs[key]}
+            />
+          </ListItemSecondaryAction>
+        </ListItem>
+      ))}
       <ListItem
         onClick={() =>
           onSelectionChange({ ...selection, pods: !selection.pods })
