@@ -1,19 +1,20 @@
-fragment MarkerDeposit on Deposit {
+fragment Marker on Marker {
   id
-  lat
-  lng
-  depositType: type
-}
-
-fragment MarkerSlug on Slug {
-  id
-  lat
-  lng
-  slugType: type
-}
-
-fragment MarkerDropPod on DropPod {
-  id
-  lat
-  lng
+  position {
+    x
+    y
+    z
+  }
+  target {
+    ... on ResourceNode {
+      nodeType: type
+      nodeQuality: quality
+    }
+    ... on Slug {
+      slugType: type
+    }
+    ... on DropPod {
+      id
+    }
+  }
 }

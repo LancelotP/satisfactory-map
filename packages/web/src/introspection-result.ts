@@ -15,25 +15,10 @@ const result: IntrospectionResultData = {
     types: [
       {
         kind: "INTERFACE",
-        name: "Node",
-        possibleTypes: [
-          {
-            name: "Item"
-          },
-          {
-            name: "Map"
-          },
-          {
-            name: "User"
-          }
-        ]
-      },
-      {
-        kind: "INTERFACE",
         name: "Connection",
         possibleTypes: [
           {
-            name: "MapMarkerConnection"
+            name: "MarkersConnection"
           }
         ]
       },
@@ -42,31 +27,16 @@ const result: IntrospectionResultData = {
         name: "Edge",
         possibleTypes: [
           {
-            name: "MapMarkerEdge"
+            name: "MarkersConnectionEdge"
           }
         ]
       },
       {
         kind: "UNION",
-        name: "Marker",
+        name: "MarkerTarget",
         possibleTypes: [
           {
-            name: "Deposit"
-          },
-          {
-            name: "Slug"
-          },
-          {
-            name: "DropPod"
-          }
-        ]
-      },
-      {
-        kind: "INTERFACE",
-        name: "IMarker",
-        possibleTypes: [
-          {
-            name: "Deposit"
+            name: "ResourceNode"
           },
           {
             name: "Slug"

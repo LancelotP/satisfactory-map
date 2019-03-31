@@ -18,3 +18,11 @@ export const Text = styled.div`
   text-align: center;
   transform: translate(-50%, -50%);
 `;
+
+export const Popup = styled.div`
+  & > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+`;
