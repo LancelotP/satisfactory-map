@@ -22,7 +22,9 @@ export async function start() {
       ssl: process.env.NODE_ENV === "production"
     },
     entities: [`${__dirname}/**/*.model.*s`],
-    synchronize: true,
+    migrations: [`${__dirname}../**/*.migration.*s`],
+    migrationsRun: true,
+    synchronize: false,
     url: process.env.DATABASE_URL
   });
 
