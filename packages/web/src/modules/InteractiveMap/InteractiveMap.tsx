@@ -45,13 +45,19 @@ type MarkerPos = {
 };
 
 export const InteractiveMap = (props: Props) => {
+  const { center, hashedFilter, zoom } = parseHash();
+
   const { data, loading } = useInteractiveMap();
   const [menuOpen, setMenuOpen] = useState(false);
   const [markerSize, setMarkerSize] = useState(30);
-  const [selection, setSelection] = useState(getDefaultMarkerSelection(0));
+  const [selection, setSelection] = useState(
+    getDefaultMarkerSelection(hashedFilter)
+  );
   const map = useRef<Map | undefined>();
-  const [defaultZoom, setDefaultZoom] = useState(2);
-  const [defaultCenter, setDefaultCenter] = useState<[number, number]>([0, 0]);
+  const [defaultZoom, setDefaultZoom] = useState(zoom);
+  const [defaultCenter, setDefaultCenter] = useState<[number, number]>(
+    center as [number, number]
+  );
   const [slugs, setSlugs] = useState<
     {
       [k in SlugType]: Array<
@@ -63,6 +69,7 @@ export const InteractiveMap = (props: Props) => {
     YELLOW: [],
     PURPLE: []
   });
+
   const [resourceNodes, setResourceNodes] = useState<
     {
       [k in ResourceNodeType]: Array<
@@ -84,6 +91,7 @@ export const InteractiveMap = (props: Props) => {
     GEYSER: [],
     UNKNOWN: []
   });
+
   const [dropPods, setDropPods] = useState<
     Array<DropPodMarkerFragment & { pos: MarkerPos; obstructed: boolean }>
   >([]);
@@ -93,7 +101,13 @@ export const InteractiveMap = (props: Props) => {
   }
 
   function saveUrl(newSelection?: MarkerSelection) {
+    console.log(1);
     if (map && map.current) {
+      console.log(
+        2,
+        newSelection && newSelection.nodes.OIL,
+        selection.nodes.OIL
+      );
       const hashFilter = getMarkerSelectionHash(
         newSelection || selection
       ).toString();
@@ -105,12 +119,14 @@ export const InteractiveMap = (props: Props) => {
   }
 
   function handleSelectionChange(newSelection: MarkerSelection) {
+    console.log(3);
     saveUrl(newSelection);
     setSelection(newSelection);
   }
 
   useEffect(() => {
     if (map && map.current) {
+      console.log(4);
       map.current.leafletElement.on("moveend", () => saveUrl());
     }
   }, [map]);
@@ -157,35 +173,6 @@ export const InteractiveMap = (props: Props) => {
     setSlugs(newSlugs);
     setResourceNodes(newResourceNodes);
   }, [data && data.markersConnection && data.markersConnection.totalCount]);
-
-  useEffect(() => {
-    const hashedValues = location.hash
-      .slice(1)
-      .split(";")
-      .filter(Boolean)
-      .map(v => {
-        const parsedV = parseFloat(v);
-
-        if (isNaN(parsedV)) {
-          return 0;
-        } else {
-          return parsedV;
-        }
-      });
-
-    setDefaultCenter([
-      hashedValues[1] || defaultCenter[0],
-      hashedValues[0] || defaultCenter[0]
-    ]);
-    setDefaultZoom(hashedValues[2] || defaultZoom);
-
-    console.log(hashedValues[3]);
-    console.log(getDefaultMarkerSelection(hashedValues[3]));
-
-    if (hashedValues[3]) {
-      setSelection(getDefaultMarkerSelection(hashedValues[3]));
-    }
-  }, []);
 
   return (
     <S.Root menuOpen={menuOpen}>
@@ -387,5 +374,27 @@ function convertPos(position: MarkerPosition) {
     lat: position.y,
     lng: position.x,
     alt: position.z
+  };
+}
+
+function parseHash() {
+  const hashedValues = location.hash
+    .slice(1)
+    .split(";")
+    .filter(Boolean)
+    .map(v => {
+      const parsedV = parseFloat(v);
+
+      if (isNaN(parsedV)) {
+        return 0;
+      } else {
+        return parsedV;
+      }
+    });
+
+  return {
+    center: [hashedValues[1] || 0, hashedValues[0] || 0],
+    zoom: hashedValues[2] || 2,
+    hashedFilter: hashedValues[3] || 0
   };
 }
