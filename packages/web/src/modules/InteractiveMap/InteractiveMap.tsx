@@ -100,7 +100,7 @@ export const InteractiveMap = (props: Props) => {
     setMenuOpen(!menuOpen);
   }
 
-  function saveUrl(newSelection?: MarkerSelection) {
+  const saveUrl = (newSelection?: MarkerSelection) => {
     if (map && map.current) {
       const hashFilter = getMarkerSelectionHash(
         newSelection || selection
@@ -110,16 +110,17 @@ export const InteractiveMap = (props: Props) => {
 
       location.hash = `${latlng.lng};${latlng.lat};${zoom};${hashFilter || ""}`;
     }
-  }
+  };
 
-  function handleSelectionChange(newSelection: MarkerSelection) {
+  const handleSelectionChange = (newSelection: MarkerSelection) => {
     saveUrl(newSelection);
     setSelection(newSelection);
-  }
+  };
 
   useEffect(() => {
     if (map && map.current) {
-      map.current.leafletElement.on("moveend", () => saveUrl());
+      console.log(1);
+      map.current.leafletElement.on("moveend", () => saveUrl);
     }
   }, [map]);
 
