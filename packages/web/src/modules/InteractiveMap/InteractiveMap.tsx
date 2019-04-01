@@ -27,7 +27,7 @@ const CONTAINER_ID = "map-root";
 export const InteractiveMap = (props: Props) => {
   const { data, loading } = useInteractiveMap();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [markerSize, setMarkerSize] = useState(20);
+  const [markerSize, setMarkerSize] = useState(30);
 
   const [markers, setMarkers] = useState<InteractiveMapMarkersConnection>({
     __typename: "MarkersConnection",
@@ -161,7 +161,7 @@ function renderMap(
     // preferCanvas: true,
     crs: crs,
     minZoom: -3,
-    maxBounds: bounds,
+    maxBounds: [[-3048 * 2, -3048 * 2], [3048 * 2, 4064 * 2]],
     center: [lat || 0, lng || 0],
     maxZoom: 1.5,
     zoom: zoom || -2,
