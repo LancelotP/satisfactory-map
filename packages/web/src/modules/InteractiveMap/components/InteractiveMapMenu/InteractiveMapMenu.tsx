@@ -139,7 +139,7 @@ export const InteractiveMapMenu = (props: Props) => {
         <ListItemSecondaryAction>
           <input
             type="range"
-            min="10"
+            min="20"
             max="60"
             step="10"
             value={markerSize}
