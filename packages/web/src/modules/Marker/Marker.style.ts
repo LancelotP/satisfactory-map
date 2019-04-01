@@ -26,3 +26,11 @@ export const Popup = styled.div`
     padding: 0;
   }
 `;
+
+export const Obstruction = styled.svg`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+`;

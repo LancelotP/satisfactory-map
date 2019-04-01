@@ -124,6 +124,10 @@ export type MarkerFragment = {
 
   position: MarkerPosition;
 
+  obstructed: boolean;
+
+  information: Maybe<string>;
+
   target: MarkerTarget;
 };
 
@@ -181,6 +185,8 @@ export const MarkerFragmentDoc = gql`
       y
       z
     }
+    obstructed
+    information
     target {
       ... on ResourceNode {
         id

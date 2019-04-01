@@ -5,6 +5,8 @@ fragment Marker on Marker {
     y
     z
   }
+  obstructed
+  information
   target {
     ... on ResourceNode {
       id

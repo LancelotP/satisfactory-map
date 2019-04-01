@@ -90,7 +90,20 @@ export const Marker = (props: MarkerProps) => {
     );
   }
 
-  return <S.Root>{Content}</S.Root>;
+  return (
+    <S.Root>
+      {Content}
+      {marker.obstructed && (
+        <S.Obstruction
+          xmlns="http://www.w3.org/2000/svg"
+          version="1"
+          viewBox="0 0 1000 1000"
+        >
+          <path d="M633 500l329 329c37 37 37 95 0 133-17 17-43 28-67 28-23 0-49-11-66-29L500 633 171 962c-17 17-43 28-67 28-23 0-49-11-66-29a92 92 0 0 1 0-132l329-329L38 171a92 92 0 0 1 0-133c38-38 95-38 133 0l329 329L829 38c38-38 95-38 133 0 37 37 37 95 0 133L633 500z" />
+        </S.Obstruction>
+      )}
+    </S.Root>
+  );
 };
 
 export function createMarkerIcon(props: MarkerProps) {
@@ -141,6 +154,11 @@ export function createPopup(props: CreateMarkerProps) {
   return ReactDOMServer.renderToStaticMarkup(
     <S.Popup>
       <ul>
+        {props.marker.obstructed && (
+          <li>
+            <strong>Obstructed by boulder</strong>
+          </li>
+        )}
         {props.marker.target.__typename === "ResourceNode" && (
           <li>
             <b>Type</b>: {props.marker.target.nodeType}

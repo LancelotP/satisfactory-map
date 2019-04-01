@@ -3,6 +3,8 @@ type Marker {
 
   position: MarkerPoint!
   target: MarkerTarget!
+  obstructed: Boolean!
+  information: String
 
   createdAt: DateTime!
   updatedAt: DateTime!

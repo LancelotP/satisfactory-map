@@ -98,6 +98,10 @@ export interface Marker {
 
   target: MarkerTarget;
 
+  obstructed: boolean;
+
+  information?: Maybe<string>;
+
   createdAt: Date;
 
   updatedAt: Date;
@@ -361,6 +365,10 @@ export interface MarkerResolvers<TContext = GQLContext, TypeParent = Marker> {
 
   target?: MarkerTargetResolver<MarkerTarget, TypeParent, TContext>;
 
+  obstructed?: MarkerObstructedResolver<boolean, TypeParent, TContext>;
+
+  information?: MarkerInformationResolver<Maybe<string>, TypeParent, TContext>;
+
   createdAt?: MarkerCreatedAtResolver<Date, TypeParent, TContext>;
 
   updatedAt?: MarkerUpdatedAtResolver<Date, TypeParent, TContext>;
@@ -378,6 +386,16 @@ export type MarkerPositionResolver<
 > = Resolver<R, Parent, TContext>;
 export type MarkerTargetResolver<
   R = MarkerTarget,
+  Parent = Marker,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type MarkerObstructedResolver<
+  R = boolean,
+  Parent = Marker,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type MarkerInformationResolver<
+  R = Maybe<string>,
   Parent = Marker,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
