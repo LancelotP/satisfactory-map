@@ -38,8 +38,9 @@ enum SelectionMarkerValue {
   PODS        = 524288
 }
 
-export function getDefaultMarkerSelection() {
-  const markers: MarkerSelection = {
+
+export function getDefaultMarkerSelection(hash: number) {
+  let markers: MarkerSelection = {
     quality: {
       IMPURE: true,
       NORMAL: true,
@@ -68,6 +69,46 @@ export function getDefaultMarkerSelection() {
     },
     pods: false
   };
+  
+  const binaryHash = "" + hash.toString(2);
+  
+  if (binaryHash !== "0") {
+    markers["quality"]["IMPURE"] = false;
+    markers["quality"]["NORMAL"] = false;
+    markers["quality"]["PURE"] = false;
+    markers["nodes"]["COPPER"] = false;
+    markers["nodes"]["IRON"] = false;
+    markers["nodes"]["LIMESTONE"] = false;
+    
+    let activeMarkers = [];
+    
+    for (let i = 0; i < binaryHash.length; i++) {
+      if (binaryHash.charAt(i) === '1') {
+        // @ts-ignore
+        let enumIndex = SelectionMarkerValue[(Math.pow(2, binaryHash.length - 1 - i))]
+        if (enumIndex !== undefined)
+          activeMarkers.push(enumIndex);
+      }
+    }
+    
+    activeMarkers.forEach(m => {
+      let [type, item] = m.split("_");
+      
+      switch (type) {
+        case "Q":
+          // @ts-ignore
+          markers["quality"][item] = true;
+        case "N":
+          // @ts-ignore
+          markers["nodes"][item] = true;
+        case "S":
+          // @ts-ignore
+          markers["slugs"][item] = true;
+        case "PODS":
+          markers["pods"] = true;
+      }
+    })
+  }
 
   return markers as MarkerSelection;
 }
