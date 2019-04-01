@@ -102,8 +102,6 @@ export const InteractiveMap = (props: Props) => {
     setResourceNodes(newResourceNodes);
   }, [data && data.markersConnection && data.markersConnection.totalCount]);
 
-  console.log(slugs.GREEN[0], slugs.PURPLE[0], slugs.YELLOW[0]);
-
   return (
     <S.Root menuOpen={menuOpen}>
       <S.Menu>
@@ -128,53 +126,66 @@ export const InteractiveMap = (props: Props) => {
           crs={crs}
         >
           <TileLayer url="/tiles/{z}/{x}/{y}.png" noWrap={true} />
-          <MarkerClusterGroup
-            removeOutsideVisibleBounds={true}
-            maxClusterRadius={0}
-          >
-            {[
-              ...(selection.nodes.IRON ? resourceNodes.IRON : []),
-              ...(selection.nodes.COPPER ? resourceNodes.COPPER : []),
-              ...(selection.nodes.LIMESTONE ? resourceNodes.LIMESTONE : []),
-              ...(selection.nodes.COAL ? resourceNodes.COAL : []),
-              ...(selection.nodes.OIL ? resourceNodes.OIL : []),
-              ...(selection.nodes.CATERIUM ? resourceNodes.CATERIUM : []),
-              ...(selection.nodes.GEYSER ? resourceNodes.GEYSER : []),
-              ...(selection.nodes.SAM ? resourceNodes.SAM : []),
-              ...(selection.nodes.BAUXITE ? resourceNodes.BAUXITE : []),
-              ...(selection.nodes.QUARTZ ? resourceNodes.QUARTZ : []),
-              ...(selection.nodes.SULFUR ? resourceNodes.SULFUR : []),
-              ...(selection.nodes.URANIUM ? resourceNodes.URANIUM : [])
-            ].map(marker => (
-              <Marker
-                position={marker.pos}
-                icon={RNMarkerIcon({ marker, iconSize: 20 })}
-                key={marker.id}
-              />
-            ))}
-          </MarkerClusterGroup>
-          <MarkerClusterGroup
-            removeOutsideVisibleBounds={true}
-            maxClusterRadius={0}
-          >
-            {[
-              ...(selection.slugs.GREEN ? slugs.GREEN : []),
-              ...(selection.slugs.YELLOW ? slugs.YELLOW : []),
-              ...(selection.slugs.PURPLE ? slugs.PURPLE : [])
-            ].map(marker => (
-              <CircleMarker
-                radius={10}
-                stroke={true}
-                color={"#fff"}
-                weight={2}
-                fill={true}
-                fillOpacity={1}
-                fillColor={getSlugColor(marker.slugType)}
-                center={marker.pos}
-                key={marker.id}
-              />
-            ))}
-          </MarkerClusterGroup>
+          {Object.keys(resourceNodes).map(key => {
+            // @ts-ignore
+            if (!selection.nodes[key]) {
+              return null;
+            }
+
+            // @ts-ignore
+            const markers = resourceNodes[key] as Array<
+              RnMarkerFragment & { pos: MarkerPos }
+            >;
+
+            return (
+              <MarkerClusterGroup
+                removeOutsideVisibleBounds={true}
+                maxClusterRadius={0}
+                key={key}
+              >
+                {markers.map(marker => (
+                  <Marker
+                    position={marker.pos}
+                    icon={RNMarkerIcon({ marker, iconSize: 20 })}
+                    key={marker.id}
+                  />
+                ))}
+              </MarkerClusterGroup>
+            );
+          })}
+          {Object.keys(slugs).map(key => {
+            // @ts-ignore
+            if (!selection.slugs[key]) {
+              return null;
+            }
+
+            // @ts-ignore
+            const markers = slugs[key] as Array<
+              MarkerSlugInlineFragment & { pos: MarkerPos }
+            >;
+
+            return (
+              <MarkerClusterGroup
+                removeOutsideVisibleBounds={true}
+                maxClusterRadius={0}
+                key={key}
+              >
+                {markers.map(marker => (
+                  <CircleMarker
+                    radius={10}
+                    stroke={true}
+                    color={"#fff"}
+                    weight={2}
+                    fill={true}
+                    fillOpacity={1}
+                    fillColor={getSlugColor(marker.slugType)}
+                    center={marker.pos}
+                    key={marker.id}
+                  />
+                ))}
+              </MarkerClusterGroup>
+            );
+          })}
         </Map>
         <S.MenuIcon onClick={toggleMenu}>
           {menuOpen ? <IconClose /> : <IconMenu />}
