@@ -101,13 +101,7 @@ export const InteractiveMap = (props: Props) => {
   }
 
   function saveUrl(newSelection?: MarkerSelection) {
-    console.log(1);
     if (map && map.current) {
-      console.log(
-        2,
-        newSelection && newSelection.nodes.OIL,
-        selection.nodes.OIL
-      );
       const hashFilter = getMarkerSelectionHash(
         newSelection || selection
       ).toString();
@@ -119,14 +113,12 @@ export const InteractiveMap = (props: Props) => {
   }
 
   function handleSelectionChange(newSelection: MarkerSelection) {
-    console.log(3);
     saveUrl(newSelection);
     setSelection(newSelection);
   }
 
   useEffect(() => {
     if (map && map.current) {
-      console.log(4);
       map.current.leafletElement.on("moveend", () => saveUrl());
     }
   }, [map]);
