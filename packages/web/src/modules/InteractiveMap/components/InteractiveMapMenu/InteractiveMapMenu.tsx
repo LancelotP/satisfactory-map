@@ -116,7 +116,7 @@ export const InteractiveMapMenu = (props: Props) => {
         IMPURE: value,
         PURE: value,
         NORMAL: value,
-        UNKNOWN: value
+        UNKNOWN: true
       },
       slugs: {
         GREEN: value,
