@@ -12,6 +12,7 @@ query InteractiveMap {
         }
         target {
           ...RNMarker
+          ...DropPodMarker
           ... on ResourceNode {
             __typename
             nodeType: type

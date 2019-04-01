@@ -12,7 +12,8 @@ import {
   MarkerSlugInlineFragment,
   MarkerPosition,
   MarkerDropPodInlineFragment,
-  RnMarkerFragment
+  RnMarkerFragment,
+  DropPodMarkerFragment
 } from "../../__generated__";
 import { InteractiveMapMenu } from "./components/InteractiveMapMenu/InteractiveMapMenu";
 import { getDefaultMarkerSelection } from "../../utils/getDefaultMarkerSelection";
@@ -21,6 +22,7 @@ import IconClose from "@material-ui/icons/Close";
 import { Map, TileLayer, Marker, CircleMarker } from "react-leaflet";
 import { getSlugColor } from "../../utils/getSlugColor";
 import { RNMarkerIcon } from "./components/RNMarker/RNMarker";
+import { DropPodIcon } from "./components/DropPodMarker/DropPodMarker";
 
 type Props = {
   embedded?: boolean;
@@ -68,6 +70,9 @@ export const InteractiveMap = (props: Props) => {
     GEYSER: [],
     UNKNOWN: []
   });
+  const [dropPods, setDropPods] = useState<
+    Array<DropPodMarkerFragment & { pos: MarkerPos }>
+  >([]);
 
   function toggleMenu() {
     setMenuOpen(!menuOpen);
@@ -76,6 +81,7 @@ export const InteractiveMap = (props: Props) => {
   useEffect(() => {
     const newSlugs = Object.assign({}, slugs);
     const newResourceNodes = Object.assign({}, resourceNodes);
+    const newDropPods: Array<DropPodMarkerFragment & { pos: MarkerPos }> = [];
 
     (
       (data && data.markersConnection && data.markersConnection.edges) ||
@@ -95,9 +101,17 @@ export const InteractiveMap = (props: Props) => {
           ...target,
           pos: convertPos(edge.node.position)
         });
+      } else if (edge.node.target.__typename === "DropPod") {
+        const target = edge.node.target as DropPodMarkerFragment;
+
+        newDropPods.push({
+          ...target,
+          pos: convertPos(edge.node.position)
+        });
       }
     });
 
+    setDropPods(newDropPods);
     setSlugs(newSlugs);
     setResourceNodes(newResourceNodes);
   }, [data && data.markersConnection && data.markersConnection.totalCount]);
@@ -186,6 +200,20 @@ export const InteractiveMap = (props: Props) => {
               </MarkerClusterGroup>
             );
           })}
+          {selection.pods && (
+            <MarkerClusterGroup
+              removeOutsideVisibleBounds={true}
+              maxClusterRadius={0}
+            >
+              {dropPods.map(marker => (
+                <Marker
+                  position={marker.pos}
+                  icon={DropPodIcon({ marker, iconSize: markerSize })}
+                  key={marker.id}
+                />
+              ))}
+            </MarkerClusterGroup>
+          )}
         </Map>
         <S.MenuIcon onClick={toggleMenu}>
           {menuOpen ? <IconClose /> : <IconMenu />}

@@ -94,7 +94,7 @@ export type InteractiveMapPosition = {
 export type InteractiveMapTarget =
   | (InteractiveMapResourceNodeInlineFragment & RnMarkerFragment)
   | InteractiveMapSlugInlineFragment
-  | InteractiveMapDropPodInlineFragment;
+  | (InteractiveMapDropPodInlineFragment & DropPodMarkerFragment);
 
 export type InteractiveMapResourceNodeInlineFragment = {
   __typename: "ResourceNode";
@@ -124,6 +124,12 @@ export type AppQuery = {
 
 export type AppViewer = {
   __typename?: "User";
+
+  id: string;
+};
+
+export type DropPodMarkerFragment = {
+  __typename?: "DropPod";
 
   id: string;
 };
@@ -198,6 +204,12 @@ import * as ReactApolloHooks from "react-apollo-hooks";
 // Fragments
 // ====================================================
 
+export const DropPodMarkerFragmentDoc = gql`
+  fragment DropPodMarker on DropPod {
+    id
+  }
+`;
+
 export const RnMarkerFragmentDoc = gql`
   fragment RNMarker on ResourceNode {
     id
@@ -252,6 +264,7 @@ export const InteractiveMapDocument = gql`
           }
           target {
             ...RNMarker
+            ...DropPodMarker
             ... on ResourceNode {
               __typename
               nodeType: type
@@ -272,6 +285,7 @@ export const InteractiveMapDocument = gql`
   }
 
   ${RnMarkerFragmentDoc}
+  ${DropPodMarkerFragmentDoc}
   ${MarkerFragmentDoc}
 `;
 export function useInteractiveMap(
