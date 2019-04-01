@@ -7,6 +7,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction/L
 import Checkbox from "@material-ui/core/Checkbox/Checkbox";
 import ListItemIcon from "@material-ui/core/ListItemIcon/ListItemIcon";
 import Divider from "@material-ui/core/Divider";
+import Button from "@material-ui/core/Button";
 
 import { MarkerSelection } from "../../../../utils/getDefaultMarkerSelection";
 import {
@@ -16,6 +17,7 @@ import {
 } from "../../../../__generated__";
 import { getDepositColor } from "../../../../utils/getDepositColor";
 import { getSlugColor } from "../../../../utils/getSlugColor";
+import { PartialDeep } from "lodash";
 
 type InteractiveMapMenuTopLevel =
   | "nodes"
@@ -85,11 +87,57 @@ export const InteractiveMapMenu = (props: Props) => {
       });
   }
 
+  function handleToggleAll(value: boolean) {
+    const newSelection: typeof selection = {
+      nodes: {
+        BAUXITE: value,
+        CATERIUM: value,
+        COAL: value,
+        COPPER: value,
+        GEYSER: value,
+        IRON: value,
+        LIMESTONE: value,
+        OIL: value,
+        QUARTZ: value,
+        SAM: value,
+        SULFUR: value,
+        UNKNOWN: value,
+        URANIUM: value
+      },
+      pods: value,
+      quality: {
+        IMPURE: value,
+        PURE: value,
+        NORMAL: value,
+        UNKNOWN: value
+      },
+      slugs: {
+        GREEN: value,
+        YELLOW: value,
+        PURPLE: value,
+        UNKNOWN: false
+      }
+    };
+
+    return () => onSelectionChange(newSelection);
+  }
+
   return (
     <List component="nav">
       <div style={{ padding: 16 }}>
         <img width="100%" alt="satisfactory-map-logo" src="/logo.png" />
       </div>
+      <ListItem>
+        <ListItemText primary="Select" />
+        <ListItemSecondaryAction>
+          <Button color="primary" onClick={handleToggleAll(true)}>
+            All
+          </Button>
+          <Button color="primary" onClick={handleToggleAll(false)}>
+            None
+          </Button>
+        </ListItemSecondaryAction>
+      </ListItem>
       {nodeQualityMenus.map(({ name, key }) => (
         <ListItem
           key={key}
