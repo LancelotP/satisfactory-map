@@ -16,7 +16,7 @@ import {
   DropPodMarkerFragment
 } from "../../__generated__";
 import { InteractiveMapMenu } from "./components/InteractiveMapMenu/InteractiveMapMenu";
-import { getDefaultMarkerSelection } from "../../utils/getDefaultMarkerSelection";
+import { getDefaultMarkerSelection, getMarkerSelectionHash } from "../../utils/getDefaultMarkerSelection";
 import IconMenu from "@material-ui/icons/Menu";
 import IconClose from "@material-ui/icons/Close";
 import { Map, TileLayer, Marker, CircleMarker, Popup } from "react-leaflet";
@@ -85,6 +85,10 @@ export const InteractiveMap = (props: Props) => {
   function toggleMenu() {
     setMenuOpen(!menuOpen);
   }
+
+  useEffect(() => {
+    location.hash = "" + getMarkerSelectionHash(selection)
+  }, [selection.nodes, selection.pods, selection.quality, selection.slugs])
 
   useEffect(() => {
     const newSlugs = Object.assign({}, slugs);
