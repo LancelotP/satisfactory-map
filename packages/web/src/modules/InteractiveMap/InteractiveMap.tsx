@@ -146,7 +146,7 @@ export const InteractiveMap = (props: Props) => {
                 {markers.map(marker => (
                   <Marker
                     position={marker.pos}
-                    icon={RNMarkerIcon({ marker, iconSize: 20 })}
+                    icon={RNMarkerIcon({ marker, iconSize: markerSize })}
                     key={marker.id}
                   />
                 ))}
@@ -172,7 +172,7 @@ export const InteractiveMap = (props: Props) => {
               >
                 {markers.map(marker => (
                   <CircleMarker
-                    radius={10}
+                    radius={(markerSize - 10) / 2}
                     stroke={true}
                     color={"#fff"}
                     weight={2}
