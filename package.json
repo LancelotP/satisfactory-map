@@ -11,7 +11,7 @@
     "packages/web/node_modules"
   ],
   "scripts": {
-    "start": "cd packages/api && NODE_ENV=production  node -r dotenv/config build",
+    "start": "cd packages/api &&  node -r dotenv/config build",
     "build": "yarn build:api && yarn build:web",
     "build:web": "cd packages/web && yarn build",
     "build:api": "cd packages/api && yarn build",
