@@ -10,7 +10,7 @@ export const Menu = styled.aside`
 export const MenuIcon = styled.div`
   position: absolute;
   left: 0;
-  bottom: 64px;
+  top: 82px;
   background: white;
   padding: 12px;
   z-index: 10000;
@@ -41,7 +41,7 @@ export const Root = styled.div<{ menuOpen: boolean }>`
 export const Content = styled.div`
   flex: 1 1 auto;
   position: relative;
-  
+
   & > #s_map {
     background-color: #5f5e5a;
     height: 100%;

@@ -170,41 +170,46 @@ export const InteractiveMap = (props: Props) => {
                 maxClusterRadius={0}
                 key={key}
               >
-                {markers.map(marker => (
-                  <Marker
-                    position={marker.pos}
-                    icon={RNMarkerIcon({ marker, iconSize: markerSize })}
-                    key={marker.id}
-                  >
-                    <Popup>
-                      <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-                        {marker.obstructed && (
-                          <li>
-                            <strong>Obstructed by boulder</strong>
-                          </li>
-                        )}
-                        <li>
-                          <b>Type</b>: {marker.type}
-                        </li>
-                        <li>
-                          <b>Quality</b>: {marker.quality}
-                        </li>
-                        <li>
-                          <b>X</b>: {marker.pos.lat}
-                        </li>
-                        <li>
-                          <b>Y</b>: {marker.pos.lng}
-                        </li>
-                        <li>
-                          <b>Z</b>: {marker.pos.alt}
-                        </li>
-                        <li>
-                          <b>ID</b>: {marker.id}
-                        </li>
-                      </ul>
-                    </Popup>
-                  </Marker>
-                ))}
+                {markers.map(
+                  marker =>
+                    selection.quality[marker.quality] && (
+                      <Marker
+                        position={marker.pos}
+                        icon={RNMarkerIcon({ marker, iconSize: markerSize })}
+                        key={marker.id}
+                      >
+                        <Popup>
+                          <ul
+                            style={{ listStyle: "none", margin: 0, padding: 0 }}
+                          >
+                            {marker.obstructed && (
+                              <li>
+                                <strong>Obstructed by boulder</strong>
+                              </li>
+                            )}
+                            <li>
+                              <b>Type</b>: {marker.type}
+                            </li>
+                            <li>
+                              <b>Quality</b>: {marker.quality}
+                            </li>
+                            <li>
+                              <b>X</b>: {marker.pos.lat}
+                            </li>
+                            <li>
+                              <b>Y</b>: {marker.pos.lng}
+                            </li>
+                            <li>
+                              <b>Z</b>: {marker.pos.alt}
+                            </li>
+                            <li>
+                              <b>ID</b>: {marker.id}
+                            </li>
+                          </ul>
+                        </Popup>
+                      </Marker>
+                    )
+                )}
               </MarkerClusterGroup>
             );
           })}
