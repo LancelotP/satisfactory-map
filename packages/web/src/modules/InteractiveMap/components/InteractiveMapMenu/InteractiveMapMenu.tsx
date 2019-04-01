@@ -59,14 +59,14 @@ export const InteractiveMapMenu = (props: Props) => {
     { name: "Copper", key: ResourceNodeType.Copper },
     { name: "Limestone", key: ResourceNodeType.Limestone },
     { name: "Coal", key: ResourceNodeType.Coal },
-    { name: "Caterium", key: ResourceNodeType.Caterium },
     { name: "Oil", key: ResourceNodeType.Oil },
+    { name: "Caterium", key: ResourceNodeType.Caterium },
+    { name: "Geysers", key: ResourceNodeType.Geyser },
+    { name: "Sulfur", key: ResourceNodeType.Sulfur },
     { name: "Bauxite", key: ResourceNodeType.Bauxite },
     { name: "Quartz", key: ResourceNodeType.Quartz },
-    { name: "Sam", key: ResourceNodeType.Sam },
-    { name: "Sulfur", key: ResourceNodeType.Sulfur },
     { name: "Uranium", key: ResourceNodeType.Uranium },
-    { name: "Geysers", key: ResourceNodeType.Geyser },
+    { name: "Sam", key: ResourceNodeType.Sam },
     { name: "Unknown", key: ResourceNodeType.Unknown }
   ];
 
@@ -116,7 +116,7 @@ export const InteractiveMapMenu = (props: Props) => {
         IMPURE: value,
         PURE: value,
         NORMAL: value,
-        UNKNOWN: value
+        UNKNOWN: true
       },
       slugs: {
         GREEN: value,

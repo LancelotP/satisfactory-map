@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import * as L from "leaflet";
 import "leaflet.markercluster";
@@ -11,12 +11,15 @@ import {
   SlugType,
   MarkerSlugInlineFragment,
   MarkerPosition,
-  MarkerDropPodInlineFragment,
   RnMarkerFragment,
   DropPodMarkerFragment
 } from "../../__generated__";
 import { InteractiveMapMenu } from "./components/InteractiveMapMenu/InteractiveMapMenu";
-import { getDefaultMarkerSelection, getMarkerSelectionHash } from "../../utils/getDefaultMarkerSelection";
+import {
+  getDefaultMarkerSelection,
+  getMarkerSelectionHash,
+  MarkerSelection
+} from "../../utils/getDefaultMarkerSelection";
 import IconMenu from "@material-ui/icons/Menu";
 import IconClose from "@material-ui/icons/Close";
 import { Map, TileLayer, Marker, CircleMarker, Popup } from "react-leaflet";
@@ -45,7 +48,10 @@ export const InteractiveMap = (props: Props) => {
   const { data, loading } = useInteractiveMap();
   const [menuOpen, setMenuOpen] = useState(false);
   const [markerSize, setMarkerSize] = useState(30);
-  const [selection, setSelection] = useState(getDefaultMarkerSelection());
+  const [selection, setSelection] = useState(getDefaultMarkerSelection(0));
+  const map = useRef<Map | undefined>();
+  const [defaultZoom, setDefaultZoom] = useState(2);
+  const [defaultCenter, setDefaultCenter] = useState<[number, number]>([0, 0]);
   const [slugs, setSlugs] = useState<
     {
       [k in SlugType]: Array<
@@ -86,9 +92,28 @@ export const InteractiveMap = (props: Props) => {
     setMenuOpen(!menuOpen);
   }
 
+  function saveUrl(newSelection?: MarkerSelection) {
+    if (map && map.current) {
+      const hashFilter = getMarkerSelectionHash(
+        newSelection || selection
+      ).toString();
+      const latlng = map.current!.leafletElement.getCenter();
+      const zoom = map.current!.leafletElement.getZoom();
+
+      location.hash = `${latlng.lng};${latlng.lat};${zoom};${hashFilter || ""}`;
+    }
+  }
+
+  function handleSelectionChange(newSelection: MarkerSelection) {
+    saveUrl(newSelection);
+    setSelection(newSelection);
+  }
+
   useEffect(() => {
-    location.hash = "" + getMarkerSelectionHash(selection)
-  }, [selection.nodes, selection.pods, selection.quality, selection.slugs])
+    if (map && map.current) {
+      map.current.leafletElement.on("moveend", () => saveUrl());
+    }
+  }, [map]);
 
   useEffect(() => {
     const newSlugs = Object.assign({}, slugs);
@@ -133,26 +158,60 @@ export const InteractiveMap = (props: Props) => {
     setResourceNodes(newResourceNodes);
   }, [data && data.markersConnection && data.markersConnection.totalCount]);
 
+  useEffect(() => {
+    const hashedValues = location.hash
+      .slice(1)
+      .split(";")
+      .filter(Boolean)
+      .map(v => {
+        const parsedV = parseFloat(v);
+
+        if (isNaN(parsedV)) {
+          return 0;
+        } else {
+          return parsedV;
+        }
+      });
+
+    setDefaultCenter([
+      hashedValues[1] || defaultCenter[0],
+      hashedValues[0] || defaultCenter[0]
+    ]);
+    setDefaultZoom(hashedValues[2] || defaultZoom);
+
+    console.log(hashedValues[3]);
+    console.log(getDefaultMarkerSelection(hashedValues[3]));
+
+    if (hashedValues[3]) {
+      setSelection(getDefaultMarkerSelection(hashedValues[3]));
+    }
+  }, []);
+
   return (
     <S.Root menuOpen={menuOpen}>
       <S.Menu>
         <InteractiveMapMenu
           markerSize={markerSize}
           onMarkerSizeChange={setMarkerSize}
-          onSelectionChange={setSelection}
+          onSelectionChange={handleSelectionChange}
           selection={selection}
         />
       </S.Menu>
       <S.Content id={CONTAINER_ID}>
         <Map
+          // @ts-ignore
+          ref={map}
           id="s_map"
-          update
           preferCanvas={true}
           zoomSnap={0.5}
           minZoom={2}
-          center={[0, 0]}
-          maxZoom={6}
-          zoom={-2}
+          center={defaultCenter}
+          maxZoom={7}
+          maxBounds={[
+            [221428.57142857142 * 2, 563492.0634920634 * 2],
+            [-221428.57142857142 * 2, -563492.0634920634 * 2]
+          ]}
+          zoom={defaultZoom}
           attributionControl={false}
           crs={crs}
         >

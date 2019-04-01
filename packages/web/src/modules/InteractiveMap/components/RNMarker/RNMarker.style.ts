@@ -16,3 +16,9 @@ export const Obstruction = styled.svg`
   width: 30px;
   height: 30px;
 `;
+
+export const Letter = styled.div`
+  position: absolute;
+  width: 100%;
+  text-align: center;
+`;
