@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import * as L from "leaflet";
 import "leaflet.markercluster";
@@ -45,6 +45,9 @@ export const InteractiveMap = (props: Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [markerSize, setMarkerSize] = useState(30);
   const [selection, setSelection] = useState(getDefaultMarkerSelection());
+  const map = useRef<Map | undefined>();
+  const [defaultZoom, setDefaultZoom] = useState(2);
+  const [defaultCenter, setDefaultCenter] = useState<[number, number]>([0, 0]);
   const [slugs, setSlugs] = useState<
     {
       [k in SlugType]: Array<
@@ -84,6 +87,17 @@ export const InteractiveMap = (props: Props) => {
   function toggleMenu() {
     setMenuOpen(!menuOpen);
   }
+
+  useEffect(() => {
+    if (map && map.current) {
+      map.current.leafletElement.on("moveend", e => {
+        const latlng = map.current!.leafletElement.getCenter();
+        const zoom = map.current!.leafletElement.getZoom();
+
+        location.hash = `${latlng.lng};${latlng.lat};${zoom};`;
+      });
+    }
+  }, [map]);
 
   useEffect(() => {
     console.log("1");
@@ -132,6 +146,25 @@ export const InteractiveMap = (props: Props) => {
     setResourceNodes(newResourceNodes);
   }, [data && data.markersConnection && data.markersConnection.totalCount]);
 
+  useEffect(() => {
+    const hashedValues = location.hash
+      .slice(1)
+      .split(";")
+      .filter(Boolean)
+      .map(v => {
+        const parsedV = parseFloat(v);
+
+        if (isNaN(parsedV)) {
+          return 0;
+        } else {
+          return parsedV;
+        }
+      });
+
+    setDefaultCenter([hashedValues[1], hashedValues[0]]);
+    setDefaultZoom(hashedValues[2]);
+  }, []);
+
   return (
     <S.Root menuOpen={menuOpen}>
       <S.Menu>
@@ -144,14 +177,15 @@ export const InteractiveMap = (props: Props) => {
       </S.Menu>
       <S.Content id={CONTAINER_ID}>
         <Map
+          // @ts-ignore
+          ref={map}
           id="s_map"
-          update
           preferCanvas={true}
           zoomSnap={0.5}
           minZoom={2}
-          center={[0, 0]}
+          center={defaultCenter}
           maxZoom={7}
-          zoom={2}
+          zoom={defaultZoom}
           attributionControl={false}
           crs={crs}
         >
