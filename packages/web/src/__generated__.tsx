@@ -145,6 +145,8 @@ export type MarkerTarget =
 export type MarkerResourceNodeInlineFragment = {
   __typename?: "ResourceNode";
 
+  id: string;
+
   nodeType: ResourceNodeType;
 
   nodeQuality: ResourceNodeQuality;
@@ -152,6 +154,8 @@ export type MarkerResourceNodeInlineFragment = {
 
 export type MarkerSlugInlineFragment = {
   __typename?: "Slug";
+
+  id: string;
 
   slugType: SlugType;
 };
@@ -179,10 +183,12 @@ export const MarkerFragmentDoc = gql`
     }
     target {
       ... on ResourceNode {
+        id
         nodeType: type
         nodeQuality: quality
       }
       ... on Slug {
+        id
         slugType: type
       }
       ... on DropPod {

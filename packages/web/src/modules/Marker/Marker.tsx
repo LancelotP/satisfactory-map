@@ -170,6 +170,12 @@ export function createPopup(props: CreateMarkerProps) {
         <li>
           <b>Z</b>: {props.marker.position.z}
         </li>
+        <li>
+          <b>marker_id</b>: {props.marker.id}
+        </li>
+        <li>
+          <b>target_id</b>: {props.marker.target.id}
+        </li>
       </ul>
     </S.Popup>
   );
