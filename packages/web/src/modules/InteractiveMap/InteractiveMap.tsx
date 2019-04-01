@@ -19,7 +19,7 @@ import { InteractiveMapMenu } from "./components/InteractiveMapMenu/InteractiveM
 import { getDefaultMarkerSelection } from "../../utils/getDefaultMarkerSelection";
 import IconMenu from "@material-ui/icons/Menu";
 import IconClose from "@material-ui/icons/Close";
-import { Map, TileLayer, Marker, CircleMarker } from "react-leaflet";
+import { Map, TileLayer, Marker, CircleMarker, Popup } from "react-leaflet";
 import { getSlugColor } from "../../utils/getSlugColor";
 import { RNMarkerIcon } from "./components/RNMarker/RNMarker";
 import { DropPodIcon } from "./components/DropPodMarker/DropPodMarker";
@@ -47,14 +47,22 @@ export const InteractiveMap = (props: Props) => {
   const [markerSize, setMarkerSize] = useState(30);
   const [selection, setSelection] = useState(getDefaultMarkerSelection());
   const [slugs, setSlugs] = useState<
-    { [k in SlugType]: Array<MarkerSlugInlineFragment & { pos: MarkerPos }> }
+    {
+      [k in SlugType]: Array<
+        MarkerSlugInlineFragment & { pos: MarkerPos; obstructed: boolean }
+      >
+    }
   >({
     GREEN: [],
     YELLOW: [],
     PURPLE: []
   });
   const [resourceNodes, setResourceNodes] = useState<
-    { [k in ResourceNodeType]: Array<RnMarkerFragment & { pos: MarkerPos }> }
+    {
+      [k in ResourceNodeType]: Array<
+        RnMarkerFragment & { pos: MarkerPos; obstructed: boolean }
+      >
+    }
   >({
     IRON: [],
     COPPER: [],
@@ -71,7 +79,7 @@ export const InteractiveMap = (props: Props) => {
     UNKNOWN: []
   });
   const [dropPods, setDropPods] = useState<
-    Array<DropPodMarkerFragment & { pos: MarkerPos }>
+    Array<DropPodMarkerFragment & { pos: MarkerPos; obstructed: boolean }>
   >([]);
 
   function toggleMenu() {
@@ -81,7 +89,9 @@ export const InteractiveMap = (props: Props) => {
   useEffect(() => {
     const newSlugs = Object.assign({}, slugs);
     const newResourceNodes = Object.assign({}, resourceNodes);
-    const newDropPods: Array<DropPodMarkerFragment & { pos: MarkerPos }> = [];
+    const newDropPods: Array<
+      DropPodMarkerFragment & { pos: MarkerPos; obstructed: boolean }
+    > = [];
 
     (
       (data && data.markersConnection && data.markersConnection.edges) ||
@@ -92,21 +102,24 @@ export const InteractiveMap = (props: Props) => {
 
         newSlugs[target.slugType].push({
           ...target,
-          pos: convertPos(edge.node.position)
+          pos: convertPos(edge.node.position),
+          obstructed: edge.node.obstructed
         });
       } else if (edge.node.target.__typename === "ResourceNode") {
         const target = edge.node.target as RnMarkerFragment;
 
         newResourceNodes[target.type].push({
           ...target,
-          pos: convertPos(edge.node.position)
+          pos: convertPos(edge.node.position),
+          obstructed: edge.node.obstructed
         });
       } else if (edge.node.target.__typename === "DropPod") {
         const target = edge.node.target as DropPodMarkerFragment;
 
         newDropPods.push({
           ...target,
-          pos: convertPos(edge.node.position)
+          pos: convertPos(edge.node.position),
+          obstructed: edge.node.obstructed
         });
       }
     });
@@ -148,7 +161,7 @@ export const InteractiveMap = (props: Props) => {
 
             // @ts-ignore
             const markers = resourceNodes[key] as Array<
-              RnMarkerFragment & { pos: MarkerPos }
+              RnMarkerFragment & { pos: MarkerPos; obstructed: boolean }
             >;
 
             return (
@@ -162,7 +175,35 @@ export const InteractiveMap = (props: Props) => {
                     position={marker.pos}
                     icon={RNMarkerIcon({ marker, iconSize: markerSize })}
                     key={marker.id}
-                  />
+                  >
+                    <Popup>
+                      <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+                        {marker.obstructed && (
+                          <li>
+                            <strong>Obstructed by boulder</strong>
+                          </li>
+                        )}
+                        <li>
+                          <b>Type</b>: {marker.type}
+                        </li>
+                        <li>
+                          <b>Quality</b>: {marker.quality}
+                        </li>
+                        <li>
+                          <b>X</b>: {marker.pos.lat}
+                        </li>
+                        <li>
+                          <b>Y</b>: {marker.pos.lng}
+                        </li>
+                        <li>
+                          <b>Z</b>: {marker.pos.alt}
+                        </li>
+                        <li>
+                          <b>ID</b>: {marker.id}
+                        </li>
+                      </ul>
+                    </Popup>
+                  </Marker>
                 ))}
               </MarkerClusterGroup>
             );
@@ -175,7 +216,7 @@ export const InteractiveMap = (props: Props) => {
 
             // @ts-ignore
             const markers = slugs[key] as Array<
-              MarkerSlugInlineFragment & { pos: MarkerPos }
+              MarkerSlugInlineFragment & { pos: MarkerPos; obstructed: boolean }
             >;
 
             return (
@@ -195,7 +236,35 @@ export const InteractiveMap = (props: Props) => {
                     fillColor={getSlugColor(marker.slugType)}
                     center={marker.pos}
                     key={marker.id}
-                  />
+                  >
+                    <Popup>
+                      <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+                        {marker.obstructed && (
+                          <li>
+                            <strong>Obstructed by boulder</strong>
+                          </li>
+                        )}
+                        <li>
+                          <b>Type</b>: Slug
+                        </li>
+                        <li>
+                          <b>Quality</b>: {marker.slugType}
+                        </li>
+                        <li>
+                          <b>X</b>: {marker.pos.lat}
+                        </li>
+                        <li>
+                          <b>Y</b>: {marker.pos.lng}
+                        </li>
+                        <li>
+                          <b>Z</b>: {marker.pos.alt}
+                        </li>
+                        <li>
+                          <b>ID</b>: {marker.id}
+                        </li>
+                      </ul>
+                    </Popup>
+                  </CircleMarker>
                 ))}
               </MarkerClusterGroup>
             );
@@ -210,7 +279,29 @@ export const InteractiveMap = (props: Props) => {
                   position={marker.pos}
                   icon={DropPodIcon({ marker, iconSize: markerSize })}
                   key={marker.id}
-                />
+                >
+                  <Popup>
+                    <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+                      {marker.obstructed && (
+                        <li>
+                          <strong>Obstructed by boulder</strong>
+                        </li>
+                      )}
+                      <li>
+                        <b>X</b>: {marker.pos.lat}
+                      </li>
+                      <li>
+                        <b>Y</b>: {marker.pos.lng}
+                      </li>
+                      <li>
+                        <b>Z</b>: {marker.pos.alt}
+                      </li>
+                      <li>
+                        <b>ID</b>: {marker.id}
+                      </li>
+                    </ul>
+                  </Popup>
+                </Marker>
               ))}
             </MarkerClusterGroup>
           )}
