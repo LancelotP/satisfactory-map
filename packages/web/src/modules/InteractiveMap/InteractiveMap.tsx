@@ -158,7 +158,7 @@ function renderMap(
     .map(s => parseFloat(s));
 
   const map = L.map(containerId, {
-    // preferCanvas: true,
+    preferCanvas: true,
     crs: crs,
     minZoom: -3,
     maxBounds: [[-3048 * 2, -3048 * 2], [3048 * 2, 4064 * 2]],
