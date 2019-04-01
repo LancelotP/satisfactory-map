@@ -8,7 +8,8 @@
   },
   "cacheDirectories": [
     "packages/api/node_modules",
-    "packages/web/node_modules"
+    "packages/web/node_modules",
+    "packages/web/public/tiles"
   ],
   "scripts": {
     "start": "cd packages/api &&  node -r dotenv/config build",
