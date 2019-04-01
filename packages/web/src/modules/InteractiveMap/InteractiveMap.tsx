@@ -157,8 +157,11 @@ export const InteractiveMap = (props: Props) => {
         }
       });
 
-    setDefaultCenter([hashedValues[1], hashedValues[0]]);
-    setDefaultZoom(hashedValues[2]);
+    setDefaultCenter([
+      hashedValues[1] || defaultCenter[0],
+      hashedValues[0] || defaultCenter[0]
+    ]);
+    setDefaultZoom(hashedValues[2] || defaultZoom);
   }, []);
 
   return (
