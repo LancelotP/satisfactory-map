@@ -7,6 +7,7 @@ import {
 } from "../../../../__generated__";
 import { getDepositColor } from "../../../../utils/getDepositColor";
 import * as S from "./RNMarker.style";
+import { readableColor } from "polished";
 
 type Props = {
   marker: RnMarkerFragment & { obstructed: boolean };
@@ -37,7 +38,9 @@ export const RNMarkerIcon = (props: Props) => {
     html: renderToStaticMarkup(
       <S.Root>
         {icon}
-        <S.Letter style={{ fontSize, top }}>{marker.type[0]}</S.Letter>
+        <S.Letter style={{ fontSize, top, color: readableColor(color) }}>
+          {marker.type[0]}
+        </S.Letter>
         {marker.obstructed && (
           <S.Obstruction
             xmlns="http://www.w3.org/2000/svg"
