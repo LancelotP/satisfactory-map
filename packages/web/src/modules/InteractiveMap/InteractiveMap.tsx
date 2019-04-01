@@ -11,7 +11,6 @@ import {
   SlugType,
   MarkerSlugInlineFragment,
   MarkerPosition,
-  MarkerDropPodInlineFragment,
   RnMarkerFragment,
   DropPodMarkerFragment
 } from "../../__generated__";
