@@ -86,6 +86,10 @@ export const InteractiveMap = (props: Props) => {
   }
 
   useEffect(() => {
+    console.log("1");
+  }, [selection.nodes, selection.pods, selection.quality, selection.slugs]);
+
+  useEffect(() => {
     const newSlugs = Object.assign({}, slugs);
     const newResourceNodes = Object.assign({}, resourceNodes);
     const newDropPods: Array<
@@ -146,8 +150,8 @@ export const InteractiveMap = (props: Props) => {
           zoomSnap={0.5}
           minZoom={2}
           center={[0, 0]}
-          maxZoom={6}
-          zoom={-2}
+          maxZoom={7}
+          zoom={2}
           attributionControl={false}
           crs={crs}
         >

@@ -18,12 +18,16 @@ export const RNMarkerIcon = (props: Props) => {
 
   const color = getDepositColor(marker.type);
   let icon: JSX.Element;
+  let fontSize = iconSize / 2;
+  let top = iconSize / 10;
 
   if (marker.quality === ResourceNodeQuality.Impure) {
     icon = <RNMarkerImpure color={color} />;
+    top += iconSize / 5;
   } else if (marker.quality === ResourceNodeQuality.Normal) {
     icon = <RNMarkerNormal color={color} />;
   } else if (marker.quality === ResourceNodeQuality.Pure) {
+    top += iconSize / 20;
     icon = <RNMarkerPure color={color} />;
   } else {
     icon = <RNMarkerUnknown color={color} />;
@@ -33,6 +37,7 @@ export const RNMarkerIcon = (props: Props) => {
     html: renderToStaticMarkup(
       <S.Root>
         {icon}
+        <S.Letter style={{ fontSize, top }}>{marker.type[0]}</S.Letter>
         {marker.obstructed && (
           <S.Obstruction
             xmlns="http://www.w3.org/2000/svg"
