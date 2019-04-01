@@ -9,10 +9,11 @@ import { getSlugColor } from "../../utils/getSlugColor";
 
 type MarkerProps = {
   marker: MarkerFragment;
+  markerSize: number;
 };
 
 export const Marker = (props: MarkerProps) => {
-  const { marker } = props;
+  const { marker, markerSize } = props;
 
   let color = "red";
   let quality = ResourceNodeQuality.Unknown;
@@ -27,7 +28,12 @@ export const Marker = (props: MarkerProps) => {
   let Content = (
     <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
       <g fillRule="nonzero" fill="none">
-        <circle fill={color} cx="20" cy="20" r="19" />
+        <circle
+          fill={color}
+          cx={markerSize}
+          cy={markerSize}
+          r={markerSize - 1}
+        />
         <path
           d="M20 2a18 18 0 1 1 0 36 18 18 0 0 1 0-36zm0-2a20 20 0 1 0 0 40 20 20 0 0 0 0-40z"
           fill="#FFF"
@@ -91,7 +97,7 @@ export const Marker = (props: MarkerProps) => {
   }
 
   return (
-    <S.Root>
+    <S.Root style={{ width: markerSize, height: markerSize }}>
       {Content}
       {marker.obstructed && (
         <S.Obstruction
@@ -108,8 +114,8 @@ export const Marker = (props: MarkerProps) => {
 
 export function createMarkerIcon(props: MarkerProps) {
   const icon = L.divIcon({
-    iconSize: [30, 30],
-    iconAnchor: [15, 15],
+    iconSize: [props.markerSize, props.markerSize],
+    iconAnchor: [props.markerSize / 2, props.markerSize / 2],
     html: ReactDOMServer.renderToStaticMarkup(<Marker {...props} />)
   });
 
@@ -118,6 +124,7 @@ export function createMarkerIcon(props: MarkerProps) {
 
 type CreateMarkerProps = {
   marker: MarkerFragment;
+  markerSize: number;
 };
 
 export function createMarker(props: CreateMarkerProps) {
@@ -131,7 +138,7 @@ export function createMarker(props: CreateMarkerProps) {
 
   if (props.marker.target.__typename === "Slug") {
     marker = L.circleMarker(pos, {
-      radius: 10,
+      radius: props.markerSize / 2,
       stroke: true,
       color: "#fff",
       weight: 2,

@@ -2,8 +2,8 @@ import styled from "../../themes/styled";
 
 export const Root = styled.div`
   position: relative;
-  height: 30px;
-  width: 30px;
+  /* height: 30px;
+  width: 30px; */
 
   & > svg {
     height: 100%;

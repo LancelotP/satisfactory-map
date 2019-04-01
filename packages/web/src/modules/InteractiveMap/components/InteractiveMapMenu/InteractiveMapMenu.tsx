@@ -29,10 +29,17 @@ type InteractiveMapMenuTopLevel =
 type Props = {
   selection: MarkerSelection;
   onSelectionChange: (s: MarkerSelection) => void;
+  markerSize: number;
+  onMarkerSizeChange: (size: number) => void;
 };
 
 export const InteractiveMapMenu = (props: Props) => {
-  const { selection, onSelectionChange } = props;
+  const {
+    selection,
+    onSelectionChange,
+    markerSize,
+    onMarkerSizeChange
+  } = props;
   const [openedMenus, setOpenedMenus] = useState({
     nodes: true,
     slugs: false,
@@ -127,6 +134,19 @@ export const InteractiveMapMenu = (props: Props) => {
       <div style={{ padding: 16 }}>
         <img width="100%" alt="satisfactory-map-logo" src="/logo.png" />
       </div>
+      <ListItem>
+        <ListItemText primary="Marker size" />
+        <ListItemSecondaryAction>
+          <input
+            type="range"
+            min="10"
+            max="60"
+            step="10"
+            value={markerSize}
+            onChange={e => onMarkerSizeChange(parseInt(e.target.value))}
+          />
+        </ListItemSecondaryAction>
+      </ListItem>
       <ListItem>
         <ListItemText primary="Select" />
         <ListItemSecondaryAction>

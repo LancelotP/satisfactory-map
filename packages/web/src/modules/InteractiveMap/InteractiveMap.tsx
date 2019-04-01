@@ -27,6 +27,7 @@ const CONTAINER_ID = "map-root";
 export const InteractiveMap = (props: Props) => {
   const { data, loading } = useInteractiveMap();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [markerSize, setMarkerSize] = useState(20);
 
   const [markers, setMarkers] = useState<InteractiveMapMarkersConnection>({
     __typename: "MarkersConnection",
@@ -48,12 +49,24 @@ export const InteractiveMap = (props: Props) => {
     if (data && data.markersConnection) {
       setMarkers(data.markersConnection);
       if (!map) {
-        const renderedMap = renderMap(CONTAINER_ID, data.markersConnection);
+        const renderedMap = renderMap(
+          CONTAINER_ID,
+          data.markersConnection,
+          markerSize
+        );
 
         setMap(renderedMap);
       }
     }
   }, [data]);
+
+  useEffect(() => {
+    if (map && markers.totalCount) {
+      map.map.remove();
+      const renderedMap = renderMap(CONTAINER_ID, markers, markerSize);
+      setMap(renderedMap);
+    }
+  }, [markerSize]);
 
   useEffect(() => {
     if (!map) return;
@@ -108,6 +121,8 @@ export const InteractiveMap = (props: Props) => {
     <S.Root menuOpen={menuOpen}>
       <S.Menu>
         <InteractiveMapMenu
+          markerSize={markerSize}
+          onMarkerSizeChange={setMarkerSize}
           onSelectionChange={setSelection}
           selection={selection}
         />
@@ -123,7 +138,8 @@ export const InteractiveMap = (props: Props) => {
 
 function renderMap(
   containerId: string,
-  markers: InteractiveMapMarkersConnection
+  markers: InteractiveMapMarkersConnection,
+  markerSize: number
 ) {
   console.log("render map");
 
@@ -204,13 +220,15 @@ function renderMap(
     if (marker.target.__typename === "ResourceNode") {
       // @ts-ignore
       nodes[`${marker.target.nodeType}_${marker.target.nodeQuality}`].addLayer(
-        createMarker({ marker })
+        createMarker({ marker, markerSize })
       );
     } else if (marker.target.__typename === "Slug") {
       // @ts-ignore
-      slugs[marker.target.slugType].addLayer(createMarker({ marker }));
+      slugs[marker.target.slugType].addLayer(
+        createMarker({ marker, markerSize })
+      );
     } else if (marker.target.__typename === "DropPod") {
-      dropPods.addLayer(createMarker({ marker }));
+      dropPods.addLayer(createMarker({ marker, markerSize }));
     }
   }
 
