@@ -8,5 +8,4 @@ enum SlugType {
   PURPLE
   YELLOW
   GREEN
-  UNKNOWN
 }

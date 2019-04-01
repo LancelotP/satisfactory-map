@@ -1,0 +1,5 @@
+fragment RNMarker on ResourceNode {
+  id
+  type
+  quality
+}

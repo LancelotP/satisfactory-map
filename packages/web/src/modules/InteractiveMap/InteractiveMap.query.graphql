@@ -5,7 +5,13 @@ query InteractiveMap {
       cursor
       node {
         id
+        position {
+          x
+          y
+          z
+        }
         target {
+          ...RNMarker
           ... on ResourceNode {
             __typename
             nodeType: type

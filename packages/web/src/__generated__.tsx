@@ -26,8 +26,7 @@ export enum ResourceNodeType {
 export enum SlugType {
   Purple = "PURPLE",
   Yellow = "YELLOW",
-  Green = "GREEN",
-  Unknown = "UNKNOWN"
+  Green = "GREEN"
 }
 
 export enum OrderDirection {
@@ -77,11 +76,23 @@ export type InteractiveMapNode = {
 
   id: string;
 
+  position: InteractiveMapPosition;
+
   target: InteractiveMapTarget;
 } & MarkerFragment;
 
+export type InteractiveMapPosition = {
+  __typename?: "MarkerPoint";
+
+  x: number;
+
+  y: number;
+
+  z: number;
+};
+
 export type InteractiveMapTarget =
-  | InteractiveMapResourceNodeInlineFragment
+  | (InteractiveMapResourceNodeInlineFragment & RnMarkerFragment)
   | InteractiveMapSlugInlineFragment
   | InteractiveMapDropPodInlineFragment;
 
@@ -115,6 +126,16 @@ export type AppViewer = {
   __typename?: "User";
 
   id: string;
+};
+
+export type RnMarkerFragment = {
+  __typename?: "ResourceNode";
+
+  id: string;
+
+  type: ResourceNodeType;
+
+  quality: ResourceNodeQuality;
 };
 
 export type MarkerFragment = {
@@ -177,6 +198,14 @@ import * as ReactApolloHooks from "react-apollo-hooks";
 // Fragments
 // ====================================================
 
+export const RnMarkerFragmentDoc = gql`
+  fragment RNMarker on ResourceNode {
+    id
+    type
+    quality
+  }
+`;
+
 export const MarkerFragmentDoc = gql`
   fragment Marker on Marker {
     id
@@ -216,7 +245,13 @@ export const InteractiveMapDocument = gql`
         cursor
         node {
           id
+          position {
+            x
+            y
+            z
+          }
           target {
+            ...RNMarker
             ... on ResourceNode {
               __typename
               nodeType: type
@@ -236,6 +271,7 @@ export const InteractiveMapDocument = gql`
     }
   }
 
+  ${RnMarkerFragmentDoc}
   ${MarkerFragmentDoc}
 `;
 export function useInteractiveMap(

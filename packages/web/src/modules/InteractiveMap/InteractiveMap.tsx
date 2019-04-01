@@ -1,22 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import * as L from "leaflet";
 import "leaflet.markercluster";
-import "leaflet.markercluster/dist/MarkerCluster.css";
-import "leaflet.markercluster/dist/MarkerCluster.Default.css";
+import "leaflet-rastercoords";
+import MarkerClusterGroup from "react-leaflet-markercluster";
 import * as S from "./InteractiveMap.style";
-import { createMarker } from "../Marker/Marker";
 import {
   useInteractiveMap,
-  InteractiveMapMarkersConnection,
   ResourceNodeType,
   SlugType,
-  ResourceNodeQuality
+  MarkerSlugInlineFragment,
+  MarkerPosition,
+  MarkerDropPodInlineFragment,
+  RnMarkerFragment
 } from "../../__generated__";
 import { InteractiveMapMenu } from "./components/InteractiveMapMenu/InteractiveMapMenu";
 import { getDefaultMarkerSelection } from "../../utils/getDefaultMarkerSelection";
 import IconMenu from "@material-ui/icons/Menu";
 import IconClose from "@material-ui/icons/Close";
+import { Map, TileLayer, Marker, CircleMarker } from "react-leaflet";
+import { getSlugColor } from "../../utils/getSlugColor";
+import { RNMarkerIcon } from "./components/RNMarker/RNMarker";
 
 type Props = {
   embedded?: boolean;
@@ -24,98 +28,81 @@ type Props = {
 
 const CONTAINER_ID = "map-root";
 
+// @ts-ignore
+const crs = L.extend({}, L.CRS.Simple, {
+  transformation: new L.Transformation(0.000315, 96, 0.000315, 96)
+});
+
+type MarkerPos = {
+  lat: number;
+  lng: number;
+  alt: number;
+};
+
 export const InteractiveMap = (props: Props) => {
   const { data, loading } = useInteractiveMap();
   const [menuOpen, setMenuOpen] = useState(false);
   const [markerSize, setMarkerSize] = useState(30);
-
-  const [markers, setMarkers] = useState<InteractiveMapMarkersConnection>({
-    __typename: "MarkersConnection",
-    totalCount: 0,
-    edges: []
-  });
-
   const [selection, setSelection] = useState(getDefaultMarkerSelection());
-
-  const [map, setMap] = useState<ReturnType<typeof renderMap> | undefined>(
-    undefined
-  );
+  const [slugs, setSlugs] = useState<
+    { [k in SlugType]: Array<MarkerSlugInlineFragment & { pos: MarkerPos }> }
+  >({
+    GREEN: [],
+    YELLOW: [],
+    PURPLE: []
+  });
+  const [resourceNodes, setResourceNodes] = useState<
+    { [k in ResourceNodeType]: Array<RnMarkerFragment & { pos: MarkerPos }> }
+  >({
+    IRON: [],
+    COPPER: [],
+    LIMESTONE: [],
+    COAL: [],
+    OIL: [],
+    CATERIUM: [],
+    SAM: [],
+    BAUXITE: [],
+    QUARTZ: [],
+    SULFUR: [],
+    URANIUM: [],
+    GEYSER: [],
+    UNKNOWN: []
+  });
 
   function toggleMenu() {
     setMenuOpen(!menuOpen);
   }
 
   useEffect(() => {
-    if (data && data.markersConnection) {
-      setMarkers(data.markersConnection);
-      if (!map) {
-        const renderedMap = renderMap(
-          CONTAINER_ID,
-          data.markersConnection,
-          markerSize
-        );
+    const newSlugs = Object.assign({}, slugs);
+    const newResourceNodes = Object.assign({}, resourceNodes);
 
-        setMap(renderedMap);
-      }
-    }
-  }, [data]);
+    (
+      (data && data.markersConnection && data.markersConnection.edges) ||
+      []
+    ).forEach(edge => {
+      if (edge.node.target.__typename === "Slug") {
+        const target = edge.node.target as MarkerSlugInlineFragment;
 
-  useEffect(() => {
-    if (map && markers.totalCount) {
-      map.map.remove();
-      const renderedMap = renderMap(CONTAINER_ID, markers, markerSize);
-      setMap(renderedMap);
-    }
-  }, [markerSize]);
+        newSlugs[target.slugType].push({
+          ...target,
+          pos: convertPos(edge.node.position)
+        });
+      } else if (edge.node.target.__typename === "ResourceNode") {
+        const target = edge.node.target as RnMarkerFragment;
 
-  useEffect(() => {
-    if (!map) return;
-
-    Object.keys(selection.nodes).map(key => {
-      const type = key as ResourceNodeType;
-
-      Object.keys(ResourceNodeQuality).map(qualKey => {
-        // @ts-ignore
-        const quality = ResourceNodeQuality[qualKey] as ResourceNodeQuality;
-
-        if (selection.nodes[type]) {
-          if (
-            selection.quality[quality] &&
-            !map.nodesGroup.hasLayer(map.nodes[`${type}_${quality}`])
-          ) {
-            map.nodesGroup.addLayer(map.nodes[`${type}_${quality}`]);
-          } else if (
-            !selection.quality[quality] &&
-            map.nodesGroup.hasLayer(map.nodes[`${type}_${quality}`])
-          )
-            map.nodesGroup.removeLayer(map.nodes[`${type}_${quality}`]);
-        } else {
-          if (map.nodesGroup.hasLayer(map.nodes[`${type}_${quality}`])) {
-            map.nodesGroup.removeLayer(map.nodes[`${type}_${quality}`]);
-          }
-        }
-      });
-    });
-
-    Object.keys(selection.slugs).map(key => {
-      const type = key as SlugType;
-
-      if (selection.slugs[type] && !map.slugsGroup.hasLayer(map.slugs[type])) {
-        map.slugsGroup.addLayer(map.slugs[type]);
-      } else if (
-        !selection.slugs[type] &&
-        map.slugsGroup.hasLayer(map.slugs[type])
-      ) {
-        map.slugsGroup.removeLayer(map.slugs[type]);
+        newResourceNodes[target.type].push({
+          ...target,
+          pos: convertPos(edge.node.position)
+        });
       }
     });
 
-    if (selection.pods && !map.dropPodsGroup.hasLayer(map.dropPods)) {
-      map.dropPodsGroup.addLayer(map.dropPods);
-    } else if (!selection.pods && map.dropPodsGroup.hasLayer(map.dropPods)) {
-      map.dropPodsGroup.removeLayer(map.dropPods);
-    }
-  }, [selection, map]);
+    setSlugs(newSlugs);
+    setResourceNodes(newResourceNodes);
+  }, [data && data.markersConnection && data.markersConnection.totalCount]);
+
+  console.log(slugs.GREEN[0], slugs.PURPLE[0], slugs.YELLOW[0]);
 
   return (
     <S.Root menuOpen={menuOpen}>
@@ -128,6 +115,67 @@ export const InteractiveMap = (props: Props) => {
         />
       </S.Menu>
       <S.Content id={CONTAINER_ID}>
+        <Map
+          id="s_map"
+          update
+          preferCanvas={true}
+          zoomSnap={0.5}
+          minZoom={2}
+          center={[0, 0]}
+          maxZoom={6}
+          zoom={-2}
+          attributionControl={false}
+          crs={crs}
+        >
+          <TileLayer url="/tiles/{z}/{x}/{y}.png" noWrap={true} />
+          <MarkerClusterGroup
+            removeOutsideVisibleBounds={true}
+            maxClusterRadius={0}
+          >
+            {[
+              ...(selection.nodes.IRON ? resourceNodes.IRON : []),
+              ...(selection.nodes.COPPER ? resourceNodes.COPPER : []),
+              ...(selection.nodes.LIMESTONE ? resourceNodes.LIMESTONE : []),
+              ...(selection.nodes.COAL ? resourceNodes.COAL : []),
+              ...(selection.nodes.OIL ? resourceNodes.OIL : []),
+              ...(selection.nodes.CATERIUM ? resourceNodes.CATERIUM : []),
+              ...(selection.nodes.GEYSER ? resourceNodes.GEYSER : []),
+              ...(selection.nodes.SAM ? resourceNodes.SAM : []),
+              ...(selection.nodes.BAUXITE ? resourceNodes.BAUXITE : []),
+              ...(selection.nodes.QUARTZ ? resourceNodes.QUARTZ : []),
+              ...(selection.nodes.SULFUR ? resourceNodes.SULFUR : []),
+              ...(selection.nodes.URANIUM ? resourceNodes.URANIUM : [])
+            ].map(marker => (
+              <Marker
+                position={marker.pos}
+                icon={RNMarkerIcon({ marker, iconSize: 20 })}
+                key={marker.id}
+              />
+            ))}
+          </MarkerClusterGroup>
+          <MarkerClusterGroup
+            removeOutsideVisibleBounds={true}
+            maxClusterRadius={0}
+          >
+            {[
+              ...(selection.slugs.GREEN ? slugs.GREEN : []),
+              ...(selection.slugs.YELLOW ? slugs.YELLOW : []),
+              ...(selection.slugs.PURPLE ? slugs.PURPLE : [])
+            ].map(marker => (
+              <CircleMarker
+                radius={10}
+                stroke={true}
+                color={"#fff"}
+                weight={2}
+                fill={true}
+                fillOpacity={1}
+                fillColor={getSlugColor(marker.slugType)}
+                center={marker.pos}
+                key={marker.id}
+              />
+            ))}
+          </MarkerClusterGroup>
+        </Map>
         <S.MenuIcon onClick={toggleMenu}>
           {menuOpen ? <IconClose /> : <IconMenu />}
         </S.MenuIcon>
@@ -136,114 +184,10 @@ export const InteractiveMap = (props: Props) => {
   );
 };
 
-function renderMap(
-  containerId: string,
-  markers: InteractiveMapMarkersConnection,
-  markerSize: number
-) {
-  console.log("render map");
-
-  const bounds = L.latLngBounds([-3048, -3048], [3048, 4064]);
-
-  // @ts-ignore
-  const crs = L.extend({}, L.CRS.Simple, {
-    transformation: new L.Transformation(1, 1, 1, 0)
-  });
-
-  const backgroundLayer = L.imageOverlay("/background_base.jpg", bounds);
-
-  const [lng, lat, zoom] = location.hash
-    .slice(1)
-    .split("/")
-    .map(s => parseFloat(s));
-
-  const map = L.map(containerId, {
-    preferCanvas: true,
-    crs: crs,
-    minZoom: -3,
-    maxBounds: [[-3048 * 2, -3048 * 2], [3048 * 2, 4064 * 2]],
-    center: [lat || 0, lng || 0],
-    maxZoom: 1.5,
-    zoom: zoom || -2,
-    layers: [backgroundLayer],
-    attributionControl: false
-  });
-
-  map.on({
-    moveend: () => {
-      const { lat, lng } = map.getCenter();
-      const zoom = map.getZoom();
-
-      location.hash = `${lng}/${lat}/${zoom}`;
-    }
-  });
-
-  // @ts-ignore
-  const nodes: { [k: string]: L.FeatureGroup } = {};
-  // @ts-ignore
-  const slugs: { [k in SlugType]: L.FeatureGroup } = {};
-
-  const resourceNodesGroup = L.featureGroup();
-  const slugsGroup = L.featureGroup();
-  const dropPodsGroup = L.featureGroup();
-
-  Object.keys(ResourceNodeType).map(key => {
-    // @ts-ignore
-    const RNType = ResourceNodeType[key] as ResourceNodeType;
-
-    nodes[`${RNType}_${ResourceNodeQuality.Impure}`] = L.featureGroup().addTo(
-      resourceNodesGroup
-    );
-    nodes[`${RNType}_${ResourceNodeQuality.Normal}`] = L.featureGroup().addTo(
-      resourceNodesGroup
-    );
-    nodes[`${RNType}_${ResourceNodeQuality.Pure}`] = L.featureGroup().addTo(
-      resourceNodesGroup
-    );
-    nodes[`${RNType}_${ResourceNodeQuality.Unknown}`] = L.featureGroup().addTo(
-      resourceNodesGroup
-    );
-  });
-
-  Object.keys(SlugType).map(key => {
-    // @ts-ignore
-    const slugType = SlugType[key] as SlugType;
-
-    slugs[slugType] = L.featureGroup().addTo(slugsGroup);
-  });
-
-  const dropPods = L.featureGroup().addTo(dropPodsGroup);
-
-  for (let i = 0; i < markers.edges.length; i++) {
-    const marker = markers.edges[i].node;
-
-    if (marker.target.__typename === "ResourceNode") {
-      // @ts-ignore
-      nodes[`${marker.target.nodeType}_${marker.target.nodeQuality}`].addLayer(
-        createMarker({ marker, markerSize })
-      );
-    } else if (marker.target.__typename === "Slug") {
-      // @ts-ignore
-      slugs[marker.target.slugType].addLayer(
-        createMarker({ marker, markerSize })
-      );
-    } else if (marker.target.__typename === "DropPod") {
-      dropPods.addLayer(createMarker({ marker, markerSize }));
-    }
-  }
-
-  resourceNodesGroup.addTo(map);
-  slugsGroup.addTo(map);
-  dropPodsGroup.addTo(map);
-
+function convertPos(position: MarkerPosition) {
   return {
-    map,
-    backgroundLayer,
-    nodesGroup: resourceNodesGroup,
-    nodes,
-    slugsGroup: slugsGroup,
-    slugs,
-    dropPodsGroup: dropPodsGroup,
-    dropPods
+    lat: position.y,
+    lng: position.x,
+    alt: position.z
   };
 }

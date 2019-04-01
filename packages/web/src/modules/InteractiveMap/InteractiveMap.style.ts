@@ -41,7 +41,12 @@ export const Root = styled.div<{ menuOpen: boolean }>`
 export const Content = styled.div`
   flex: 1 1 auto;
   position: relative;
-  background-color: #5f5e5a;
+  
+  & > #s_map {
+    background-color: #5f5e5a;
+    height: 100%;
+    width: 100%;
+  }
 
   & .leaflet-div-icon {
     background: transparent;

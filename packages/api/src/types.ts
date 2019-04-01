@@ -26,8 +26,7 @@ export enum ResourceNodeType {
 export enum SlugType {
   Purple = "PURPLE",
   Yellow = "YELLOW",
-  Green = "GREEN",
-  Unknown = "UNKNOWN"
+  Green = "GREEN"
 }
 
 export enum OrderDirection {

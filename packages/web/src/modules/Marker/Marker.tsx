@@ -7,12 +7,13 @@ import * as L from "leaflet";
 import { getDepositColor } from "../../utils/getDepositColor";
 import { getSlugColor } from "../../utils/getSlugColor";
 
-type MarkerProps = {
+type MarkerIconProps = {
   marker: MarkerFragment;
   markerSize: number;
+  coords?: L.LatLng;
 };
 
-export const Marker = (props: MarkerProps) => {
+export const MarkerIcon = (props: MarkerIconProps) => {
   const { marker, markerSize } = props;
 
   let color = "red";
@@ -107,52 +108,7 @@ export const Marker = (props: MarkerProps) => {
   );
 };
 
-export function createMarkerIcon(props: MarkerProps) {
-  const icon = L.divIcon({
-    iconSize: [props.markerSize, props.markerSize],
-    iconAnchor: [props.markerSize / 2, props.markerSize / 2],
-    html: ReactDOMServer.renderToStaticMarkup(<Marker {...props} />)
-  });
-
-  return icon;
-}
-
-type CreateMarkerProps = {
-  marker: MarkerFragment;
-  markerSize: number;
-};
-
-export function createMarker(props: CreateMarkerProps) {
-  const pos = L.latLng(
-    props.marker.position.y / 100,
-    props.marker.position.x / 100,
-    props.marker.position.z
-  );
-
-  let marker;
-
-  if (props.marker.target.__typename === "Slug") {
-    marker = L.circleMarker(pos, {
-      radius: props.markerSize / 2,
-      stroke: true,
-      color: "#fff",
-      weight: 2,
-      fill: true,
-      fillOpacity: 1,
-      fillColor: getSlugColor(props.marker.target.slugType)
-    });
-  } else {
-    marker = L.marker(pos, {
-      icon: createMarkerIcon(props)
-    });
-  }
-
-  marker.bindPopup(createPopup(props));
-
-  return marker;
-}
-
-export function createPopup(props: CreateMarkerProps) {
+export function createPopup(props: MarkerIconProps) {
   return ReactDOMServer.renderToStaticMarkup(
     <S.Popup>
       <ul>

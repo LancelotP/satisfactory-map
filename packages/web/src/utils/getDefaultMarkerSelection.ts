@@ -37,8 +37,7 @@ export function getDefaultMarkerSelection() {
     slugs: {
       GREEN: false,
       YELLOW: false,
-      PURPLE: false,
-      UNKNOWN: false
+      PURPLE: false
     },
     pods: false
   };
