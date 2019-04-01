@@ -10,7 +10,8 @@ import {
   useInteractiveMap,
   InteractiveMapMarkersConnection,
   ResourceNodeType,
-  SlugType
+  SlugType,
+  ResourceNodeQuality
 } from "../../__generated__";
 import { InteractiveMapMenu } from "./components/InteractiveMapMenu/InteractiveMapMenu";
 import { getDefaultMarkerSelection } from "../../utils/getDefaultMarkerSelection";
@@ -60,14 +61,27 @@ export const InteractiveMap = (props: Props) => {
     Object.keys(selection.nodes).map(key => {
       const type = key as ResourceNodeType;
 
-      if (selection.nodes[type] && !map.nodesGroup.hasLayer(map.nodes[type])) {
-        map.nodesGroup.addLayer(map.nodes[type]);
-      } else if (
-        !selection.nodes[type] &&
-        map.nodesGroup.hasLayer(map.nodes[type])
-      ) {
-        map.nodesGroup.removeLayer(map.nodes[type]);
-      }
+      Object.keys(ResourceNodeQuality).map(qualKey => {
+        // @ts-ignore
+        const quality = ResourceNodeQuality[qualKey] as ResourceNodeQuality;
+
+        if (selection.nodes[type]) {
+          if (
+            selection.quality[quality] &&
+            !map.nodesGroup.hasLayer(map.nodes[`${type}_${quality}`])
+          ) {
+            map.nodesGroup.addLayer(map.nodes[`${type}_${quality}`]);
+          } else if (
+            !selection.quality[quality] &&
+            map.nodesGroup.hasLayer(map.nodes[`${type}_${quality}`])
+          )
+            map.nodesGroup.removeLayer(map.nodes[`${type}_${quality}`]);
+        } else {
+          if (map.nodesGroup.hasLayer(map.nodes[`${type}_${quality}`])) {
+            map.nodesGroup.removeLayer(map.nodes[`${type}_${quality}`]);
+          }
+        }
+      });
     });
 
     Object.keys(selection.slugs).map(key => {
@@ -149,7 +163,7 @@ function renderMap(
   });
 
   // @ts-ignore
-  const nodes: { [k in ResourceNodeType]: L.FeatureGroup } = {};
+  const nodes: { [k: string]: L.FeatureGroup } = {};
   // @ts-ignore
   const slugs: { [k in SlugType]: L.FeatureGroup } = {};
 
@@ -161,7 +175,18 @@ function renderMap(
     // @ts-ignore
     const RNType = ResourceNodeType[key] as ResourceNodeType;
 
-    nodes[RNType] = L.featureGroup().addTo(resourceNodesGroup);
+    nodes[`${RNType}_${ResourceNodeQuality.Impure}`] = L.featureGroup().addTo(
+      resourceNodesGroup
+    );
+    nodes[`${RNType}_${ResourceNodeQuality.Normal}`] = L.featureGroup().addTo(
+      resourceNodesGroup
+    );
+    nodes[`${RNType}_${ResourceNodeQuality.Pure}`] = L.featureGroup().addTo(
+      resourceNodesGroup
+    );
+    nodes[`${RNType}_${ResourceNodeQuality.Unknown}`] = L.featureGroup().addTo(
+      resourceNodesGroup
+    );
   });
 
   Object.keys(SlugType).map(key => {
@@ -178,7 +203,9 @@ function renderMap(
 
     if (marker.target.__typename === "ResourceNode") {
       // @ts-ignore
-      nodes[marker.target.nodeType].addLayer(createMarker({ marker }));
+      nodes[`${marker.target.nodeType}_${marker.target.nodeQuality}`].addLayer(
+        createMarker({ marker })
+      );
     } else if (marker.target.__typename === "Slug") {
       // @ts-ignore
       slugs[marker.target.slugType].addLayer(createMarker({ marker }));

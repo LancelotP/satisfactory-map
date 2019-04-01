@@ -1,6 +1,11 @@
-import { ResourceNodeType, SlugType } from "../__generated__";
+import {
+  ResourceNodeType,
+  SlugType,
+  ResourceNodeQuality
+} from "../__generated__";
 
 export type MarkerSelection = {
+  quality: { [k in ResourceNodeQuality]: boolean };
   nodes: { [k in ResourceNodeType]: boolean };
   slugs: { [k in SlugType]: boolean };
   pods: boolean;
@@ -8,6 +13,12 @@ export type MarkerSelection = {
 
 export function getDefaultMarkerSelection() {
   const markers: MarkerSelection = {
+    quality: {
+      IMPURE: true,
+      NORMAL: true,
+      PURE: true,
+      UNKNOWN: false
+    },
     nodes: {
       BAUXITE: false,
       CATERIUM: false,

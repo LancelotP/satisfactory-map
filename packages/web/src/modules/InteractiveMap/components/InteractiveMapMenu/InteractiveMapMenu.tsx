@@ -9,7 +9,11 @@ import ListItemIcon from "@material-ui/core/ListItemIcon/ListItemIcon";
 import Divider from "@material-ui/core/Divider";
 
 import { MarkerSelection } from "../../../../utils/getDefaultMarkerSelection";
-import { ResourceNodeType, SlugType } from "../../../../__generated__";
+import {
+  ResourceNodeType,
+  SlugType,
+  ResourceNodeQuality
+} from "../../../../__generated__";
 import { getDepositColor } from "../../../../utils/getDepositColor";
 import { getSlugColor } from "../../../../utils/getSlugColor";
 
@@ -34,6 +38,12 @@ export const InteractiveMapMenu = (props: Props) => {
     deposits: false,
     creatures: false
   });
+
+  const nodeQualityMenus: Array<{ name: string; key: ResourceNodeQuality }> = [
+    { name: "Pure", key: ResourceNodeQuality.Pure },
+    { name: "Normal", key: ResourceNodeQuality.Normal },
+    { name: "Impure", key: ResourceNodeQuality.Impure }
+  ];
 
   const nodeMenus: Array<{ name: string; key: ResourceNodeType }> = [
     { name: "Iron", key: ResourceNodeType.Iron },
@@ -80,64 +90,25 @@ export const InteractiveMapMenu = (props: Props) => {
       <div style={{ padding: 16 }}>
         <img width="100%" alt="satisfactory-map-logo" src="/logo.png" />
       </div>
-      <ListItem dense={true} style={{ paddingLeft: 32 }}>
-        <ListItemIcon>
-          <svg
-            viewBox="0 0 38 37"
-            height="30"
-            width="30"
-            version="1"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M29 34l-2-11 9-8-12-2-5-11-5 11-12 2 9 8-2 11 10-5 10 5z"
-              fill="red"
-              stroke="#fff"
-              strokeWidth="2"
-              fillRule="evenodd"
+      {nodeQualityMenus.map(({ name, key }) => (
+        <ListItem
+          key={key}
+          onClick={handleToggleFilter("quality", key)}
+          style={{ paddingLeft: 32 }}
+          button={true}
+        >
+          <ListItemIcon>
+            {NODEQUALITY_ICONS[key as keyof typeof NODEQUALITY_ICONS]}
+          </ListItemIcon>
+          <ListItemText primary={name} />
+          <ListItemSecondaryAction>
+            <Checkbox
+              onClick={handleToggleFilter("quality", key)}
+              checked={selection.quality[key]}
             />
-          </svg>
-        </ListItemIcon>
-        <ListItemText primary="Pure" />
-      </ListItem>
-      <ListItem dense={true} style={{ paddingLeft: 32 }}>
-        <ListItemIcon>
-          <svg
-            viewBox="0 0 40 40"
-            height="30"
-            width="30"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1.6 20L20 1.6 38.4 20 20 38.4z"
-              fill="red"
-              stroke="#fff"
-              strokeWidth="2"
-              fillRule="evenodd"
-            />
-          </svg>
-        </ListItemIcon>
-        <ListItemText primary="Normal" />
-      </ListItem>
-      <ListItem dense={true} style={{ paddingLeft: 32 }}>
-        <ListItemIcon>
-          <svg
-            viewBox="0 0 40 40"
-            height="30"
-            width="30"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M20 2.24L1.62 39h36.76L20 2.24z"
-              fill="red"
-              stroke="#fff"
-              strokeWidth="2"
-              fillRule="evenodd"
-            />
-          </svg>
-        </ListItemIcon>
-        <ListItemText primary="Impure" />
-      </ListItem>
+          </ListItemSecondaryAction>
+        </ListItem>
+      ))}
       <Divider style={{ marginTop: 16 }} />
       {nodeMenus.map(({ name, key }) => (
         <ListItem
@@ -265,4 +236,56 @@ export const InteractiveMapMenu = (props: Props) => {
       </div>
     </List>
   );
+};
+
+const NODEQUALITY_ICONS = {
+  [ResourceNodeQuality.Impure]: (
+    <svg
+      viewBox="0 0 40 40"
+      height="30"
+      width="30"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20 2.24L1.62 39h36.76L20 2.24z"
+        fill="red"
+        stroke="#fff"
+        strokeWidth="2"
+        fillRule="evenodd"
+      />
+    </svg>
+  ),
+  [ResourceNodeQuality.Normal]: (
+    <svg
+      viewBox="0 0 40 40"
+      height="30"
+      width="30"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1.6 20L20 1.6 38.4 20 20 38.4z"
+        fill="red"
+        stroke="#fff"
+        strokeWidth="2"
+        fillRule="evenodd"
+      />
+    </svg>
+  ),
+  [ResourceNodeQuality.Pure]: (
+    <svg
+      viewBox="0 0 38 37"
+      height="30"
+      width="30"
+      version="1"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M29 34l-2-11 9-8-12-2-5-11-5 11-12 2 9 8-2 11 10-5 10 5z"
+        fill="red"
+        stroke="#fff"
+        strokeWidth="2"
+        fillRule="evenodd"
+      />
+    </svg>
+  )
 };
