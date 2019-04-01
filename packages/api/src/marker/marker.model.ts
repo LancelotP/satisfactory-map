@@ -17,4 +17,10 @@ export class Marker extends Resource {
 
   @Column({ type: "float" })
   z: number;
+
+  @Column({ default: false })
+  obstructed: boolean;
+
+  @Column({ nullable: true })
+  information?: string;
 }
