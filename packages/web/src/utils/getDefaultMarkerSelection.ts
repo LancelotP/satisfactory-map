@@ -17,7 +17,7 @@ export function getDefaultMarkerSelection() {
       IMPURE: true,
       NORMAL: true,
       PURE: true,
-      UNKNOWN: false
+      UNKNOWN: true
     },
     nodes: {
       BAUXITE: false,

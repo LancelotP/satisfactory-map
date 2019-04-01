@@ -115,7 +115,7 @@ export const InteractiveMapMenu = (props: Props) => {
         GREEN: value,
         YELLOW: value,
         PURPLE: value,
-        UNKNOWN: false
+        UNKNOWN: true
       }
     };
 
