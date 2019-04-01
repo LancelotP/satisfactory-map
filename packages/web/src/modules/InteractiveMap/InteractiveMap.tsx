@@ -138,7 +138,7 @@ function renderMap(
 
   const [lng, lat, zoom] = location.hash
     .slice(1)
-    .split("|")
+    .split("/")
     .map(s => parseFloat(s));
 
   const map = L.map(containerId, {
@@ -158,7 +158,7 @@ function renderMap(
       const { lat, lng } = map.getCenter();
       const zoom = map.getZoom();
 
-      location.hash = `${lng}|${lat}|${zoom}`;
+      location.hash = `${lng}/${lat}/${zoom}`;
     }
   });
 
