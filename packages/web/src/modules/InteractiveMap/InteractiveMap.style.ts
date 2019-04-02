@@ -53,3 +53,16 @@ export const Content = styled.div`
     border: none;
   }
 `;
+
+export const LocateMe = styled.div`
+  display: none;
+
+  @media (min-width: 1020px) {
+    display: block;
+  }
+
+  position: absolute;
+  z-index: 1000;
+  top: 16px;
+  right: 16px;
+`;

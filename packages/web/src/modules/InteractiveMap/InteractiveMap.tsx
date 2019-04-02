@@ -26,6 +26,8 @@ import { Map, TileLayer, Marker, CircleMarker, Popup } from "react-leaflet";
 import { getSlugColor } from "../../utils/getSlugColor";
 import { RNMarkerIcon } from "./components/RNMarker/RNMarker";
 import { DropPodIcon } from "./components/DropPodMarker/DropPodMarker";
+import { LocateMe } from "./components/LocateMe/LocateMe";
+import { PlayerLocation } from "../../utils/getPlayersFromSave";
 
 type Props = {
   embedded?: boolean;
@@ -46,7 +48,7 @@ type MarkerPos = {
 
 export const InteractiveMap = (props: Props) => {
   const { center, hashedFilter, zoom } = parseHash();
-
+  const [players, setPlayers] = useState<PlayerLocation[]>([]);
   const { data, loading } = useInteractiveMap();
   const [menuOpen, setMenuOpen] = useState(false);
   const [markerSize, setMarkerSize] = useState(30);
@@ -69,6 +71,16 @@ export const InteractiveMap = (props: Props) => {
     YELLOW: [],
     PURPLE: []
   });
+
+  const onPositionsLoaded = (positions: PlayerLocation[]) => {
+    setPlayers(positions);
+
+    if (positions.length === 1 && map.current) {
+      const pos = positions[0];
+
+      map.current.leafletElement.setView([pos.y, pos.x], 6);
+    }
+  };
 
   const [resourceNodes, setResourceNodes] = useState<
     {
@@ -119,8 +131,7 @@ export const InteractiveMap = (props: Props) => {
 
   useEffect(() => {
     if (map && map.current) {
-      console.log(1);
-      map.current.leafletElement.on("moveend", () => saveUrl);
+      map.current.leafletElement.on("moveend", () => saveUrl());
     }
   }, [map]);
 
@@ -353,10 +364,38 @@ export const InteractiveMap = (props: Props) => {
               ))}
             </MarkerClusterGroup>
           )}
+          <MarkerClusterGroup>
+            {players.map(player => (
+              <Marker position={[player.y, player.x]}>
+                <Popup>
+                  <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+                    <li style={{ textAlign: "center" }}>
+                      <b>PLAYER</b>
+                    </li>
+                    <li>
+                      <b>ID</b>: {player.id}
+                    </li>
+                    <li>
+                      <b>X</b>: {player.x}
+                    </li>
+                    <li>
+                      <b>Y</b>: {player.y}
+                    </li>
+                    <li>
+                      <b>Z</b>: {player.z}
+                    </li>
+                  </ul>
+                </Popup>
+              </Marker>
+            ))}
+          </MarkerClusterGroup>
         </Map>
         <S.MenuIcon onClick={toggleMenu}>
           {menuOpen ? <IconClose /> : <IconMenu />}
         </S.MenuIcon>
+        <S.LocateMe>
+          <LocateMe onPositionsLoaded={onPositionsLoaded} />
+        </S.LocateMe>
       </S.Content>
     </S.Root>
   );
