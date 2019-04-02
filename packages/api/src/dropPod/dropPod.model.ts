@@ -10,6 +10,15 @@ export class DropPod extends Resource {
   @Column()
   originId: string;
 
+  @Column({ nullable: true })
+  itemName?: string;
+
+  @Column({ nullable: true })
+  itemQuantity?: number;
+
+  @Column({ nullable: true })
+  powerNeeded?: number;
+
   // @OneToOne(type => ItemYield)
   // @JoinColumn()
   // yield: ItemYield;

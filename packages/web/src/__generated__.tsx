@@ -112,6 +112,18 @@ export type InteractiveMapDropPodInlineFragment = {
   __typename: "DropPod";
 
   id: string;
+
+  requirement: Maybe<InteractiveMapRequirement>;
+};
+
+export type InteractiveMapRequirement = {
+  __typename?: "DropPodRequirement";
+
+  itemName: Maybe<string>;
+
+  itemQuantity: Maybe<number>;
+
+  powerNeeded: Maybe<number>;
 };
 
 export type AppVariables = {};
@@ -276,6 +288,11 @@ export const InteractiveMapDocument = gql`
             ... on DropPod {
               __typename
               id
+              requirement {
+                itemName
+                itemQuantity
+                powerNeeded
+              }
             }
           }
           ...Marker

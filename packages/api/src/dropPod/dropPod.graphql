@@ -1,3 +1,11 @@
 type DropPod {
   id: ID!
+
+  requirement: DropPodRequirement
+}
+
+type DropPodRequirement {
+  itemName: String
+  itemQuantity: Int
+  powerNeeded: Int
 }

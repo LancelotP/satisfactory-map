@@ -130,6 +130,16 @@ export interface Slug {
 
 export interface DropPod {
   id: string;
+
+  requirement?: Maybe<DropPodRequirement>;
+}
+
+export interface DropPodRequirement {
+  itemName?: Maybe<string>;
+
+  itemQuantity?: Maybe<number>;
+
+  powerNeeded?: Maybe<number>;
 }
 
 export interface User {
@@ -486,11 +496,61 @@ export type SlugTypeResolver<
 
 export interface DropPodResolvers<TContext = GQLContext, TypeParent = DropPod> {
   id?: DropPodIdResolver<string, TypeParent, TContext>;
+
+  requirement?: DropPodRequirementResolver<
+    Maybe<DropPodRequirement>,
+    TypeParent,
+    TContext
+  >;
 }
 
 export type DropPodIdResolver<
   R = string,
   Parent = DropPod,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type DropPodRequirementResolver<
+  R = Maybe<DropPodRequirement>,
+  Parent = DropPod,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+
+export interface DropPodRequirementResolvers<
+  TContext = GQLContext,
+  TypeParent = DropPodRequirement
+> {
+  itemName?: DropPodRequirementItemNameResolver<
+    Maybe<string>,
+    TypeParent,
+    TContext
+  >;
+
+  itemQuantity?: DropPodRequirementItemQuantityResolver<
+    Maybe<number>,
+    TypeParent,
+    TContext
+  >;
+
+  powerNeeded?: DropPodRequirementPowerNeededResolver<
+    Maybe<number>,
+    TypeParent,
+    TContext
+  >;
+}
+
+export type DropPodRequirementItemNameResolver<
+  R = Maybe<string>,
+  Parent = DropPodRequirement,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type DropPodRequirementItemQuantityResolver<
+  R = Maybe<number>,
+  Parent = DropPodRequirement,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type DropPodRequirementPowerNeededResolver<
+  R = Maybe<number>,
+  Parent = DropPodRequirement,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
@@ -606,6 +666,7 @@ export interface IResolvers<TContext = GQLContext> {
   ResourceNode?: ResourceNodeResolvers<TContext>;
   Slug?: SlugResolvers<TContext>;
   DropPod?: DropPodResolvers<TContext>;
+  DropPodRequirement?: DropPodRequirementResolvers<TContext>;
   User?: UserResolvers<TContext>;
   Connection?: ConnectionResolvers;
   Edge?: EdgeResolvers;

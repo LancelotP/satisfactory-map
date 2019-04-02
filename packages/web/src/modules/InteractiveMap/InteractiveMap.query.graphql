@@ -24,6 +24,11 @@ query InteractiveMap {
           ... on DropPod {
             __typename
             id
+            requirement {
+              itemName
+              itemQuantity
+              powerNeeded
+            }
           }
         }
         ...Marker

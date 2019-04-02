@@ -12,7 +12,8 @@ import {
   MarkerSlugInlineFragment,
   MarkerPosition,
   RnMarkerFragment,
-  DropPodMarkerFragment
+  DropPodMarkerFragment,
+  InteractiveMapDropPodInlineFragment
 } from "../../__generated__";
 import { InteractiveMapMenu } from "./components/InteractiveMapMenu/InteractiveMapMenu";
 import {
@@ -105,7 +106,10 @@ export const InteractiveMap = (props: Props) => {
   });
 
   const [dropPods, setDropPods] = useState<
-    Array<DropPodMarkerFragment & { pos: MarkerPos; obstructed: boolean }>
+    Array<
+      InteractiveMapDropPodInlineFragment &
+        DropPodMarkerFragment & { pos: MarkerPos; obstructed: boolean }
+    >
   >([]);
 
   function toggleMenu() {
@@ -139,7 +143,8 @@ export const InteractiveMap = (props: Props) => {
     const newSlugs = Object.assign({}, slugs);
     const newResourceNodes = Object.assign({}, resourceNodes);
     const newDropPods: Array<
-      DropPodMarkerFragment & { pos: MarkerPos; obstructed: boolean }
+      InteractiveMapDropPodInlineFragment &
+        DropPodMarkerFragment & { pos: MarkerPos; obstructed: boolean }
     > = [];
 
     (
@@ -163,7 +168,8 @@ export const InteractiveMap = (props: Props) => {
           obstructed: edge.node.obstructed
         });
       } else if (edge.node.target.__typename === "DropPod") {
-        const target = edge.node.target as DropPodMarkerFragment;
+        const target = edge.node.target as InteractiveMapDropPodInlineFragment &
+          DropPodMarkerFragment;
 
         newDropPods.push({
           ...target,
@@ -358,6 +364,22 @@ export const InteractiveMap = (props: Props) => {
                       <li>
                         <b>ID</b>: {marker.id}
                       </li>
+                      {marker.requirement && (
+                        <React.Fragment>
+                          {marker.requirement.powerNeeded && (
+                            <li>
+                              <b>Power:</b> {marker.requirement.powerNeeded}MW
+                            </li>
+                          )}
+                          {marker.requirement.itemName && (
+                            <li>
+                              <b>Items required:</b>{" "}
+                              {marker.requirement.itemQuantity || ""}{" "}
+                              {marker.requirement.itemName}
+                            </li>
+                          )}
+                        </React.Fragment>
+                      )}
                     </ul>
                   </Popup>
                 </Marker>

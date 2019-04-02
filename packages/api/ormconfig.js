@@ -4,7 +4,6 @@ module.exports = {
   entities: ["src/**/*.model.ts"],
   migrations: ["src/migrations/**/*.ts"],
   cli: {
-    entitiesDir: "entity",
-    migrationsDir: "migrations"
+    migrationsDir: "./src/migrations"
   }
 };
