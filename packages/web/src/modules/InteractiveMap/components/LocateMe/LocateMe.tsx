@@ -72,7 +72,7 @@ export const LocateMe = (props: Props) => {
           <DialogContentText>
             Default path is:
             <br />
-            <code>Documents\My Games\FactoryGame\SaveGame</code>
+            <code>%appdata%..\Local\FactoryGame\Saved\SaveGames\</code>
             <br />
             <br />
             <Input

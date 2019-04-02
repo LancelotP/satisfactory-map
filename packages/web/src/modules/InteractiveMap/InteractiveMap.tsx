@@ -364,7 +364,10 @@ export const InteractiveMap = (props: Props) => {
               ))}
             </MarkerClusterGroup>
           )}
-          <MarkerClusterGroup>
+          <MarkerClusterGroup
+            removeOutsideVisibleBounds={true}
+            maxClusterRadius={0}
+          >
             {players.map(player => (
               <Marker position={[player.y, player.x]}>
                 <Popup>
