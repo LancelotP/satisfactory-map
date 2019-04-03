@@ -5,10 +5,11 @@ import { Popup } from "../Popup/Popup";
 
 type Props = {
   marker: MarkerFragment;
+  iconSize: number;
 };
 
 export const DefaultMarker = (props: Props) => {
-  const { marker } = props;
+  const { marker, iconSize } = props;
   const {
     colors: {
       markers: { unknown }
@@ -23,7 +24,7 @@ export const DefaultMarker = (props: Props) => {
       fill={true}
       fillOpacity={1}
       fillColor={unknown}
-      radius={10}
+      radius={iconSize / 2}
       center={marker}
     >
       <Popup>

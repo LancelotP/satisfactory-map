@@ -49,3 +49,28 @@ export const Expand = styled.div`
 export const ExpandContent = styled.div`
   padding-left: 24px;
 `;
+
+export const LocateMeBtnWrapper = styled.div`
+  text-align: center;
+`;
+
+export const LocateMeBtn = styled.button`
+  cursor: pointer;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  background: #f8da00;
+  outline: none;
+  border: none;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background 0.242s ease;
+  margin: 8px auto;
+  text-align: center;
+
+  &:hover,
+  &:focus {
+    background-color: #f3b400;
+  }
+`;

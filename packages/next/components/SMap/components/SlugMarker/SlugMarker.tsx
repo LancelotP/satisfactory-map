@@ -10,10 +10,11 @@ import { Popup } from "../Popup/Popup";
 
 type Props = {
   marker: MarkerFragment & { target: MarkerSlugInlineFragment };
+  iconSize: number;
 };
 
 export const SlugMarker = memo<Props>(props => {
-  const { marker } = props;
+  const { marker, iconSize } = props;
   const {
     colors: {
       markers: { slugs }
@@ -42,8 +43,8 @@ export const SlugMarker = memo<Props>(props => {
       fill={true}
       fillOpacity={1}
       fillColor={color}
-      radius={10}
-      center={props.marker}
+      radius={(iconSize - 5) / 2}
+      center={marker}
     >
       <Popup>
         <p>Slug #{marker.target.id}</p>

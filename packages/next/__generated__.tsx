@@ -86,6 +86,8 @@ export type MarkerFragment = {
 
   alt: Maybe<number>;
 
+  obstructed: boolean;
+
   target: MarkerTarget;
 };
 
@@ -132,6 +134,7 @@ export const MarkerFragmentDoc = gql`
     lat
     lng
     alt
+    obstructed
     target {
       ... on ResourceNode {
         id

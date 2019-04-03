@@ -57,6 +57,29 @@ export function sortMarkers(markers: MarkerFragment[]) {
     return tree;
   } else {
     MLENGTH = markers.length;
+    tree = {
+      slugs: {
+        GREEN: [],
+        PURPLE: [],
+        YELLOW: []
+      },
+      nodes: {
+        BAUXITE: [],
+        CATERIUM: [],
+        COAL: [],
+        COPPER: [],
+        IRON: [],
+        LIMESTONE: [],
+        OIL: [],
+        QUARTZ: [],
+        SAM: [],
+        SULFUR: [],
+        URANIUM: []
+      },
+      geysers: [],
+      unknowns: [],
+      dropPods: []
+    };
   }
 
   markers.forEach(m => {

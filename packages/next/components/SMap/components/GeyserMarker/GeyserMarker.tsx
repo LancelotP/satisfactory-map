@@ -8,10 +8,11 @@ import { Popup } from "../Popup/Popup";
 
 type Props = {
   marker: MarkerFragment & { target: MarkerResourceNodeInlineFragment };
+  iconSize: number;
 };
 
 export const GeyserMarker = (props: Props) => {
-  const { marker } = props;
+  const { marker, iconSize } = props;
   const {
     colors: {
       markers: { geyser }
@@ -26,7 +27,7 @@ export const GeyserMarker = (props: Props) => {
       fill={true}
       fillOpacity={1}
       fillColor={geyser}
-      radius={10}
+      radius={iconSize / 2}
       center={marker}
     >
       <Popup>

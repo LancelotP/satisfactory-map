@@ -7,7 +7,7 @@ export const Root = styled.div`
     padding: 0;
   }
 
-  & > p:first-child {
+  & > p {
     text-align: center;
     font-weight: bold;
     margin: 16px 0;

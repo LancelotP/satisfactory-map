@@ -10,10 +10,11 @@ import { Popup } from "../Popup/Popup";
 
 type Props = {
   marker: MarkerFragment & { target: MarkerDropPodInlineFragment };
+  iconSize: number;
 };
 
 export const DropPodMarker = (props: Props) => {
-  const { marker } = props;
+  const { marker, iconSize } = props;
   const {
     colors: {
       markers: { dropPod }
@@ -21,7 +22,7 @@ export const DropPodMarker = (props: Props) => {
   } = useTheme();
 
   return (
-    <Marker icon={generateIcon(dropPod)} position={marker}>
+    <Marker icon={generateIcon(dropPod, iconSize)} position={marker}>
       <Popup>
         <p>DropPod #{marker.target.id}</p>
         <ul>
@@ -40,9 +41,9 @@ export const DropPodMarker = (props: Props) => {
   );
 };
 
-const generateIcon = (color: string) =>
+const generateIcon = (color: string, iconSize?: number) =>
   L.divIcon({
-    iconSize: [30, 30],
+    iconSize: [iconSize || 30, iconSize || 30],
     html: renderToStaticMarkup(
       <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
         <rect

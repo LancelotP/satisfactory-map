@@ -1,4 +1,5 @@
 import { renderToStaticMarkup } from "react-dom/server";
+import { readableColor } from "polished";
 import { Marker } from "react-leaflet";
 import * as L from "leaflet";
 import {
@@ -9,13 +10,15 @@ import {
 } from "../../../../__generated__";
 import { useTheme } from "../../../../themes/styled";
 import { Popup } from "../Popup/Popup";
+import * as S from "./ResourceNodeMarker.style";
 
 type Props = {
   marker: MarkerFragment & { target: MarkerResourceNodeInlineFragment };
+  iconSize: number;
 };
 
 export const ResourceNodeMarker = (props: Props) => {
-  const { marker } = props;
+  const { marker, iconSize } = props;
   const {
     colors: {
       markers: { resourceNodes }
@@ -23,7 +26,6 @@ export const ResourceNodeMarker = (props: Props) => {
   } = useTheme();
 
   let color;
-  let icon: L.DivIcon;
 
   switch (marker.target.rnType) {
     case ResourceNodeType.Iron:
@@ -63,21 +65,13 @@ export const ResourceNodeMarker = (props: Props) => {
       color = "red";
   }
 
-  switch (marker.target.rnQuality) {
-    case ResourceNodeQuality.Pure:
-      icon = generatePureIcon(color);
-      break;
-    case ResourceNodeQuality.Normal:
-      icon = generateNormalIcon(color);
-      break;
-    default:
-      icon = generateImpureIcon(color);
-      break;
-  }
-
   return (
-    <Marker icon={icon} position={props.marker}>
+    <Marker
+      icon={generateIcon(marker, color, iconSize)}
+      position={props.marker}
+    >
       <Popup>
+        {marker.obstructed && <p>OBSTRUCTED BY BOULDER</p>}
         <p>ResourceNode #{marker.target.id}</p>
         <ul>
           <li>
@@ -101,50 +95,91 @@ export const ResourceNodeMarker = (props: Props) => {
   );
 };
 
-const generateImpureIcon = (color: string) =>
-  L.divIcon({
-    iconSize: [30, 30],
-    html: renderToStaticMarkup(
-      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M20 2.24L1.62 39h36.76L20 2.24z"
-          fill={color}
-          stroke="#fff"
-          strokeWidth="2"
-          fillRule="evenodd"
-        />
-      </svg>
-    )
-  });
+const generateIcon = (
+  marker: Props["marker"],
+  color: string,
+  iconSize: number = 30
+) => {
+  let iconComponent: JSX.Element;
+  let fontSize = iconSize / 2;
+  let top = iconSize / 10;
 
-const generateNormalIcon = (color: string) =>
-  L.divIcon({
-    iconSize: [30, 30],
-    html: renderToStaticMarkup(
-      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M1.6 20L20 1.6 38.4 20 20 38.4z"
-          fill={color}
-          stroke="#fff"
-          strokeWidth="2"
-          fillRule="evenodd"
-        />
-      </svg>
-    )
-  });
+  if (marker.target.rnQuality === ResourceNodeQuality.Impure) {
+    top += iconSize / 5;
+  } else if (marker.target.rnQuality === ResourceNodeQuality.Pure) {
+    top += iconSize / 20;
+  }
 
-const generatePureIcon = (color: string) =>
-  L.divIcon({
-    iconSize: [30, 30],
+  switch (marker.target.rnQuality) {
+    case ResourceNodeQuality.Pure:
+      iconComponent = <PureIcon color={color} />;
+      break;
+    case ResourceNodeQuality.Normal:
+      iconComponent = <NormalIcon color={color} />;
+      break;
+    default:
+      iconComponent = <ImpureIcon color={color} />;
+      break;
+  }
+
+  return L.divIcon({
+    iconSize: [iconSize, iconSize],
     html: renderToStaticMarkup(
-      <svg viewBox="0 0 38 37" version="1" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M29 34l-2-11 9-8-12-2-5-11-5 11-12 2 9 8-2 11 10-5 10 5z"
-          fill={color}
-          stroke="#fff"
-          strokeWidth="2"
-          fillRule="evenodd"
-        />
-      </svg>
+      <S.Root style={{ width: iconSize, height: iconSize }}>
+        {iconComponent}
+        <S.Letter style={{ fontSize, top, color: readableColor(color) }}>
+          {marker.target.rnType[0]}
+        </S.Letter>
+        {marker.obstructed && <ObstructedIcon />}
+      </S.Root>
     )
   });
+};
+
+type IconProps = { color: string };
+
+const ImpureIcon = ({ color }: IconProps) => (
+  <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M20 2.24L1.62 39h36.76L20 2.24z"
+      fill={color}
+      stroke="#fff"
+      strokeWidth="2"
+      fillRule="evenodd"
+    />
+  </svg>
+);
+
+const NormalIcon = ({ color }: IconProps) => (
+  <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M1.6 20L20 1.6 38.4 20 20 38.4z"
+      fill={color}
+      stroke="#fff"
+      strokeWidth="2"
+      fillRule="evenodd"
+    />
+  </svg>
+);
+
+const PureIcon = ({ color }: IconProps) => (
+  <svg viewBox="0 0 38 37" version="1" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M29 34l-2-11 9-8-12-2-5-11-5 11-12 2 9 8-2 11 10-5 10 5z"
+      fill={color}
+      stroke="#fff"
+      strokeWidth="2"
+      fillRule="evenodd"
+    />
+  </svg>
+);
+
+const ObstructedIcon = () => (
+  <S.Obstruction
+    xmlns="http://www.w3.org/2000/svg"
+    version="1"
+    viewBox="0 0 1000 1000"
+  >
+    <path d="M633 500l329 329c37 37 37 95 0 133-17 17-43 28-67 28-23 0-49-11-66-29L500 633 171 962c-17 17-43 28-67 28-23 0-49-11-66-29a92 92 0 0 1 0-132l329-329L38 171a92 92 0 0 1 0-133c38-38 95-38 133 0l329 329L829 38c38-38 95-38 133 0 37 37 37 95 0 133L633 500z" />
+  </S.Obstruction>
+);

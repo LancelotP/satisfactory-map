@@ -3,6 +3,7 @@ fragment Marker on Marker {
   lat
   lng
   alt
+  obstructed
   target {
     ... on ResourceNode {
       id
