@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createRef } from "react";
 import { Map, FeatureGroup, TileLayer } from "react-leaflet";
 import * as L from "leaflet";
 import * as S from "./SMap.style";
@@ -20,6 +20,7 @@ import {
   getDefaultSelection,
   MarkerSelection
 } from "./utils/getDefaultSelection";
+import { getMarkerSelectionHash } from "./utils/markerSelectionToHash";
 
 // @ts-ignore
 const crs = L.extend({}, L.CRS.Simple, {
@@ -37,18 +38,24 @@ type State = {
   rerender: number;
   markers: ReturnType<typeof sortMarkers>;
   locating: boolean;
+  center: [number, number];
+  zoom: number;
 };
 
 export class SMap extends React.PureComponent<Props, State> {
+  map = createRef<Map>();
+
   constructor(props: Props) {
     super(props);
 
     this.state = {
       selection: getDefaultSelection(),
-      iconSize: 20,
+      iconSize: 30,
       clusterSize: 0,
       rerender: Math.random(),
       locating: false,
+      center: [0, 0],
+      zoom: 4,
       markers: sortMarkers(props.markers)
     };
 
@@ -56,11 +63,80 @@ export class SMap extends React.PureComponent<Props, State> {
     this.handleIconSizeChange = this.handleIconSizeChange.bind(this);
     this.shouldRenderRNNode = this.shouldRenderRNNode.bind(this);
     this.toggleLocating = this.toggleLocating.bind(this);
+    this.persistState = this.persistState.bind(this);
   }
 
   componentDidUpdate(prevProps: Props) {
     if (prevProps.markers.length !== this.props.markers.length) {
       this.setState({ markers: sortMarkers(this.props.markers) });
+    }
+
+    this.persistState();
+  }
+
+  componentDidMount() {
+    let dms = { lat: 0, lng: 0, zoom: 3, filter: 0 };
+
+    if (typeof location !== "undefined" && location.hash) {
+      const [lat, lng, zoom, filter] = location.hash
+        .slice(1)
+        .split(";")
+        .map(e => parseFloat(e))
+        .filter(e => e && !isNaN(e));
+
+      if (lat) dms.lat = lat;
+      if (lng) dms.lng = lng;
+      if (zoom) dms.zoom = zoom;
+      if (filter) dms.filter = filter;
+    } else if (typeof localStorage !== "undefined") {
+      try {
+        const storedData = localStorage.getItem("map_hash");
+        // @ts-ignore
+        const { lat, lng, zoom, filter } = storedData
+          ? JSON.parse(storedData)
+          : {};
+
+        if (lat) dms.lat = lat;
+        if (lng) dms.lng = lng;
+        if (zoom) dms.zoom = zoom;
+        if (filter) dms.filter = filter;
+      } catch (e) {
+        console.log("No data stored");
+      }
+    }
+
+    this.map.current!.leafletElement.setView([dms.lat, dms.lng], dms.zoom, {
+      animate: true
+    });
+
+    this.map.current!.leafletElement.on("moveend", this.persistState);
+
+    console.log(dms.filter);
+
+    if (dms.filter) {
+      this.setState({ selection: getDefaultSelection(dms.filter) });
+    }
+  }
+
+  persistState() {
+    const bounds = this.map.current!.leafletElement.getCenter();
+    const zoom = this.map.current!.leafletElement.getZoom();
+    const { selection } = this.state;
+    const filter = getMarkerSelectionHash(selection);
+
+    if (typeof localStorage !== "undefined") {
+      const mapState = {
+        lat: bounds.lat,
+        lng: bounds.lng,
+        zoom: zoom,
+        filter
+      };
+
+      localStorage.setItem("map_hash", JSON.stringify(mapState));
+    }
+
+    if (typeof location !== "undefined") {
+      location.hash = `${bounds.lat};${bounds.lng};${zoom};${filter}`;
     }
   }
 
@@ -146,9 +222,10 @@ export class SMap extends React.PureComponent<Props, State> {
             [221428.57142857142 * 2, 563492.0634920634 * 2],
             [-221428.57142857142 * 2, -563492.0634920634 * 2]
           ]}
-          zoom={2}
-          center={[0, 0]}
+          zoom={this.state.zoom}
+          center={this.state.center}
           crs={crs}
+          ref={this.map}
         >
           <TileLayer url="/static/tiles/{z}/{x}/{y}.png" noWrap={true} />
           <FeatureGroup>

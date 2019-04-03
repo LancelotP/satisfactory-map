@@ -1,3 +1,5 @@
+import { hashToMarkerSelection } from "./hashToMarkerSelection";
+
 export type MarkerSelection = {
   quality: {
     impure: boolean;
@@ -16,7 +18,6 @@ export type MarkerSelection = {
     coal: boolean;
     oil: boolean;
     caterium: boolean;
-    geysers: boolean;
     sulfur: boolean;
     bauxite: boolean;
     quartz: boolean;
@@ -28,7 +29,11 @@ export type MarkerSelection = {
   unknowns: boolean;
 };
 
-export function getDefaultSelection(hash?: string): MarkerSelection {
+export function getDefaultSelection(hash?: number): MarkerSelection {
+  if (hash && hash !== 0) {
+    return hashToMarkerSelection(hash);
+  }
+
   return {
     quality: {
       impure: true,
@@ -47,7 +52,6 @@ export function getDefaultSelection(hash?: string): MarkerSelection {
       coal: false,
       oil: false,
       caterium: false,
-      geysers: false,
       sulfur: false,
       bauxite: false,
       quartz: false,
