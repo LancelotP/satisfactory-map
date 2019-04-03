@@ -2,6 +2,8 @@ import App, { Container } from "next/app";
 import React from "react";
 import withApolloClient from "../lib/with-apollo-client";
 import { ApolloProvider } from "react-apollo";
+import { ThemeProvider } from "../themes/styled";
+import { lightTheme } from "../themes/light";
 
 class MyApp extends App {
   render() {
@@ -10,7 +12,9 @@ class MyApp extends App {
     return (
       <Container>
         <ApolloProvider client={apolloClient}>
-          <Component {...pageProps} />
+          <ThemeProvider theme={lightTheme}>
+            <Component {...pageProps} />
+          </ThemeProvider>
         </ApolloProvider>
       </Container>
     );

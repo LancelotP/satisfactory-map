@@ -1,0 +1,23 @@
+overwrite: true
+watch: true
+schema: http://localhost:4000/graphql
+documents: ./**/*.graphql
+generates:
+  ./introspection-result.ts:
+    plugins:
+      - fragment-matcher
+  ./__generated__.tsx:
+    config:
+      avoidOptionals: false
+      noNamespaces: true
+      noHOC: false
+      noComponents: false
+      withHooks: false
+      scalars:
+        Date: string
+        DateTime: string
+        Time: string
+    plugins:
+      - "typescript-common"
+      - "typescript-client"
+      - "typescript-react-apollo"

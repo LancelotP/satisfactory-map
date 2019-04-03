@@ -1,34 +1,30 @@
-import Head from "next/head";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
+import dynamic from "next/dynamic";
+import { AllMarkersComponent } from "../__generated__";
+import { Layout } from "../components/Layout/Layout";
 
-const markersQuery = gql`
-  query markersConnection {
-    markersConnection {
-      edges {
-        node {
-          id
-        }
-      }
-    }
+const NOSSRMap = dynamic(
+  () => import("../components/SMap/SMap").then(c => c.SMap),
+  {
+    ssr: false
   }
-`;
+);
 
 function Home() {
   return (
-    <div>
-      <Head>
-        <title>Satisfactory Interactive Map</title>
-      </Head>
-      <Query query={markersQuery}>
+    <Layout title="Satisfactory Interactive Map">
+      <AllMarkersComponent>
         {({ data, loading, error }) => {
-          if (loading) return <div>Loading...</div>;
-          if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
-
-          return <pre>{JSON.stringify(data, null, 2)}</pre>;
+          if (loading) return <div>Loading</div>;
+          else if (error) return <div>Something went wrong</div>;
+          else {
+            console.log(data!.markers.totalCount);
+            return (
+              <NOSSRMap markers={data!.markers.edges.map(edge => edge.node)} />
+            );
+          }
         }}
-      </Query>
-    </div>
+      </AllMarkersComponent>
+    </Layout>
   );
 }
 

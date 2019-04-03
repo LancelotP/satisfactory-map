@@ -4,6 +4,7 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "apollo-boost": "^0.3.1",
     "encoding": "^0.1.12",
@@ -11,19 +12,41 @@
     "graphql-tag": "^2.10.1",
     "isomorphic-unfetch": "^3.0.0",
     "leaflet": "^1.4.0",
+    "leaflet.markercluster": "^1.4.1",
+    "lodash.get": "^4.4.2",
+    "lodash.set": "^4.3.2",
     "next": "^8.0.4",
+    "prop-types": "^15.7.2",
+    "rc-slider": "^8.6.9",
     "react": "^16.8.6",
     "react-apollo": "^2.5.3",
     "react-dom": "^16.8.6",
-    "react-leaflet": "^2.2.1"
+    "react-leaflet": "^2.2.1",
+    "react-leaflet-markercluster": "^2.0.0-rc3",
+    "react-leaflet-universal": "^1.2.0",
+    "styled-components": "^4.2.0"
   },
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "gen": "gql-gen"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.4.3",
+    "@types/lodash.get": "^4.4.6",
+    "@types/lodash.set": "^4.3.6",
     "@types/next": "^8.0.3",
-    "@types/zeit__next-typescript": "^0.1.2"
+    "@types/rc-slider": "^8.6.3",
+    "@types/react-dom": "^16.8.3",
+    "@types/react-leaflet": "^2.2.1",
+    "@types/react-leaflet-markercluster": "^2.0.0",
+    "@types/styled-components": "^4.1.12",
+    "@types/zeit__next-typescript": "^0.1.2",
+    "graphql-code-generator": "^0.18.0",
+    "graphql-codegen-fragment-matcher": "^0.18.0",
+    "graphql-codegen-typescript-client": "^0.18.0",
+    "graphql-codegen-typescript-common": "^0.18.0",
+    "graphql-codegen-typescript-react-apollo": "^0.18.0"
   }
 }

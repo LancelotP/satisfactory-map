@@ -1,19 +1,16 @@
 type Marker {
   id: ID!
 
-  position: MarkerPoint!
+  lat: Float!
+  lng: Float!
+  alt: Float
   target: MarkerTarget!
+
   obstructed: Boolean!
   information: String
 
   createdAt: DateTime!
   updatedAt: DateTime!
-}
-
-type MarkerPoint {
-  x: Float!
-  y: Float!
-  z: Float!
 }
 
 union MarkerTarget = ResourceNode | Slug | DropPod

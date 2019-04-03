@@ -1,5 +1,11 @@
-import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
+import {
+  ApolloClient,
+  InMemoryCache,
+  HttpLink,
+  IntrospectionFragmentMatcher
+} from "apollo-boost";
 import fetch from "isomorphic-unfetch";
+import introspectionResult from "../introspection-result";
 
 let apolloClient = null;
 
@@ -7,6 +13,10 @@ let apolloClient = null;
 if (!process.browser) {
   global.fetch = fetch;
 }
+
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData: introspectionResult
+});
 
 function create(initialState) {
   // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
@@ -17,7 +27,9 @@ function create(initialState) {
       uri: "http://localhost:4000/graphql", // Server URL (must be absolute)
       credentials: "same-origin" // Additional fetch() options like `credentials` or `headers`
     }),
-    cache: new InMemoryCache().restore(initialState || {})
+    cache: new InMemoryCache({
+      fragmentMatcher
+    }).restore(initialState || {})
   });
 }
 

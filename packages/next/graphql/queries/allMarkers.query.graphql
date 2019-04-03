@@ -1,0 +1,11 @@
+query AllMarkers {
+  markers: markersConnection {
+    totalCount
+    edges {
+      node {
+        id
+        ...Marker
+      }
+    }
+  }
+}

@@ -2,10 +2,8 @@ import { IResolvers } from "../../types";
 
 export default {
   Marker: {
-    position: _ => ({
-      x: _.x,
-      y: _.y,
-      z: _.z
-    })
+    alt: _ => _.z,
+    lat: _ => _.y,
+    lng: _ => _.x
   }
 } as IResolvers;
