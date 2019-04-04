@@ -267,12 +267,13 @@ export class SMap extends React.PureComponent<Props, State> {
             noWrap={true}
             bounds={[[-406400, -406400], [508000, 508000]]}
           />
-          <FeatureGroup>
+          {/* Matrix markers */}
+          {/* <FeatureGroup>
             <CircleMarker center={[-406400, -406400]} radius={10} />
             <CircleMarker center={[-406400, 508000]} radius={10} />
             <CircleMarker center={[508000, -406400]} radius={10} />
             <CircleMarker center={[508000, 508000]} radius={10} />
-          </FeatureGroup>
+          </FeatureGroup> */}
           <FeatureGroup>
             {[
               {
