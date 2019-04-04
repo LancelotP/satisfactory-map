@@ -6,6 +6,7 @@
     "build:server": "tsc -p .",
     "build:graphql": "copyfiles -u 1  --verbose \"./**/*.graphql\" ./build",
     "build": "yarn build:server && yarn build:graphql",
+    "now-build": "yarn build",
     "dev": "nodemon --ext ts --watch src/ --exec ts-node -r dotenv/config src/index.ts",
     "gen": "nodemon --ext ts --ext graphql --watch 'src/**/*.graphql' --watch 'src/schema.ts' --exec gql-gen",
     "typeorm": "npx ts-node -r dotenv/config ./node_modules/.bin/typeorm"

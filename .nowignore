@@ -1,8 +1,11 @@
-packages/next/.next
-packages/next/node_modules
-packages/next/static/tiles
+packages/next
 packages/web
-packages/api
-.vscode
+
+
+node_modules
 .github
-Procfile
+.vscode
+build
+.env
+codegen.yml
+*.log
