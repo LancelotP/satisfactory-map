@@ -19,7 +19,7 @@ fi
     yarn install --production=false
     yarn build
   elif [ "$BUILD_ENV" = "web" ]; then
-    cd packages/next
+    cd packages/web
     yarn install --production=false
     yarn build
   else

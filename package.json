@@ -8,8 +8,7 @@
   },
   "cacheDirectories": [
     "packages/api/node_modules",
-    "packages/web/node_modules",
-    "packages/next/node_modules"
+    "packages/web/node_modules"
   ],
   "scripts": {
     "heroku-postbuild": "./scripts/heroku.build"

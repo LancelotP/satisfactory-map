@@ -1,0 +1,1 @@
+web: cd packages/web && yarn start -p $PORT
