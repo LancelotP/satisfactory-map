@@ -1,0 +1,17 @@
+{
+  "name": "satisfactory-map",
+  "version": "0.0.0",
+  "private": true,
+  "engines": {
+    "node": "10.15.3",
+    "yarn": "1.13.0"
+  },
+  "cacheDirectories": [
+    "packages/api/node_modules",
+    "packages/web/node_modules",
+    "packages/next/node_modules"
+  ],
+  "scripts": {
+    "heroku-postbuild": "./scripts/heroku.build"
+  }
+}
