@@ -3,6 +3,8 @@ const withTypescript = require("@zeit/next-typescript");
 
 module.exports = withCSS(
   withTypescript({
-    target: "serverless"
+    env: {
+      API_ENDPOINT: process.env.API_ENDPOINT || "http://localhost:4000/graphql"
+    }
   })
 );
