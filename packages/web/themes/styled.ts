@@ -10,12 +10,13 @@ const {
   createGlobalStyle,
   keyframes,
   ThemeProvider,
-  ThemeContext
+  ThemeContext,
+  withTheme
 } = styledComponents as styledComponents.ThemedStyledComponentsModule<
   ThemeInterface
 >;
 
-export { css, createGlobalStyle, keyframes, ThemeProvider };
+export { css, createGlobalStyle, keyframes, ThemeProvider, withTheme };
 export default styled;
 
 export const useTheme = () => {
@@ -29,6 +30,10 @@ export const themes = {
 export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
+  }
+
+  *, *::after, *::before {
+    box-sizing: border-box;
   }
 
   #__next {
@@ -77,11 +82,5 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     font-family: 'noto', sans-serif;
-  }
-
-  button {
-    font-family: 'ibm_plex';
-    font-weight: bold;
-    text-transform: uppercase;
   }
 `;

@@ -62,7 +62,6 @@ export const LocateMeBtn = styled.button`
   background: #f8da00;
   outline: none;
   border: none;
-  text-transform: uppercase;
   padding: 8px 16px;
   border-radius: 4px;
   transition: background 0.242s ease;

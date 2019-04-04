@@ -1,28 +1,30 @@
 export const lightTheme = {
   colors: {
     white: "#fff",
+    primary500: "#E99234",
+    primary700: "#FF931E",
     markers: {
       slugs: {
-        green: "#08D1D8",
-        yellow: "#F9F903",
-        purple: "#D100ED"
+        green: "#82B17A",
+        yellow: "#D1D39C",
+        purple: "#9382AA"
       },
       resourceNodes: {
-        bauxite: "#D973A9",
-        caterium: "#F1D448",
-        coal: "#333333",
-        copper: "#20B6EE",
-        iron: "#E65500",
-        limestone: "#9F8B71",
-        oil: "#333333",
-        quartz: "#00FFB0",
-        sam: "#0073B7",
-        sulfur: "#FDAC00",
-        uranium: "#00E337"
+        bauxite: "#AA6B51",
+        caterium: "#AF7C15",
+        coal: "#343434",
+        copper: "#AA4922",
+        iron: "#708090",
+        limestone: "#AA8F00",
+        oil: "#1C2A43",
+        quartz: "#8F2E53",
+        sam: "#263B41",
+        sulfur: "#483C0C",
+        uranium: "#6FA54A"
       },
       geyser: "#ccc",
       unknown: "#ff0000",
-      dropPod: "deeppink"
+      dropPod: "#E99234"
     }
   }
 };

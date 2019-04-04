@@ -29,6 +29,7 @@ import {
 import { getMarkerSelectionHash } from "./utils/markerSelectionToHash";
 import { getPlayersFromSave, PlayerLocation } from "./utils/getPlayerFromSave";
 import { Popup } from "./components/Popup/Popup";
+import MapMenu from "../MapMenu/MapMenu";
 
 // @ts-ignore
 const crs = L.extend({}, L.CRS.Simple, {
@@ -244,13 +245,14 @@ export class SMap extends React.PureComponent<Props, State> {
             href="https://unpkg.com/react-leaflet-markercluster/dist/styles.min.css"
           />
         </Head>
-        <Menu
+        <MapMenu />
+        {/* <Menu
           iconSize={iconSize}
           onIconSizeChange={this.handleIconSizeChange}
           selection={selection}
           onSelectionChange={this.handleSelectionChange}
           onLocateMeClick={this.toggleLocating}
-        />
+        /> */}
         <Map
           style={{ height: "100vh", width: "100vw" }}
           zoomSnap={0.5}
