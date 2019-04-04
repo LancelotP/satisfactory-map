@@ -1,14 +1,19 @@
 {
-  "name": "perso",
+  "name": "satisfactory-map-api",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "10.15.3",
+    "yarn": "1.13.0"
+  },
   "scripts": {
     "build:server": "tsc -p .",
     "build:graphql": "copyfiles -u 1  --verbose \"./**/*.graphql\" ./build",
     "build": "yarn build:server && yarn build:graphql",
     "dev": "nodemon --ext ts --watch src/ --exec ts-node -r dotenv/config src/index.ts",
     "gen": "nodemon --ext ts --ext graphql --watch 'src/**/*.graphql' --watch 'src/schema.ts' --exec gql-gen",
-    "typeorm": "npx ts-node -r dotenv/config ./node_modules/.bin/typeorm"
+    "typeorm": "npx ts-node -r dotenv/config ./node_modules/.bin/typeorm",
+    "start": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 build"
   },
   "dependencies": {
     "apollo-server-express": "^2.4.8",
