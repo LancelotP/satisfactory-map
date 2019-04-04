@@ -1,5 +1,11 @@
 import React, { createRef } from "react";
-import { Map, FeatureGroup, TileLayer, Marker } from "react-leaflet";
+import {
+  Map,
+  FeatureGroup,
+  TileLayer,
+  Marker,
+  CircleMarker
+} from "react-leaflet";
 import * as L from "leaflet";
 import * as S from "./SMap.style";
 import {
@@ -26,7 +32,7 @@ import { Popup } from "./components/Popup/Popup";
 
 // @ts-ignore
 const crs = L.extend({}, L.CRS.Simple, {
-  transformation: new L.Transformation(0.000315, 96, 0.000315, 96)
+  transformation: new L.Transformation(0.00015625, 63.5, 0.00015625, 63.5)
 });
 
 type Props = {
@@ -61,7 +67,7 @@ export class SMap extends React.PureComponent<Props, State> {
       rerender: Math.random(),
       locating: false,
       center: [0, 0],
-      zoom: 4,
+      zoom: 3,
       markers: sortMarkers(props.markers),
       loadingPlayer: false,
       error: false,
@@ -249,24 +255,24 @@ export class SMap extends React.PureComponent<Props, State> {
           style={{ height: "100vh", width: "100vw" }}
           zoomSnap={0.5}
           maxZoom={7}
-          minZoom={0}
-          maxBounds={[
-            [221428.57142857142 * 2, 563492.0634920634 * 2],
-            [-221428.57142857142 * 2, -563492.0634920634 * 2]
-          ]}
+          minZoom={3}
+          maxBounds={[[-406400, -406400], [508000, 508000]]}
           zoom={this.state.zoom}
           center={this.state.center}
           crs={crs}
           ref={this.map}
         >
           <TileLayer
-            url="/static/tiles/{z}/{x}/{y}.png"
+            url="/static/tiles_rework/{z}/{x}/{y}.png"
             noWrap={true}
-            bounds={[
-              [-304712.3015873016, -304712.3015873016],
-              [304712.3015873016, 406274.8015873016]
-            ]}
+            bounds={[[-406400, -406400], [508000, 508000]]}
           />
+          <FeatureGroup>
+            <CircleMarker center={[-406400, -406400]} radius={10} />
+            <CircleMarker center={[-406400, 508000]} radius={10} />
+            <CircleMarker center={[508000, -406400]} radius={10} />
+            <CircleMarker center={[508000, 508000]} radius={10} />
+          </FeatureGroup>
           <FeatureGroup>
             {[
               {

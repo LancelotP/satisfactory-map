@@ -12,6 +12,10 @@ export const Root = styled.div`
     flex: 0 0 auto;
   }
 
+  & .leaflet-container {
+    background-color: #7b7b75;
+  }
+
   & .leaflet-div-icon {
     background: none;
     border: none;
