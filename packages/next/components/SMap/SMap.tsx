@@ -1,5 +1,11 @@
 import React, { useState, useEffect, createRef } from "react";
-import { Map, FeatureGroup, TileLayer } from "react-leaflet";
+import {
+  Map,
+  FeatureGroup,
+  TileLayer,
+  Marker,
+  CircleMarker
+} from "react-leaflet";
 import * as L from "leaflet";
 import * as S from "./SMap.style";
 import {
@@ -111,11 +117,13 @@ export class SMap extends React.PureComponent<Props, State> {
 
     this.map.current!.leafletElement.on("moveend", this.persistState);
 
-    console.log(dms.filter);
-
-    if (dms.filter) {
+    if (dms.filter !== undefined) {
       this.setState({ selection: getDefaultSelection(dms.filter) });
     }
+
+    console.log(this.map.current!.leafletElement.getBounds());
+
+    this.map.current!.leafletElement.on("click", console.log);
   }
 
   persistState() {
@@ -227,7 +235,14 @@ export class SMap extends React.PureComponent<Props, State> {
           crs={crs}
           ref={this.map}
         >
-          <TileLayer url="/static/tiles/{z}/{x}/{y}.png" noWrap={true} />
+          <TileLayer
+            url="/static/tiles/{z}/{x}/{y}.png"
+            noWrap={true}
+            bounds={[
+              [-304712.3015873016, -304712.3015873016],
+              [304712.3015873016, 406274.8015873016]
+            ]}
+          />
           <FeatureGroup>
             {[
               {

@@ -30,7 +30,7 @@ export type MarkerSelection = {
 };
 
 export function getDefaultSelection(hash?: number): MarkerSelection {
-  if (hash && hash !== 0) {
+  if (hash !== undefined) {
     return hashToMarkerSelection(hash);
   }
 

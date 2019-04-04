@@ -14,12 +14,13 @@ const SMV = {
   N_QUARTZ: 1024,
   N_SAM: 2048,
   N_SULFUR: 4096,
-  S_GREEN: 8192,
-  S_YELLOW: 16384,
-  S_PURPLE: 32768,
-  GEYSERS: 65536,
-  DROPPODS: 131072,
-  UNKNOWNS: 262144
+  N_URANIUM: 8192,
+  S_GREEN: 16384,
+  S_YELLOW: 32768,
+  S_PURPLE: 65536,
+  GEYSERS: 131072,
+  DROPPODS: 262144,
+  UNKNOWNS: 524288
 };
 
 export function getMarkerSelectionHash(selection: MarkerSelection) {
@@ -38,6 +39,7 @@ export function getMarkerSelectionHash(selection: MarkerSelection) {
   if (selection.nodes.quartz) filterHash += SMV.N_QUARTZ;
   if (selection.nodes.sam) filterHash += SMV.N_SAM;
   if (selection.nodes.sulfur) filterHash += SMV.N_SULFUR;
+  if (selection.nodes.uranium) filterHash += SMV.N_URANIUM;
   if (selection.slugs.green) filterHash += SMV.S_GREEN;
   if (selection.slugs.yellow) filterHash += SMV.S_YELLOW;
   if (selection.slugs.purple) filterHash += SMV.S_PURPLE;
