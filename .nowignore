@@ -1,2 +1,8 @@
-.next
-node_modules
+packages/next/.next
+packages/next/node_modules
+packages/next/static/tiles
+packages/web
+packages/api
+.vscode
+.github
+Procfile

@@ -1,11 +1,5 @@
-import React, { useState, useEffect, createRef } from "react";
-import {
-  Map,
-  FeatureGroup,
-  TileLayer,
-  Marker,
-  CircleMarker
-} from "react-leaflet";
+import React, { createRef } from "react";
+import { Map, FeatureGroup, TileLayer, Marker } from "react-leaflet";
 import * as L from "leaflet";
 import * as S from "./SMap.style";
 import {
@@ -27,6 +21,8 @@ import {
   MarkerSelection
 } from "./utils/getDefaultSelection";
 import { getMarkerSelectionHash } from "./utils/markerSelectionToHash";
+import { getPlayersFromSave, PlayerLocation } from "./utils/getPlayerFromSave";
+import { Popup } from "./components/Popup/Popup";
 
 // @ts-ignore
 const crs = L.extend({}, L.CRS.Simple, {
@@ -46,6 +42,10 @@ type State = {
   locating: boolean;
   center: [number, number];
   zoom: number;
+  save?: File;
+  loadingPlayer: boolean;
+  error: boolean;
+  players: PlayerLocation[];
 };
 
 export class SMap extends React.PureComponent<Props, State> {
@@ -62,7 +62,10 @@ export class SMap extends React.PureComponent<Props, State> {
       locating: false,
       center: [0, 0],
       zoom: 4,
-      markers: sortMarkers(props.markers)
+      markers: sortMarkers(props.markers),
+      loadingPlayer: false,
+      error: false,
+      players: []
     };
 
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
@@ -70,6 +73,7 @@ export class SMap extends React.PureComponent<Props, State> {
     this.shouldRenderRNNode = this.shouldRenderRNNode.bind(this);
     this.toggleLocating = this.toggleLocating.bind(this);
     this.persistState = this.persistState.bind(this);
+    this.doLocate = this.doLocate.bind(this);
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -81,7 +85,7 @@ export class SMap extends React.PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    let dms = { lat: 0, lng: 0, zoom: 3, filter: 0 };
+    let dms = { lat: 0, lng: 0, zoom: 3, filter: 455 };
 
     if (typeof location !== "undefined" && location.hash) {
       const [lat, lng, zoom, filter] = location.hash
@@ -117,13 +121,7 @@ export class SMap extends React.PureComponent<Props, State> {
 
     this.map.current!.leafletElement.on("moveend", this.persistState);
 
-    if (dms.filter !== undefined) {
-      this.setState({ selection: getDefaultSelection(dms.filter) });
-    }
-
-    console.log(this.map.current!.leafletElement.getBounds());
-
-    this.map.current!.leafletElement.on("click", console.log);
+    this.setState({ selection: getDefaultSelection(dms.filter) });
   }
 
   persistState() {
@@ -154,12 +152,38 @@ export class SMap extends React.PureComponent<Props, State> {
     this.setState({ locating: !locating });
   }
 
+  doLocate() {
+    this.setState({ loadingPlayer: true });
+    const reader = new FileReader();
+    reader.onload = async () => {
+      try {
+        const loc = await getPlayersFromSave(reader.result!);
+        if (loc.length === 0) {
+          throw new Error("No players has been found");
+        }
+        this.setState({
+          players: loc,
+          loadingPlayer: false
+        });
+
+        if (loc.length === 1) {
+          this.map.current!.leafletElement.setView([loc[0].y, loc[0].x], 6);
+        }
+
+        this.toggleLocating();
+      } catch (e) {
+        console.log(e);
+        this.setState({ error: true, loadingPlayer: false });
+      }
+    };
+    reader.onerror = console.error;
+    reader.readAsArrayBuffer(this.state.save!);
+  }
+
   handleSelectionChange(
     selection: State["selection"],
     qualityChanged: boolean
   ) {
-    console.log(this.state.selection.quality, selection.quality);
-
     if (qualityChanged) {
       this.setState({ selection, rerender: Math.random() });
     } else {
@@ -359,11 +383,39 @@ export class SMap extends React.PureComponent<Props, State> {
                 <DropPodMarker key={m.id} marker={m} iconSize={iconSize} />
               )}
             />
+            <FeatureGroup>
+              {this.state.players.map(player => (
+                <Marker
+                  key={player.id}
+                  position={[player.y, player.x]}
+                  icon={L.icon({
+                    iconUrl:
+                      "https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon.png",
+                    iconSize: [24, 41]
+                  })}
+                >
+                  <Popup>
+                    <p>Player #{player.id}</p>
+                    <ul>
+                      <li>
+                        <b>X:</b> {player.x}
+                      </li>
+                      <li>
+                        <b>Y:</b> {player.y}
+                      </li>
+                      <li>
+                        <b>Z:</b> {player.z}
+                      </li>
+                    </ul>
+                  </Popup>
+                </Marker>
+              ))}
+            </FeatureGroup>
           </FeatureGroup>
         </Map>
         {locating && (
-          <S.Overlay>
-            <S.Modal>
+          <S.Overlay onClick={this.toggleLocating}>
+            <S.Modal onClick={e => e.stopPropagation()}>
               <S.ModalTop>Find player location</S.ModalTop>
               <S.ModalContent>
                 Upload your save file to display markers of all the players in
@@ -374,10 +426,24 @@ export class SMap extends React.PureComponent<Props, State> {
                 <br />
                 <br />
                 <code>%appdata%..\Local\FactoryGame\Saved\SaveGames\</code>
+                <input
+                  type="file"
+                  accept=".sav"
+                  disabled={this.state.loadingPlayer}
+                  onChange={e => {
+                    if (!e.target.files || e.target.files.length !== 1) {
+                      return;
+                    }
+
+                    this.setState({ save: e.target.files[0] });
+                  }}
+                />
               </S.ModalContent>
               <S.ModalBottom>
-                <button>Close</button>
-                <button>Locate Me</button>
+                <button onClick={this.toggleLocating}>Close</button>
+                <button disabled={!this.state.save} onClick={this.doLocate}>
+                  Locate Me
+                </button>
               </S.ModalBottom>
             </S.Modal>
           </S.Overlay>

@@ -11,6 +11,7 @@ coverage
 # production
 build
 .next
+packages/next/out
 
 # misc
 .DS_Store

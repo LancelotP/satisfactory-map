@@ -1,15 +1,11 @@
 import { MarkerSelection } from "./getDefaultSelection";
 
 export function hashToMarkerSelection(hash: number): MarkerSelection {
-  console.log("hash -> ", hash);
-
   const binaryHash = hash
     .toString(2)
     .split("")
     .reverse()
     .join("");
-
-  console.log(binaryHash);
 
   return {
     quality: {

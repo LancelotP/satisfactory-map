@@ -17,7 +17,6 @@ function Home() {
           if (loading) return <div>Loading</div>;
           else if (error) return <div>Something went wrong</div>;
           else {
-            console.log(data!.markers.totalCount);
             return (
               <NOSSRMap markers={data!.markers.edges.map(edge => edge.node)} />
             );
