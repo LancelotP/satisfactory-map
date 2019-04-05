@@ -2,13 +2,20 @@ import styled from "../../themes/styled";
 import slugIcon from "../Icons/slug.svg";
 
 export const Root = styled.aside`
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   width: 360px;
   max-width: calc(100vw - 45px);
+  position: relative;
+  z-index: 10000;
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.4);
+`;
+
+export const Menu = styled.div`
   padding: 24px 40px;
-  height: 100%;
+  background: white;
   overflow-y: auto;
   overflow-x: hidden;
+  height: 100%;
 `;
 
 export const Logo = styled.picture`
@@ -191,4 +198,28 @@ export const QualityIcon = styled.div`
   background-repeat: no-repeat;
   width: 40px;
   height: 40px;
+`;
+
+export const CloseBtn = styled.div`
+  position: absolute;
+  background: ${({ theme }) => theme.colors.white};
+  transform: rotate(45deg);
+  top: 50%;
+  margin-top: -44px;
+  right: 0;
+  height: 88px;
+  width: 88px;
+  z-index: -1;
+  margin-right: -30px;
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+
+  & > img {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    transform: rotate(-45deg);
+    top: 12px;
+    right: 12px;
+  }
 `;

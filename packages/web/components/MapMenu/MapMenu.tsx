@@ -6,6 +6,7 @@ import { MarkerSelection } from "../SMap/utils/getDefaultSelection";
 import ImpureSvg from "./Impure.svg";
 import NormalSvg from "./Normal.svg";
 import PureSvg from "./Pure.svg";
+import ToggleBtnSvg from "./ToggleBtn.svg";
 
 type Props = {
   theme: ThemeInterface;
@@ -162,30 +163,35 @@ class MapMenu extends React.PureComponent<Props> {
   render() {
     return (
       <S.Root>
-        <S.Logo>
-          <source srcSet={require("./logo.png?webp")} type="image/webp" />
-          <source srcSet={require("./logo.png")} type="image/jpeg" />
-          <img src={require("./logo.png")} />
-        </S.Logo>
-        <S.LocateButton>Locate Players</S.LocateButton>
-        <S.Section>
-          <S.SectionTitle>Nodes</S.SectionTitle>
-          <S.SectionContent>
-            <S.SectionSubTitle>Purity</S.SectionSubTitle>
-            <S.Qualities>{this.renderQualities()}</S.Qualities>
-            <S.SectionSubTitle>Type</S.SectionSubTitle>
-            <S.Nodes>{this.renderNodes()}</S.Nodes>
-          </S.SectionContent>
-        </S.Section>
-        <S.Section>
-          <S.SectionTitle>
-            <S.SlugIcon />
-            Slugs
-          </S.SectionTitle>
-          <S.SectionContent>
-            <S.Slugs>{this.renderSlugs()}</S.Slugs>
-          </S.SectionContent>
-        </S.Section>
+        <S.CloseBtn>
+          <img src={ToggleBtnSvg} />
+        </S.CloseBtn>
+        <S.Menu>
+          <S.Logo>
+            <source srcSet={require("./logo.png?webp")} type="image/webp" />
+            <source srcSet={require("./logo.png")} type="image/jpeg" />
+            <img src={require("./logo.png")} />
+          </S.Logo>
+          <S.LocateButton>Locate Players</S.LocateButton>
+          <S.Section>
+            <S.SectionTitle>Nodes</S.SectionTitle>
+            <S.SectionContent>
+              <S.SectionSubTitle>Purity</S.SectionSubTitle>
+              <S.Qualities>{this.renderQualities()}</S.Qualities>
+              <S.SectionSubTitle>Type</S.SectionSubTitle>
+              <S.Nodes>{this.renderNodes()}</S.Nodes>
+            </S.SectionContent>
+          </S.Section>
+          <S.Section>
+            <S.SectionTitle>
+              <S.SlugIcon />
+              Slugs
+            </S.SectionTitle>
+            <S.SectionContent>
+              <S.Slugs>{this.renderSlugs()}</S.Slugs>
+            </S.SectionContent>
+          </S.Section>
+        </S.Menu>
       </S.Root>
     );
   }
