@@ -1,17 +1,5 @@
 import styled from "../../themes/styled";
 
-import ironSvg from "../Icons/markers/iron.svg";
-import copperSvg from "../Icons/markers/copper.svg";
-import limestoneSvg from "../Icons/markers/limestone.svg";
-import bauxiteSvg from "../Icons/markers/bauxite.svg";
-import uraniumSvg from "../Icons/markers/uranium.svg";
-import coalSvg from "../Icons/markers/coal.svg";
-import oilSvg from "../Icons/markers/oil.svg";
-import sulfurSvg from "../Icons/markers/sulfur.svg";
-import quartzSvg from "../Icons/markers/quartz.svg";
-import samSvg from "../Icons/markers/sam.svg";
-import cateriumSvg from "../Icons/markers/caterium.svg";
-
 export const Root = styled.div`
   position: relative;
   display: flex;
@@ -28,37 +16,145 @@ export const Root = styled.div`
     background: transparent center bottom no-repeat / contain;
 
     &.node_IRON {
-      background-image: url(${ironSvg});
+      &.node_PURE {
+        background-image: url(${require("../Icons/markers/iron_pure.png")});
+      }
+      &.node_NORMAL {
+        background-image: url(${require("../Icons/markers/iron_normal.png")});
+      }
+      &.node_IMPURE {
+        background-image: url(${require("../Icons/markers/iron_impure.png")});
+      }
     }
     &.node_COPPER {
-      background-image: url(${copperSvg});
+      &.node_PURE {
+        background-image: url(${require("../Icons/markers/copper_pure.png")});
+      }
+      &.node_NORMAL {
+        background-image: url(${require("../Icons/markers/copper_normal.png")});
+      }
+      &.node_IMPURE {
+        background-image: url(${require("../Icons/markers/copper_impure.png")});
+      }
     }
     &.node_LIMESTONE {
-      background-image: url(${limestoneSvg});
+      &.node_PURE {
+        background-image: url(${require("../Icons/markers/limestone_pure.png")});
+      }
+      &.node_NORMAL {
+        background-image: url(${require("../Icons/markers/limestone_normal.png")});
+      }
+      &.node_IMPURE {
+        background-image: url(${require("../Icons/markers/limestone_impure.png")});
+      }
     }
     &.node_BAUXITE {
-      background-image: url(${bauxiteSvg});
+      &.node_PURE {
+        background-image: url(${require("../Icons/markers/bauxite_pure.png")});
+      }
+      &.node_NORMAL {
+        background-image: url(${require("../Icons/markers/bauxite_normal.png")});
+      }
+      &.node_IMPURE {
+        background-image: url(${require("../Icons/markers/bauxite_impure.png")});
+      }
+      
     }
     &.node_URANIUM {
-      background-image: url(${uraniumSvg});
+      &.node_PURE {
+        background-image: url(${require("../Icons/markers/uranium_pure.png")});
+      }
+      &.node_NORMAL {
+        background-image: url(${require("../Icons/markers/uranium_normal.png")});
+      }
+      &.node_IMPURE {
+        background-image: url(${require("../Icons/markers/uranium_impure.png")});
+      }
+      
     }
     &.node_COAL {
-      background-image: url(${coalSvg});
+      &.node_PURE {
+        background-image: url(${require("../Icons/markers/coal_pure.png")});
+      }
+      &.node_NORMAL {
+        background-image: url(${require("../Icons/markers/coal_normal.png")});
+      }
+      &.node_IMPURE {
+        background-image: url(${require("../Icons/markers/coal_impure.png")});
+      }
+      
     }
     &.node_OIL {
-      background-image: url(${oilSvg});
+      &.node_PURE {
+        background-image: url(${require("../Icons/markers/oil_pure.png")});
+      }
+      &.node_NORMAL {
+        background-image: url(${require("../Icons/markers/oil_normal.png")});
+      }
+      &.node_IMPURE {
+        background-image: url(${require("../Icons/markers/oil_impure.png")});
+      }
+      
     }
     &.node_SULFUR {
-      background-image: url(${sulfurSvg});
+      &.node_PURE {
+        background-image: url(${require("../Icons/markers/sulfur_pure.png")});
+      }
+      &.node_NORMAL {
+        background-image: url(${require("../Icons/markers/sulfur_normal.png")});
+      }
+      &.node_IMPURE {
+        background-image: url(${require("../Icons/markers/sulfur_impure.png")});
+      }
+      
     }
     &.node_QUARTZ {
-      background-image: url(${quartzSvg});
+      &.node_PURE {
+        background-image: url(${require("../Icons/markers/quartz_pure.png")});
+      }
+      &.node_NORMAL {
+        background-image: url(${require("../Icons/markers/quartz_normal.png")});
+      }
+      &.node_IMPURE {
+        background-image: url(${require("../Icons/markers/quartz_impure.png")});
+      }
+      
     }
     &.node_SAM {
-      background-image: url(${samSvg});
+      &.node_PURE {
+        background-image: url(${require("../Icons/markers/sam_pure.png")});
+      }
+      &.node_NORMAL {
+        background-image: url(${require("../Icons/markers/sam_normal.png")});
+      }
+      &.node_IMPURE {
+        background-image: url(${require("../Icons/markers/sam_impure.png")});
+      }
+      
     }
     &.node_CATERIUM {
-      background-image: url(${cateriumSvg});
+      &.node_PURE {
+        background-image: url(${require("../Icons/markers/caterium_pure.png")});
+      }
+      &.node_NORMAL {
+        background-image: url(${require("../Icons/markers/caterium_normal.png")});
+      }
+      &.node_IMPURE {
+        background-image: url(${require("../Icons/markers/caterium_impure.png")});
+      }
+      
+    }
+    &.slug_GREEN {
+      /* background-image: url(${greenSvg}); */
+      
+    }
+    &.slug_YELLOW {
+      /* background-image: url(${yellowSvg}); */
+      
+    }
+    &.slug_PURPLE {
+      /* background-image: url(${purpleSvg}); */
+      
     }
   }
 `;

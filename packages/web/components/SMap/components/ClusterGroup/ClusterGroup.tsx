@@ -15,8 +15,6 @@ type Props<T> = {
   rerender?: number;
 };
 
-import ironSvg from "../../../Icons/markers/iron.svg";
-
 export class ClusterGroup<T extends MarkerFragment> extends Component<
   Props<T>
 > {
@@ -41,7 +39,11 @@ export class ClusterGroup<T extends MarkerFragment> extends Component<
       DROP_PODS: 0
     };
 
-    cluster.getAllChildMarkers().map(child => {
+    const childrenMarkers = cluster.getAllChildMarkers();
+    // @ts-ignore
+    const markerSample = childrenMarkers[0].options.position as T;
+
+    childrenMarkers.map(child => {
       // @ts-ignore
       const marker = child.options.position as T;
 
@@ -61,8 +63,18 @@ export class ClusterGroup<T extends MarkerFragment> extends Component<
       }
     });
 
+    if (markerSample.target.__typename === "Slug") {
+      return L.divIcon({
+        iconSize: [60, 60],
+        // html: `${childrenMarkers.length}`,
+        className: `slug_${markerSample.target.slugType}`,
+        iconAnchor: [20, 20],
+        popupAnchor: [0, -60]
+      });
+    }
+
     return L.icon({
-      iconUrl: ironSvg,
+      iconUrl: "",
       iconSize: [42, 66],
       iconAnchor: [21, 64],
       popupAnchor: [0, -50]
@@ -70,7 +82,7 @@ export class ClusterGroup<T extends MarkerFragment> extends Component<
   }
 
   render() {
-    const { render, markers, displayed } = this.props;
+    const { render, markers, displayed, clusterSize } = this.props;
 
     console.log("rerender");
 
@@ -84,7 +96,7 @@ export class ClusterGroup<T extends MarkerFragment> extends Component<
         animate={true}
         disableClusteringAtZoom={7}
         iconCreateFunction={this.renderIcon}
-        maxClusterRadius={0}
+        maxClusterRadius={clusterSize}
         chunkedLoading={true}
       >
         {markers.map(m => render(m))}

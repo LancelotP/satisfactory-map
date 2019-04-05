@@ -185,7 +185,9 @@ export const Quality = styled.div`
 
 export const QualityIcon = styled.div`
   display: inline-flex;
-  background-position: center center;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: contain;
   background-repeat: no-repeat;
   width: 40px;
   height: 40px;

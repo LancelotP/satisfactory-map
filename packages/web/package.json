@@ -51,6 +51,7 @@
     "@types/react-leaflet-markercluster": "^2.0.0",
     "@types/styled-components": "^4.1.12",
     "@types/zeit__next-typescript": "^0.1.2",
+    "convert-svg-to-png": "^0.5.0",
     "graphql-code-generator": "^0.18.0",
     "graphql-codegen-fragment-matcher": "^0.18.0",
     "graphql-codegen-typescript-client": "^0.18.0",

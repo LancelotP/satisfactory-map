@@ -12,18 +12,6 @@ import { useTheme } from "../../../../themes/styled";
 import { Popup } from "../Popup/Popup";
 import * as S from "./ResourceNodeMarker.style";
 
-import ironSvg from "../../../Icons/markers/iron.svg";
-import copperSvg from "../../../Icons/markers/copper.svg";
-import limestoneSvg from "../../../Icons/markers/limestone.svg";
-import bauxiteSvg from "../../../Icons/markers/bauxite.svg";
-import uraniumSvg from "../../../Icons/markers/uranium.svg";
-import coalSvg from "../../../Icons/markers/coal.svg";
-import oilSvg from "../../../Icons/markers/oil.svg";
-import sulfurSvg from "../../../Icons/markers/sulfur.svg";
-import quartzSvg from "../../../Icons/markers/quartz.svg";
-import samSvg from "../../../Icons/markers/sam.svg";
-import cateriumSvg from "../../../Icons/markers/caterium.svg";
-
 type Props = {
   marker: MarkerFragment & { target: MarkerResourceNodeInlineFragment };
   iconSize: number;
@@ -136,9 +124,9 @@ const generateIcon = (
   }
 
   return L.divIcon({
-    iconSize: [42, 66],
-    className: `node_${marker.target.rnType}`,
-    iconAnchor: [21, 64],
+    iconSize: [52, 82],
+    className: `node_${marker.target.rnType} node_${marker.target.rnQuality}`,
+    iconAnchor: [26, 82],
     popupAnchor: [0, -50]
   });
 };

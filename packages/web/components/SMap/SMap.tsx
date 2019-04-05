@@ -183,10 +183,15 @@ export class SMap extends React.PureComponent<Props, State> {
   }
 
   handleSelectionChange(
-    selection: State["selection"],
-    qualityChanged: boolean
+    selection: State["selection"]
+    // qualityChanged: boolean
   ) {
-    if (qualityChanged) {
+    // FIXME we can do better than this
+    if (
+      selection.quality.impure !== this.state.selection.quality.impure ||
+      selection.quality.normal !== this.state.selection.quality.normal ||
+      selection.quality.pure !== this.state.selection.quality.pure
+    ) {
       this.setState({ selection, rerender: Math.random() });
     } else {
       this.setState({ selection });
@@ -240,7 +245,10 @@ export class SMap extends React.PureComponent<Props, State> {
             href="https://unpkg.com/react-leaflet-markercluster/dist/styles.min.css"
           />
         </Head>
-        <MapMenu />
+        <MapMenu
+          selection={selection}
+          onSelectionChange={this.handleSelectionChange}
+        />
         {/* <Menu
           iconSize={iconSize}
           onIconSizeChange={this.handleIconSizeChange}
@@ -289,7 +297,7 @@ export class SMap extends React.PureComponent<Props, State> {
             ].map((group, i) => (
               <ClusterGroup
                 key={i}
-                clusterSize={clusterSize}
+                clusterSize={80}
                 rerender={iconSize}
                 markers={group.markers}
                 displayed={group.displayed}
@@ -346,7 +354,7 @@ export class SMap extends React.PureComponent<Props, State> {
             ].map((group, i) => (
               <ClusterGroup
                 key={i}
-                clusterSize={clusterSize}
+                clusterSize={0}
                 rerender={rerender}
                 markers={group.markers}
                 displayed={group.displayed}
@@ -362,7 +370,7 @@ export class SMap extends React.PureComponent<Props, State> {
               />
             ))}
             <ClusterGroup
-              clusterSize={clusterSize}
+              clusterSize={0}
               rerender={iconSize}
               markers={markers.geysers}
               displayed={selection.geysers}
@@ -371,7 +379,7 @@ export class SMap extends React.PureComponent<Props, State> {
               )}
             />
             <ClusterGroup
-              clusterSize={clusterSize}
+              clusterSize={0}
               rerender={iconSize}
               markers={markers.unknowns}
               displayed={selection.unknowns}
@@ -380,7 +388,7 @@ export class SMap extends React.PureComponent<Props, State> {
               )}
             />
             <ClusterGroup
-              clusterSize={clusterSize}
+              clusterSize={0}
               rerender={iconSize}
               markers={markers.dropPods}
               displayed={selection.dropPods}
