@@ -1,6 +1,11 @@
 import { ReactNode, Component } from "react";
+import * as L from "leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
-import { MarkerFragment } from "../../../../__generated__";
+import {
+  MarkerFragment,
+  SlugType,
+  ResourceNodeQuality
+} from "../../../../__generated__";
 
 type Props<T> = {
   render: (m: T) => ReactNode;
@@ -22,8 +27,45 @@ export class ClusterGroup<T extends MarkerFragment> extends Component<
     );
   }
 
+  renderIcon(cluster: L.MarkerCluster) {
+    const children = {
+      N_IMPURE: 0,
+      N_NORMAL: 0,
+      N_PURE: 0,
+      S_GREEN: 0,
+      S_YELLOW: 0,
+      S_PURPLE: 0,
+      GEYSERS: 0,
+      DROP_PODS: 0
+    };
+
+    cluster.getAllChildMarkers().map(child => {
+      // @ts-ignore
+      const marker = child.options.position as T;
+
+      if (marker.target.__typename === "DropPod") {
+        children.DROP_PODS++;
+      } else if (marker.target.__typename === "Slug") {
+        if (marker.target.slugType === SlugType.Green) children.S_GREEN++;
+        if (marker.target.slugType === SlugType.Yellow) children.S_YELLOW++;
+        if (marker.target.slugType === SlugType.Purple) children.S_PURPLE++;
+      } else if (marker.target.__typename === "ResourceNode") {
+        if (marker.target.rnQuality === ResourceNodeQuality.Impure)
+          children.N_IMPURE++;
+        if (marker.target.rnQuality === ResourceNodeQuality.Normal)
+          children.N_NORMAL++;
+        if (marker.target.rnQuality === ResourceNodeQuality.Pure)
+          children.N_PURE++;
+      }
+    });
+
+    return L.divIcon({
+      html: JSON.stringify(children)
+    });
+  }
+
   render() {
-    const { render, markers, displayed, clusterSize } = this.props;
+    const { render, markers, displayed } = this.props;
 
     console.log("rerender");
 
@@ -34,7 +76,10 @@ export class ClusterGroup<T extends MarkerFragment> extends Component<
     return (
       <MarkerClusterGroup
         removeOutsideVisibleBounds={true}
-        maxClusterRadius={clusterSize || 0}
+        animate={true}
+        disableClusteringAtZoom={7}
+        // iconCreateFunction={this.renderIcon}
+        // maxClusterRadius={0}
         chunkedLoading={true}
       >
         {markers.map(m => render(m))}

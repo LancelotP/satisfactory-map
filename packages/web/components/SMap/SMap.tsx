@@ -1,11 +1,6 @@
 import React, { createRef } from "react";
-import {
-  Map,
-  FeatureGroup,
-  TileLayer,
-  Marker,
-  CircleMarker
-} from "react-leaflet";
+import { FeatureGroup, TileLayer, Marker } from "react-leaflet";
+import { Map } from "react-leaflet";
 import * as L from "leaflet";
 import * as S from "./SMap.style";
 import {
@@ -263,6 +258,7 @@ export class SMap extends React.PureComponent<Props, State> {
           center={this.state.center}
           crs={crs}
           ref={this.map}
+          preferCanvas={true}
         >
           <TileLayer
             url="/static/tiles_rework/{z}/{x}/{y}.png"

@@ -29,7 +29,6 @@
     "react-dom": "^16.8.6",
     "react-leaflet": "^2.2.1",
     "react-leaflet-markercluster": "^2.0.0-rc3",
-    "react-leaflet-universal": "^1.2.0",
     "styled-components": "^4.2.0",
     "svg-sprite-loader": "^4.1.3",
     "webp-loader": "^0.4.0"

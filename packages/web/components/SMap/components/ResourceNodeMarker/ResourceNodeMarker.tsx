@@ -12,6 +12,18 @@ import { useTheme } from "../../../../themes/styled";
 import { Popup } from "../Popup/Popup";
 import * as S from "./ResourceNodeMarker.style";
 
+import ironSvg from "../../../Icons/markers/iron.svg";
+import copperSvg from "../../../Icons/markers/copper.svg";
+import limestoneSvg from "../../../Icons/markers/limestone.svg";
+import bauxiteSvg from "../../../Icons/markers/bauxite.svg";
+import uraniumSvg from "../../../Icons/markers/uranium.svg";
+import coalSvg from "../../../Icons/markers/coal.svg";
+import oilSvg from "../../../Icons/markers/oil.svg";
+import sulfurSvg from "../../../Icons/markers/sulfur.svg";
+import quartzSvg from "../../../Icons/markers/quartz.svg";
+import samSvg from "../../../Icons/markers/sam.svg";
+import cateriumSvg from "../../../Icons/markers/caterium.svg";
+
 type Props = {
   marker: MarkerFragment & { target: MarkerResourceNodeInlineFragment };
   iconSize: number;
@@ -103,6 +115,7 @@ const generateIcon = (
   let iconComponent: JSX.Element;
   let fontSize = iconSize / 2;
   let top = iconSize / 10;
+  let iconUrl: string | undefined;
 
   if (marker.target.rnQuality === ResourceNodeQuality.Impure) {
     top += iconSize / 5;
@@ -122,17 +135,58 @@ const generateIcon = (
       break;
   }
 
-  return L.divIcon({
-    iconSize: [iconSize, iconSize],
-    html: renderToStaticMarkup(
-      <S.Root style={{ width: iconSize, height: iconSize }}>
-        {iconComponent}
-        <S.Letter style={{ fontSize, top, color: readableColor(color) }}>
-          {marker.target.rnType[0]}
-        </S.Letter>
-        {marker.obstructed && <ObstructedIcon />}
-      </S.Root>
-    )
+  switch (marker.target.rnType) {
+    case ResourceNodeType.Iron:
+      iconUrl = ironSvg;
+      break;
+    case ResourceNodeType.Copper:
+      iconUrl = copperSvg;
+      break;
+    case ResourceNodeType.Limestone:
+      iconUrl = limestoneSvg;
+      break;
+    case ResourceNodeType.Bauxite:
+      iconUrl = bauxiteSvg;
+      break;
+    case ResourceNodeType.Uranium:
+      iconUrl = uraniumSvg;
+      break;
+    case ResourceNodeType.Coal:
+      iconUrl = coalSvg;
+      break;
+    case ResourceNodeType.Oil:
+      iconUrl = oilSvg;
+      break;
+    case ResourceNodeType.Sulfur:
+      iconUrl = sulfurSvg;
+      break;
+    case ResourceNodeType.Quartz:
+      iconUrl = quartzSvg;
+      break;
+    case ResourceNodeType.Sam:
+      iconUrl = samSvg;
+      break;
+    case ResourceNodeType.Caterium:
+      iconUrl = cateriumSvg;
+      break;
+  }
+
+  console.log(samSvg);
+
+  return L.icon({
+    iconSize: [42, 66],
+    iconAnchor: [21, 64],
+    popupAnchor: [0, -50],
+    iconUrl: iconUrl!
+    // html: renderToStaticMarkup(
+    //   <S.Root style={{ width: iconSize, height: iconSize }}>
+    //     {iconComponent}
+    //     <S.Letter style={{ fontSize, top, color: readableColor(color) }}>
+    //       {marker.target.rnType[0]}
+    //     </S.Letter>
+    //     {marker.obstructed && <ObstructedIcon />}
+    //   </S.Root>
+    // )
   });
 };
 
