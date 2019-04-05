@@ -15,6 +15,8 @@ type Props<T> = {
   rerender?: number;
 };
 
+import ironSvg from "../../../Icons/markers/iron.svg";
+
 export class ClusterGroup<T extends MarkerFragment> extends Component<
   Props<T>
 > {
@@ -59,8 +61,11 @@ export class ClusterGroup<T extends MarkerFragment> extends Component<
       }
     });
 
-    return L.divIcon({
-      html: JSON.stringify(children)
+    return L.icon({
+      iconUrl: ironSvg,
+      iconSize: [42, 66],
+      iconAnchor: [21, 64],
+      popupAnchor: [0, -50]
     });
   }
 
@@ -78,7 +83,7 @@ export class ClusterGroup<T extends MarkerFragment> extends Component<
         removeOutsideVisibleBounds={true}
         animate={true}
         disableClusteringAtZoom={7}
-        // iconCreateFunction={this.renderIcon}
+        iconCreateFunction={this.renderIcon}
         // maxClusterRadius={0}
         chunkedLoading={true}
       >

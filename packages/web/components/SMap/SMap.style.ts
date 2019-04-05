@@ -1,5 +1,17 @@
 import styled from "../../themes/styled";
 
+import ironSvg from "../Icons/markers/iron.svg";
+import copperSvg from "../Icons/markers/copper.svg";
+import limestoneSvg from "../Icons/markers/limestone.svg";
+import bauxiteSvg from "../Icons/markers/bauxite.svg";
+import uraniumSvg from "../Icons/markers/uranium.svg";
+import coalSvg from "../Icons/markers/coal.svg";
+import oilSvg from "../Icons/markers/oil.svg";
+import sulfurSvg from "../Icons/markers/sulfur.svg";
+import quartzSvg from "../Icons/markers/quartz.svg";
+import samSvg from "../Icons/markers/sam.svg";
+import cateriumSvg from "../Icons/markers/caterium.svg";
+
 export const Root = styled.div`
   position: relative;
   display: flex;
@@ -9,9 +21,45 @@ export const Root = styled.div`
     background-color: #7b7b75;
   }
 
-  & .leaflet-div-icon {
+  & .leaflet-marker-icon {
     background: none;
     border: none;
+
+    background: transparent center bottom no-repeat / contain;
+
+    &.node_IRON {
+      background-image: url(${ironSvg});
+    }
+    &.node_COPPER {
+      background-image: url(${copperSvg});
+    }
+    &.node_LIMESTONE {
+      background-image: url(${limestoneSvg});
+    }
+    &.node_BAUXITE {
+      background-image: url(${bauxiteSvg});
+    }
+    &.node_URANIUM {
+      background-image: url(${uraniumSvg});
+    }
+    &.node_COAL {
+      background-image: url(${coalSvg});
+    }
+    &.node_OIL {
+      background-image: url(${oilSvg});
+    }
+    &.node_SULFUR {
+      background-image: url(${sulfurSvg});
+    }
+    &.node_QUARTZ {
+      background-image: url(${quartzSvg});
+    }
+    &.node_SAM {
+      background-image: url(${samSvg});
+    }
+    &.node_CATERIUM {
+      background-image: url(${cateriumSvg});
+    }
   }
 `;
 

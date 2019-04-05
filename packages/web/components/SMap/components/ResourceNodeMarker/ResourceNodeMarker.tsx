@@ -135,58 +135,11 @@ const generateIcon = (
       break;
   }
 
-  switch (marker.target.rnType) {
-    case ResourceNodeType.Iron:
-      iconUrl = ironSvg;
-      break;
-    case ResourceNodeType.Copper:
-      iconUrl = copperSvg;
-      break;
-    case ResourceNodeType.Limestone:
-      iconUrl = limestoneSvg;
-      break;
-    case ResourceNodeType.Bauxite:
-      iconUrl = bauxiteSvg;
-      break;
-    case ResourceNodeType.Uranium:
-      iconUrl = uraniumSvg;
-      break;
-    case ResourceNodeType.Coal:
-      iconUrl = coalSvg;
-      break;
-    case ResourceNodeType.Oil:
-      iconUrl = oilSvg;
-      break;
-    case ResourceNodeType.Sulfur:
-      iconUrl = sulfurSvg;
-      break;
-    case ResourceNodeType.Quartz:
-      iconUrl = quartzSvg;
-      break;
-    case ResourceNodeType.Sam:
-      iconUrl = samSvg;
-      break;
-    case ResourceNodeType.Caterium:
-      iconUrl = cateriumSvg;
-      break;
-  }
-
-  console.log(samSvg);
-
-  return L.icon({
+  return L.divIcon({
     iconSize: [42, 66],
+    className: `node_${marker.target.rnType}`,
     iconAnchor: [21, 64],
-    popupAnchor: [0, -50],
-    iconUrl: iconUrl!
-    // html: renderToStaticMarkup(
-    //   <S.Root style={{ width: iconSize, height: iconSize }}>
-    //     {iconComponent}
-    //     <S.Letter style={{ fontSize, top, color: readableColor(color) }}>
-    //       {marker.target.rnType[0]}
-    //     </S.Letter>
-    //     {marker.obstructed && <ObstructedIcon />}
-    //   </S.Root>
-    // )
+    popupAnchor: [0, -50]
   });
 };
 
