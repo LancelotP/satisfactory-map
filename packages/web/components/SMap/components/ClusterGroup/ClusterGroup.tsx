@@ -84,7 +84,7 @@ export class ClusterGroup<T extends MarkerFragment> extends Component<
         animate={true}
         disableClusteringAtZoom={7}
         iconCreateFunction={this.renderIcon}
-        // maxClusterRadius={0}
+        maxClusterRadius={0}
         chunkedLoading={true}
       >
         {markers.map(m => render(m))}
