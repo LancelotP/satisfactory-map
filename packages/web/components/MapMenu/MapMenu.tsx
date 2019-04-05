@@ -14,9 +14,17 @@ type Props = {
   onSelectionChange: (s: MarkerSelection) => void;
 };
 
-class MapMenu extends React.PureComponent<Props> {
+type State = {
+  isOpen: boolean;
+};
+
+class MapMenu extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
+
+    this.state = {
+      isOpen: false
+    };
 
     this.renderQualities = this.renderQualities.bind(this);
   }
@@ -161,9 +169,11 @@ class MapMenu extends React.PureComponent<Props> {
   }
 
   render() {
+    const { isOpen } = this.state;
+
     return (
       <S.Root>
-        <S.CloseBtn>
+        <S.CloseBtn onClick={() => this.setState({ isOpen: !isOpen })}>
           <img src={ToggleBtnSvg} />
         </S.CloseBtn>
         <S.Menu>
