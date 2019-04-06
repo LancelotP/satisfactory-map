@@ -8,6 +8,7 @@
     "@zeit/next-typescript": "^1.1.1",
     "apollo-boost": "^0.3.1",
     "encoding": "^0.1.12",
+    "express": "^4.16.4",
     "graphql": "^14.2.1",
     "graphql-tag": "^2.10.1",
     "imagemin-mozjpeg": "^8.0.0",
@@ -34,13 +35,13 @@
     "webp-loader": "^0.4.0"
   },
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "export": "next export",
-    "start": "next start",
+    "dev": "nodemon",
+    "build": "next build && tsc --project tsconfig.server.json",
+    "start": "cross-env NODE_ENV=production node dist/index.js",
     "gen": "gql-gen"
   },
   "devDependencies": {
+    "@types/express": "^4.16.1",
     "@types/leaflet": "^1.4.3",
     "@types/lodash.get": "^4.4.6",
     "@types/lodash.set": "^4.3.6",
@@ -56,6 +57,8 @@
     "graphql-codegen-fragment-matcher": "^0.18.0",
     "graphql-codegen-typescript-client": "^0.18.0",
     "graphql-codegen-typescript-common": "^0.18.0",
-    "graphql-codegen-typescript-react-apollo": "^0.18.0"
+    "graphql-codegen-typescript-react-apollo": "^0.18.0",
+    "nodemon": "^1.18.10",
+    "ts-node": "^8.0.3"
   }
 }

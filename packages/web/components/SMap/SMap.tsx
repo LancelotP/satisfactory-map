@@ -58,7 +58,7 @@ export class SMap extends React.PureComponent<Props, State> {
 
     this.state = {
       selection: getDefaultSelection(),
-      iconSize: 30,
+      iconSize: 1,
       clusterSize: 0,
       rerender: Math.random(),
       locating: false,

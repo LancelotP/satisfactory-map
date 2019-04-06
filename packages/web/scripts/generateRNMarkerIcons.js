@@ -32,21 +32,33 @@ const options = {
 };
 
 colors.map(async color => {
-  const [purePng, normalPng, impurePng] = await Promise.all([
-    convert(pureIconString.replace(/#AA8F00/g, color.value), options),
-    convert(normalIconString.replace(/#AA8F00/g, color.value), options),
-    convert(impureIconString.replace(/#AA8F00/g, color.value), options)
-  ]);
+  // const [purePng, normalPng, impurePng] = await Promise.all([
+  //   convert(pureIconString.replace(/#AA8F00/g, color.value), options),
+  //   convert(normalIconString.replace(/#AA8F00/g, color.value), options),
+  //   convert(impureIconString.replace(/#AA8F00/g, color.value), options)
+  // ]);
 
   await Promise.all([
     new Promise(r =>
-      fs.writeFile(`${__dirname}/output/${color.key}_pure.png`, purePng, r)
+      fs.writeFile(
+        `${__dirname}/output/${color.key}_pure.svg`,
+        pureIconString.replace(/#AA8F00/g, color.value),
+        r
+      )
     ),
     new Promise(r =>
-      fs.writeFile(`${__dirname}/output/${color.key}_normal.png`, normalPng, r)
+      fs.writeFile(
+        `${__dirname}/output/${color.key}_normal.svg`,
+        normalIconString.replace(/#AA8F00/g, color.value),
+        r
+      )
     ),
     new Promise(r =>
-      fs.writeFile(`${__dirname}/output/${color.key}_impure.png`, impurePng, r)
+      fs.writeFile(
+        `${__dirname}/output/${color.key}_impure.svg`,
+        impureIconString.replace(/#AA8F00/g, color.value),
+        r
+      )
     )
   ]);
 });

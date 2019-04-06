@@ -1,16 +1,14 @@
-import { renderToStaticMarkup } from "react-dom/server";
 import { readableColor } from "polished";
 import { Marker } from "react-leaflet";
 import * as L from "leaflet";
 import {
   MarkerFragment,
-  MarkerResourceNodeInlineFragment,
-  ResourceNodeType,
-  ResourceNodeQuality
+  MarkerResourceNodeInlineFragment
 } from "../../../../__generated__";
-import { useTheme } from "../../../../themes/styled";
 import { Popup } from "../Popup/Popup";
-import * as S from "./ResourceNodeMarker.style";
+
+const DEFAULT_MARKER_WIDTH = 52;
+const DEFAULT_MARKER_HEIGHT = 82;
 
 type Props = {
   marker: MarkerFragment & { target: MarkerResourceNodeInlineFragment };
@@ -19,55 +17,23 @@ type Props = {
 
 export const ResourceNodeMarker = (props: Props) => {
   const { marker, iconSize } = props;
-  const {
-    colors: {
-      markers: { resourceNodes }
-    }
-  } = useTheme();
-
-  let color;
-
-  switch (marker.target.rnType) {
-    case ResourceNodeType.Iron:
-      color = resourceNodes.iron;
-      break;
-    case ResourceNodeType.Copper:
-      color = resourceNodes.copper;
-      break;
-    case ResourceNodeType.Limestone:
-      color = resourceNodes.limestone;
-      break;
-    case ResourceNodeType.Bauxite:
-      color = resourceNodes.bauxite;
-      break;
-    case ResourceNodeType.Uranium:
-      color = resourceNodes.uranium;
-      break;
-    case ResourceNodeType.Coal:
-      color = resourceNodes.coal;
-      break;
-    case ResourceNodeType.Oil:
-      color = resourceNodes.oil;
-      break;
-    case ResourceNodeType.Sulfur:
-      color = resourceNodes.sulfur;
-      break;
-    case ResourceNodeType.Quartz:
-      color = resourceNodes.quartz;
-      break;
-    case ResourceNodeType.Sam:
-      color = resourceNodes.sam;
-      break;
-    case ResourceNodeType.Caterium:
-      color = resourceNodes.caterium;
-      break;
-    default:
-      color = "red";
-  }
 
   return (
     <Marker
-      icon={generateIcon(marker, color, iconSize)}
+      icon={L.divIcon({
+        iconSize: [
+          iconSize * DEFAULT_MARKER_WIDTH,
+          iconSize * DEFAULT_MARKER_HEIGHT
+        ],
+        className: `node_${marker.target.rnType} node_${
+          marker.target.rnQuality
+        }`,
+        iconAnchor: [
+          (iconSize * DEFAULT_MARKER_WIDTH) / 2,
+          iconSize * DEFAULT_MARKER_HEIGHT
+        ],
+        popupAnchor: [0, -(iconSize * DEFAULT_MARKER_HEIGHT)]
+      })}
       position={props.marker}
     >
       <Popup>
@@ -94,87 +60,3 @@ export const ResourceNodeMarker = (props: Props) => {
     </Marker>
   );
 };
-
-const generateIcon = (
-  marker: Props["marker"],
-  color: string,
-  iconSize: number = 30
-) => {
-  let iconComponent: JSX.Element;
-  let fontSize = iconSize / 2;
-  let top = iconSize / 10;
-  let iconUrl: string | undefined;
-
-  if (marker.target.rnQuality === ResourceNodeQuality.Impure) {
-    top += iconSize / 5;
-  } else if (marker.target.rnQuality === ResourceNodeQuality.Pure) {
-    top += iconSize / 20;
-  }
-
-  switch (marker.target.rnQuality) {
-    case ResourceNodeQuality.Pure:
-      iconComponent = <PureIcon color={color} />;
-      break;
-    case ResourceNodeQuality.Normal:
-      iconComponent = <NormalIcon color={color} />;
-      break;
-    default:
-      iconComponent = <ImpureIcon color={color} />;
-      break;
-  }
-
-  return L.divIcon({
-    iconSize: [52, 82],
-    className: `node_${marker.target.rnType} node_${marker.target.rnQuality}`,
-    iconAnchor: [26, 82],
-    popupAnchor: [0, -50]
-  });
-};
-
-type IconProps = { color: string };
-
-const ImpureIcon = ({ color }: IconProps) => (
-  <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M20 2.24L1.62 39h36.76L20 2.24z"
-      fill={color}
-      stroke="#fff"
-      strokeWidth="2"
-      fillRule="evenodd"
-    />
-  </svg>
-);
-
-const NormalIcon = ({ color }: IconProps) => (
-  <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M1.6 20L20 1.6 38.4 20 20 38.4z"
-      fill={color}
-      stroke="#fff"
-      strokeWidth="2"
-      fillRule="evenodd"
-    />
-  </svg>
-);
-
-const PureIcon = ({ color }: IconProps) => (
-  <svg viewBox="0 0 38 37" version="1" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M29 34l-2-11 9-8-12-2-5-11-5 11-12 2 9 8-2 11 10-5 10 5z"
-      fill={color}
-      stroke="#fff"
-      strokeWidth="2"
-      fillRule="evenodd"
-    />
-  </svg>
-);
-
-const ObstructedIcon = () => (
-  <S.Obstruction
-    xmlns="http://www.w3.org/2000/svg"
-    version="1"
-    viewBox="0 0 1000 1000"
-  >
-    <path d="M633 500l329 329c37 37 37 95 0 133-17 17-43 28-67 28-23 0-49-11-66-29L500 633 171 962c-17 17-43 28-67 28-23 0-49-11-66-29a92 92 0 0 1 0-132l329-329L38 171a92 92 0 0 1 0-133c38-38 95-38 133 0l329 329L829 38c38-38 95-38 133 0 37 37 37 95 0 133L633 500z" />
-  </S.Obstruction>
-);
