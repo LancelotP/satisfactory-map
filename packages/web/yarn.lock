@@ -976,6 +976,13 @@
     "@types/react" "*"
     "@types/webpack" "*"
 
+"@types/react-modal@^3.8.1":
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/@types/react-modal/-/react-modal-3.8.1.tgz#232a8fb99103e13f35bb1604a67ab32e9d938d98"
+  integrity sha512-uX6R/34N7R/9BIAlP9MdSDnEGmzfsfcaZfvilNgw/r7lXcp7Hs2J5+AYpVrxk+hDMqCGQMZjMRVeRTmN8/4Bxg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-native@*":
   version "0.57.42"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.57.42.tgz#06ad92cd1378146402b7667de13cb7b935d194d6"
@@ -3750,6 +3757,11 @@ executable@^4.1.0:
   integrity sha512-8iA79xD3uAch729dUG8xaaBBFGaEa0wdD2VkYLFHwlqosEj/jT66AzcreRDSgV7ehnNLBW2WR5jIXwGKjVdTLg==
   dependencies:
     pify "^2.2.0"
+
+exenv@^1.2.0:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+  integrity sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=
 
 expand-brackets@^0.1.4:
   version "0.1.5"
@@ -8031,10 +8043,20 @@ react-leaflet@^2.2.1:
     hoist-non-react-statics "^3.3.0"
     warning "^4.0.3"
 
-react-lifecycles-compat@^3.0.4:
+react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-modal@^3.8.1:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.8.1.tgz#7300f94a6f92a2e17994de0be6ccb61734464c9e"
+  integrity sha512-aLKeZM9pgXpIKVwopRHMuvqKWiBajkqisDA8UzocdCF6S4fyKVfLWmZR5G1Q0ODBxxxxf2XIwiCP8G/11GJAuw==
+  dependencies:
+    exenv "^1.2.0"
+    prop-types "^15.5.10"
+    react-lifecycles-compat "^3.0.0"
+    warning "^3.0.0"
 
 react@^16.8.6:
   version "16.8.6"
@@ -9946,6 +9968,13 @@ ware@^1.2.0:
   integrity sha1-0bFPOdLiy0q4xAmPdW/ksWTkc9Q=
   dependencies:
     wrap-fn "^0.1.0"
+
+warning@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
+  integrity sha1-MuU3fLVy3kqwR1O9+IIcAe1gW3w=
+  dependencies:
+    loose-envify "^1.0.0"
 
 warning@^4.0.3:
   version "4.0.3"
