@@ -6,11 +6,11 @@ import { MarkerSelection } from "../SMap/utils/getDefaultSelection";
 import ImpureSvg from "./Impure.svg";
 import NormalSvg from "./Normal.svg";
 import PureSvg from "./Pure.svg";
-import ToggleBtnSvg from "./ToggleBtn.svg";
 
 type Props = {
   theme: ThemeInterface;
   selection: MarkerSelection;
+  embed: boolean;
   onSelectionChange: (s: MarkerSelection) => void;
 };
 
@@ -27,6 +27,48 @@ class MapMenu extends React.PureComponent<Props, State> {
     };
 
     this.renderQualities = this.renderQualities.bind(this);
+    this.renderNodes = this.renderNodes.bind(this);
+    this.renderSlugs = this.renderSlugs.bind(this);
+    this.toggleNodes = this.toggleNodes.bind(this);
+    this.toggleSlugs = this.toggleSlugs.bind(this);
+  }
+
+  toggleNodes(val: boolean) {
+    const { selection, onSelectionChange } = this.props;
+
+    return () => {
+      onSelectionChange({
+        ...selection,
+        nodes: {
+          iron: val,
+          copper: val,
+          limestone: val,
+          coal: val,
+          oil: val,
+          caterium: val,
+          sulfur: val,
+          bauxite: val,
+          quartz: val,
+          uranium: val,
+          sam: val
+        }
+      });
+    };
+  }
+
+  toggleSlugs(val: boolean) {
+    const { selection, onSelectionChange } = this.props;
+
+    return () => {
+      onSelectionChange({
+        ...selection,
+        slugs: {
+          green: val,
+          yellow: val,
+          purple: val
+        }
+      });
+    };
   }
 
   renderQualities() {
@@ -150,18 +192,22 @@ class MapMenu extends React.PureComponent<Props, State> {
               }
             })
           }
-          id={`node_${node.key}`}
+          id={`slug_${node.key}`}
           type="checkbox"
           name={node.key}
         />
         <label
-          htmlFor={`node_${node.key}`}
+          htmlFor={`slug_${node.key}`}
           style={{
             backgroundColor: slugs[node.key as keyof typeof slugs],
             borderColor: slugs[node.key as keyof typeof slugs]
           }}
         >
-          <S.SlugIcon />
+          <S.SlugIcon
+            dangerouslySetInnerHTML={{
+              __html: require("./Slug.svg?include")
+            }}
+          />
           {node.name}
         </label>
       </S.Slug>
@@ -170,32 +216,68 @@ class MapMenu extends React.PureComponent<Props, State> {
 
   render() {
     const { isOpen } = this.state;
+    const { embed } = this.props;
 
     return (
-      <S.Root>
-        <S.CloseBtn onClick={() => this.setState({ isOpen: !isOpen })}>
-          <img src={ToggleBtnSvg} />
-        </S.CloseBtn>
+      <S.Root isOpen={isOpen}>
+        <S.CloseBtn
+          dangerouslySetInnerHTML={{
+            __html: require("./ToggleBtn.svg?include")
+          }}
+          onClick={() => this.setState({ isOpen: !isOpen })}
+        />
         <S.Menu>
-          <S.Logo>
-            <source srcSet={require("./logo.png?webp")} type="image/webp" />
-            <source srcSet={require("./logo.png")} type="image/jpeg" />
-            <img src={require("./logo.png")} />
-          </S.Logo>
+          {embed === false && (
+            <S.Logo>
+              <source srcSet={require("./logo.png?webp")} type="image/webp" />
+              <source srcSet={require("./logo.png")} type="image/jpeg" />
+              <img src={require("./logo.png")} />
+            </S.Logo>
+          )}
           <S.LocateButton>Locate Players</S.LocateButton>
           <S.Section>
-            <S.SectionTitle>Nodes</S.SectionTitle>
+            <S.SectionTitle>
+              <h2>Nodes</h2>
+            </S.SectionTitle>
             <S.SectionContent>
-              <S.SectionSubTitle>Purity</S.SectionSubTitle>
+              <S.SectionSubTitle>
+                <h3>Purity</h3>
+              </S.SectionSubTitle>
               <S.Qualities>{this.renderQualities()}</S.Qualities>
-              <S.SectionSubTitle>Type</S.SectionSubTitle>
+              <S.SectionSubTitle>
+                <h3>Type</h3>
+                <S.SectionToggle>
+                  <div>Show</div>
+                  <button type="button" onClick={this.toggleNodes(true)}>
+                    All
+                  </button>
+                  <button type="button" onClick={this.toggleNodes(false)}>
+                    None
+                  </button>
+                </S.SectionToggle>
+              </S.SectionSubTitle>
               <S.Nodes>{this.renderNodes()}</S.Nodes>
             </S.SectionContent>
           </S.Section>
           <S.Section>
             <S.SectionTitle>
-              <S.SlugIcon />
-              Slugs
+              <h2>
+                <S.SlugIcon
+                  dangerouslySetInnerHTML={{
+                    __html: require("./Slug.svg?include")
+                  }}
+                />
+                Slugs
+              </h2>
+              <S.SectionToggle>
+                <div>Show</div>
+                <button type="button" onClick={this.toggleSlugs(true)}>
+                  All
+                </button>
+                <button type="button" onClick={this.toggleSlugs(false)}>
+                  None
+                </button>
+              </S.SectionToggle>
             </S.SectionTitle>
             <S.SectionContent>
               <S.Slugs>{this.renderSlugs()}</S.Slugs>

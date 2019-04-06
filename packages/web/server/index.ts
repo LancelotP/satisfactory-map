@@ -18,14 +18,14 @@ async function start(port: number) {
     })
   );
 
-  server.use(
-    "/_next",
-    express.static(__dirname + "/../.next", {
-      setHeaders(res) {
-        res.setHeader("Cache-Control", "public,max-age=31536000");
-      }
-    })
-  );
+  // server.use(
+  //   "/_next",
+  //   express.static(__dirname + "/../.next", {
+  //     setHeaders(res) {
+  //       res.setHeader("Cache-Control", "public,max-age=31536000");
+  //     }
+  //   })
+  // );
 
   server.get("*", (req, res) => handle(req, res));
 

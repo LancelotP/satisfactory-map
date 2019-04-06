@@ -22,7 +22,7 @@ class Home extends React.PureComponent {
             else {
               return (
                 <NOSSRMap
-                  embed={false}
+                  embed={true}
                   markers={data!.markers.edges.map(edge => edge.node)}
                 />
               );

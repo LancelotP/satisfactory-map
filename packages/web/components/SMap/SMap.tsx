@@ -33,6 +33,7 @@ const crs = L.extend({}, L.CRS.Simple, {
 
 type Props = {
   markers: MarkerFragment[];
+  embed: boolean;
 };
 
 type State = {
@@ -230,6 +231,7 @@ export class SMap extends React.PureComponent<Props, State> {
       markers,
       locating
     } = this.state;
+    const { embed } = this.props;
 
     return (
       <S.Root>
@@ -248,6 +250,7 @@ export class SMap extends React.PureComponent<Props, State> {
         <MapMenu
           selection={selection}
           onSelectionChange={this.handleSelectionChange}
+          embed={embed}
         />
         {/* <Menu
           iconSize={iconSize}

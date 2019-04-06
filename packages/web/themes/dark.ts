@@ -1,7 +1,7 @@
-export const lightTheme = {
+export const darkTheme = {
   colors: {
-    white: "#fff",
-    black: "#333",
+    black: "#fff",
+    white: "#444",
     primary500: "#E99234",
     primary700: "#FF931E",
     markers: {

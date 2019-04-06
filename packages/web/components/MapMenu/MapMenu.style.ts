@@ -1,18 +1,8 @@
 import styled from "../../themes/styled";
-import slugIcon from "../Icons/slug.svg";
-
-export const Root = styled.aside`
-  flex: 1 1 auto;
-  width: 360px;
-  max-width: calc(100vw - 45px);
-  position: relative;
-  z-index: 10000;
-  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.4);
-`;
 
 export const Menu = styled.div`
   padding: 24px 40px;
-  background: white;
+  background: ${({ theme }) => theme.colors.white};
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
@@ -54,27 +44,73 @@ export const Section = styled.section`
   margin-left: -16px;
 `;
 
-export const SectionTitle = styled.h2`
-  font-size: 32px;
-  line-height: 42px;
-  font-family: "ibm_plex";
-  font-weight: bold;
-  margin: 0;
+export const SectionTitle = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
+
+  & > h2 {
+    color: ${({ theme }) => theme.colors.black};
+    display: flex;
+    align-items: center;
+    font-size: 32px;
+    line-height: 42px;
+    font-family: "ibm_plex";
+    font-weight: bold;
+    margin: 0;
+  }
 `;
 
-export const SectionSubTitle = styled.h3`
-  margin: 0;
+export const SectionSubTitle = styled.div`
   margin-top: 24px;
-  font-size: 16px;
-  line-height: 20px;
-  font-family: "ibm_plex";
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & > h3 {
+    color: ${({ theme }) => theme.colors.black};
+    margin: 0;
+    font-size: 16px;
+    line-height: 20px;
+    font-family: "ibm_plex";
+    font-weight: bold;
+  }
 `;
 
 export const SectionContent = styled.div`
   padding-left: 24px;
+`;
+
+export const SectionToggle = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > div {
+    margin-right: 24px;
+    font-family: noto;
+    font-size: 16px;
+    line-height: 22px;
+    color: ${({ theme }) => theme.colors.black};
+  }
+
+  & > button {
+    margin-left: 8px;
+    padding: 0;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family: noto;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+    color: #3455db;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
 `;
 
 export const Nodes = styled.div`
@@ -94,7 +130,7 @@ export const Node = styled.div`
   }
 
   & > input:not(:checked) + label {
-    color: black;
+    color: ${({ theme }) => theme.colors.black};
     background: transparent !important;
   }
 
@@ -127,14 +163,18 @@ export const Slug = styled.div`
   }
 
   & > input:not(:checked) + label {
-    color: black;
+    color: ${({ theme }) => theme.colors.black};
     background: transparent !important;
+    & svg > path {
+      transition: all 0.242s ease;
+      fill: ${({ theme }) => theme.colors.black};
+    }
   }
 
   & > label {
     padding: 8px 0;
     transition: all 0.242s ease;
-    color: white;
+    color: ${({ theme }) => theme.colors.white};
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -142,17 +182,27 @@ export const Slug = styled.div`
     justify-content: center;
     cursor: pointer;
     border: 2px solid;
+    & svg > path {
+      fill: ${({ theme }) => theme.colors.white};
+    }
   }
 `;
 
 export const SlugIcon = styled.div`
   display: inline-flex;
-  background-position: center center;
-  background-size: contain;
-  background-image: url(${slugIcon});
-  background-repeat: no-repeat;
+  align-items: center;
+  justify-content: center;
   width: 40px;
   height: 40px;
+
+  & > svg {
+    width: 40px;
+    height: 40px;
+
+    & > path {
+      fill: ${({ theme }) => theme.colors.black};
+    }
+  }
 `;
 
 export const Qualities = styled.div`
@@ -171,7 +221,7 @@ export const Quality = styled.div`
   }
 
   & > input:not(:checked) + label {
-    color: black;
+    color: ${({ theme }) => theme.colors.black};
     background: transparent;
   }
 
@@ -179,7 +229,7 @@ export const Quality = styled.div`
     background: ${({ theme }) => theme.colors.primary500};
     padding: 8px 0;
     transition: all 0.242s ease;
-    color: white;
+    color: ${({ theme }) => theme.colors.white};
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -214,12 +264,45 @@ export const CloseBtn = styled.div`
   box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.4);
   cursor: pointer;
 
-  & > img {
+  & > svg {
     width: 20px;
     height: 20px;
     position: absolute;
-    transform: rotate(-45deg);
     top: 12px;
     right: 12px;
+
+    & > path {
+      fill: ${({ theme }) => theme.colors.black};
+    }
+  }
+`;
+
+export const Root = styled.aside<{ isOpen: boolean }>`
+  flex: 0 0 auto;
+  max-width: calc(100vw - 45px);
+  position: relative;
+  z-index: 10000;
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.4);
+  transition: width 0.242s ease;
+  /* overflow: hidden; */
+
+  & > ${Menu} {
+    width: ${({ isOpen }) => (isOpen ? 360 : 0)}px;
+    padding: ${({ isOpen }) => (isOpen ? "24px 40px" : 0)};
+  }
+
+  & ${CloseBtn} > svg {
+    transform: rotate(${({ isOpen }) => (isOpen ? -45 : -225)}deg);
+  }
+
+  @media (min-width: 1200px) {
+    & > ${Menu} {
+      width: 360px;
+      padding: 24px 40px;
+    }
+
+    & ${CloseBtn} {
+      display: none;
+    }
   }
 `;
