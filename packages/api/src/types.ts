@@ -93,7 +93,11 @@ export interface MarkersConnectionEdge extends Edge {
 export interface Marker {
   id: string;
 
-  position: MarkerPoint;
+  lat: number;
+
+  lng: number;
+
+  alt?: Maybe<number>;
 
   target: MarkerTarget;
 
@@ -104,14 +108,6 @@ export interface Marker {
   createdAt: Date;
 
   updatedAt: Date;
-}
-
-export interface MarkerPoint {
-  x: number;
-
-  y: number;
-
-  z: number;
 }
 
 export interface ResourceNode {
@@ -370,7 +366,11 @@ export type MarkersConnectionEdgeNodeResolver<
 export interface MarkerResolvers<TContext = GQLContext, TypeParent = Marker> {
   id?: MarkerIdResolver<string, TypeParent, TContext>;
 
-  position?: MarkerPositionResolver<MarkerPoint, TypeParent, TContext>;
+  lat?: MarkerLatResolver<number, TypeParent, TContext>;
+
+  lng?: MarkerLngResolver<number, TypeParent, TContext>;
+
+  alt?: MarkerAltResolver<Maybe<number>, TypeParent, TContext>;
 
   target?: MarkerTargetResolver<MarkerTarget, TypeParent, TContext>;
 
@@ -388,8 +388,18 @@ export type MarkerIdResolver<
   Parent = Marker,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
-export type MarkerPositionResolver<
-  R = MarkerPoint,
+export type MarkerLatResolver<
+  R = number,
+  Parent = Marker,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type MarkerLngResolver<
+  R = number,
+  Parent = Marker,
+  TContext = GQLContext
+> = Resolver<R, Parent, TContext>;
+export type MarkerAltResolver<
+  R = Maybe<number>,
   Parent = Marker,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
@@ -416,33 +426,6 @@ export type MarkerCreatedAtResolver<
 export type MarkerUpdatedAtResolver<
   R = Date,
   Parent = Marker,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-
-export interface MarkerPointResolvers<
-  TContext = GQLContext,
-  TypeParent = MarkerPoint
-> {
-  x?: MarkerPointXResolver<number, TypeParent, TContext>;
-
-  y?: MarkerPointYResolver<number, TypeParent, TContext>;
-
-  z?: MarkerPointZResolver<number, TypeParent, TContext>;
-}
-
-export type MarkerPointXResolver<
-  R = number,
-  Parent = MarkerPoint,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type MarkerPointYResolver<
-  R = number,
-  Parent = MarkerPoint,
-  TContext = GQLContext
-> = Resolver<R, Parent, TContext>;
-export type MarkerPointZResolver<
-  R = number,
-  Parent = MarkerPoint,
   TContext = GQLContext
 > = Resolver<R, Parent, TContext>;
 
@@ -662,7 +645,6 @@ export interface IResolvers<TContext = GQLContext> {
   PageInfo?: PageInfoResolvers<TContext>;
   MarkersConnectionEdge?: MarkersConnectionEdgeResolvers<TContext>;
   Marker?: MarkerResolvers<TContext>;
-  MarkerPoint?: MarkerPointResolvers<TContext>;
   ResourceNode?: ResourceNodeResolvers<TContext>;
   Slug?: SlugResolvers<TContext>;
   DropPod?: DropPodResolvers<TContext>;

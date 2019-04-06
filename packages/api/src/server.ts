@@ -1,5 +1,6 @@
 import "reflect-metadata";
 
+import * as cors from "cors";
 import * as express from "express";
 import { createServer } from "http";
 
@@ -15,6 +16,12 @@ export async function start() {
 
   const app = express();
   const server = createServer(app);
+
+  app.use(
+    cors({
+      origin: true
+    })
+  );
 
   await createConnection({
     type: "postgres",

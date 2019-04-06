@@ -1,0 +1,21 @@
+fragment Marker on Marker {
+  id
+  lat
+  lng
+  alt
+  obstructed
+  target {
+    ... on ResourceNode {
+      id
+      rnType: type
+      rnQuality: quality
+    }
+    ... on Slug {
+      id
+      slugType: type
+    }
+    ... on DropPod {
+      id
+    }
+  }
+}

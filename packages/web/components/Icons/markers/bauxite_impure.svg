@@ -1,0 +1,21 @@
+<svg viewBox="0 0 52 82" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <path d="M25 54.98l-15-8.66v-6.84l16-9.24 16 9.24v6.84l-15 8.66V78.1a2 2 0 1 1-2 0V54.98zm-13.72-9.4L26 54.08l14.72-8.5v-5.36L26 31.72l-14.72 8.5v5.36z" id="a"/>
+    <path id="c" d="M15.16 49.17v1.85l10.86 3.72 10.86-3.72v-1.85l-10.86-3.72z"/>
+    <filter x="-55.2%" y="-129.1%" width="210.5%" height="358.1%" filterUnits="objectBoundingBox" id="b">
+      <feGaussianBlur stdDeviation="4" in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <use fill="#AA6B51" xlink:href="#a"/>
+    <use fill-opacity=".5" fill="#FFF" xlink:href="#a"/>
+    <g filter="url(#b)">
+      <use fill-opacity=".4" fill="#000" xlink:href="#c"/>
+      <use fill="#AA6B51" style="mix-blend-mode:normal" xlink:href="#c"/>
+    </g>
+    <path fill="#CCC" d="M12 40.88l13.98 8.07 13.98-8.07-13.98-8.07z"/>
+    <path fill="#666" d="M25.98 48.95V53l13.98-8.07v-4.04z"/>
+    <path fill="#999" d="M12 44.92l13.98 8.07v-4.04L12 40.88z"/>
+    <path fill="#AA6B51" style="mix-blend-mode:color" d="M12.04 40.88v4.04l13.98 8.07L40 44.92v-4.04l-13.98-8.07z"/>
+  </g>
+</svg>

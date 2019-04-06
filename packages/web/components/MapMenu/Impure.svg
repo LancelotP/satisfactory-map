@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Marker/2/Impure</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Marker/2/Impure" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2" transform="translate(10.000000, 28.000000)">
+            <polygon id="Fill-1" fill="#CCCCCC" points="0 8.07333333 13.98 16.1433333 27.96 8.07333333 13.98 -2.48689958e-14"></polygon>
+            <polygon id="Fill-2" fill="#666666" points="13.98 16.1433333 13.98 20.1803333 27.96 12.107 27.96 8.07333333"></polygon>
+            <polygon id="Fill-3" fill="#999999" points="2.84217094e-14 12.1071333 13.98 20.1804667 13.98 16.1434667 2.84217094e-14 8.07346667"></polygon>
+        </g>
+        <polygon id="Fill-1" fill="#E6E6E6" style="mix-blend-mode: color;" points="10.04 36.0736667 10.04 40.107 24.0196667 48.1803333 38 40.107 38 36.0736667 24.0196667 28"></polygon>
+    </g>
+</svg>
