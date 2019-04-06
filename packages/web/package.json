@@ -38,8 +38,8 @@
   },
   "scripts": {
     "dev": "nodemon",
-    "build": "next build && tsc --project tsconfig.server.json",
-    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "build": "next build",
+    "start": "next start",
     "gen": "gql-gen"
   },
   "devDependencies": {
@@ -62,6 +62,7 @@
     "graphql-codegen-typescript-common": "^0.18.0",
     "graphql-codegen-typescript-react-apollo": "^0.18.0",
     "nodemon": "^1.18.10",
-    "ts-node": "^8.0.3"
+    "ts-node": "^8.0.3",
+    "typescript": "^3.4.2"
   }
 }
