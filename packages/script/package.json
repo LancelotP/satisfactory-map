@@ -1,0 +1,13 @@
+{
+  "name": "script",
+  "version": "1.0.0",
+  "description": "Command-line scripts performing extraction/edition of data for the save files of Satisfactory",
+  "main": "playerpos.js",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.20.0"
+  },
+  "bin": {
+    "playerpos": "./playerpos.js"
+  }
+}
