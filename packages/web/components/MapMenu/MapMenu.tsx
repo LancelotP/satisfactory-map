@@ -3,6 +3,7 @@ import React from "react";
 import * as S from "./MapMenu.style";
 import { withTheme, ThemeInterface } from "../../themes/styled";
 import { MarkerSelection } from "../SMap/utils/getDefaultSelection";
+import { LocateMeBtn } from "../LocateMeBtn/LocateMeBtn";
 import ImpureSvg from "./Impure.svg";
 import NormalSvg from "./Normal.svg";
 import PureSvg from "./Pure.svg";
@@ -234,7 +235,7 @@ class MapMenu extends React.PureComponent<Props, State> {
               <img src={require("./logo.png")} />
             </S.Logo>
           )}
-          <S.LocateButton>Locate Players</S.LocateButton>
+          <LocateMeBtn />
           <S.Section>
             <S.SectionTitle>
               <h2>Nodes</h2>
