@@ -5,7 +5,8 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "**/node_modules": true
+    "**/node_modules": true,
+    "packages/web/static/tiles_rework": true
   },
   "typescript.tsserver.log": "verbose"
 }

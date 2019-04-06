@@ -74,9 +74,20 @@ export class SMap extends React.PureComponent<Props, State> {
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
     this.handleIconSizeChange = this.handleIconSizeChange.bind(this);
     this.shouldRenderRNNode = this.shouldRenderRNNode.bind(this);
-    this.toggleLocating = this.toggleLocating.bind(this);
     this.persistState = this.persistState.bind(this);
-    this.doLocate = this.doLocate.bind(this);
+    this.handlePlayerLocationChange = this.handlePlayerLocationChange.bind(this);
+  }
+
+  handlePlayerLocationChange(locations: PlayerLocation[]) {
+    this.setState({ players: locations });
+
+    if (locations.length === 1) {
+      const p = locations[0]
+      
+      this.map.current!.leafletElement.setView([p.y, p.x], 7, {
+        animate: true
+      });
+    }
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -149,40 +160,6 @@ export class SMap extends React.PureComponent<Props, State> {
     }
   }
 
-  toggleLocating() {
-    const { locating } = this.state;
-
-    this.setState({ locating: !locating });
-  }
-
-  doLocate() {
-    this.setState({ loadingPlayer: true });
-    const reader = new FileReader();
-    reader.onload = async () => {
-      try {
-        const loc = await getPlayersFromSave(reader.result!);
-        if (loc.length === 0) {
-          throw new Error("No players has been found");
-        }
-        this.setState({
-          players: loc,
-          loadingPlayer: false
-        });
-
-        if (loc.length === 1) {
-          this.map.current!.leafletElement.setView([loc[0].y, loc[0].x], 6);
-        }
-
-        this.toggleLocating();
-      } catch (e) {
-        console.log(e);
-        this.setState({ error: true, loadingPlayer: false });
-      }
-    };
-    reader.onerror = console.error;
-    reader.readAsArrayBuffer(this.state.save!);
-  }
-
   handleSelectionChange(
     selection: State["selection"]
     // qualityChanged: boolean
@@ -250,6 +227,7 @@ export class SMap extends React.PureComponent<Props, State> {
         <MapMenu
           selection={selection}
           onSelectionChange={this.handleSelectionChange}
+          onLocationChange={this.handlePlayerLocationChange}
           embed={embed}
         />
         {/* <Menu

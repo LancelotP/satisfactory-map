@@ -13,6 +13,7 @@ type Props = {
   selection: MarkerSelection;
   embed: boolean;
   onSelectionChange: (s: MarkerSelection) => void;
+  onLocationChange: (pos: PlayerLocation[]) => void;
 };
 
 type State = {
@@ -116,7 +117,7 @@ class MapMenu extends React.PureComponent<Props, State> {
         }
       },
       selection,
-      onSelectionChange
+      onSelectionChange,
     } = this.props;
 
     const nodes = [
@@ -217,7 +218,7 @@ class MapMenu extends React.PureComponent<Props, State> {
 
   render() {
     const { isOpen } = this.state;
-    const { embed } = this.props;
+    const { embed, onLocationChange } = this.props;
 
     return (
       <S.Root isOpen={isOpen}>
@@ -235,7 +236,7 @@ class MapMenu extends React.PureComponent<Props, State> {
               <img src={require("./logo.png")} />
             </S.Logo>
           )}
-          <LocateMeBtn />
+          <LocateMeBtn onLocationChange={onLocationChange} />
           <S.Section>
             <S.SectionTitle>
               <h2>Nodes</h2>
