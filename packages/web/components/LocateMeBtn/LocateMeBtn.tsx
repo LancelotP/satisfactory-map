@@ -33,8 +33,10 @@ export class LocateMeBtn extends React.PureComponent<Props, State> {
   }
 
   handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    if (e.target.files.length === 1) {
-      this.setState({ currentSave: e.target.files[0] });
+    if (e.target && e.target.files.length === 1) {
+      this.setState({ currentSave: e.target.files[0] }, () => {
+        this.handleSubmit();
+      });
     }
   }
 
