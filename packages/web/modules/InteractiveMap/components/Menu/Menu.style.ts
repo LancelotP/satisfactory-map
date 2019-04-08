@@ -148,3 +148,11 @@ export const Artifacts = styled.div`
     width: calc(50% - 16px);
   }
 `;
+
+export const GH = styled.a`
+  color: #3455db;
+  text-align: center;
+  padding: 24px;
+  display: block;
+  width: 100%;
+`;

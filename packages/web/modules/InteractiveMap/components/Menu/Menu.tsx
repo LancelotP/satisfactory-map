@@ -414,6 +414,12 @@ export const Menu = (props: Props) => {
           </div>
         </S.Section>
       </S.Content>
+      <S.GH
+        href="https://github.com/LancelotP/satisfactory-map"
+        target="__blank"
+      >
+        Source code available on GitHub
+      </S.GH>
     </S.Root>
   );
 };
