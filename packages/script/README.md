@@ -48,21 +48,21 @@ $ playerpos get -i 0,1 mysave.sav
 You can update locations into the save file of Satisfactory with `set` command
 
 ```
-Usage: set|s [options] <savefile> <axes...>
+Usage: set|s [options] <savefile>
 
 Updates players locations into a save file of Satisfactory
 
 Options:
   -i, --indexes <0,1,2,..>  specifies players indexes to update
-  -x, --x                   specifies whether the X axis is filled
-  -y, --y                   specifies whether the Y axis is filled
-  -z, --z                   specifies whether the Z axis is filled
+  --x <float>               specifies the new X axis value
+  --y <float>               specifies the new Y axis value
+  --z <float>               specifies the new Z axis value
   -h, --help                output usage information
 ```
 You can specify `-i` option for filtering players location
 
 ```
-$ playerpos set -i 0 mysave.sav 123 456 789
+$ playerpos set -i 0 mysave.sav --x=123 --y=456 --z=789
 1 player locations have been changed
 [
   {
@@ -73,11 +73,11 @@ $ playerpos set -i 0 mysave.sav 123 456 789
 ]
 ```
 
-You can specify up to 3 `<axes...>` and map them with `-x`, `-y`, `-z` options, order matters (default mapping is eq. to ```-xyz```)
+You can specify each axis value with `--x`, `--y`, `--z` options (you must put a `=` when dealing with negative numbers, e.g `--x=-1.23`)
 
 If you want to update only the height :
 ```
-$ playerpos.js set -z mysave.sav 5000
+$ playerpos.js set mysave.sav --z=-5000
 4 player locations have been changed
 [
   {
