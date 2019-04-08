@@ -488,7 +488,7 @@ export const dropPods: DropPod[] = [
   {
     itemQuantity: 7,
     type: "droppod",
-    itemName: "Stell Pipe",
+    itemName: "Steel Pipe",
     originId: "PE_DP_3",
     powerNeeded: undefined,
     x: 8680,
