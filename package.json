@@ -7,7 +7,8 @@
     "yarn": "1.13.0"
   },
   "cacheDirectories": [
-    "packages/api/node_modules"
+    "packages/web/node_modules",
+    "packages/web/static/tiles"
   ],
   "scripts": {
     "heroku-postbuild": "cd packages/web && yarn install --production=false && yarn build",
