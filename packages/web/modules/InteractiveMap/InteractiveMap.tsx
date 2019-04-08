@@ -88,6 +88,24 @@ export const InteractiveMap = () => {
   const [players, setPlayers] = useState<PlayerLocation[]>([]);
 
   useEffect(() => {
+    if (typeof localStorage !== undefined) {
+      const storedMode = localStorage.getItem("view_mode");
+
+      if (storedMode === "colorblind") {
+        setMode("colorblind");
+      }
+    }
+  }, []);
+
+  const handleChangeMode = (mode: "default" | "colorblind") => {
+    setMode(mode);
+
+    if (typeof localStorage !== undefined) {
+      localStorage.setItem("view_mode", mode);
+    }
+  };
+
+  useEffect(() => {
     if (typeof location !== "undefined" && location.hash) {
       // @ts-ignore
       const [lat, lng, zoom, filter] = location.hash
@@ -126,7 +144,7 @@ export const InteractiveMap = () => {
           href="https://unpkg.com/react-leaflet-markercluster/dist/styles.min.css"
         />
       </Head>
-      <IconStyleContext.Provider value={{ mode, setMode }}>
+      <IconStyleContext.Provider value={{ mode, setMode: handleChangeMode }}>
         <IconSizeContext.Provider value={{ iconSize, setIconSize }}>
           <SelectionContext.Provider
             value={{ selection, setSelection: handleSelectionChange }}

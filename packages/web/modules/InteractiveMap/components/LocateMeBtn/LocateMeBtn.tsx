@@ -84,7 +84,7 @@ export class LocateMeBtn extends React.PureComponent<Props, State> {
             Please select your gamefile from your computer to display your
             location on the map.
             <p>Satisfactory saves are located here:</p>
-            <S.Path>%LOCALAPPDATA%/FactoryGame/Saved/SaveGames/</S.Path>
+            <S.Path>%LOCALAPPDATA%\FactoryGame\Saved\SaveGames\</S.Path>
             <input onChange={this.handleFileUpload} type="file" accept=".sav" />
             <S.Note>
               Note: we do not upload the file over the internet, it stays in

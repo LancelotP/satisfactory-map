@@ -19,8 +19,22 @@ class MyApp extends App<{}, { theme: "light" | "dark" }> {
     super(props);
 
     this.state = {
-      theme: "light"
+      theme: typeof localStorage !== undefined ? "light" : "dark"
     };
+  }
+
+  componentDidMount() {
+    if (typeof localStorage !== undefined) {
+      const storedTheme = localStorage.getItem("theme");
+
+      if (
+        (storedTheme &&
+          storedTheme !== this.state.theme &&
+          storedTheme === "light") ||
+        storedTheme === "dark"
+      )
+        this.setState({ theme: storedTheme });
+    }
   }
 
   render() {
@@ -32,11 +46,19 @@ class MyApp extends App<{}, { theme: "light" | "dark" }> {
       dark: darkTheme
     };
 
+    const handleThemeChange = (t: "dark" | "light") => {
+      this.setState({ theme: t });
+
+      if (typeof localStorage !== "undefined") {
+        localStorage.setItem("theme", t);
+      }
+    };
+
     return (
       <Container>
         <UserThemeContext.Provider
           value={{
-            setTheme: t => this.setState({ theme: t }),
+            setTheme: handleThemeChange,
             theme
           }}
         >
