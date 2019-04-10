@@ -9,6 +9,6 @@ export const Root = styled.div`
 
   & > ${MenuRoot} {
     flex: 0 0 auto;
-    width: 360px;
+    max-width: calc(100vw - 60px);
   }
 `;

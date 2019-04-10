@@ -41,7 +41,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   @font-face {
-    font-family: 'ibm_plex';
+    font-family: 'IBMPlexSans-Bold';
     src: url('/static/fonts/ibmplexsans-semibold-webfont.woff2') format('woff2'),
          url('/static/fonts/ibmplexsans-semibold-webfont.woff') format('woff');
     font-weight: bold;

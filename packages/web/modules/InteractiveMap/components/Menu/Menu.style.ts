@@ -6,9 +6,14 @@ export const Root = styled.aside`
   overflow-x: hidden;
   overflow-y: scroll;
   color: ${({ theme }) => theme.colors.black};
+  position: relative;
 
   & label {
     display: block;
+  }
+
+  @media (min-width: 1200px) {
+    width: 360px !important;
   }
 `;
 

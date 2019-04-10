@@ -33,6 +33,8 @@ type Props = {
   yellowSlugs: Slug[];
   purpleSlugs: Slug[];
   players: PlayerLocation[];
+  toggleMenu: () => void;
+  isMenuOpen: boolean;
 };
 
 export const Map: React.FunctionComponent<Props> = props => {
@@ -138,6 +140,13 @@ export const Map: React.FunctionComponent<Props> = props => {
           </FeatureGroup>
         </FeatureGroup>
       </LMap>
+      <S.ToggleMenu onClick={props.toggleMenu}>
+        <img
+          style={{ transform: `rotate(${props.isMenuOpen ? -45 : -225}deg)` }}
+          src={require("./arrow.png")}
+          alt="menu handle"
+        />
+      </S.ToggleMenu>
     </S.Root>
   );
 };

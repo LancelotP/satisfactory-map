@@ -86,6 +86,7 @@ export const InteractiveMap = () => {
   const [iconSize, setIconSize] = useState(1);
   const [selection, setSelection] = useState<Selection>(getDefaultSelection());
   const [players, setPlayers] = useState<PlayerLocation[]>([]);
+  const [isMenuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     if (typeof localStorage !== undefined) {
@@ -130,6 +131,10 @@ export const InteractiveMap = () => {
     setSelection(s);
   }
 
+  function toggleMenu() {
+    setMenuOpen(!isMenuOpen);
+  }
+
   return (
     <S.Root>
       <Head>
@@ -150,8 +155,10 @@ export const InteractiveMap = () => {
             value={{ selection, setSelection: handleSelectionChange }}
           >
             <React.Fragment>
-              <Menu onPlayersLoaded={setPlayers} />
+              <Menu isOpen={isMenuOpen} onPlayersLoaded={setPlayers} />
               <NOSSRMap
+                toggleMenu={toggleMenu}
+                isMenuOpen={isMenuOpen}
                 players={players}
                 markers={nodes}
                 greenSlugs={greenSlugs}
