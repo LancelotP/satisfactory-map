@@ -131,7 +131,12 @@ export const InteractiveMap = (props: Props) => {
       .split(";")
       .map(e => parseFloat(e));
 
-    location.hash = `${lat};${lng};${zoom};${getMarkerSelectionHash(s)}`;
+    const location_hash = `${lat};${lng};${zoom};${getMarkerSelectionHash(s)}`;
+    if (history && typeof history.replaceState === "function") {
+      history.replaceState("", "", "#" + location_hash);
+    } else {
+      location.hash = location_hash;
+    }
     setSelection(s);
   }
 

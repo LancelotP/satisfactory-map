@@ -76,9 +76,9 @@ export const Map: React.FunctionComponent<Props> = props => {
     const zoom = leafletMap.getZoom();
 
     const location_hash = `${lat};${lng};${zoom};${hash}`;
-    if( history && typeof history.replaceState === 'function' ){
-      history.replaceState("","","#"+location_hash);
-    }else{
+    if (history && typeof history.replaceState === "function") {
+      history.replaceState("", "", "#" + location_hash);
+    } else {
       location.hash = location_hash;
     }
   }
