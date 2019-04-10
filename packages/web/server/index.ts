@@ -18,6 +18,10 @@ app.prepare().then(() => {
     })
   );
 
+  server.get("/embed/", (req, res) => {
+    return app.render(req, res, "/embed");
+  });
+
   server.get("*", (req, res) => {
     return handle(req, res);
   });
