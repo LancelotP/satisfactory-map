@@ -13,10 +13,11 @@ import { PlayerLocation } from "../LocateMeBtn/getPlayerFromSave";
 type Props = {
   onPlayersLoaded: (p: PlayerLocation[]) => void;
   isOpen: boolean;
+  showLogo: boolean;
 };
 
 export const Menu = (props: Props) => {
-  const { onPlayersLoaded, isOpen } = props;
+  const { onPlayersLoaded, isOpen, showLogo } = props;
   const { setMode } = React.useContext(IconStyleContext);
   const { iconSize, setIconSize } = React.useContext(IconSizeContext);
   const { setTheme } = React.useContext(UserThemeContext);
@@ -39,9 +40,11 @@ export const Menu = (props: Props) => {
 
   return (
     <S.Root style={{ width: isOpen ? 360 : 0 }}>
-      <S.LogoWrapper>
-        <img src={require("./logo.png")} alt="Satisfactory map logo" />
-      </S.LogoWrapper>
+      {showLogo !== false && (
+        <S.LogoWrapper>
+          <img src={require("./logo.png")} alt="Satisfactory map logo" />
+        </S.LogoWrapper>
+      )}
       <S.Content>
         <LocateMeBtn onLocationChange={onPlayersLoaded} />
         <S.Title>Nodes</S.Title>

@@ -81,7 +81,11 @@ export const SelectionContext = React.createContext<{
   setSelection: () => null
 });
 
-export const InteractiveMap = () => {
+type Props = {
+  embed?: boolean;
+};
+
+export const InteractiveMap = (props: Props) => {
   const [mode, setMode] = useState<"default" | "colorblind">("default");
   const [iconSize, setIconSize] = useState(1);
   const [selection, setSelection] = useState<Selection>(getDefaultSelection());
@@ -155,7 +159,11 @@ export const InteractiveMap = () => {
             value={{ selection, setSelection: handleSelectionChange }}
           >
             <React.Fragment>
-              <Menu isOpen={isMenuOpen} onPlayersLoaded={setPlayers} />
+              <Menu
+                showLogo={props.embed === true ? false : true}
+                isOpen={isMenuOpen}
+                onPlayersLoaded={setPlayers}
+              />
               <NOSSRMap
                 toggleMenu={toggleMenu}
                 isMenuOpen={isMenuOpen}
