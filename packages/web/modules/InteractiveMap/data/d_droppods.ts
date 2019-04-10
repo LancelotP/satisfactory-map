@@ -721,7 +721,7 @@ export const dropPods: DropPod[] = [
     type: "droppod",
     itemName: undefined,
     originId: "PE2_DP_41_8375",
-    powerNeeded: undefined,
+    powerNeeded: 40,
     x: -9988.3759765625,
     y: 227625.5,
     z: -1017.2890625,
