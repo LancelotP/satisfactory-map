@@ -5,9 +5,12 @@
   "main": "playerpos.js",
   "license": "MIT",
   "dependencies": {
-    "commander": "^2.20.0"
+    "commander": "^2.20.0",
+    "rbush-3d": "^0.0.4"
   },
   "bin": {
-    "playerpos": "./playerpos.js"
+    "playerpos": "./playerpos.js",
+    "gensave": "./gensave.js",
+    "extract": "./extract.js"
   }
 }

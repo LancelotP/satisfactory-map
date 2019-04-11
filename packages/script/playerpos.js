@@ -12,48 +12,22 @@ function list(val) {
   return val.split(',');
 }
 
-function getNewLocation(axes, cmd) {
-  let axesIndexes = {
-    x: Object.keys(cmd).indexOf('x'),
-    y: Object.keys(cmd).indexOf('y'),
-    z: Object.keys(cmd).indexOf('z')
-  }
-
-  let min = Math.min.apply(null, Object.values(axesIndexes).filter(n => n != -1));
-  
-  if(min == Infinity) {
-    axesIndexes = {
-      x: 0,
-      y: 1,
-      z: 2
-    }
-  } else {
-    axesIndexes = {
-      x: axesIndexes.x - min,
-      y: axesIndexes.y - min,
-      z: axesIndexes.z - min
-    }
-  }
-  
-  let x = axes[axesIndexes['x']] ? Number(axes[axesIndexes['x']]) : undefined;
-  let y = axes[axesIndexes['y']] ? Number(axes[axesIndexes['y']]) : undefined;
-  let z = axes[axesIndexes['z']] ? Number(axes[axesIndexes['z']]) : undefined;
-  
+function getNewLocation(x, y, z) {
   if(x !== undefined && isNaN(x)) {
-    console.error('error: `x axis` is not a float : ' + axes[axesIndexes['x']]);
+    console.error('error: `X axis` is not a float : ' + x);
     process.exit(1);
   }
   
   if(y !== undefined && isNaN(y)) {
-    console.error('error: `y axis` is not a float : ' + axes[axesIndexes['y']]);
+    console.error('error: `Y axis` is not a float : ' + y);
     process.exit(1);
   }
   
   if(z !== undefined && isNaN(z)) {
-    console.error('error: `z axis` is not a float : ' + axes[axesIndexes['z']]);
+    console.error('error: `Z axis` is not a float : ' + z);
     process.exit(1);
   }
-
+  
   let newLocation = {
     x: x,
     y: y,
@@ -100,7 +74,7 @@ function getPlayerLocations(savefile, playerIndexes) {
   console.info(JSON.stringify(playerLocations, null, 2), '\n')
 }
 
-function setPlayerLocations(savefile, newLocation, playerIndexes) {
+function setPlayerLocations(savefile, newLocation, playerIndexes, output) {
   let buffer = fs.readFileSync(savefile);
   
   let currentIndex = -1;
@@ -127,8 +101,16 @@ function setPlayerLocations(savefile, newLocation, playerIndexes) {
     playerCount++;
   }
   
-  fs.writeFileSync(savefile, buffer);
-  
+  if(output) {
+    let dir = output.split(path.sep).slice(0,-1).join(path.sep);
+
+    if (fs.existsSync(dir)===false)
+      fs.mkdirSync(dir, { recursive: true });
+
+    fs.writeFileSync(output, buffer);
+  } else
+    fs.writeFileSync(savefile, buffer);
+
   console.info(playerCount + ' player locations have been changed')
   console.info(JSON.stringify([newLocation], null, 2), '\n')
 }
@@ -147,15 +129,16 @@ program
   })
   
 program
-  .command('set <savefile> <axes...>')
+  .command('set <savefile>')
+  .option('-o, --output <savefile>', 'specifies a different path to write save file')
   .option('-i, --indexes <0,1,2,..>', 'specifies players indexes to update', list)
-  .option('-x, --x', 'specifies whether the X axis is filled')
-  .option('-y, --y', 'specifies whether the Y axis is filled')
-  .option('-z, --z', 'specifies whether the Z axis is filled')
+  .option('--x <float>', 'specifies the new X axis value')
+  .option('--y <float>', 'specifies the new Y axis value')
+  .option('--z <float>', 'specifies the new Z axis value')
   .alias('s')
   .description('Updates players locations into a save file of Satisfactory')
-  .action(function (savefile, axes, cmd) {
-    setPlayerLocations(savefile, getNewLocation(axes, cmd), cmd.indexes);
+  .action(function (savefile, cmd) {
+    setPlayerLocations(savefile, getNewLocation(cmd.x, cmd.y, cmd.z), cmd.indexes, cmd.output);
   })
 
 program.parse(process.argv)
