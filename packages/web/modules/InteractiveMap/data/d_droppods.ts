@@ -354,9 +354,9 @@ export const dropPods: DropPod[] = [
     obstructed: false
   },
   {
-    itemQuantity: undefined,
+    itemQuantity: 12,
     type: "droppod",
-    itemName: undefined,
+    itemName: "Screws",
     originId: "PE2_DP_16_4595",
     powerNeeded: undefined,
     x: 30383.755859375,
