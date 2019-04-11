@@ -53,6 +53,7 @@ Usage: set|s [options] <savefile>
 Updates players locations into a save file of Satisfactory
 
 Options:
+  -o, --output <savefile>   specifies a different path to write save file
   -i, --indexes <0,1,2,..>  specifies players indexes to update
   --x <float>               specifies the new X axis value
   --y <float>               specifies the new Y axis value

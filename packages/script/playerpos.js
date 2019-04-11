@@ -17,23 +17,23 @@ function getNewLocation(x, y, z) {
     console.error('error: `X axis` is not a float : ' + x);
     process.exit(1);
   }
-
+  
   if(y !== undefined && isNaN(y)) {
     console.error('error: `Y axis` is not a float : ' + y);
     process.exit(1);
   }
-
+  
   if(z !== undefined && isNaN(z)) {
     console.error('error: `Z axis` is not a float : ' + z);
     process.exit(1);
   }
-
+  
   let newLocation = {
     x: x,
     y: y,
     z: z
   }
-
+  
   return newLocation;
 }
 
@@ -74,7 +74,7 @@ function getPlayerLocations(savefile, playerIndexes) {
   console.info(JSON.stringify(playerLocations, null, 2), '\n')
 }
 
-function setPlayerLocations(savefile, newLocation, playerIndexes) {
+function setPlayerLocations(savefile, newLocation, playerIndexes, output) {
   let buffer = fs.readFileSync(savefile);
   
   let currentIndex = -1;
@@ -100,8 +100,16 @@ function setPlayerLocations(savefile, newLocation, playerIndexes) {
 
     playerCount++;
   }
+  
+  if(output) {
+    let dir = output.split('/').slice(0,-1).join('/');
 
-  fs.writeFileSync(savefile, buffer);
+    if (fs.existsSync(dir)===false)
+      fs.mkdirSync(dir, { recursive: true });
+
+    fs.writeFileSync(output, buffer);
+  } else
+    fs.writeFileSync(savefile, buffer);
 
   console.info(playerCount + ' player locations have been changed')
   console.info(JSON.stringify([newLocation], null, 2), '\n')
@@ -122,6 +130,7 @@ program
   
 program
   .command('set <savefile>')
+  .option('-o, --output <savefile>', 'specifies a different path to write save file')
   .option('-i, --indexes <0,1,2,..>', 'specifies players indexes to update', list)
   .option('--x <float>', 'specifies the new X axis value')
   .option('--y <float>', 'specifies the new Y axis value')
@@ -129,7 +138,7 @@ program
   .alias('s')
   .description('Updates players locations into a save file of Satisfactory')
   .action(function (savefile, cmd) {
-    setPlayerLocations(savefile, getNewLocation(cmd.x, cmd.y, cmd.z), cmd.indexes);
+    setPlayerLocations(savefile, getNewLocation(cmd.x, cmd.y, cmd.z), cmd.indexes, cmd.output);
   })
 
 program.parse(process.argv)
