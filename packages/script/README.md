@@ -12,6 +12,7 @@ Command-line scripts performing extraction/edition of data for the save files of
 * [playerpos](#playerpos) - Retrieves or updates players locations for a save file of Satisfactory
 	* [get](#get)
 	* [set](#set)
+* [extract](#extract) - Extracts differents objects into json files from a json-savefile of Satisfactory
 * [gensave](#gensave) - Allows you to generate multiple save files by linking players to each targets
 
 ## playerpos
@@ -93,11 +94,35 @@ $ playerpos.js set mysave.sav --z=-5000
 ]
 ```
 
+## extract
+
+You can generate a `<json-savefile>` from a savefile of Satisfactory here: [satisfactory-save-format](https://github.com/bitowl/satisfactory-save-format)
+
+```
+Usage: extract [options] <json-savefile>
+
+Extracts differents objects into json files from a <json-savefile> of Satisfactory
+
+Options:
+  -v, --version          output the version number
+  -o, --output <folder>  specifies a folder to write extracted json files (default: "./data/extracts")
+  -p, --pretty           specifies x offset
+  -h, --help             output usage information
+```
+
+```
+$ extract mysave.json --pretty
+```
+
+TODO extract.config.json
+
 ## gensave
 
 Useful tool if you need to check for specific items in game. Generate save files then load, check, repeat
 
-Note : make sure to check `data/extract/nodes.json` to understand the `<targets>` file structure
+Note : make sure to check `data/extracts/RESOURCE_NODE.json` to understand the `<targets>` file structure. 
+
+See [extract](extract) to generate a `<targets>` file
 
 ```
 Usage: gensave [options] <savefile> <targets>
@@ -117,12 +142,12 @@ Options:
 You can specify `-i` option for filtering players location
 
 ```
-$ gensave -i 0 mysave.sav data/extracts/nodes.json
+$ gensave -i 0 mysave.sav data/extracts/RESOURCE_NODE.json
 ```
 
 You can specify each offset axis value with `--x`, `--y`, `--z` options (you must put a `=` when dealing with negative numbers, e.g `--x=-1.23`)
 
 If you want to offset only the height of each target locations :
 ```
-$ gensave mysave.sav data/extracts/nodes.json --z=500
+$ gensave mysave.sav data/extracts/RESOURCE_NODE.json --z=500
 ```

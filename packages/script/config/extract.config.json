@@ -1,0 +1,69 @@
+{
+  "OBJECTS": {
+    "RESOURCE_NODE": {
+      "CLASSNAME": "/Game/FactoryGame/Resource/BP_ResourceNode.BP_ResourceNode_C",
+      "TYPE_ID": "RN"
+    },
+    "RESOURCE_DEPOSIT": {
+      "CLASSNAME": "/Game/FactoryGame/Resource/BP_ResourceDeposit.BP_ResourceDeposit_C",
+      "TYPE_ID": "RD"
+    },
+    "RESOURCE_NODE_GEYSER": {
+      "CLASSNAME": "/Game/FactoryGame/Resource/BP_ResourceNodeGeyser.BP_ResourceNodeGeyser_C",
+      "TYPE_ID": "RNG"
+    },
+    "SLUG_GREEN": {
+      "CLASSNAME": "/Game/FactoryGame/Resource/Environment/Crystal/BP_Crystal.BP_Crystal_C",
+      "TYPE_ID": "C"
+    },
+    "SLUG_YELLOW": {
+      "CLASSNAME": "/Game/FactoryGame/Resource/Environment/Crystal/BP_Crystal_mk2.BP_Crystal_mk2_C",
+      "TYPE_ID": "CMK2"
+    },
+    "SLUG_PURPLE": {
+      "CLASSNAME": "/Game/FactoryGame/Resource/Environment/Crystal/BP_Crystal_mk3.BP_Crystal_mk3_C",
+      "TYPE_ID": "CMK3"
+    },
+    "DROP_POD": {
+      "CLASSNAME": "/Game/FactoryGame/World/Benefit/DropPod/BP_DropPod.BP_DropPod_C",
+      "TYPE_ID": "DP"
+    },
+    "WAT1": {
+      "CLASSNAME": "/Game/FactoryGame/Prototype/WAT/BP_WAT1.BP_WAT1_C",
+      "TYPE_ID": "WAT1"
+    },
+    "WAT2": {
+      "CLASSNAME": "/Game/FactoryGame/Prototype/WAT/BP_WAT2.BP_WAT2_C",
+      "TYPE_ID": "WAT2"
+    }
+  },
+  
+  "BLOCKING_OBJECTS": {
+    "RESOURCE_DEPOSIT": "/Game/FactoryGame/Resource/BP_ResourceDeposit.BP_ResourceDeposit_C",
+    "LARGE_ROCK": "/Game/FactoryGame/Equipment/C4Dispenser/BP_DestructibleLargeRock.BP_DestructibleLargeRock_C",
+    "SMALL_ROCK": "/Game/FactoryGame/Equipment/C4Dispenser/BP_DestructibleSmallRock.BP_DestructibleSmallRock_C"
+  },
+
+  "BLOCKED_OBJECTS" : {
+    "SLUG_GREEN": {
+      "BLOCKING": ["LARGE_ROCK", "SMALL_ROCK"],
+      "EDGE_LENGTH": 400
+    },
+    "SLUG_YELLOW": {
+      "BLOCKING": ["LARGE_ROCK", "SMALL_ROCK"],
+      "EDGE_LENGTH": 400
+    },
+    "SLUG_PURPLE": {
+      "BLOCKING": ["LARGE_ROCK", "SMALL_ROCK"],
+      "EDGE_LENGTH": 400
+    },
+    "WAT1": {
+      "BLOCKING": ["LARGE_ROCK", "SMALL_ROCK"],
+      "EDGE_LENGTH": 400
+    },
+    "WAT2": {
+      "BLOCKING": ["LARGE_ROCK", "SMALL_ROCK"],
+      "EDGE_LENGTH": 400
+    }
+  }
+}
