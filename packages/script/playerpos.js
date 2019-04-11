@@ -102,7 +102,7 @@ function setPlayerLocations(savefile, newLocation, playerIndexes, output) {
   }
   
   if(output) {
-    let dir = output.split('/').slice(0,-1).join('/');
+    let dir = output.split(path.sep).slice(0,-1).join(path.sep);
 
     if (fs.existsSync(dir)===false)
       fs.mkdirSync(dir, { recursive: true });
