@@ -8,6 +8,11 @@ Command-line scripts performing extraction/edition of data for the save files of
 3. Run `yarn` to install node dependencies.
 4. Run `yarn link` to creates a symbolic link between project directory and executable command.
 
+## Overview
+* [playerpos](#playerpos) - Retrieves or updates players locations for a save file of Satisfactory
+	* [get](#get)
+	* [set](#set)
+
 ## playerpos
 
 ### get
