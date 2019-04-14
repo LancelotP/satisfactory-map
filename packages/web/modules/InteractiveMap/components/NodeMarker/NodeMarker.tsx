@@ -203,7 +203,7 @@ const colors: IconColors = {
   geyser: generateIconColors("#07C8FF")
 };
 
-function generateIconColors(color: string): IconColor {
+export function generateIconColors(color: string): IconColor {
   return {
     main: color,
     mid: mix(0.2, "#000", color),
