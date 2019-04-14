@@ -4,11 +4,6 @@ import { Popup, Marker } from "react-leaflet";
 import { Artifact } from "../../data/markers";
 import { IconSizeContext } from "../../InteractiveMap";
 
-// @ts-ignore
-import somerIcon from "./somer.png";
-// @ts-ignore
-import mercerIcon from "./mercer.png";
-
 type Props = {
   marker: Artifact;
 };
@@ -16,11 +11,6 @@ type Props = {
 export const ArtifactMarker: React.FunctionComponent<Props> = props => {
   const { marker } = props;
   const { iconSize } = React.useContext(IconSizeContext);
-
-  const icons = {
-    somer: somerIcon,
-    mercer: mercerIcon
-  };
 
   const width = (marker.type === "somer" ? 28 : 40) * iconSize;
   const height = (marker.type === "somer" ? 73 : 68) * iconSize;
