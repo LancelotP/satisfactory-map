@@ -2,7 +2,7 @@ import * as React from "react";
 import { Marker, Popup } from "react-leaflet";
 import { Geyser } from "../../data/markers";
 import { IconStyleContext, IconSizeContext } from "../../InteractiveMap";
-import { normalSvg, cbNormalSvg } from "../NodeMarker/NodeMarker";
+import { cbNormalSvg } from "../NodeMarker/NodeMarker";
 
 type Props = {
   marker: Geyser;
