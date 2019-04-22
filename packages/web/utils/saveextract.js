@@ -129,14 +129,17 @@ function getExtractData(arrBuff) {
       switch (object.className) {
         case '/Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C':
           target = getTargetObject(object.prop.levelName, object.prop.pathName);
-          pos = target.transform.translation;
-            
-          extractData.players.push({
-            "id": object.prop.id,
-            "x": pos[0],
-            "y": pos[1],
-            "z": pos[2]
-          })
+
+          if (target && target.transform) {
+            pos = target.transform.translation;
+              
+            extractData.players.push({
+              "id": object.prop.id,
+              "x": pos[0],
+              "y": pos[1],
+              "z": pos[2]
+            })
+          }
             
           // is owner ?
           if (object.pathName === playerOwnerPathname)
