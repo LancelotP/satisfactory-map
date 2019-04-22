@@ -1,11 +1,10 @@
 import React from "react";
-import { PlayerLocation, getPlayersFromSave } from "./getPlayerFromSave";
-
 import * as S from "./LocateMeBtn.style";
 import { Modal } from "../../../../components/Modal/Modal";
+import getExtractData from '../../../../utils/saveExtract';
 
 type Props = {
-  onLocationChange: (pos: PlayerLocation[]) => void;
+  onSaveLoaded: (d: any) => void;
 };
 
 type State = {
@@ -44,7 +43,7 @@ export class LocateMeBtn extends React.PureComponent<Props, State> {
 
   handleSubmit() {
     const { currentSave } = this.state;
-    const { onLocationChange } = this.props;
+    const { onSaveLoaded } = this.props;
 
     if (!currentSave) {
       return;
@@ -53,12 +52,8 @@ export class LocateMeBtn extends React.PureComponent<Props, State> {
     const reader = new FileReader();
     reader.onload = async () => {
       try {
-        const loc = await getPlayersFromSave(reader.result!);
-        if (loc.length === 0) {
-          throw new Error("No players has been found");
-        }
-
-        onLocationChange(loc);
+        const loc = getExtractData(reader.result!);
+        onSaveLoaded(loc);
         this.setState({ isOpen: false, currentSave: undefined });
       } catch (e) {
         console.log(e);

@@ -14,6 +14,9 @@ import {
 } from "./utils/getDefaultSelection";
 import { getMarkerSelectionHash } from "./utils/markerSelectionToHash";
 import { PlayerLocation } from "./components/LocateMeBtn/getPlayerFromSave";
+import { dropPods } from "./data/d_droppods";
+import { somers } from "./data/a_somer";
+import { mercers } from "./data/a_mercer";
 
 const NOSSRMap = dynamic(
   // @ts-ignore
@@ -91,6 +94,13 @@ export const InteractiveMap = (props: Props) => {
   const [selection, setSelection] = useState<Selection>(getDefaultSelection());
   const [players, setPlayers] = useState<PlayerLocation[]>([]);
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [pNodes, setPNodes] = useState(nodes);
+  const [pDropPods, setPDropPods] = useState(dropPods);
+  const [pSomers, setPSomers] = useState(somers);
+  const [pMercers, setPMercers] = useState(mercers);
+  const [pGreenSlugs, setPGreenSlugs] = useState(greenSlugs);
+  const [pYellowSlugs, setPYellowSlugs] = useState(yellowSlugs);
+  const [pPurpleSlugs, setPPurpleSlugs] = useState(purpleSlugs);
 
   useEffect(() => {
     if (typeof localStorage !== undefined) {
@@ -144,6 +154,43 @@ export const InteractiveMap = (props: Props) => {
     setMenuOpen(!isMenuOpen);
   }
 
+  function handleSaveLoaded(d: any) {
+    console.log(d);
+    
+    setPlayers(d.players);
+
+    const minersTargets: string[] = d.miners.map((t: any) => t.targetID);
+    const collectedDropPods: string[] = d.collected.filter((f: any) => f.type ==='DROP_POD').map((d: any) => d.id);
+    const collectedGreenSlugs: string[] = d.collected.filter((f: any) => f.type ==='SLUG_GREEN').map((d: any) => d.id);
+    const collectedYellowSlugs: string[] = d.collected.filter((f: any) => f.type ==='SLUG_YELLOW').map((d: any) => d.id);
+    const collectedPurpleSlugs: string[] = d.collected.filter((f: any) => f.type ==='SLUG_PURPLE').map((d: any) => d.id);
+    
+    setPNodes(nodes.map(node => ({
+      ...node,
+      exploited: minersTargets.indexOf(node.originId) !== -1
+    })));
+
+    setPDropPods(dropPods.map(node => ({
+      ...node,
+      collected: collectedDropPods.indexOf(node.originId) !== -1
+    })));
+
+    setPGreenSlugs(greenSlugs.map(node => ({
+      ...node,
+      collected: collectedGreenSlugs.indexOf(node.originId) !== -1
+    })));
+
+    setPYellowSlugs(yellowSlugs.map(node => ({
+      ...node,
+      collected: collectedYellowSlugs.indexOf(node.originId) !== -1
+    })));
+
+    setPPurpleSlugs(purpleSlugs.map(node => ({
+      ...node,
+      collected: collectedPurpleSlugs.indexOf(node.originId) !== -1
+    })));
+
+  }
   return (
     <S.Root>
       <Head>
@@ -167,16 +214,19 @@ export const InteractiveMap = (props: Props) => {
               <Menu
                 showLogo={props.embed === true ? false : true}
                 isOpen={isMenuOpen}
-                onPlayersLoaded={setPlayers}
+                onSaveLoaded={handleSaveLoaded}
               />
               <NOSSRMap
                 toggleMenu={toggleMenu}
                 isMenuOpen={isMenuOpen}
                 players={players}
-                markers={nodes}
-                greenSlugs={greenSlugs}
-                yellowSlugs={yellowSlugs}
-                purpleSlugs={purpleSlugs}
+                markers={pNodes}
+                somers={pSomers}
+                mercers={pMercers}
+                dropPods={pDropPods}
+                greenSlugs={pGreenSlugs}
+                yellowSlugs={pYellowSlugs}
+                purpleSlugs={pPurpleSlugs}
               />
             </React.Fragment>
           </SelectionContext.Provider>

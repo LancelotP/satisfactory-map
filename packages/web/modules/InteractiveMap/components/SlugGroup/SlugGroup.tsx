@@ -8,14 +8,14 @@ type Props = {
   markers: Slug[];
 };
 
-export const SlugGroup = React.memo(
+export const SlugGroup = 
   (props: Props) => {
     const { selection } = useContext(SelectionContext);
 
     const markers = useMemo(() => {
       return props.markers.filter(m => {
         if (m.obstructed && selection.s_blocked) return false;
-        // if (m.exploited && selection.n_exploited) return false;
+        if (m.collected && selection.s_collected) return false;
 
         return true;
       });
@@ -39,8 +39,4 @@ export const SlugGroup = React.memo(
         ))}
       </MarkerClusterGroup>
     );
-  },
-  (prev, next) => {
-    return prev.markers.length === next.markers.length;
   }
-);

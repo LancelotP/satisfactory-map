@@ -8,16 +8,15 @@ import {
 } from "../../InteractiveMap";
 import { UserThemeContext } from "../../../../pages/_app";
 import { LocateMeBtn } from "../LocateMeBtn/LocateMeBtn";
-import { PlayerLocation } from "../LocateMeBtn/getPlayerFromSave";
 
 type Props = {
-  onPlayersLoaded: (p: PlayerLocation[]) => void;
+  onSaveLoaded: (d: any) => void;
   isOpen: boolean;
   showLogo: boolean;
 };
 
 export const Menu = (props: Props) => {
-  const { onPlayersLoaded, isOpen, showLogo } = props;
+  const { onSaveLoaded, isOpen, showLogo } = props;
   const { setMode } = React.useContext(IconStyleContext);
   const { iconSize, setIconSize } = React.useContext(IconSizeContext);
   const { setTheme } = React.useContext(UserThemeContext);
@@ -46,7 +45,7 @@ export const Menu = (props: Props) => {
         </S.LogoWrapper>
       )}
       <S.Content>
-        <LocateMeBtn onLocationChange={onPlayersLoaded} />
+        <LocateMeBtn onSaveLoaded={onSaveLoaded} />
         <S.Title>Nodes</S.Title>
         <S.Section>
           {/* <label>
@@ -56,6 +55,11 @@ export const Menu = (props: Props) => {
           <S.ToggleBtn>
             <input type="checkbox" {...generateHandle("n_blocked")} />
             <div>{selection.n_blocked ? "Show" : "Hide"} blocked ones</div>
+          </S.ToggleBtn>
+          <br />
+          <S.ToggleBtn>
+            <input type="checkbox" {...generateHandle("n_exploited")} />
+            <div>{selection.n_exploited ? "Show" : "Hide"} exploited ones</div>
           </S.ToggleBtn>
           <S.SectionTitle>Purity</S.SectionTitle>
           <S.Purity>
@@ -255,10 +259,10 @@ export const Menu = (props: Props) => {
           </S.SectionSelect>
         </S.Title>
         <S.Section>
-          {/* <label>
+          <S.ToggleBtn>
             <input type="checkbox" {...generateHandle("d_collected")} />
-            Hide collected
-          </label> */}
+            <div>{selection.d_collected ? "Show" : "Hide"} collected ones</div>
+          </S.ToggleBtn>
         </S.Section>
         <S.Title>
           Slugs
@@ -290,10 +294,11 @@ export const Menu = (props: Props) => {
           </S.SectionSelect>
         </S.Title>
         <S.Section>
-          {/* <label>
-            <input type="checkbox" {...generateHandle("s_collected")} />
-            Hide collected
-          </label> */}
+          <S.ToggleBtn>
+              <input type="checkbox" {...generateHandle("s_collected")} />
+            <div>{selection.s_collected ? "Show" : "Hide"} collected ones</div>
+          </S.ToggleBtn>
+          <br />
           <S.ToggleBtn>
             <input type="checkbox" {...generateHandle("s_blocked")} />
             <div>{selection.s_blocked ? "Show" : "Hide"} blocked ones</div>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import { DropPod } from "../../data/markers";
 import { SelectionContext } from "../../InteractiveMap";
@@ -8,14 +8,22 @@ type Props = {
   markers: DropPod[];
 };
 
-export const DropPodGroup = React.memo(
-  (props: Props) => {
-    const { markers } = props;
+export const DropPodGroup = (props: Props) => {
     const { selection } = useContext(SelectionContext);
 
     if (!selection.d_drops) {
       return null;
     }
+
+    const markers = useMemo(() => {
+      return props.markers.filter(m => {
+        if (m.collected && selection.d_collected) return false;
+  
+        return true;
+      });
+    }, [
+      selection.d_collected,
+    ]);
 
     return (
       <MarkerClusterGroup
@@ -30,8 +38,4 @@ export const DropPodGroup = React.memo(
         ))}
       </MarkerClusterGroup>
     );
-  },
-  (prev, next) => {
-    return prev.markers.length === next.markers.length;
-  }
-);
+  };

@@ -24,6 +24,7 @@ export type Node = Marker & {
   purity: NodePurity;
   type: NodeType;
   originId: string;
+  exploited: boolean;
 };
 
 export type Geyser = Marker & {
@@ -35,6 +36,7 @@ export type SlugType = "green" | "yellow" | "purple";
 
 export type Slug = Marker & {
   type: SlugType;
+  collected: boolean;
   originId: string;
 };
 
@@ -46,9 +48,10 @@ export type Artifact = Marker & {
 };
 
 export type DropPod = Marker & {
-  originId;
+  originId: string;
   type: "droppod";
   itemQuantity?: number;
   itemName?: string;
   powerNeeded?: number;
+  collected: boolean;
 };

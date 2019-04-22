@@ -7,7 +7,8 @@ export const greenSlugs: Slug[] = [
     z: 12733.478515625,
     originId: "PE_C_1",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 25548.3828125,
@@ -15,7 +16,8 @@ export const greenSlugs: Slug[] = [
     z: -2491.843505859375,
     originId: "PE_C_10",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 83381.0859375,
@@ -23,7 +25,8 @@ export const greenSlugs: Slug[] = [
     z: 15492.6796875,
     originId: "PE_C_100",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 122139.1796875,
@@ -31,7 +34,8 @@ export const greenSlugs: Slug[] = [
     z: 15321.0244140625,
     originId: "PE_C_103",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 137796.921875,
@@ -39,7 +43,8 @@ export const greenSlugs: Slug[] = [
     z: 14832.15625,
     originId: "PE_C_104",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 164425.296875,
@@ -47,7 +52,8 @@ export const greenSlugs: Slug[] = [
     z: 15771.626953125,
     originId: "PE_C_105",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 150197.84375,
@@ -55,7 +61,8 @@ export const greenSlugs: Slug[] = [
     z: 16600.240234375,
     originId: "PE_C_106",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 147654.703125,
@@ -63,7 +70,8 @@ export const greenSlugs: Slug[] = [
     z: 16948.900390625,
     originId: "PE_C_107",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 158593.078125,
@@ -71,7 +79,8 @@ export const greenSlugs: Slug[] = [
     z: 20102.755859375,
     originId: "PE_C_108",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 133082.875,
@@ -79,7 +88,8 @@ export const greenSlugs: Slug[] = [
     z: 9988.4169921875,
     originId: "PE_C_109",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -2630.0869140625,
@@ -87,7 +97,8 @@ export const greenSlugs: Slug[] = [
     z: 15899.30078125,
     originId: "PE_C_10_3",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -2907.932373046875,
@@ -95,7 +106,8 @@ export const greenSlugs: Slug[] = [
     z: 16672.947265625,
     originId: "PE_C_10_6",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 122286.1328125,
@@ -103,7 +115,8 @@ export const greenSlugs: Slug[] = [
     z: 8045.97412109375,
     originId: "PE_C_10_9",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 109484.5390625,
@@ -111,7 +124,8 @@ export const greenSlugs: Slug[] = [
     z: 10756.7978515625,
     originId: "PE_C_11",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 298049.4375,
@@ -119,7 +133,8 @@ export const greenSlugs: Slug[] = [
     z: 17517.525390625,
     originId: "PE_C_110",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 173935.234375,
@@ -127,7 +142,8 @@ export const greenSlugs: Slug[] = [
     z: 13821.0634765625,
     originId: "PE_C_111",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 213968.78125,
@@ -135,7 +151,8 @@ export const greenSlugs: Slug[] = [
     z: 11823.94140625,
     originId: "PE_C_112",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 241374.546875,
@@ -143,7 +160,8 @@ export const greenSlugs: Slug[] = [
     z: 5845.3505859375,
     originId: "PE_C_113",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 271735,
@@ -151,7 +169,8 @@ export const greenSlugs: Slug[] = [
     z: -1629.358154296875,
     originId: "PE_C_114",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 240332.75,
@@ -159,7 +178,8 @@ export const greenSlugs: Slug[] = [
     z: -512.8974609375,
     originId: "PE_C_115",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 263811.59375,
@@ -167,7 +187,8 @@ export const greenSlugs: Slug[] = [
     z: -1363.9007568359375,
     originId: "PE_C_116",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 290940.25,
@@ -175,7 +196,8 @@ export const greenSlugs: Slug[] = [
     z: -1523.5867919921875,
     originId: "PE_C_117",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 275378.625,
@@ -183,7 +205,8 @@ export const greenSlugs: Slug[] = [
     z: -1483.0975341796875,
     originId: "PE_C_118",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 299538.625,
@@ -191,7 +214,8 @@ export const greenSlugs: Slug[] = [
     z: 467.060791015625,
     originId: "PE_C_119",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 14476.916015625,
@@ -199,7 +223,8 @@ export const greenSlugs: Slug[] = [
     z: 7249.8115234375,
     originId: "PE_C_11_10",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -2096.858154296875,
@@ -207,7 +232,8 @@ export const greenSlugs: Slug[] = [
     z: 11560.880859375,
     originId: "PE_C_11_15",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 80235.5078125,
@@ -215,7 +241,8 @@ export const greenSlugs: Slug[] = [
     z: 13709.3232421875,
     originId: "PE_C_11_7",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 101963.1015625,
@@ -223,7 +250,8 @@ export const greenSlugs: Slug[] = [
     z: 14033.30078125,
     originId: "PE_C_12",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 280974.0625,
@@ -231,7 +259,8 @@ export const greenSlugs: Slug[] = [
     z: 6033.482421875,
     originId: "PE_C_120",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 279384.53125,
@@ -239,7 +268,8 @@ export const greenSlugs: Slug[] = [
     z: 2690.878662109375,
     originId: "PE_C_121",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 220287.5625,
@@ -247,7 +277,8 @@ export const greenSlugs: Slug[] = [
     z: -1284.574462890625,
     originId: "PE_C_122",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 224095.0625,
@@ -255,7 +286,8 @@ export const greenSlugs: Slug[] = [
     z: -1392.5018310546875,
     originId: "PE_C_123",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 256274.28125,
@@ -263,7 +295,8 @@ export const greenSlugs: Slug[] = [
     z: -1207.8394775390625,
     originId: "PE_C_124",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 242407.40625,
@@ -271,7 +304,8 @@ export const greenSlugs: Slug[] = [
     z: -1659.680419921875,
     originId: "PE_C_125",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 203822.609375,
@@ -279,7 +313,8 @@ export const greenSlugs: Slug[] = [
     z: 174.9258270263672,
     originId: "PE_C_126",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 209968.21875,
@@ -287,7 +322,8 @@ export const greenSlugs: Slug[] = [
     z: 3165.02587890625,
     originId: "PE_C_127",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 201278.625,
@@ -295,7 +331,8 @@ export const greenSlugs: Slug[] = [
     z: 2700.4072265625,
     originId: "PE_C_128",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 114000.5546875,
@@ -303,7 +340,8 @@ export const greenSlugs: Slug[] = [
     z: 16177.6552734375,
     originId: "PE_C_12_10",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 19456.185546875,
@@ -311,7 +349,8 @@ export const greenSlugs: Slug[] = [
     z: 3336.39794921875,
     originId: "PE_C_12_11",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 85099.7578125,
@@ -319,7 +358,8 @@ export const greenSlugs: Slug[] = [
     z: 14523.625,
     originId: "PE_C_12_8",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 16118.18359375,
@@ -327,7 +367,8 @@ export const greenSlugs: Slug[] = [
     z: 16250.08984375,
     originId: "PE_C_13",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 199588.59375,
@@ -335,7 +376,8 @@ export const greenSlugs: Slug[] = [
     z: 10564.9208984375,
     originId: "PE_C_130_8497",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 129944.9765625,
@@ -343,7 +385,8 @@ export const greenSlugs: Slug[] = [
     z: 9504.560546875,
     originId: "PE_C_13_11",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 43383.98046875,
@@ -351,7 +394,8 @@ export const greenSlugs: Slug[] = [
     z: -116.95880126953125,
     originId: "PE_C_13_12",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 6588.68359375,
@@ -359,7 +403,8 @@ export const greenSlugs: Slug[] = [
     z: 14896.8994140625,
     originId: "PE_C_13_9",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 7229.34033203125,
@@ -367,7 +412,8 @@ export const greenSlugs: Slug[] = [
     z: 13971.37890625,
     originId: "PE_C_14",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 39872.58984375,
@@ -375,7 +421,8 @@ export const greenSlugs: Slug[] = [
     z: 17326.091796875,
     originId: "PE_C_14_10",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 96437.7421875,
@@ -383,7 +430,8 @@ export const greenSlugs: Slug[] = [
     z: 10001.666015625,
     originId: "PE_C_14_12",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 45641.0703125,
@@ -391,7 +439,8 @@ export const greenSlugs: Slug[] = [
     z: 1689.4749755859375,
     originId: "PE_C_14_13",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 27496.048828125,
@@ -399,7 +448,8 @@ export const greenSlugs: Slug[] = [
     z: 12243.345703125,
     originId: "PE_C_15",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 55895.78515625,
@@ -407,7 +457,8 @@ export const greenSlugs: Slug[] = [
     z: 13196.05078125,
     originId: "PE_C_15_11",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 114791.8984375,
@@ -415,7 +466,8 @@ export const greenSlugs: Slug[] = [
     z: 8529.640625,
     originId: "PE_C_15_13",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -43196.8671875,
@@ -423,7 +475,8 @@ export const greenSlugs: Slug[] = [
     z: 2429.94580078125,
     originId: "PE_C_16_10",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 21591.125,
@@ -431,7 +484,8 @@ export const greenSlugs: Slug[] = [
     z: 18499.7734375,
     originId: "PE_C_17_18",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 100489.6875,
@@ -439,7 +493,8 @@ export const greenSlugs: Slug[] = [
     z: 18312.45703125,
     originId: "PE_C_18_16",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 40959.7265625,
@@ -447,7 +502,8 @@ export const greenSlugs: Slug[] = [
     z: 11987.2255859375,
     originId: "PE_C_19_8",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 6786.197265625,
@@ -455,7 +511,8 @@ export const greenSlugs: Slug[] = [
     z: 10699.69140625,
     originId: "PE_C_1_0",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 12884.2900390625,
@@ -463,7 +520,8 @@ export const greenSlugs: Slug[] = [
     z: 14497.0498046875,
     originId: "PE_C_1_1",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 34667.65234375,
@@ -471,7 +529,8 @@ export const greenSlugs: Slug[] = [
     z: -5369.78125,
     originId: "PE_C_1_2",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 212993.671875,
@@ -479,7 +538,8 @@ export const greenSlugs: Slug[] = [
     z: 5075.42822265625,
     originId: "PE_C_20",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 71738.2265625,
@@ -487,7 +547,8 @@ export const greenSlugs: Slug[] = [
     z: 14656.4169921875,
     originId: "PE_C_20_14",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -59477.2109375,
@@ -495,7 +556,8 @@ export const greenSlugs: Slug[] = [
     z: 3338.628173828125,
     originId: "PE_C_21",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 136299.59375,
@@ -503,7 +565,8 @@ export const greenSlugs: Slug[] = [
     z: 11337.1787109375,
     originId: "PE_C_22",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 47543.69140625,
@@ -511,7 +574,8 @@ export const greenSlugs: Slug[] = [
     z: 13779.97265625,
     originId: "PE_C_22_7",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 140880.671875,
@@ -519,7 +583,8 @@ export const greenSlugs: Slug[] = [
     z: 15806.341796875,
     originId: "PE_C_23",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 14540.0322265625,
@@ -527,7 +592,8 @@ export const greenSlugs: Slug[] = [
     z: 12499.2978515625,
     originId: "PE_C_23_11",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 116762.59375,
@@ -535,7 +601,8 @@ export const greenSlugs: Slug[] = [
     z: 13525.1015625,
     originId: "PE_C_24",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 247315.625,
@@ -543,7 +610,8 @@ export const greenSlugs: Slug[] = [
     z: 5546.1103515625,
     originId: "PE_C_25",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 185936.71875,
@@ -551,7 +619,8 @@ export const greenSlugs: Slug[] = [
     z: 9768.8359375,
     originId: "PE_C_26",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 207064.703125,
@@ -559,7 +628,8 @@ export const greenSlugs: Slug[] = [
     z: 7233.5634765625,
     originId: "PE_C_27",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 224080.640625,
@@ -567,7 +637,8 @@ export const greenSlugs: Slug[] = [
     z: 5000.11328125,
     originId: "PE_C_29",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 101700.6171875,
@@ -575,7 +646,8 @@ export const greenSlugs: Slug[] = [
     z: 9030.96875,
     originId: "PE_C_2_1",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 36057.53125,
@@ -583,7 +655,8 @@ export const greenSlugs: Slug[] = [
     z: 15536.5947265625,
     originId: "PE_C_2_2",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 76367.71875,
@@ -591,7 +664,8 @@ export const greenSlugs: Slug[] = [
     z: 4515.70849609375,
     originId: "PE_C_2_3",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 77700.1953125,
@@ -599,7 +673,8 @@ export const greenSlugs: Slug[] = [
     z: 15886.9423828125,
     originId: "PE_C_2_4",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 95407.8828125,
@@ -607,7 +682,8 @@ export const greenSlugs: Slug[] = [
     z: 15979.494140625,
     originId: "PE_C_3",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 231423.421875,
@@ -615,7 +691,8 @@ export const greenSlugs: Slug[] = [
     z: 4384.818359375,
     originId: "PE_C_30_2223",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 220662.21875,
@@ -623,7 +700,8 @@ export const greenSlugs: Slug[] = [
     z: -1385.5189208984375,
     originId: "PE_C_31",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 207498.34375,
@@ -631,7 +709,8 @@ export const greenSlugs: Slug[] = [
     z: -1484.7601318359375,
     originId: "PE_C_32_16011",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 212732.09375,
@@ -639,7 +718,8 @@ export const greenSlugs: Slug[] = [
     z: 6232.89111328125,
     originId: "PE_C_33_4337",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 207429.1875,
@@ -647,7 +727,8 @@ export const greenSlugs: Slug[] = [
     z: 2421.264892578125,
     originId: "PE_C_34",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 246798.671875,
@@ -655,7 +736,8 @@ export const greenSlugs: Slug[] = [
     z: -647.1830444335938,
     originId: "PE_C_35",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 252505.515625,
@@ -663,7 +745,8 @@ export const greenSlugs: Slug[] = [
     z: -1423.080322265625,
     originId: "PE_C_36",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 283503.78125,
@@ -671,7 +754,8 @@ export const greenSlugs: Slug[] = [
     z: -1247.03076171875,
     originId: "PE_C_37",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 317096.3125,
@@ -679,7 +763,8 @@ export const greenSlugs: Slug[] = [
     z: 12777.2939453125,
     originId: "PE_C_38_7184",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 303320,
@@ -687,7 +772,8 @@ export const greenSlugs: Slug[] = [
     z: 7274.90625,
     originId: "PE_C_39",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 61847.5234375,
@@ -695,7 +781,8 @@ export const greenSlugs: Slug[] = [
     z: -1128.7318115234375,
     originId: "PE_C_3_15",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 53682.08203125,
@@ -703,7 +790,8 @@ export const greenSlugs: Slug[] = [
     z: 12795.2236328125,
     originId: "PE_C_3_2",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 32966.91015625,
@@ -711,7 +799,8 @@ export const greenSlugs: Slug[] = [
     z: 5858.9365234375,
     originId: "PE_C_3_3",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 69223.265625,
@@ -719,7 +808,8 @@ export const greenSlugs: Slug[] = [
     z: 10920.0419921875,
     originId: "PE_C_4",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 168208.28125,
@@ -727,7 +817,8 @@ export const greenSlugs: Slug[] = [
     z: 8699.033203125,
     originId: "PE_C_40",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 174199.859375,
@@ -735,7 +826,8 @@ export const greenSlugs: Slug[] = [
     z: 4786.45166015625,
     originId: "PE_C_41",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 234427.90625,
@@ -743,7 +835,8 @@ export const greenSlugs: Slug[] = [
     z: 459.9351501464844,
     originId: "PE_C_42",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 214682.71875,
@@ -751,7 +844,8 @@ export const greenSlugs: Slug[] = [
     z: -978.4901733398438,
     originId: "PE_C_43_12651",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 181566.78125,
@@ -759,7 +853,8 @@ export const greenSlugs: Slug[] = [
     z: -1642.0596923828125,
     originId: "PE_C_44",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 320292.96875,
@@ -767,7 +862,8 @@ export const greenSlugs: Slug[] = [
     z: 8056.45068359375,
     originId: "PE_C_48_3372",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 354760.375,
@@ -775,7 +871,8 @@ export const greenSlugs: Slug[] = [
     z: 8520.373046875,
     originId: "PE_C_49_4865",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 67743.4609375,
@@ -783,7 +880,8 @@ export const greenSlugs: Slug[] = [
     z: 13858.8427734375,
     originId: "PE_C_4_3",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 54186.29296875,
@@ -791,7 +889,8 @@ export const greenSlugs: Slug[] = [
     z: 6283.38232421875,
     originId: "PE_C_4_4",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 88404.1171875,
@@ -799,7 +898,8 @@ export const greenSlugs: Slug[] = [
     z: 717.3574829101562,
     originId: "PE_C_4_5",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 52440.5078125,
@@ -807,7 +907,8 @@ export const greenSlugs: Slug[] = [
     z: 9318.6474609375,
     originId: "PE_C_5",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 316087.78125,
@@ -815,7 +916,8 @@ export const greenSlugs: Slug[] = [
     z: 5942.19775390625,
     originId: "PE_C_50_7013",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 358844.78125,
@@ -823,7 +925,8 @@ export const greenSlugs: Slug[] = [
     z: 4064.01953125,
     originId: "PE_C_51_9066",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 406912.84375,
@@ -831,7 +934,8 @@ export const greenSlugs: Slug[] = [
     z: -1647.8544921875,
     originId: "PE_C_52_9869",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 280602,
@@ -839,7 +943,8 @@ export const greenSlugs: Slug[] = [
     z: 2539.431640625,
     originId: "PE_C_53_12662",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 257938.546875,
@@ -847,7 +952,8 @@ export const greenSlugs: Slug[] = [
     z: 22086.576171875,
     originId: "PE_C_54_14035",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 252632.234375,
@@ -855,7 +961,8 @@ export const greenSlugs: Slug[] = [
     z: 9902.5400390625,
     originId: "PE_C_55_16443",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 265744.34375,
@@ -863,7 +970,8 @@ export const greenSlugs: Slug[] = [
     z: 10294.2255859375,
     originId: "PE_C_56_18491",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 370973,
@@ -871,7 +979,8 @@ export const greenSlugs: Slug[] = [
     z: -219.59188842773438,
     originId: "PE_C_58",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 232137.875,
@@ -879,7 +988,8 @@ export const greenSlugs: Slug[] = [
     z: 9486.248046875,
     originId: "PE_C_59",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 54519.71484375,
@@ -887,7 +997,8 @@ export const greenSlugs: Slug[] = [
     z: 15858.525390625,
     originId: "PE_C_5_4",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 52702.03125,
@@ -895,7 +1006,8 @@ export const greenSlugs: Slug[] = [
     z: 9501.8505859375,
     originId: "PE_C_5_5",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 94290.8125,
@@ -903,7 +1015,8 @@ export const greenSlugs: Slug[] = [
     z: 6775.43408203125,
     originId: "PE_C_5_6",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 37554.80078125,
@@ -911,7 +1024,8 @@ export const greenSlugs: Slug[] = [
     z: 13924.904296875,
     originId: "PE_C_6",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 242738.875,
@@ -919,7 +1033,8 @@ export const greenSlugs: Slug[] = [
     z: 15975.8134765625,
     originId: "PE_C_60",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 374370.03125,
@@ -927,7 +1042,8 @@ export const greenSlugs: Slug[] = [
     z: -7516.37158203125,
     originId: "PE_C_61",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 299901.875,
@@ -935,7 +1051,8 @@ export const greenSlugs: Slug[] = [
     z: 14777.6806640625,
     originId: "PE_C_62",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -35294.98046875,
@@ -943,7 +1060,8 @@ export const greenSlugs: Slug[] = [
     z: 10443.392578125,
     originId: "PE_C_6_2",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 94680.71875,
@@ -951,7 +1069,8 @@ export const greenSlugs: Slug[] = [
     z: 5884.416015625,
     originId: "PE_C_6_5",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 77392.625,
@@ -959,7 +1078,8 @@ export const greenSlugs: Slug[] = [
     z: 2239.079833984375,
     originId: "PE_C_6_7",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 59411.64453125,
@@ -967,7 +1087,8 @@ export const greenSlugs: Slug[] = [
     z: 3687.779296875,
     originId: "PE_C_7",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -21927.0625,
@@ -975,7 +1096,8 @@ export const greenSlugs: Slug[] = [
     z: 11088.021484375,
     originId: "PE_C_7_11",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 71777.0390625,
@@ -983,7 +1105,8 @@ export const greenSlugs: Slug[] = [
     z: 19807.615234375,
     originId: "PE_C_7_5",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 99866.9765625,
@@ -991,7 +1114,8 @@ export const greenSlugs: Slug[] = [
     z: 15056.083984375,
     originId: "PE_C_7_6",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 100095.765625,
@@ -999,7 +1123,8 @@ export const greenSlugs: Slug[] = [
     z: 19207.748046875,
     originId: "PE_C_8",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -38396.25,
@@ -1007,7 +1132,8 @@ export const greenSlugs: Slug[] = [
     z: 7935.1181640625,
     originId: "PE_C_8_12",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 117109.1640625,
@@ -1015,7 +1141,8 @@ export const greenSlugs: Slug[] = [
     z: 11723.1474609375,
     originId: "PE_C_8_7",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 43542.25390625,
@@ -1023,7 +1150,8 @@ export const greenSlugs: Slug[] = [
     z: -1568.428955078125,
     originId: "PE_C_8_8",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 89988.6640625,
@@ -1031,7 +1159,8 @@ export const greenSlugs: Slug[] = [
     z: 17381.369140625,
     originId: "PE_C_9",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 214387.859375,
@@ -1039,7 +1168,8 @@ export const greenSlugs: Slug[] = [
     z: 5310.515625,
     originId: "PE_C_95",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 259671.234375,
@@ -1047,7 +1177,8 @@ export const greenSlugs: Slug[] = [
     z: 4197.8818359375,
     originId: "PE_C_96",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 286658.9375,
@@ -1055,7 +1186,8 @@ export const greenSlugs: Slug[] = [
     z: 7567.109375,
     originId: "PE_C_97",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 62591.859375,
@@ -1063,7 +1195,8 @@ export const greenSlugs: Slug[] = [
     z: 16002.9931640625,
     originId: "PE_C_98",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 50692.95703125,
@@ -1071,7 +1204,8 @@ export const greenSlugs: Slug[] = [
     z: 19251.759765625,
     originId: "PE_C_99",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -45229.88671875,
@@ -1079,7 +1213,8 @@ export const greenSlugs: Slug[] = [
     z: 12141.1513671875,
     originId: "PE_C_9_13",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 128884.5625,
@@ -1087,7 +1222,8 @@ export const greenSlugs: Slug[] = [
     z: 14242.173828125,
     originId: "PE_C_9_8",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 4580.8642578125,
@@ -1095,7 +1231,8 @@ export const greenSlugs: Slug[] = [
     z: 906.55029296875,
     originId: "PE_C_9_9",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -211812.5625,
@@ -1103,7 +1240,8 @@ export const greenSlugs: Slug[] = [
     z: 3109.16455078125,
     originId: "PE2_C_1",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -260891.625,
@@ -1111,7 +1249,8 @@ export const greenSlugs: Slug[] = [
     z: 1211.5802001953125,
     originId: "PE2_C_10",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 11565.0322265625,
@@ -1119,7 +1258,8 @@ export const greenSlugs: Slug[] = [
     z: -5485.83203125,
     originId: "PE2_C_10_10",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -4871.73828125,
@@ -1127,7 +1267,8 @@ export const greenSlugs: Slug[] = [
     z: 16552.837890625,
     originId: "PE2_C_10_10171",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 133219.21875,
@@ -1135,7 +1276,8 @@ export const greenSlugs: Slug[] = [
     z: 12274.5986328125,
     originId: "PE2_C_10_12",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -197726.546875,
@@ -1143,7 +1285,8 @@ export const greenSlugs: Slug[] = [
     z: 9388.224609375,
     originId: "PE2_C_10_13",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 153655.109375,
@@ -1151,7 +1294,8 @@ export const greenSlugs: Slug[] = [
     z: -910.9903564453125,
     originId: "PE2_C_10_15",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 123342.8515625,
@@ -1159,7 +1303,8 @@ export const greenSlugs: Slug[] = [
     z: 11009.1318359375,
     originId: "PE2_C_10_3",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -190229.578125,
@@ -1167,7 +1312,8 @@ export const greenSlugs: Slug[] = [
     z: 6001.10693359375,
     originId: "PE2_C_11",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -53961.79296875,
@@ -1175,7 +1321,8 @@ export const greenSlugs: Slug[] = [
     z: -6716.62353515625,
     originId: "PE2_C_11_11",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -43559.70703125,
@@ -1183,7 +1330,8 @@ export const greenSlugs: Slug[] = [
     z: 4980.95166015625,
     originId: "PE2_C_11_11709",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 135311.765625,
@@ -1191,7 +1339,8 @@ export const greenSlugs: Slug[] = [
     z: 10234.984375,
     originId: "PE2_C_11_13",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -152044.84375,
@@ -1199,7 +1348,8 @@ export const greenSlugs: Slug[] = [
     z: 2878.63623046875,
     originId: "PE2_C_11_14",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 115017.1484375,
@@ -1207,7 +1357,8 @@ export const greenSlugs: Slug[] = [
     z: -5252.8828125,
     originId: "PE2_C_11_16",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 126682.7734375,
@@ -1215,7 +1366,8 @@ export const greenSlugs: Slug[] = [
     z: 8350.451171875,
     originId: "PE2_C_11_20",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -159982.25,
@@ -1223,7 +1375,8 @@ export const greenSlugs: Slug[] = [
     z: 18245.853515625,
     originId: "PE2_C_12",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -39832.77734375,
@@ -1231,7 +1384,8 @@ export const greenSlugs: Slug[] = [
     z: -1816.846923828125,
     originId: "PE2_C_12_12",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -63963.7109375,
@@ -1239,7 +1393,8 @@ export const greenSlugs: Slug[] = [
     z: 17335.951171875,
     originId: "PE2_C_12_12002",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -169210.90625,
@@ -1247,7 +1402,8 @@ export const greenSlugs: Slug[] = [
     z: 2371.747802734375,
     originId: "PE2_C_12_13",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 179796,
@@ -1255,7 +1411,8 @@ export const greenSlugs: Slug[] = [
     z: 10519.6240234375,
     originId: "PE2_C_12_14",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -177454.109375,
@@ -1263,7 +1420,8 @@ export const greenSlugs: Slug[] = [
     z: -2017.6202392578125,
     originId: "PE2_C_12_15",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 132090.578125,
@@ -1271,7 +1429,8 @@ export const greenSlugs: Slug[] = [
     z: -520.696044921875,
     originId: "PE2_C_12_17",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 46720.23046875,
@@ -1279,7 +1438,8 @@ export const greenSlugs: Slug[] = [
     z: 14054.4755859375,
     originId: "PE2_C_12_43",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -136605.640625,
@@ -1287,7 +1447,8 @@ export const greenSlugs: Slug[] = [
     z: 15780.9853515625,
     originId: "PE2_C_13",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -17869.306640625,
@@ -1295,7 +1456,8 @@ export const greenSlugs: Slug[] = [
     z: 1984.080078125,
     originId: "PE2_C_13_13",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 182197.640625,
@@ -1303,7 +1465,8 @@ export const greenSlugs: Slug[] = [
     z: 4147.18798828125,
     originId: "PE2_C_13_15",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -164381.828125,
@@ -1311,7 +1474,8 @@ export const greenSlugs: Slug[] = [
     z: 6196.72021484375,
     originId: "PE2_C_13_16",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -93387.5390625,
@@ -1319,7 +1483,8 @@ export const greenSlugs: Slug[] = [
     z: 17056.716796875,
     originId: "PE2_C_13_18",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 127144.6796875,
@@ -1327,7 +1492,8 @@ export const greenSlugs: Slug[] = [
     z: 2336.895263671875,
     originId: "PE2_C_13_19",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 53796.39453125,
@@ -1335,7 +1501,8 @@ export const greenSlugs: Slug[] = [
     z: 11439.095703125,
     originId: "PE2_C_13_44",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -136570.890625,
@@ -1343,7 +1510,8 @@ export const greenSlugs: Slug[] = [
     z: 21238.541015625,
     originId: "PE2_C_14",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -18093.9140625,
@@ -1351,7 +1519,8 @@ export const greenSlugs: Slug[] = [
     z: -5811.16748046875,
     originId: "PE2_C_14_14",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -176793.40625,
@@ -1359,7 +1528,8 @@ export const greenSlugs: Slug[] = [
     z: 12265.8134765625,
     originId: "PE2_C_14_15",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 158493.34375,
@@ -1367,7 +1537,8 @@ export const greenSlugs: Slug[] = [
     z: 4905.3876953125,
     originId: "PE2_C_14_16",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -137403.921875,
@@ -1375,7 +1546,8 @@ export const greenSlugs: Slug[] = [
     z: 8278.55859375,
     originId: "PE2_C_14_17",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 175704.484375,
@@ -1383,7 +1555,8 @@ export const greenSlugs: Slug[] = [
     z: -3261.1279296875,
     originId: "PE2_C_14_20",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -209120.84375,
@@ -1391,7 +1564,8 @@ export const greenSlugs: Slug[] = [
     z: 10616.61328125,
     originId: "PE2_C_15",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -4365.59765625,
@@ -1399,7 +1573,8 @@ export const greenSlugs: Slug[] = [
     z: 2358.487548828125,
     originId: "PE2_C_15_15",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -165979.265625,
@@ -1407,7 +1582,8 @@ export const greenSlugs: Slug[] = [
     z: 2323.092041015625,
     originId: "PE2_C_15_16",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 166803.28125,
@@ -1415,7 +1591,8 @@ export const greenSlugs: Slug[] = [
     z: -2415.275634765625,
     originId: "PE2_C_15_21",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -44728.25390625,
@@ -1423,7 +1600,8 @@ export const greenSlugs: Slug[] = [
     z: 223.0462646484375,
     originId: "PE2_C_16_16",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -127715.0078125,
@@ -1431,7 +1609,8 @@ export const greenSlugs: Slug[] = [
     z: 2469.6591796875,
     originId: "PE2_C_16_19",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 166726.59375,
@@ -1439,7 +1618,8 @@ export const greenSlugs: Slug[] = [
     z: -3605.723876953125,
     originId: "PE2_C_16_22",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -169137.5625,
@@ -1447,7 +1627,8 @@ export const greenSlugs: Slug[] = [
     z: 351.3184509277344,
     originId: "PE2_C_17",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 180559.90625,
@@ -1455,7 +1636,8 @@ export const greenSlugs: Slug[] = [
     z: -2922.4892578125,
     originId: "PE2_C_17_15",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -97705.3515625,
@@ -1463,7 +1645,8 @@ export const greenSlugs: Slug[] = [
     z: 2836.096435546875,
     originId: "PE2_C_17_17",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -124509.0546875,
@@ -1471,7 +1654,8 @@ export const greenSlugs: Slug[] = [
     z: 1698.126953125,
     originId: "PE2_C_17_20",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -89508.8125,
@@ -1479,7 +1663,8 @@ export const greenSlugs: Slug[] = [
     z: 1934.5706787109375,
     originId: "PE2_C_18",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 184977.546875,
@@ -1487,7 +1672,8 @@ export const greenSlugs: Slug[] = [
     z: -2015.0460205078125,
     originId: "PE2_C_18_16",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -56673.08203125,
@@ -1495,7 +1681,8 @@ export const greenSlugs: Slug[] = [
     z: 402.45672607421875,
     originId: "PE2_C_18_18",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -229149.015625,
@@ -1503,7 +1690,8 @@ export const greenSlugs: Slug[] = [
     z: 4775.8486328125,
     originId: "PE2_C_18_22",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -116298.4921875,
@@ -1511,7 +1699,8 @@ export const greenSlugs: Slug[] = [
     z: 1000.9929809570312,
     originId: "PE2_C_19",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 183056.21875,
@@ -1519,7 +1708,8 @@ export const greenSlugs: Slug[] = [
     z: -4264.900390625,
     originId: "PE2_C_19_17",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -25938.310546875,
@@ -1527,7 +1717,8 @@ export const greenSlugs: Slug[] = [
     z: 296.29693603515625,
     originId: "PE2_C_19_19",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -285158.53125,
@@ -1535,7 +1726,8 @@ export const greenSlugs: Slug[] = [
     z: -857.3621215820312,
     originId: "PE2_C_19_23",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -109870.515625,
@@ -1543,7 +1735,8 @@ export const greenSlugs: Slug[] = [
     z: 13389.17578125,
     originId: "PE2_C_19_28",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -56825.71875,
@@ -1551,7 +1744,8 @@ export const greenSlugs: Slug[] = [
     z: -2647.916259765625,
     originId: "PE2_C_1_0",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -155397.75,
@@ -1559,7 +1753,8 @@ export const greenSlugs: Slug[] = [
     z: -1537.571533203125,
     originId: "PE2_C_1_1",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -72107.359375,
@@ -1567,7 +1762,8 @@ export const greenSlugs: Slug[] = [
     z: 16770.71875,
     originId: "PE2_C_1_12",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -225302,
@@ -1575,7 +1771,8 @@ export const greenSlugs: Slug[] = [
     z: 1661.9324951171875,
     originId: "PE2_C_1_17",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -210681.90625,
@@ -1583,7 +1780,8 @@ export const greenSlugs: Slug[] = [
     z: 10404.93359375,
     originId: "PE2_C_1_2",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 70039.3203125,
@@ -1591,7 +1789,8 @@ export const greenSlugs: Slug[] = [
     z: 13324.46875,
     originId: "PE2_C_1_21",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 138339.5625,
@@ -1599,7 +1798,8 @@ export const greenSlugs: Slug[] = [
     z: 7938.6982421875,
     originId: "PE2_C_1_3",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 112484,
@@ -1607,7 +1807,8 @@ export const greenSlugs: Slug[] = [
     z: -5054.66259765625,
     originId: "PE2_C_1_6",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -261667.1875,
@@ -1615,7 +1816,8 @@ export const greenSlugs: Slug[] = [
     z: -870.0969848632812,
     originId: "PE2_C_2",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -103164.9765625,
@@ -1623,7 +1825,8 @@ export const greenSlugs: Slug[] = [
     z: 265.93231201171875,
     originId: "PE2_C_20",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 178416.734375,
@@ -1631,7 +1834,8 @@ export const greenSlugs: Slug[] = [
     z: -4237.234375,
     originId: "PE2_C_20_18",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 33542.828125,
@@ -1639,7 +1843,8 @@ export const greenSlugs: Slug[] = [
     z: -5654.48486328125,
     originId: "PE2_C_20_20",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -273273.40625,
@@ -1647,7 +1852,8 @@ export const greenSlugs: Slug[] = [
     z: 3103.334716796875,
     originId: "PE2_C_20_21",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -114214.4921875,
@@ -1655,7 +1861,8 @@ export const greenSlugs: Slug[] = [
     z: 14877.1240234375,
     originId: "PE2_C_20_29",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -140558.640625,
@@ -1663,7 +1870,8 @@ export const greenSlugs: Slug[] = [
     z: 9068.2666015625,
     originId: "PE2_C_21",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 178835.796875,
@@ -1671,7 +1879,8 @@ export const greenSlugs: Slug[] = [
     z: -1657.2208251953125,
     originId: "PE2_C_21_19",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 22570.84375,
@@ -1679,7 +1888,8 @@ export const greenSlugs: Slug[] = [
     z: 2804.613525390625,
     originId: "PE2_C_21_21",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -236733.421875,
@@ -1687,7 +1897,8 @@ export const greenSlugs: Slug[] = [
     z: -1612.8070068359375,
     originId: "PE2_C_21_24",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -116506.3515625,
@@ -1695,7 +1906,8 @@ export const greenSlugs: Slug[] = [
     z: 14657.619140625,
     originId: "PE2_C_21_26",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -110796.6875,
@@ -1703,7 +1915,8 @@ export const greenSlugs: Slug[] = [
     z: -6225.07080078125,
     originId: "PE2_C_22_22",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -263230.15625,
@@ -1711,7 +1924,8 @@ export const greenSlugs: Slug[] = [
     z: 517.7976684570312,
     originId: "PE2_C_22_25",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -113223.8046875,
@@ -1719,7 +1933,8 @@ export const greenSlugs: Slug[] = [
     z: 13003.23046875,
     originId: "PE2_C_22_27",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -104808.4140625,
@@ -1727,7 +1942,8 @@ export const greenSlugs: Slug[] = [
     z: -1766.2000732421875,
     originId: "PE2_C_23",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -111111.9921875,
@@ -1735,7 +1951,8 @@ export const greenSlugs: Slug[] = [
     z: 736.202880859375,
     originId: "PE2_C_23_23",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -298838.03125,
@@ -1743,7 +1960,8 @@ export const greenSlugs: Slug[] = [
     z: 710.8389892578125,
     originId: "PE2_C_23_26",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -147395.140625,
@@ -1751,7 +1969,8 @@ export const greenSlugs: Slug[] = [
     z: 10560.55859375,
     originId: "PE2_C_24",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 3924.819580078125,
@@ -1759,7 +1978,8 @@ export const greenSlugs: Slug[] = [
     z: -5231.451171875,
     originId: "PE2_C_24_24",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -117464.6640625,
@@ -1767,7 +1987,8 @@ export const greenSlugs: Slug[] = [
     z: 13399.857421875,
     originId: "PE2_C_24_25",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -112208.234375,
@@ -1775,7 +1996,8 @@ export const greenSlugs: Slug[] = [
     z: 3772.093017578125,
     originId: "PE2_C_25",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -113645.1953125,
@@ -1783,7 +2005,8 @@ export const greenSlugs: Slug[] = [
     z: 6218.9013671875,
     originId: "PE2_C_25_21",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -35282.4609375,
@@ -1791,7 +2014,8 @@ export const greenSlugs: Slug[] = [
     z: 2545.939697265625,
     originId: "PE2_C_25_25",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -70297.375,
@@ -1799,7 +2023,8 @@ export const greenSlugs: Slug[] = [
     z: -6331.5673828125,
     originId: "PE2_C_26_26",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -139446.90625,
@@ -1807,7 +2032,8 @@ export const greenSlugs: Slug[] = [
     z: 9832.525390625,
     originId: "PE2_C_26_32",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -136541.703125,
@@ -1815,7 +2041,8 @@ export const greenSlugs: Slug[] = [
     z: 7753.8388671875,
     originId: "PE2_C_27",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -97120.8046875,
@@ -1823,7 +2050,8 @@ export const greenSlugs: Slug[] = [
     z: 12218.87890625,
     originId: "PE2_C_27_22",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -54543.35546875,
@@ -1831,7 +2059,8 @@ export const greenSlugs: Slug[] = [
     z: -1451.72412109375,
     originId: "PE2_C_27_27",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -206513.6875,
@@ -1839,7 +2068,8 @@ export const greenSlugs: Slug[] = [
     z: -1391.2119140625,
     originId: "PE2_C_28",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -124469.9921875,
@@ -1847,7 +2077,8 @@ export const greenSlugs: Slug[] = [
     z: 7268.09912109375,
     originId: "PE2_C_28_23",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -78244.0703125,
@@ -1855,7 +2086,8 @@ export const greenSlugs: Slug[] = [
     z: -3966.489501953125,
     originId: "PE2_C_28_28",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -192076.296875,
@@ -1863,7 +2095,8 @@ export const greenSlugs: Slug[] = [
     z: 4965.54638671875,
     originId: "PE2_C_29",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -135682.15625,
@@ -1871,7 +2104,8 @@ export const greenSlugs: Slug[] = [
     z: 8202.4296875,
     originId: "PE2_C_29_24",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -24539.869140625,
@@ -1879,7 +2113,8 @@ export const greenSlugs: Slug[] = [
     z: -3446.379638671875,
     originId: "PE2_C_29_29",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 128079.6875,
@@ -1887,7 +2122,8 @@ export const greenSlugs: Slug[] = [
     z: 4213.3310546875,
     originId: "PE2_C_2_0",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 39006.37890625,
@@ -1895,7 +2131,8 @@ export const greenSlugs: Slug[] = [
     z: 14359.439453125,
     originId: "PE2_C_2_1",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 6632.50048828125,
@@ -1903,7 +2140,8 @@ export const greenSlugs: Slug[] = [
     z: 1160.996337890625,
     originId: "PE2_C_2_2",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -210162.125,
@@ -1911,7 +2149,8 @@ export const greenSlugs: Slug[] = [
     z: -579.3234252929688,
     originId: "PE2_C_2_21",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -101136,
@@ -1919,7 +2158,8 @@ export const greenSlugs: Slug[] = [
     z: 15247.251953125,
     originId: "PE2_C_2_2780",
     obstructed: true,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -149928.8125,
@@ -1927,7 +2167,8 @@ export const greenSlugs: Slug[] = [
     z: 3607.4423828125,
     originId: "PE2_C_2_3",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -273618.1875,
@@ -1935,7 +2176,8 @@ export const greenSlugs: Slug[] = [
     z: -834.8453979492188,
     originId: "PE2_C_2_6",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 189389.015625,
@@ -1943,7 +2185,8 @@ export const greenSlugs: Slug[] = [
     z: 3496.12841796875,
     originId: "PE2_C_2_7",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -226826.921875,
@@ -1951,7 +2194,8 @@ export const greenSlugs: Slug[] = [
     z: 4874.64013671875,
     originId: "PE2_C_3",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -192378.546875,
@@ -1959,7 +2203,8 @@ export const greenSlugs: Slug[] = [
     z: 4985.00634765625,
     originId: "PE2_C_30",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -11948.365234375,
@@ -1967,7 +2212,8 @@ export const greenSlugs: Slug[] = [
     z: -1881.1641845703125,
     originId: "PE2_C_30_3",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -105178.6484375,
@@ -1975,7 +2221,8 @@ export const greenSlugs: Slug[] = [
     z: 13215.2294921875,
     originId: "PE2_C_30_30",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -161214.640625,
@@ -1983,7 +2230,8 @@ export const greenSlugs: Slug[] = [
     z: 9840.0224609375,
     originId: "PE2_C_31",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -165206.109375,
@@ -1991,7 +2239,8 @@ export const greenSlugs: Slug[] = [
     z: 3963.79833984375,
     originId: "PE2_C_31_6",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -12908.091796875,
@@ -1999,7 +2248,8 @@ export const greenSlugs: Slug[] = [
     z: -1779.264892578125,
     originId: "PE2_C_31_7",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -68347.0078125,
@@ -2007,7 +2257,8 @@ export const greenSlugs: Slug[] = [
     z: 786.8340454101562,
     originId: "PE2_C_32",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -54656.41015625,
@@ -2015,7 +2266,8 @@ export const greenSlugs: Slug[] = [
     z: -1466.6380615234375,
     originId: "PE2_C_32_11",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -182317.9375,
@@ -2023,7 +2275,8 @@ export const greenSlugs: Slug[] = [
     z: 2007.3623046875,
     originId: "PE2_C_32_7",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -176828.28125,
@@ -2031,7 +2284,8 @@ export const greenSlugs: Slug[] = [
     z: 5316.56982421875,
     originId: "PE2_C_33",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -115731.21875,
@@ -2039,7 +2293,8 @@ export const greenSlugs: Slug[] = [
     z: -4679.34521484375,
     originId: "PE2_C_33_9",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -87052.046875,
@@ -2047,7 +2302,8 @@ export const greenSlugs: Slug[] = [
     z: -3049.356201171875,
     originId: "PE2_C_34",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -161836.3125,
@@ -2055,7 +2311,8 @@ export const greenSlugs: Slug[] = [
     z: 6357.2021484375,
     originId: "PE2_C_34_2",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -252341.734375,
@@ -2063,7 +2320,8 @@ export const greenSlugs: Slug[] = [
     z: 8118.98095703125,
     originId: "PE2_C_34_21",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -91820.109375,
@@ -2071,7 +2329,8 @@ export const greenSlugs: Slug[] = [
     z: -3181.374267578125,
     originId: "PE2_C_35",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -181215.8125,
@@ -2079,7 +2338,8 @@ export const greenSlugs: Slug[] = [
     z: 17784.416015625,
     originId: "PE2_C_35_5",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -15141.1689453125,
@@ -2087,7 +2347,8 @@ export const greenSlugs: Slug[] = [
     z: 232.74456787109375,
     originId: "PE2_C_36",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -110938.25,
@@ -2095,7 +2356,8 @@ export const greenSlugs: Slug[] = [
     z: -528.731689453125,
     originId: "PE2_C_36_23",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -39678.30859375,
@@ -2103,7 +2365,8 @@ export const greenSlugs: Slug[] = [
     z: -426.4142761230469,
     originId: "PE2_C_37",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -197509.203125,
@@ -2111,7 +2374,8 @@ export const greenSlugs: Slug[] = [
     z: 1994.2559814453125,
     originId: "PE2_C_37_24",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -187639.734375,
@@ -2119,7 +2383,8 @@ export const greenSlugs: Slug[] = [
     z: -1328.2874755859375,
     originId: "PE2_C_38",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -191559.75,
@@ -2127,7 +2392,8 @@ export const greenSlugs: Slug[] = [
     z: -3015.706298828125,
     originId: "PE2_C_39",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 8995.978515625,
@@ -2135,7 +2401,8 @@ export const greenSlugs: Slug[] = [
     z: 568.4852294921875,
     originId: "PE2_C_3_1",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -42609.59765625,
@@ -2143,7 +2410,8 @@ export const greenSlugs: Slug[] = [
     z: 18908.5859375,
     originId: "PE2_C_3_13",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 101580.3125,
@@ -2151,7 +2419,8 @@ export const greenSlugs: Slug[] = [
     z: 10567.384765625,
     originId: "PE2_C_3_14",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -216108.515625,
@@ -2159,7 +2428,8 @@ export const greenSlugs: Slug[] = [
     z: -689.4234008789062,
     originId: "PE2_C_3_19",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -64528.64453125,
@@ -2167,7 +2437,8 @@ export const greenSlugs: Slug[] = [
     z: -2816.97998046875,
     originId: "PE2_C_3_3",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -178837.09375,
@@ -2175,7 +2446,8 @@ export const greenSlugs: Slug[] = [
     z: 3733.47509765625,
     originId: "PE2_C_3_4",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -107060.515625,
@@ -2183,7 +2455,8 @@ export const greenSlugs: Slug[] = [
     z: 3297.236328125,
     originId: "PE2_C_3_5",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 207259.578125,
@@ -2191,7 +2464,8 @@ export const greenSlugs: Slug[] = [
     z: 8445.4326171875,
     originId: "PE2_C_3_8",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -216556.96875,
@@ -2199,7 +2473,8 @@ export const greenSlugs: Slug[] = [
     z: 1309.005126953125,
     originId: "PE2_C_4",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -148951.65625,
@@ -2207,7 +2482,8 @@ export const greenSlugs: Slug[] = [
     z: 1990.474365234375,
     originId: "PE2_C_40",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -267650.5625,
@@ -2215,7 +2491,8 @@ export const greenSlugs: Slug[] = [
     z: 6374.2626953125,
     originId: "PE2_C_41",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -180197.234375,
@@ -2223,7 +2500,8 @@ export const greenSlugs: Slug[] = [
     z: -1720.701904296875,
     originId: "PE2_C_42",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -149454.84375,
@@ -2231,7 +2509,8 @@ export const greenSlugs: Slug[] = [
     z: 7390.65625,
     originId: "PE2_C_43",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -116477.078125,
@@ -2239,7 +2518,8 @@ export const greenSlugs: Slug[] = [
     z: 6210.51171875,
     originId: "PE2_C_45",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -152341.5625,
@@ -2247,7 +2527,8 @@ export const greenSlugs: Slug[] = [
     z: 18057.810546875,
     originId: "PE2_C_46",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -136411.90625,
@@ -2255,7 +2536,8 @@ export const greenSlugs: Slug[] = [
     z: 25884.150390625,
     originId: "PE2_C_47",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 88114.5859375,
@@ -2263,7 +2545,8 @@ export const greenSlugs: Slug[] = [
     z: 10903.634765625,
     originId: "PE2_C_4_3",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -72641.953125,
@@ -2271,7 +2554,8 @@ export const greenSlugs: Slug[] = [
     z: 15730.041015625,
     originId: "PE2_C_4_3771",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 10973.1201171875,
@@ -2279,7 +2563,8 @@ export const greenSlugs: Slug[] = [
     z: 3545.1318359375,
     originId: "PE2_C_4_4",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -180165.96875,
@@ -2287,7 +2572,8 @@ export const greenSlugs: Slug[] = [
     z: 11404.1044921875,
     originId: "PE2_C_4_5",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 103453.515625,
@@ -2295,7 +2581,8 @@ export const greenSlugs: Slug[] = [
     z: -351.8702087402344,
     originId: "PE2_C_4_6",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -213656.578125,
@@ -2303,7 +2590,8 @@ export const greenSlugs: Slug[] = [
     z: 97.11396026611328,
     originId: "PE2_C_4_7",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 194376.390625,
@@ -2311,7 +2599,8 @@ export const greenSlugs: Slug[] = [
     z: -1877.0355224609375,
     originId: "PE2_C_4_9",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -193576.15625,
@@ -2319,7 +2608,8 @@ export const greenSlugs: Slug[] = [
     z: -149.7289276123047,
     originId: "PE2_C_5",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -126519.4453125,
@@ -2327,7 +2617,8 @@ export const greenSlugs: Slug[] = [
     z: 5168.3984375,
     originId: "PE2_C_57_0",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 137109.21875,
@@ -2335,7 +2626,8 @@ export const greenSlugs: Slug[] = [
     z: -4670.59619140625,
     originId: "PE2_C_5_10",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 124923.8984375,
@@ -2343,7 +2635,8 @@ export const greenSlugs: Slug[] = [
     z: 10167.3603515625,
     originId: "PE2_C_5_15",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 14158.3544921875,
@@ -2351,7 +2644,8 @@ export const greenSlugs: Slug[] = [
     z: -5275.7294921875,
     originId: "PE2_C_5_5",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -55085,
@@ -2359,7 +2653,8 @@ export const greenSlugs: Slug[] = [
     z: 16937.626953125,
     originId: "PE2_C_5_5126",
     obstructed: true,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -90366.734375,
@@ -2367,7 +2662,8 @@ export const greenSlugs: Slug[] = [
     z: 3794.189697265625,
     originId: "PE2_C_5_6",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -39130.328125,
@@ -2375,7 +2671,8 @@ export const greenSlugs: Slug[] = [
     z: -1326.6474609375,
     originId: "PE2_C_5_7",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -263268.4375,
@@ -2383,7 +2680,8 @@ export const greenSlugs: Slug[] = [
     z: -1639.287353515625,
     originId: "PE2_C_5_8",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -136284.203125,
@@ -2391,7 +2689,8 @@ export const greenSlugs: Slug[] = [
     z: 3088.945556640625,
     originId: "PE2_C_6",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -136888.15625,
@@ -2399,7 +2698,8 @@ export const greenSlugs: Slug[] = [
     z: 721.9017944335938,
     originId: "PE2_C_63",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 169976.09375,
@@ -2407,7 +2707,8 @@ export const greenSlugs: Slug[] = [
     z: -7896.7724609375,
     originId: "PE2_C_6_11",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -18292.994140625,
@@ -2415,7 +2716,8 @@ export const greenSlugs: Slug[] = [
     z: 15741.6123046875,
     originId: "PE2_C_6_14",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 128172.34375,
@@ -2423,7 +2725,8 @@ export const greenSlugs: Slug[] = [
     z: 14046.7802734375,
     originId: "PE2_C_6_5",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 11527.087890625,
@@ -2431,7 +2734,8 @@ export const greenSlugs: Slug[] = [
     z: -5134.76708984375,
     originId: "PE2_C_6_6",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -156158.890625,
@@ -2439,7 +2743,8 @@ export const greenSlugs: Slug[] = [
     z: 13633.4228515625,
     originId: "PE2_C_6_7",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -32669.443359375,
@@ -2447,7 +2752,8 @@ export const greenSlugs: Slug[] = [
     z: 6396.8974609375,
     originId: "PE2_C_6_8",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -229633.59375,
@@ -2455,7 +2761,8 @@ export const greenSlugs: Slug[] = [
     z: -1742.8685302734375,
     originId: "PE2_C_6_9",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -220679.984375,
@@ -2463,7 +2770,8 @@ export const greenSlugs: Slug[] = [
     z: 4866.93798828125,
     originId: "PE2_C_7",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -205591.65625,
@@ -2471,7 +2779,8 @@ export const greenSlugs: Slug[] = [
     z: 12774.884765625,
     originId: "PE2_C_7_10",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 136433.46875,
@@ -2479,7 +2788,8 @@ export const greenSlugs: Slug[] = [
     z: -8365.3212890625,
     originId: "PE2_C_7_12",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -33544.875,
@@ -2487,7 +2797,8 @@ export const greenSlugs: Slug[] = [
     z: 784.2698974609375,
     originId: "PE2_C_7_16",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 125763.2578125,
@@ -2495,7 +2806,8 @@ export const greenSlugs: Slug[] = [
     z: 12793.5,
     originId: "PE2_C_7_17",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 10052.9375,
@@ -2503,7 +2815,8 @@ export const greenSlugs: Slug[] = [
     z: -5657.8330078125,
     originId: "PE2_C_7_7",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -128685.984375,
@@ -2511,7 +2824,8 @@ export const greenSlugs: Slug[] = [
     z: 7859.8720703125,
     originId: "PE2_C_7_8",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -16023.578125,
@@ -2519,7 +2833,8 @@ export const greenSlugs: Slug[] = [
     z: 6389.615234375,
     originId: "PE2_C_7_9",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -237555.171875,
@@ -2527,7 +2842,8 @@ export const greenSlugs: Slug[] = [
     z: 13786.3994140625,
     originId: "PE2_C_8",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 86486.3359375,
@@ -2535,7 +2851,8 @@ export const greenSlugs: Slug[] = [
     z: 6138.16650390625,
     originId: "PE2_C_8_10",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -173527.46875,
@@ -2543,7 +2860,8 @@ export const greenSlugs: Slug[] = [
     z: 4639.64453125,
     originId: "PE2_C_8_11",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 152137.75,
@@ -2551,7 +2869,8 @@ export const greenSlugs: Slug[] = [
     z: 244.8877410888672,
     originId: "PE2_C_8_13",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -47764.609375,
@@ -2559,7 +2878,8 @@ export const greenSlugs: Slug[] = [
     z: 18812.681640625,
     originId: "PE2_C_8_17",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 144075.265625,
@@ -2567,7 +2887,8 @@ export const greenSlugs: Slug[] = [
     z: 16550.978515625,
     originId: "PE2_C_8_18",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 11884.5185546875,
@@ -2575,7 +2896,8 @@ export const greenSlugs: Slug[] = [
     z: -5037.3388671875,
     originId: "PE2_C_8_8",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -86878.6328125,
@@ -2583,7 +2905,8 @@ export const greenSlugs: Slug[] = [
     z: 3570.42578125,
     originId: "PE2_C_8_9",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -237250.125,
@@ -2591,7 +2914,8 @@ export const greenSlugs: Slug[] = [
     z: -129.30227661132812,
     originId: "PE2_C_9",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -96647.5,
@@ -2599,7 +2923,8 @@ export const greenSlugs: Slug[] = [
     z: 2486.9541015625,
     originId: "PE2_C_9_10",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 40511.71875,
@@ -2607,7 +2932,8 @@ export const greenSlugs: Slug[] = [
     z: 6092.77587890625,
     originId: "PE2_C_9_11",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -268977.1875,
@@ -2615,7 +2941,8 @@ export const greenSlugs: Slug[] = [
     z: 17.374753952026367,
     originId: "PE2_C_9_12",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 105235.46875,
@@ -2623,7 +2950,8 @@ export const greenSlugs: Slug[] = [
     z: -2228.519775390625,
     originId: "PE2_C_9_14",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 52783.28515625,
@@ -2631,7 +2959,8 @@ export const greenSlugs: Slug[] = [
     z: 19953.17578125,
     originId: "PE2_C_9_19",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: -24297.455078125,
@@ -2639,7 +2968,8 @@ export const greenSlugs: Slug[] = [
     z: 15835.64453125,
     originId: "PE2_C_9_8928",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   },
   {
     x: 13037.9755859375,
@@ -2647,6 +2977,7 @@ export const greenSlugs: Slug[] = [
     z: -5643.6875,
     originId: "PE2_C_9_9",
     obstructed: false,
-    type: "green"
+    type: "green",
+    collected: false,
   }
 ];

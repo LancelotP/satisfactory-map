@@ -10,16 +10,13 @@ import {
 } from "react-leaflet";
 
 import * as S from "./Map.style";
-import { Node, NodeType, Slug } from "../../data/markers";
+import { Node, NodeType, Slug, DropPod, Artifact } from "../../data/markers";
 import { NodeGroup } from "../NodeGroup/NodeGroup";
 import { SlugGroup } from "../SlugGroup/SlugGroup";
 import { ArtifactGroup } from "../ArtifactGroup/ArtifactGroup";
-import { somers } from "../../data/a_somer";
-import { mercers } from "../../data/a_mercer";
 import { GeyserGroup } from "../GeyserGroup/GeyserGroup";
 import { geysers } from "../../data/g_geysers";
 import { DropPodGroup } from "../DropPodGroup/DropPodGroup";
-import { dropPods } from "../../data/d_droppods";
 import { PlayerLocation } from "../LocateMeBtn/getPlayerFromSave";
 
 // @ts-ignore
@@ -32,15 +29,18 @@ type Props = {
   greenSlugs: Slug[];
   yellowSlugs: Slug[];
   purpleSlugs: Slug[];
+  dropPods: DropPod[];
+  somers: Artifact[];
+  mercers: Artifact[];
   players: PlayerLocation[];
-  toggleMenu: () => void;
+toggleMenu: () => void;
   isMenuOpen: boolean;
 };
 
 export const Map: React.FunctionComponent<Props> = props => {
   const markers = sortMarkers(props.markers);
   const ref = React.useRef<LMap | null>();
-  const { greenSlugs, yellowSlugs, purpleSlugs, players } = props;
+  const { greenSlugs, yellowSlugs, purpleSlugs, players, somers, mercers, dropPods } = props;
   const [lat, setLat] = React.useState(0);
   const [lng, setLng] = React.useState(0);
   const [zoom, setZoom] = React.useState(3);
@@ -84,7 +84,7 @@ export const Map: React.FunctionComponent<Props> = props => {
   }
 
   React.useEffect(() => {
-    if (players.length > 1) {
+    if (players.length >= 1) {
       ref.current!.leafletElement.flyTo([players[0].y, players[0].x], 6);
     }
   }, [players]);
