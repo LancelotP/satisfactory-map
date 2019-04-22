@@ -329,15 +329,16 @@ function getExtractData(arrBuff) {
   function getOriginTypeAndId(pathName) {
     // TODO : fix type id
     let [level, typeID] = pathName.split('.');
+    console.log(typeID)
   
     level = level
       .replace('Persistent_Level:PersistentLevel', 'PL')
       .replace('Persistent_Exploration:PersistentLevel', 'PE')
       .replace('Persistent_Exploration_2:PersistentLevel', 'PE2');
       
-    let regex = /(?<type>^[\D_]+?)(?<id>[\d_]+$)/;
+    let regex = /(^[\D_]+?)([\d_]+$)/;
   
-    let {type, id} = typeID.match(regex).groups;
+    let [_, type, id] = typeID.match(regex);
     
     let typeMin = null;
     let toReturn = true;
