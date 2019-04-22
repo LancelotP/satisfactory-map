@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./LocateMeBtn.style";
 import { Modal } from "../../../../components/Modal/Modal";
-import getExtractData from '../../../../utils/saveExtract';
+import getExtractData from '../../../../utils/saveextract';
 
 type Props = {
   onSaveLoaded: (d: any) => void;
