@@ -96,8 +96,6 @@ export const InteractiveMap = (props: Props) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [pNodes, setPNodes] = useState(nodes);
   const [pDropPods, setPDropPods] = useState(dropPods);
-  const [pSomers, setPSomers] = useState(somers);
-  const [pMercers, setPMercers] = useState(mercers);
   const [pGreenSlugs, setPGreenSlugs] = useState(greenSlugs);
   const [pYellowSlugs, setPYellowSlugs] = useState(yellowSlugs);
   const [pPurpleSlugs, setPPurpleSlugs] = useState(purpleSlugs);
@@ -221,8 +219,8 @@ export const InteractiveMap = (props: Props) => {
                 isMenuOpen={isMenuOpen}
                 players={players}
                 markers={pNodes}
-                somers={pSomers}
-                mercers={pMercers}
+                somers={somers}
+                mercers={mercers}
                 dropPods={pDropPods}
                 greenSlugs={pGreenSlugs}
                 yellowSlugs={pYellowSlugs}
