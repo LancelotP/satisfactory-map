@@ -329,7 +329,6 @@ function getExtractData(arrBuff) {
   function getOriginTypeAndId(pathName) {
     // TODO : fix type id
     let [level, typeID] = pathName.split('.');
-    console.log(typeID)
   
     level = level
       .replace('Persistent_Level:PersistentLevel', 'PL')

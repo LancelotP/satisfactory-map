@@ -50,11 +50,39 @@ class SavefileBuffer {
     return data;
   }
 
-  readPrefixedString() {
-    let length = this.readInt();
-    let data = this.readString(length);
+  // https://stackoverflow.com/a/14601808
+  decodeUTF16LE(binaryStr) {
+    var cp = [];
+    for (var i = 0; i < binaryStr.length; i += 2) {
+      cp.push(binaryStr.charCodeAt(i) | (binaryStr.charCodeAt(i + 1) << 8));
+    }
+
+    return String.fromCharCode.apply(String, cp);
+  }
+
+  readUTF16String(length) {
+    length = -2 * length;
+    let str = this.buffer.toString('binary', this.bytesRead, this.bytesRead + length - 1);
+
+
+    let data = this.decodeUTF16LE(str);
+    this.bytesRead += length;
+
     return data;
   }
+
+  readPrefixedString() {
+    let length = this.readInt();
+    let data;
+
+    if (length < 0)
+      data = this.readUTF16String(length);
+    else
+      data = this.readString(length);
+
+    return data;
+  }
+
   
   readActor() {
     let className = this.readPrefixedString()
@@ -108,18 +136,18 @@ class SavefileBuffer {
   
   readHeader() {
     this.data = {
-      'saveHeaderType': this.readInt(),
-      'saveVersion': this.readInt(),
-      'buildVersion': this.readInt(),
-      'mapName': this.readPrefixedString(),
-      'mapOptions': this.readPrefixedString(),
-      'sessionName': this.readPrefixedString(),
-      'playDurationSeconds': this.readInt(),
-      'saveDateTime': this.readLong(),
-      'sessionVisibility': this.readByte(),
-      'objects': [],
-      'collected': []
-    }
+      saveHeaderType: this.readInt(),
+      saveVersion: this.readInt(),
+      buildVersion: this.readInt(),
+      mapName: this.readPrefixedString(),
+      mapOptions: this.readPrefixedString(),
+      sessionName: this.readPrefixedString(),
+      playDurationSeconds: this.readInt(),
+      saveDateTime: this.readLong(),
+      sessionVisibility: this.readByte(),
+      objects: [],
+      collected: [],
+  };
   }
   
   readObjects() {
