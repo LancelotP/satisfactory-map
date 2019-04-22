@@ -6,11 +6,15 @@
   "license": "MIT",
   "dependencies": {
     "commander": "^2.20.0",
+    "fs": "^0.0.1-security",
+    "int64-buffer": "^0.99.1007",
+    "js-sha256": "^0.9.0",
     "rbush-3d": "^0.0.4"
   },
   "bin": {
     "playerpos": "./playerpos.js",
     "gensave": "./gensave.js",
-    "extract": "./extract.js"
+    "extract": "./extract.js",
+    "saveextract": "./saveextract.js"
   }
 }
