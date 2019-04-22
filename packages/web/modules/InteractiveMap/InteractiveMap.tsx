@@ -153,8 +153,6 @@ export const InteractiveMap = (props: Props) => {
   }
 
   function handleSaveLoaded(d: any) {
-    console.log(d);
-    
     setPlayers(d.players);
 
     const minersTargets: string[] = d.miners.map((t: any) => t.targetID);
