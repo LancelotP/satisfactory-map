@@ -18,6 +18,7 @@ import { GeyserGroup } from "../GeyserGroup/GeyserGroup";
 import { geysers } from "../../data/g_geysers";
 import { DropPodGroup } from "../DropPodGroup/DropPodGroup";
 import { PlayerLocation } from "../LocateMeBtn/getPlayerFromSave";
+import { DistanceBtn } from "../DistanceBtn/DistanceBtn";
 
 // @ts-ignore
 const crs = L.extend({}, L.CRS.Simple, {
@@ -33,7 +34,7 @@ type Props = {
   somers: Artifact[];
   mercers: Artifact[];
   players: PlayerLocation[];
-toggleMenu: () => void;
+  toggleMenu: () => void;
   isMenuOpen: boolean;
 };
 
@@ -44,6 +45,9 @@ export const Map: React.FunctionComponent<Props> = props => {
   const [lat, setLat] = React.useState(0);
   const [lng, setLng] = React.useState(0);
   const [zoom, setZoom] = React.useState(3);
+  const [isMeasuringDistance, setIsMeasuringDistance] = React.useState(false);
+  const [distanceFrom, setDistanceFrom] = React.useState(0);
+  const [distanceTo, setDistanceTo] = React.useState(0);
 
   React.useEffect(() => {
     if (typeof location !== "undefined" && location.hash) {
@@ -83,6 +87,71 @@ export const Map: React.FunctionComponent<Props> = props => {
     }
   }
 
+  function prepareDistanceCalc(e) {
+    setIsMeasuringDistance(!isMeasuringDistance);
+    const leafletMap = ref.current!.leafletElement;
+    leafletMap._container.style.cursor = 'crosshair';
+  }
+
+  function handleMapClick(e) {
+    if (!e.latlng || !isMeasuringDistance) { return; }
+    const leafletMap = ref.current!.leafletElement;
+
+    if (distanceFrom) {
+      setIsMeasuringDistance(false);
+      leafletMap._container.style.cursor = '';
+      return;
+    }
+    if (!this._layerPaint) {
+      this._layerPaint = L.layerGroup().addTo(leafletMap)
+    }
+    const icon = L.divIcon({
+      className: 'leaflet-measure-tooltip',
+      iconAnchor: [-5, -5]
+    });
+    this._tooltip = L.marker(e.latlng, {
+      icon: icon,
+      clickable: false
+    }).addTo(this._layerPaint);
+    setDistanceFrom(e.latlng);
+  }
+
+  function handleMouseMove(e) {
+    if (!isMeasuringDistance || !e.latlng || !distanceFrom) { return; }
+    const dist = getDistance(e.latlng, distanceFrom);
+
+    if (!this._layerPaintPathTemp) {
+      //  customize style
+      this._layerPaintPathTemp = L.polyline([distanceFrom, e.latlng], {
+        color: 'white',
+        weight: 2,
+        opacity: 1,
+        clickable: false,
+        dashArray: '6, 6',
+        interactive: false
+      }).addTo(this._layerPaint);
+    } else {
+      //  replace the current layer to the newest draw points
+      this._layerPaintPathTemp.getLatLngs().splice(0, 2, distanceFrom, e.latlng);
+      //  force path layer update
+      this._layerPaintPathTemp.redraw();
+    }
+    this._tooltip.setLatLng(e.latlng);
+    const roundedDist = Math.round(dist);
+    var text = '<div style="background:#fff;padding:0 10px;border:1px solid #000;border-radius:2px;position:absolute;width:200px;"><span style="display:block;margin:5px 0">Distance: ' + roundedDist + 'm</span><span style="display:block;margin:5px 0">Belt price (appox): ' + Math.round(roundedDist / 2) + '</span></div>';
+    this._tooltip._icon.innerHTML = text;
+
+    console.log(distanceFrom);
+    console.log(e.latlng);
+  }
+
+  function getDistance(dist1, dist2) {
+    const leafletMap = ref.current!.leafletElement,
+          dist = leafletMap.distance(dist1, dist2);
+
+    return dist / 60; //don't ask why :(
+  }
+
   React.useEffect(() => {
     if (players.length >= 1) {
       ref.current!.leafletElement.flyTo([players[0].y, players[0].x], 6);
@@ -91,6 +160,7 @@ export const Map: React.FunctionComponent<Props> = props => {
 
   return (
     <S.Root>
+      <DistanceBtn prepareDistanceCalc={prepareDistanceCalc} />
       <LMap
         // @ts-ignore
         ref={ref}
@@ -102,6 +172,8 @@ export const Map: React.FunctionComponent<Props> = props => {
         center={[lat, lng]}
         crs={crs}
         preferCanvas={true}
+        onClick={handleMapClick}
+        onMouseMove={handleMouseMove}
       >
         <TileLayer
           url="/static/tiles/{z}/{x}/{y}.png"
