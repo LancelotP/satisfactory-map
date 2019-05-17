@@ -172,7 +172,8 @@ function sortMarkers(markers: Props["markers"]) {
       quartz: [],
       uranium: [],
       sam: [],
-      geyser: []
+      geyser: [],
+      unknown: []
     }
   };
 
