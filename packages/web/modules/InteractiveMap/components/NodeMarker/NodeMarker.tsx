@@ -200,7 +200,8 @@ const colors: IconColors = {
   quartz: generateIconColors("#FF6699"),
   uranium: generateIconColors("#6FEA64"),
   sam: generateIconColors("#A424B3"),
-  geyser: generateIconColors("#07C8FF")
+  geyser: generateIconColors("#07C8FF"),
+  unknown: generateIconColors("#000"),
 };
 
 export function generateIconColors(color: string): IconColor {

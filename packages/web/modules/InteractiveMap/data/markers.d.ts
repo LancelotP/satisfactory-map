@@ -17,8 +17,9 @@ export type NodeType =
   | "quartz"
   | "uranium"
   | "sam"
-  | "geyser";
-export type NodePurity = "impure" | "normal" | "pure";
+  | "geyser"
+  | "unknown";
+export type NodePurity = "impure" | "normal" | "pure" | "unknown";
 
 export type Node = Marker & {
   purity: NodePurity;

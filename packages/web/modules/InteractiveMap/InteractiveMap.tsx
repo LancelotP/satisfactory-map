@@ -94,7 +94,7 @@ export const InteractiveMap = (props: Props) => {
   const [selection, setSelection] = useState<Selection>(getDefaultSelection());
   const [players, setPlayers] = useState<PlayerLocation[]>([]);
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [pNodes, setPNodes] = useState(nodes);
+  const [pNodes, setPNodes] = useState(nodes.filter(e => e.type !== 'unknown' && e.purity !== 'unknown'));
   const [pDropPods, setPDropPods] = useState(dropPods);
   const [pGreenSlugs, setPGreenSlugs] = useState(greenSlugs);
   const [pYellowSlugs, setPYellowSlugs] = useState(yellowSlugs);
