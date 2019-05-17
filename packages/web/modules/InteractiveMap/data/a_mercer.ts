@@ -78,7 +78,8 @@ export const mercers: Artifact[] = [
     y: 43265.58984375,
     z: -1060.638427734375,
     obstructed: false,
-    originId: "PE_WAT2_210"
+    originId: "PE_WAT2_210",
+    type: "mercer"
   },
   {
     x: 77135.484375,
@@ -101,7 +102,8 @@ export const mercers: Artifact[] = [
     y: 114795.8828125,
     z: 7974.94873046875,
     obstructed: false,
-    originId: "PE_WAT2_21_25"
+    originId: "PE_WAT2_21_25",
+    type: "mercer"
   },
   {
     x: 112216.640625,
@@ -124,7 +126,8 @@ export const mercers: Artifact[] = [
     y: 55739.109375,
     z: -459.6312255859375,
     obstructed: false,
-    originId: "PE_WAT2_22_26"
+    originId: "PE_WAT2_22_26",
+    type: "mercer"
   },
   {
     x: 109404.09375,
@@ -155,7 +158,8 @@ export const mercers: Artifact[] = [
     y: 124409.3203125,
     z: -1459.054443359375,
     obstructed: false,
-    originId: "PE_WAT2_23_27"
+    originId: "PE_WAT2_23_27",
+    type: "mercer"
   },
   {
     x: 118772.96875,
@@ -178,7 +182,8 @@ export const mercers: Artifact[] = [
     y: -24426.634765625,
     z: 9183.5107421875,
     obstructed: false,
-    originId: "PE_WAT2_24_28"
+    originId: "PE_WAT2_24_28",
+    type: "mercer"
   },
   {
     x: 51291.37109375,
@@ -193,7 +198,8 @@ export const mercers: Artifact[] = [
     y: 121641.578125,
     z: 287.65203857421875,
     obstructed: false,
-    originId: "PE_WAT2_25"
+    originId: "PE_WAT2_25",
+    type: "mercer"
   },
   {
     x: 112469.3671875,
@@ -208,28 +214,32 @@ export const mercers: Artifact[] = [
     y: 12623.455078125,
     z: 1935.7733154296875,
     obstructed: false,
-    originId: "PE_WAT2_26"
+    originId: "PE_WAT2_26",
+    type: "mercer"
   },
   {
     x: 254681.359375,
     y: 97135.4375,
     z: -1455.2752685546875,
     obstructed: false,
-    originId: "PE_WAT2_27"
+    originId: "PE_WAT2_27",
+    type: "mercer"
   },
   {
     x: 192570.046875,
     y: 86144.921875,
     z: 1135.806884765625,
     obstructed: false,
-    originId: "PE_WAT2_28"
+    originId: "PE_WAT2_28",
+    type: "mercer"
   },
   {
     x: 219727.703125,
     y: 24502.28125,
     z: -1700.954833984375,
     obstructed: false,
-    originId: "PE_WAT2_29"
+    originId: "PE_WAT2_29",
+    type: "mercer"
   },
   {
     x: 25598.796875,

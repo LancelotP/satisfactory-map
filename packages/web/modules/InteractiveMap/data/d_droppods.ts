@@ -15,7 +15,10 @@ export const dropPods: DropPod[] = [
     x: 232138,
     y: 27191,
     z: -1629,
-    originId: "PE_DP_10"
+    originId: "PE_DP_10",
+    type: 'droppod',
+    obstructed: false,
+    collected:false
   },
   {
     x: -4349.8896484375,
@@ -32,7 +35,10 @@ export const dropPods: DropPod[] = [
     x: 293294.5,
     y: 441.3990478515625,
     z: 1039.2083740234375,
-    originId: "PE_DP_1_1"
+    originId: "PE_DP_1_1",
+    type: 'droppod',
+    obstructed: false,
+    collected:false
   },
   {
     x: 157249.75,
@@ -81,7 +87,10 @@ export const dropPods: DropPod[] = [
     x: 232255.375,
     y: 79925.5546875,
     z: -1275.73828125,
-    originId: "PE_DP_2_2"
+    originId: "PE_DP_2_2",
+    type: 'droppod',
+    obstructed: false,
+    collected:false
   },
   {
     x: 55247.98828125,
@@ -119,7 +128,10 @@ export const dropPods: DropPod[] = [
     x: 291821.78125,
     y: 74782.0546875,
     z: -1574.70361328125,
-    originId: "PE_DP_3_3"
+    originId: "PE_DP_3_3",
+    type: 'droppod',
+    obstructed: false,
+    collected:false
   },
   {
     x: 111212.859375,
@@ -149,7 +161,10 @@ export const dropPods: DropPod[] = [
     x: 191366.203125,
     y: 37694.171875,
     z: 5676.720703125,
-    originId: "PE_DP_4_4"
+    originId: "PE_DP_4_4",
+    type: 'droppod',
+    obstructed: false,
+    collected:false
   },
   {
     x: 144456.53125,
@@ -167,31 +182,46 @@ export const dropPods: DropPod[] = [
     x: 226418.21875,
     y: 98109.5078125,
     z: 7339.3720703125,
-    originId: "PE_DP_5"
+    originId: "PE_DP_5",
+    type: 'droppod',
+    obstructed: false,
+    collected:false
   },
   {
     x: 272715.125,
     y: 28087.708984375,
     z: -1586.1102294921875,
-    originId: "PE_DP_6"
+    originId: "PE_DP_6",
+    type: 'droppod',
+    obstructed: false,
+    collected:false
   },
   {
     x: 216096.71875,
     y: -268.4361877441406,
     z: -1592.905517578125,
-    originId: "PE_DP_7"
+    originId: "PE_DP_7",
+    type: 'droppod',
+    obstructed: false,
+    collected:false
   },
   {
     x: 261797.5,
     y: 124616.828125,
     z: -2597.287109375,
-    originId: "PE_DP_8"
+    originId: "PE_DP_8",
+    type: 'droppod',
+    obstructed: false,
+    collected:false
   },
   {
     x: 249919.5,
     y: 59534.234375,
     z: 2430.315185546875,
-    originId: "PE_DP_9"
+    originId: "PE_DP_9",
+    type: 'droppod',
+    obstructed: false,
+    collected:false
   },
   {
     x: 360083.53125,

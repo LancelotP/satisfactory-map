@@ -38,14 +38,16 @@ export const somers: Artifact[] = [
     y: -9143.7421875,
     z: -504.626953125,
     obstructed: false,
-    originId: "PE_WAT1_110_7"
+    originId: "PE_WAT1_110_7",
+    type: "somer"
   },
   {
     x: 206883.25,
     y: 112912.1328125,
     z: -32.32794189453125,
     obstructed: false,
-    originId: "PE_WAT1_11_0"
+    originId: "PE_WAT1_11_0",
+    type: "somer"
   },
   {
     x: 17227.419921875,
@@ -76,7 +78,8 @@ export const somers: Artifact[] = [
     y: 57147.9453125,
     z: 3874.13525390625,
     obstructed: false,
-    originId: "PE_WAT1_12_1"
+    originId: "PE_WAT1_12_1",
+    type: "somer"
   },
   {
     x: 94021.0625,
@@ -99,7 +102,8 @@ export const somers: Artifact[] = [
     y: 82058.4140625,
     z: -284.12994384765625,
     obstructed: false,
-    originId: "PE_WAT1_13_2"
+    originId: "PE_WAT1_13_2",
+    type: "somer"
   },
   {
     x: 127953.15625,
@@ -122,42 +126,48 @@ export const somers: Artifact[] = [
     y: 40217.38671875,
     z: -1682.3511962890625,
     obstructed: false,
-    originId: "PE_WAT1_14_3"
+    originId: "PE_WAT1_14_3",
+    type: "somer"
   },
   {
     x: 266097.5,
     y: -32791.4609375,
     z: 4546.62841796875,
     obstructed: false,
-    originId: "PE_WAT1_15"
+    originId: "PE_WAT1_15",
+    type: "somer"
   },
   {
     x: 309737.59375,
     y: -8755.3837890625,
     z: 8163.3583984375,
     obstructed: false,
-    originId: "PE_WAT1_16"
+    originId: "PE_WAT1_16",
+    type: "somer"
   },
   {
     x: 247581.359375,
     y: 119677.5859375,
     z: -1099.31591796875,
     obstructed: false,
-    originId: "PE_WAT1_17"
+    originId: "PE_WAT1_17",
+    type: "somer"
   },
   {
     x: 223172.953125,
     y: 90154.2890625,
     z: 1207.7686767578125,
     obstructed: false,
-    originId: "PE_WAT1_18"
+    originId: "PE_WAT1_18",
+    type: "somer"
   },
   {
     x: 218466.671875,
     y: 53714.05859375,
     z: -1632.3284912109375,
     obstructed: false,
-    originId: "PE_WAT1_19"
+    originId: "PE_WAT1_19",
+    type: "somer"
   },
   {
     x: -6888.67431640625,
