@@ -557,7 +557,7 @@ export const nodes: Node[] = [
     z: 2280.0439453125,
     originId: "PL_RN_15",
     obstructed: false,
-    purity: "normal",
+    purity: "impure",
     type: "oil",
     exploited: false
   },
@@ -667,7 +667,7 @@ export const nodes: Node[] = [
     z: 2291.037841796875,
     originId: "PL_RN_16",
     obstructed: false,
-    purity: "normal",
+    purity: "impure",
     type: "oil",
     exploited: false
   },
@@ -917,7 +917,7 @@ export const nodes: Node[] = [
     z: -1825.7677001953125,
     originId: "PL_RN_23_96",
     obstructed: false,
-    purity: "normal",
+    purity: "impure",
     type: "oil",
     exploited: false
   },
@@ -927,7 +927,7 @@ export const nodes: Node[] = [
     z: -1829.52685546875,
     originId: "PL_RN_24_97",
     obstructed: false,
-    purity: "normal",
+    purity: "impure",
     type: "oil",
     exploited: false
   },
@@ -937,7 +937,7 @@ export const nodes: Node[] = [
     z: -1827.2554931640625,
     originId: "PL_RN_25_98",
     obstructed: false,
-    purity: "normal",
+    purity: "impure",
     type: "oil",
     exploited: false
   },
@@ -947,7 +947,7 @@ export const nodes: Node[] = [
     z: -1821.5040283203125,
     originId: "PL_RN_26_99",
     obstructed: false,
-    purity: "normal",
+    purity: "pure",
     type: "oil",
     exploited: false
   },
@@ -957,7 +957,7 @@ export const nodes: Node[] = [
     z: -1832.1844482421875,
     originId: "PL_RN_27_100",
     obstructed: false,
-    purity: "normal",
+    purity: "pure",
     type: "oil",
     exploited: false
   },
@@ -1007,7 +1007,7 @@ export const nodes: Node[] = [
     z: -1801.33935546875,
     originId: "PL_RN_31_104",
     obstructed: false,
-    purity: "normal",
+    purity: "impure",
     type: "oil",
     exploited: false
   },
@@ -1017,7 +1017,7 @@ export const nodes: Node[] = [
     z: -1813.8367919921875,
     originId: "PL_RN_32_105",
     obstructed: false,
-    purity: "normal",
+    purity: "impure",
     type: "oil",
     exploited: false
   },
@@ -1357,7 +1357,7 @@ export const nodes: Node[] = [
     z: 1049.76953125,
     originId: "PL_RN_446_1",
     obstructed: false,
-    purity: "normal",
+    purity: "impure",
     type: "oil",
     exploited: false
   },
@@ -1367,7 +1367,7 @@ export const nodes: Node[] = [
     z: 1419.1478271484375,
     originId: "PL_RN_447",
     obstructed: false,
-    purity: "normal",
+    purity: "impure",
     type: "oil",
     exploited: false
   },
