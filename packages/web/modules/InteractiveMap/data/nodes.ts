@@ -2638,8 +2638,8 @@ export const nodes: Node[] = [
     originId: "PL_RN_565_8",
     obstructed: false,
     exploited: false,
-    type: 'unknown',
-    purity: 'unknown'
+    type: 'iron',
+    purity: 'pure'
   },
   {
     x: 193209.734375,
@@ -2657,7 +2657,7 @@ export const nodes: Node[] = [
     z: 573.6340942382812,
     originId: "PL_RN_567",
     obstructed: false,
-    purity: "normal",
+    purity: "pure",
     type: "iron",
     exploited: false
   },
@@ -2828,8 +2828,8 @@ export const nodes: Node[] = [
     originId: "PL_RN_583_1",
     obstructed: false,
     exploited: false,
-    type: 'unknown',
-    purity: 'unknown'
+    type: 'iron',
+    purity: 'pure'
   },
   {
     x: -8700.84765625,
