@@ -17,6 +17,8 @@ export const dropPods: DropPod[] = [
     z: -1629,
     originId: "PE_DP_10",
     type: 'droppod',
+    itemQuantity: 5,
+    itemName: "Supercomputer",
     obstructed: false,
     collected:false
   },
@@ -81,8 +83,10 @@ export const dropPods: DropPod[] = [
     y: -68352.875,
     z: 3927.010986328125,
     originId: "PE_DP_2_1",
+    itemQuantity: 27,
+    itemName: "Encased Industrial Beams",
     type: "droppod",
-    powerNeeded: 38,
+    powerNeeded: 20,
     obstructed: false,
     collected: false
   },
@@ -92,6 +96,9 @@ export const dropPods: DropPod[] = [
     z: -1275.73828125,
     originId: "PE_DP_2_2",
     type: 'droppod',
+    itemQuantity: 2,
+    itemName: "Turbo Motor",
+    powerNeeded: 67,
     obstructed: false,
     collected:false
   },
@@ -133,6 +140,8 @@ export const dropPods: DropPod[] = [
     z: -1574.70361328125,
     originId: "PE_DP_3_3",
     type: 'droppod',
+    itemQuantity: 5,
+    itemName: "Superposition Oscillator",
     obstructed: false,
     collected:false
   },
@@ -176,8 +185,8 @@ export const dropPods: DropPod[] = [
     y: 36294.046875,
     z: 17301.25390625,
     originId: "PE_DP_4_8033",
-    itemQuantity: 29,
     type: "droppod",
+    itemQuantity: 29,
     itemName: "Cricuit Board",
     powerNeeded: 48,
     obstructed: false,
@@ -189,6 +198,7 @@ export const dropPods: DropPod[] = [
     z: 7339.3720703125,
     originId: "PE_DP_5",
     type: 'droppod',
+    powerNeeded: 200,
     obstructed: false,
     collected:false
   },
@@ -209,6 +219,8 @@ export const dropPods: DropPod[] = [
     z: -1592.905517578125,
     originId: "PE_DP_7",
     type: 'droppod',
+    itemQuantity: 7,
+    itemName: "Heat Sink",
     obstructed: false,
     collected:false
   },
@@ -738,6 +750,8 @@ export const dropPods: DropPod[] = [
     z: -1397.322021484375,
     originId: "PE2_DP_5_6",
     type: "droppod",
+    itemQuantity: 10,
+    itemName: "Rubber",
     obstructed: false,
     collected: false
   },

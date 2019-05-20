@@ -3068,8 +3068,8 @@ export const nodes: Node[] = [
     originId: "PL_RN_69",
     obstructed: false,
     exploited: false,
-    type: 'unknown',
-    purity: 'unknown'
+    type: 'limestone',
+    purity: 'pure'
   },
   {
     x: -110109.1015625,
