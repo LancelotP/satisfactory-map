@@ -1238,8 +1238,8 @@ export const nodes: Node[] = [
     originId: "PL_RN_436",
     obstructed: false,
     exploited: false,
-    type: 'unknown',
-    purity: 'unknown'
+    type: 'iron',
+    purity: 'pure'
   },
   {
     x: 83508.5390625,
