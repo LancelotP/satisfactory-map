@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import qs from 'qs'
 
 import * as S from "./InteractiveMap.style";
 import { Menu } from "./components/Menu/Menu";
@@ -89,6 +90,7 @@ type Props = {
 };
 
 export const InteractiveMap = (props: Props) => {
+  const version = typeof location !== 'undefined' && qs.parse(location.search.slice(1)).version === 'exp' ? 'exp' : 'live';
   const [mode, setMode] = useState<"default" | "colorblind">("default");
   const [iconSize, setIconSize] = useState(typeof localStorage !== 'undefined' && localStorage.getItem('iconSize') ? parseFloat(localStorage.getItem('iconSize')!) : 1);
   const [selection, setSelection] = useState<Selection>(getDefaultSelection());
@@ -99,6 +101,8 @@ export const InteractiveMap = (props: Props) => {
   const [pGreenSlugs, setPGreenSlugs] = useState(greenSlugs);
   const [pYellowSlugs, setPYellowSlugs] = useState(yellowSlugs);
   const [pPurpleSlugs, setPPurpleSlugs] = useState(purpleSlugs);
+
+  console.log(version);
 
   useEffect(() => {
     if (typeof localStorage !== undefined) {
