@@ -90,7 +90,7 @@ type Props = {
 
 export const InteractiveMap = (props: Props) => {
   const [mode, setMode] = useState<"default" | "colorblind">("default");
-  const [iconSize, setIconSize] = useState(1);
+  const [iconSize, setIconSize] = useState(typeof localStorage !== 'undefined' && localStorage.getItem('iconSize') ? parseFloat(localStorage.getItem('iconSize')!) : 1);
   const [selection, setSelection] = useState<Selection>(getDefaultSelection());
   const [players, setPlayers] = useState<PlayerLocation[]>([]);
   const [isMenuOpen, setMenuOpen] = useState(false);

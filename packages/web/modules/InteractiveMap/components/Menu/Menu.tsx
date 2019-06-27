@@ -24,6 +24,10 @@ export const Menu = (props: Props) => {
 
   function handleIconSizeChange(e: React.ChangeEvent<HTMLInputElement>) {
     setIconSize(parseFloat(e.target.value));
+
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('iconSize', e.target.value);
+    }
   }
 
   function generateHandle(key: keyof typeof selection) {
