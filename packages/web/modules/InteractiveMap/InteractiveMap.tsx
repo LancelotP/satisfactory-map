@@ -90,6 +90,7 @@ type Props = {
 };
 
 export const InteractiveMap = (props: Props) => {
+  // @ts-ignore
   const version = typeof location !== 'undefined' && qs.parse(location.search.slice(1)).version === 'exp' ? 'exp' : 'live';
   const [mode, setMode] = useState<"default" | "colorblind">("default");
   const [iconSize, setIconSize] = useState(typeof localStorage !== 'undefined' && localStorage.getItem('iconSize') ? parseFloat(localStorage.getItem('iconSize')!) : 1);
@@ -101,8 +102,6 @@ export const InteractiveMap = (props: Props) => {
   const [pGreenSlugs, setPGreenSlugs] = useState(greenSlugs);
   const [pYellowSlugs, setPYellowSlugs] = useState(yellowSlugs);
   const [pPurpleSlugs, setPPurpleSlugs] = useState(purpleSlugs);
-
-  console.log(version);
 
   useEffect(() => {
     if (typeof localStorage !== undefined) {
