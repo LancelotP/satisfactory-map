@@ -583,8 +583,6 @@ export const dropPods: DropPod[] = [
     y: -34949.3828125,
     z: 8220.5615234375,
     originId: "PE2_DP_3_3",
-    itemQuantity: 2,
-    itemName: "Turbo Motor",
     type: "droppod",
     powerNeeded: 50,
     obstructed: false,
