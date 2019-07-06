@@ -29,7 +29,7 @@ export const dropPods: DropPod[] = [
     originId: "PE_DP_1_0",
     itemQuantity: 10,
     type: "droppod",
-    itemName: "Gunpowder",
+    itemName: "Black Powder",
     obstructed: false,
     collected: false
   },
@@ -74,7 +74,7 @@ export const dropPods: DropPod[] = [
     originId: "PE_DP_2_0",
     itemQuantity: 4,
     type: "droppod",
-    itemName: "Gunpowder",
+    itemName: "Black Powder",
     obstructed: false,
     collected: false
   },
