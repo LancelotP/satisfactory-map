@@ -29,9 +29,9 @@ export const purpleSlugs: Slug[] = [
     collected: false
   },
   {
-    x: 181106.625,
-    y: 27235.326171875,
-    z: 289.01934814453125,
+    x: 148879.734375,
+    y: 68913.4921875,
+    z: -191.99510192871094,
     obstructed: false,
     originId: "PE_CMK3_312",
     type: "purple",
@@ -83,9 +83,9 @@ export const purpleSlugs: Slug[] = [
     collected: false
   },
   {
-    x: 224868.09375,
-    y: 115649.9609375,
-    z: -1591.322021484375,
+    x: 226568.59375,
+    y: 106004.1796875,
+    z: -1397.8775634765625,
     obstructed: false,
     originId: "PE_CMK3_32_11",
     type: "purple",
@@ -146,9 +146,9 @@ export const purpleSlugs: Slug[] = [
     collected: false
   },
   {
-    x: 243092.953125,
-    y: 26373.154296875,
-    z: -1149.9437255859375,
+    x: 242795.5,
+    y: 26613.328125,
+    z: -1594.615966796875,
     obstructed: false,
     originId: "PE_CMK3_34_31",
     type: "purple",
@@ -164,9 +164,9 @@ export const purpleSlugs: Slug[] = [
     collected: false
   },
   {
-    x: 258552.484375,
-    y: 65714.6953125,
-    z: -1174.2843017578125,
+    x: 258709.90625,
+    y: 67378.6953125,
+    z: -1128.52587890625,
     obstructed: false,
     originId: "PE_CMK3_36_50",
     type: "purple",
@@ -175,25 +175,25 @@ export const purpleSlugs: Slug[] = [
   {
     x: 187616.265625,
     y: 55767.7109375,
-    z: -1808.902587890625,
+    z: -1808.2459716796875,
     obstructed: false,
     originId: "PE_CMK3_37_51",
     type: "purple",
     collected: false
   },
   {
-    x: 305739.09375,
-    y: -11179.646484375,
-    z: 1130.9169921875,
+    x: 311164.78125,
+    y: -12307.9462890625,
+    z: 2587.622314453125,
     obstructed: false,
     originId: "PE_CMK3_38_52",
     type: "purple",
     collected: false
   },
   {
-    x: 178890.234375,
-    y: 72702.71875,
-    z: 2524.2734375,
+    x: 177948.15625,
+    y: 72249.890625,
+    z: 2603.475341796875,
     obstructed: false,
     originId: "PE_CMK3_39_53",
     type: "purple",
@@ -245,6 +245,15 @@ export const purpleSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -175535.65625,
+    y: 44187.3515625,
+    z: 19006.81640625,
+    obstructed: false,
+    originId: "PE2_CMK3_31",
+    type: "purple",
+    collected: false
+  },
+  {
     x: -182083.390625,
     y: 28712.251953125,
     z: 10803.41015625,
@@ -254,11 +263,137 @@ export const purpleSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -21824.44140625,
+    y: 53806.0078125,
+    z: 21953.3671875,
+    obstructed: false,
+    originId: "PE2_CMK3_310_42",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -56475.0703125,
+    y: 58894.22265625,
+    z: 20969.35546875,
+    obstructed: false,
+    originId: "PE2_CMK3_310_92",
+    type: "purple",
+    collected: false
+  },
+  {
     x: 27554.599609375,
     y: 73708.4765625,
     z: -743.9299926757812,
     obstructed: false,
     originId: "PE2_CMK3_311",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -37435.828125,
+    y: -6213.2109375,
+    z: 30028.802734375,
+    obstructed: false,
+    originId: "PE2_CMK3_311_48",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -91587.109375,
+    y: 51276.21875,
+    z: 21515.513671875,
+    obstructed: false,
+    originId: "PE2_CMK3_311_93",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -118037.140625,
+    y: 9066.4150390625,
+    z: 21298.9140625,
+    obstructed: false,
+    originId: "PE2_CMK3_312",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -28150.056640625,
+    y: 19757.95703125,
+    z: 22615.845703125,
+    obstructed: false,
+    originId: "PE2_CMK3_312_52",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -161581.078125,
+    y: 9816.0537109375,
+    z: 25214.703125,
+    obstructed: false,
+    originId: "PE2_CMK3_313",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -1594.3572998046875,
+    y: 29752.3046875,
+    z: 24398.349609375,
+    obstructed: false,
+    originId: "PE2_CMK3_313_59",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -63635.9453125,
+    y: 89152.5,
+    z: 21141.916015625,
+    obstructed: false,
+    originId: "PE2_CMK3_314",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -106626.3125,
+    y: 34265.34375,
+    z: 23605.57421875,
+    obstructed: false,
+    originId: "PE2_CMK3_315",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -103994.6875,
+    y: 27064.6015625,
+    z: 20028.408203125,
+    obstructed: false,
+    originId: "PE2_CMK3_316_0",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -80833.3984375,
+    y: 34196.46484375,
+    z: 19794.099609375,
+    obstructed: false,
+    originId: "PE2_CMK3_317",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -127059.125,
+    y: 43465.2265625,
+    z: 19964.611328125,
+    obstructed: false,
+    originId: "PE2_CMK3_318",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -139720.96875,
+    y: 26089.2109375,
+    z: 22500.322265625,
+    obstructed: false,
+    originId: "PE2_CMK3_319",
     type: "purple",
     collected: false
   },
@@ -290,6 +425,15 @@ export const purpleSlugs: Slug[] = [
     collected: false
   },
   {
+    x: 37876.484375,
+    y: 36309.91015625,
+    z: 23422.39453125,
+    obstructed: false,
+    originId: "PE2_CMK3_31_15",
+    type: "purple",
+    collected: false
+  },
+  {
     x: 65688.375,
     y: 64915.20703125,
     z: 35873.38671875,
@@ -302,7 +446,7 @@ export const purpleSlugs: Slug[] = [
     x: -268368.90625,
     y: 87125.828125,
     z: -1748.577880859375,
-    obstructed: true,
+    obstructed: false,
     originId: "PE2_CMK3_31_3",
     type: "purple",
     collected: false
@@ -335,6 +479,51 @@ export const purpleSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -30891.775390625,
+    y: 68455.7109375,
+    z: 21708.81640625,
+    obstructed: false,
+    originId: "PE2_CMK3_320",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -44587.5625,
+    y: 41238.35546875,
+    z: 21553.5625,
+    obstructed: false,
+    originId: "PE2_CMK3_321",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -31905.96875,
+    y: 31781.240234375,
+    z: 20664.59375,
+    obstructed: false,
+    originId: "PE2_CMK3_322",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -87771.234375,
+    y: 62349.29296875,
+    z: 25341.830078125,
+    obstructed: false,
+    originId: "PE2_CMK3_323",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -78136.4453125,
+    y: 21531.38671875,
+    z: 21183.484375,
+    obstructed: false,
+    originId: "PE2_CMK3_324",
+    type: "purple",
+    collected: false
+  },
+  {
     x: -127144.4609375,
     y: -125775.1953125,
     z: -4006.453125,
@@ -362,6 +551,15 @@ export const purpleSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -19906.82421875,
+    y: 78261.4453125,
+    z: 38863.62109375,
+    obstructed: false,
+    originId: "PE2_CMK3_32_16",
+    type: "purple",
+    collected: false
+  },
+  {
     x: 53245.4609375,
     y: 73958.421875,
     z: 10890.1767578125,
@@ -376,6 +574,15 @@ export const purpleSlugs: Slug[] = [
     z: 3670.484130859375,
     obstructed: false,
     originId: "PE2_CMK3_32_8",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -166362.9375,
+    y: 25023.474609375,
+    z: 15625.169921875,
+    obstructed: false,
+    originId: "PE2_CMK3_32_84",
     type: "purple",
     collected: false
   },
@@ -407,6 +614,15 @@ export const purpleSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -16103.8046875,
+    y: 114042.671875,
+    z: 21485.1015625,
+    obstructed: false,
+    originId: "PE2_CMK3_33_17",
+    type: "purple",
+    collected: false
+  },
+  {
     x: 114957.3046875,
     y: 78957.96875,
     z: 18268.873046875,
@@ -434,6 +650,15 @@ export const purpleSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -44924.21875,
+    y: 55493.2265625,
+    z: 21224.55859375,
+    obstructed: false,
+    originId: "PE2_CMK3_33_85",
+    type: "purple",
+    collected: false
+  },
+  {
     x: 190325.03125,
     y: 230743.21875,
     z: -11154.1787109375,
@@ -457,6 +682,15 @@ export const purpleSlugs: Slug[] = [
     z: 4762.60498046875,
     obstructed: false,
     originId: "PE2_CMK3_34_10",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -10102.58984375,
+    y: -28939.16015625,
+    z: 22220.240234375,
+    obstructed: false,
+    originId: "PE2_CMK3_34_18",
     type: "purple",
     collected: false
   },
@@ -497,6 +731,15 @@ export const purpleSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -96349.3359375,
+    y: 68895.0625,
+    z: 12274.6748046875,
+    obstructed: false,
+    originId: "PE2_CMK3_34_86",
+    type: "purple",
+    collected: false
+  },
+  {
     x: 78675.859375,
     y: 121900.21875,
     z: 8120.5380859375,
@@ -533,11 +776,29 @@ export const purpleSlugs: Slug[] = [
     collected: false
   },
   {
+    x: 17850.90625,
+    y: 125646.4140625,
+    z: 27387.458984375,
+    obstructed: false,
+    originId: "PE2_CMK3_35_22",
+    type: "purple",
+    collected: false
+  },
+  {
     x: -135895,
     y: -182812.578125,
     z: 18131.166015625,
     obstructed: false,
     originId: "PE2_CMK3_35_6",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -76022.03125,
+    y: 70910.6171875,
+    z: 27548.791015625,
+    obstructed: false,
+    originId: "PE2_CMK3_35_87",
     type: "purple",
     collected: false
   },
@@ -569,11 +830,47 @@ export const purpleSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -61493.0703125,
+    y: 10492.0927734375,
+    z: 23081.78125,
+    obstructed: false,
+    originId: "PE2_CMK3_36_26",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -52518.37109375,
+    y: 66779.34375,
+    z: 24968.763671875,
+    obstructed: false,
+    originId: "PE2_CMK3_36_88",
+    type: "purple",
+    collected: false
+  },
+  {
     x: 149825.078125,
     y: -21390.40234375,
     z: 4340.7548828125,
     obstructed: false,
     originId: "PE2_CMK3_37",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: 9354.806640625,
+    y: 57839.20703125,
+    z: 20640.423828125,
+    obstructed: false,
+    originId: "PE2_CMK3_37_30",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -56554.95703125,
+    y: 110981.234375,
+    z: 23874.552734375,
+    obstructed: false,
+    originId: "PE2_CMK3_37_89",
     type: "purple",
     collected: false
   },
@@ -596,11 +893,47 @@ export const purpleSlugs: Slug[] = [
     collected: false
   },
   {
+    x: 40556.29296875,
+    y: 77732.1328125,
+    z: 26908.443359375,
+    obstructed: false,
+    originId: "PE2_CMK3_38_34",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -108980.5546875,
+    y: 100610.609375,
+    z: 16547.810546875,
+    obstructed: false,
+    originId: "PE2_CMK3_38_90",
+    type: "purple",
+    collected: false
+  },
+  {
     x: 150549.8125,
     y: 212162.375,
     z: -9737.8603515625,
     obstructed: false,
     originId: "PE2_CMK3_39",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: 9161.90625,
+    y: 100359.3046875,
+    z: 24434.640625,
+    obstructed: false,
+    originId: "PE2_CMK3_39_41",
+    type: "purple",
+    collected: false
+  },
+  {
+    x: -73267.5703125,
+    y: 48773.2578125,
+    z: 25494.169921875,
+    obstructed: false,
+    originId: "PE2_CMK3_39_91",
     type: "purple",
     collected: false
   },
@@ -640,4 +973,4 @@ export const purpleSlugs: Slug[] = [
     type: "purple",
     collected: false
   }
-];
+]

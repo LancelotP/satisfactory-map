@@ -11,36 +11,36 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
-    x: 196247.21875,
-    y: 25466.08984375,
-    z: -1175.364990234375,
+    x: 192353.8125,
+    y: 25728.017578125,
+    z: -1496.22705078125,
     obstructed: false,
     originId: "PE_CMK2_210",
     type: "yellow",
     collected: false
   },
   {
-    x: 214251.703125,
-    y: 12250.248046875,
-    z: -66.9699478149414,
+    x: 214252,
+    y: 12248.2724609375,
+    z: -74.75070190429688,
     obstructed: false,
     originId: "PE_CMK2_211",
     type: "yellow",
     collected: false
   },
   {
-    x: 224257.84375,
-    y: 12401.38671875,
-    z: -1431.208740234375,
+    x: 225356.921875,
+    y: 13015.9482421875,
+    z: -1279.25732421875,
     obstructed: false,
     originId: "PE_CMK2_212",
     type: "yellow",
     collected: false
   },
   {
-    x: 249183.78125,
-    y: -3592.36962890625,
-    z: 9512.2666015625,
+    x: 247183.234375,
+    y: -6338.50048828125,
+    z: 10769.072265625,
     obstructed: false,
     originId: "PE_CMK2_213",
     type: "yellow",
@@ -56,18 +56,18 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
-    x: 257154.109375,
-    y: 41845.5546875,
-    z: 596.1538696289062,
+    x: 253321.90625,
+    y: 46242.11328125,
+    z: 28.41061019897461,
     obstructed: false,
     originId: "PE_CMK2_215",
     type: "yellow",
     collected: false
   },
   {
-    x: 280471.90625,
-    y: 105266.1328125,
-    z: -165.1246337890625,
+    x: 280505.375,
+    y: 105488.046875,
+    z: -134.734375,
     obstructed: false,
     originId: "PE_CMK2_216",
     type: "yellow",
@@ -83,27 +83,27 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
-    x: 237737.03125,
-    y: 12816.58203125,
-    z: -1486.8004150390625,
+    x: 249995.734375,
+    y: 10921.5166015625,
+    z: -1265.7635498046875,
     obstructed: false,
     originId: "PE_CMK2_218",
     type: "yellow",
     collected: false
   },
   {
-    x: 212438.46875,
-    y: 100441.421875,
-    z: -491.2559814453125,
+    x: 212394.921875,
+    y: 100381.78125,
+    z: -481.1111755371094,
     obstructed: false,
     originId: "PE_CMK2_219",
     type: "yellow",
     collected: false
   },
   {
-    x: 237431.265625,
-    y: 85426.3359375,
-    z: 2324.92431640625,
+    x: 236859.5625,
+    y: 85770.71875,
+    z: 2968.000732421875,
     obstructed: false,
     originId: "PE_CMK2_21_11",
     type: "yellow",
@@ -137,36 +137,36 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
-    x: 257367.1875,
-    y: -14572.650390625,
-    z: 5343.7861328125,
+    x: 257277.375,
+    y: -14574.9150390625,
+    z: 5681.4599609375,
     obstructed: false,
     originId: "PE_CMK2_220",
     type: "yellow",
     collected: false
   },
   {
-    x: 251444.21875,
-    y: 79690.609375,
-    z: -1306.7421875,
+    x: 251584.09375,
+    y: 80466.3515625,
+    z: -1663.3717041015625,
     obstructed: false,
     originId: "PE_CMK2_221",
     type: "yellow",
     collected: false
   },
   {
-    x: 290507,
-    y: 39586.4375,
-    z: -551.9696655273438,
+    x: 290508.0625,
+    y: 39592.53125,
+    z: -554.63818359375,
     obstructed: false,
     originId: "PE_CMK2_222",
     type: "yellow",
     collected: false
   },
   {
-    x: 219743.703125,
-    y: 64369.5,
-    z: -441.5548095703125,
+    x: 219720.203125,
+    y: 64369.953125,
+    z: -438.09295654296875,
     obstructed: false,
     originId: "PE_CMK2_223",
     type: "yellow",
@@ -191,9 +191,9 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
-    x: 278432.6875,
-    y: -11392.7626953125,
-    z: 10746.6767578125,
+    x: 278458.78125,
+    y: -11362.298828125,
+    z: 10737.5859375,
     obstructed: false,
     originId: "PE_CMK2_22_88",
     type: "yellow",
@@ -211,7 +211,7 @@ export const yellowSlugs: Slug[] = [
   {
     x: 254685.421875,
     y: 135377.203125,
-    z: -3413.404296875,
+    z: -3415.30615234375,
     obstructed: false,
     originId: "PE_CMK2_23_23",
     type: "yellow",
@@ -263,9 +263,9 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
-    x: 290975.875,
-    y: 13507.3916015625,
-    z: 6465.01904296875,
+    x: 288344.71875,
+    y: 15380.4853515625,
+    z: 6657.3662109375,
     obstructed: false,
     originId: "PE_CMK2_24_89",
     type: "yellow",
@@ -299,9 +299,9 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
-    x: 243488.21875,
-    y: 119743.3671875,
-    z: 6056.16015625,
+    x: 243476.703125,
+    y: 119753.75,
+    z: 6058.8134765625,
     obstructed: false,
     originId: "PE_CMK2_25_90",
     type: "yellow",
@@ -362,18 +362,18 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
-    x: 224164.59375,
-    y: 41622.53515625,
-    z: 666.3741455078125,
+    x: 221944.90625,
+    y: 40174.43359375,
+    z: 553.44287109375,
     obstructed: false,
     originId: "PE_CMK2_27_92",
     type: "yellow",
     collected: false
   },
   {
-    x: 208285.65625,
-    y: 58710.6640625,
-    z: -1323.4345703125,
+    x: 208776.546875,
+    y: 59484.6640625,
+    z: 1627.4129638671875,
     obstructed: false,
     originId: "PE_CMK2_28",
     type: "yellow",
@@ -389,9 +389,9 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
-    x: 203787.796875,
-    y: 56499.6796875,
-    z: -901.558837890625,
+    x: 207927.296875,
+    y: 28370.318359375,
+    z: 474.8666076660156,
     obstructed: false,
     originId: "PE_CMK2_29",
     type: "yellow",
@@ -479,6 +479,24 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -41314.98046875,
+    y: 82766.75,
+    z: 27301.111328125,
+    obstructed: false,
+    originId: "PE2_CMK2_210_0",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -89793.0703125,
+    y: 19021.66796875,
+    z: 20984.60546875,
+    obstructed: false,
+    originId: "PE2_CMK2_210_1",
+    type: "yellow",
+    collected: false
+  },
+  {
     x: 125262.7109375,
     y: 244039.9375,
     z: -7112.3251953125,
@@ -524,6 +542,15 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
+    x: 18270.181640625,
+    y: 88323.5078125,
+    z: 24810.830078125,
+    obstructed: false,
+    originId: "PE2_CMK2_211_15",
+    type: "yellow",
+    collected: false
+  },
+  {
     x: 124451.8984375,
     y: 237040.125,
     z: -2511.6396484375,
@@ -547,6 +574,15 @@ export const yellowSlugs: Slug[] = [
     z: 2356.9052734375,
     obstructed: false,
     originId: "PE2_CMK2_211_48",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -156426.359375,
+    y: 16549.921875,
+    z: 18193.84375,
+    obstructed: false,
+    originId: "PE2_CMK2_211_85",
     type: "yellow",
     collected: false
   },
@@ -578,11 +614,29 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -18871.072265625,
+    y: 42347.16015625,
+    z: 26922.96484375,
+    obstructed: false,
+    originId: "PE2_CMK2_212_16",
+    type: "yellow",
+    collected: false
+  },
+  {
     x: 142239.203125,
     y: 161305.4375,
     z: 5205.35302734375,
     obstructed: false,
     originId: "PE2_CMK2_212_18",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -169288.265625,
+    y: 205.33018493652344,
+    z: 20503.767578125,
+    obstructed: false,
+    originId: "PE2_CMK2_212_86",
     type: "yellow",
     collected: false
   },
@@ -601,6 +655,15 @@ export const yellowSlugs: Slug[] = [
     z: 4374.8564453125,
     obstructed: false,
     originId: "PE2_CMK2_213",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: 5063.53173828125,
+    y: -4507.95751953125,
+    z: 23023.080078125,
+    obstructed: false,
+    originId: "PE2_CMK2_213_17",
     type: "yellow",
     collected: false
   },
@@ -632,11 +695,38 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -99966.9921875,
+    y: 26498.291015625,
+    z: 21442.484375,
+    obstructed: false,
+    originId: "PE2_CMK2_213_87",
+    type: "yellow",
+    collected: false
+  },
+  {
     x: 85802.1796875,
     y: -135144.4375,
     z: 7886.8466796875,
     obstructed: false,
     originId: "PE2_CMK2_214",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: 8023.37890625,
+    y: 16306.6484375,
+    z: 23340.716796875,
+    obstructed: false,
+    originId: "PE2_CMK2_214_18",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -132430.125,
+    y: -4225.244140625,
+    z: 22879.83203125,
+    obstructed: false,
+    originId: "PE2_CMK2_214_88",
     type: "yellow",
     collected: false
   },
@@ -659,11 +749,47 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
+    x: 8120.0869140625,
+    y: 80104.4140625,
+    z: 21411.35546875,
+    obstructed: false,
+    originId: "PE2_CMK2_215_20",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -85880.5859375,
+    y: 73417.3046875,
+    z: 21151.05078125,
+    obstructed: false,
+    originId: "PE2_CMK2_215_95",
+    type: "yellow",
+    collected: false
+  },
+  {
     x: -286303.84375,
     y: -127272.953125,
     z: 2343.53662109375,
     obstructed: false,
     originId: "PE2_CMK2_216",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -59982.5234375,
+    y: 42597.1328125,
+    z: 22058.39453125,
+    obstructed: false,
+    originId: "PE2_CMK2_216_106",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: 29626.134765625,
+    y: -4632.85693359375,
+    z: 22396.23046875,
+    obstructed: false,
+    originId: "PE2_CMK2_216_19",
     type: "yellow",
     collected: false
   },
@@ -677,11 +803,56 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -76831.1484375,
+    y: 61149.578125,
+    z: 20647.3046875,
+    obstructed: false,
+    originId: "PE2_CMK2_217_91",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -51345.859375,
+    y: 55860.69140625,
+    z: 24869.041015625,
+    obstructed: false,
+    originId: "PE2_CMK2_218",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -122324.1484375,
+    y: 28438.43359375,
+    z: 19851.53515625,
+    obstructed: false,
+    originId: "PE2_CMK2_219",
+    type: "yellow",
+    collected: false
+  },
+  {
     x: 10539.1875,
     y: 267942.4375,
     z: -3765.0478515625,
     obstructed: false,
     originId: "PE2_CMK2_21_0",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -82983.390625,
+    y: -3902.59814453125,
+    z: 24093.203125,
+    obstructed: false,
+    originId: "PE2_CMK2_21_11",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -167201.15625,
+    y: 45885.015625,
+    z: 21913.396484375,
+    obstructed: false,
+    originId: "PE2_CMK2_21_21",
     type: "yellow",
     collected: false
   },
@@ -749,6 +920,15 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -62364.3515625,
+    y: 74460.171875,
+    z: 20610.423828125,
+    obstructed: false,
+    originId: "PE2_CMK2_220",
+    type: "yellow",
+    collected: false
+  },
+  {
     x: -174329.875,
     y: 180824.140625,
     z: 6287.08203125,
@@ -772,6 +952,24 @@ export const yellowSlugs: Slug[] = [
     z: -636.2728881835938,
     obstructed: false,
     originId: "PE2_CMK2_22_10",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -69961.0234375,
+    y: -14795.7744140625,
+    z: 23641.234375,
+    obstructed: false,
+    originId: "PE2_CMK2_22_22",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -49705.01171875,
+    y: 322.89111328125,
+    z: 23044.193359375,
+    obstructed: false,
+    originId: "PE2_CMK2_22_24",
     type: "yellow",
     collected: false
   },
@@ -866,6 +1064,24 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -84384.1875,
+    y: 53256.140625,
+    z: 21222.576171875,
+    obstructed: false,
+    originId: "PE2_CMK2_23_20",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -55193.40234375,
+    y: 23146.41015625,
+    z: 21705.673828125,
+    obstructed: false,
+    originId: "PE2_CMK2_23_25",
+    type: "yellow",
+    collected: false
+  },
+  {
     x: 131772.390625,
     y: 133791.3125,
     z: 12902.7021484375,
@@ -929,6 +1145,24 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -104863.8515625,
+    y: 63724.9140625,
+    z: 21480.91015625,
+    obstructed: false,
+    originId: "PE2_CMK2_24_23",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -20426.263671875,
+    y: 7256.8955078125,
+    z: 25375.455078125,
+    obstructed: false,
+    originId: "PE2_CMK2_24_26",
+    type: "yellow",
+    collected: false
+  },
+  {
     x: -5944.212890625,
     y: 266008.28125,
     z: 676.9981079101562,
@@ -965,6 +1199,15 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
+    x: 23068.75,
+    y: 56043.1796875,
+    z: 21886.208984375,
+    obstructed: false,
+    originId: "PE2_CMK2_25_14",
+    type: "yellow",
+    collected: false
+  },
+  {
     x: -20897.134765625,
     y: -9412.3525390625,
     z: 21609.818359375,
@@ -979,6 +1222,15 @@ export const yellowSlugs: Slug[] = [
     z: 19247,
     obstructed: false,
     originId: "PE2_CMK2_25_2",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -154659.46875,
+    y: 49170.0703125,
+    z: 24059.484375,
+    obstructed: false,
+    originId: "PE2_CMK2_25_27",
     type: "yellow",
     collected: false
   },
@@ -1055,6 +1307,24 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -48143.60546875,
+    y: 93946.6484375,
+    z: 22369.02734375,
+    obstructed: false,
+    originId: "PE2_CMK2_26_6",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -64422.7265625,
+    y: 51297.60546875,
+    z: 20735.669921875,
+    obstructed: false,
+    originId: "PE2_CMK2_26_81",
+    type: "yellow",
+    collected: false
+  },
+  {
     x: 190227.125,
     y: -57143.13671875,
     z: 8015.99560546875,
@@ -1069,6 +1339,15 @@ export const yellowSlugs: Slug[] = [
     z: 13253.9130859375,
     obstructed: false,
     originId: "PE2_CMK2_27_13",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: 31362.646484375,
+    y: 103124.078125,
+    z: 25912.46875,
+    obstructed: false,
+    originId: "PE2_CMK2_27_3",
     type: "yellow",
     collected: false
   },
@@ -1109,6 +1388,15 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -202123.21875,
+    y: -1079.8094482421875,
+    z: 20376.408203125,
+    obstructed: false,
+    originId: "PE2_CMK2_27_82",
+    type: "yellow",
+    collected: false
+  },
+  {
     x: -271718.75,
     y: -192344.296875,
     z: 3134.881591796875,
@@ -1123,6 +1411,15 @@ export const yellowSlugs: Slug[] = [
     z: -2799.90869140625,
     obstructed: false,
     originId: "PE2_CMK2_28_14",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: 5445.23974609375,
+    y: -19295.712890625,
+    z: 28380.109375,
+    obstructed: false,
+    originId: "PE2_CMK2_28_2",
     type: "yellow",
     collected: false
   },
@@ -1163,11 +1460,29 @@ export const yellowSlugs: Slug[] = [
     collected: false
   },
   {
+    x: -184098.34375,
+    y: 31015.30859375,
+    z: 22715.638671875,
+    obstructed: false,
+    originId: "PE2_CMK2_28_83",
+    type: "yellow",
+    collected: false
+  },
+  {
     x: -55705.3828125,
     y: 250303.546875,
     z: -1964.357177734375,
     obstructed: false,
     originId: "PE2_CMK2_29",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -17159.345703125,
+    y: 89011.53125,
+    z: 20901.681640625,
+    obstructed: false,
+    originId: "PE2_CMK2_29_1",
     type: "yellow",
     collected: false
   },
@@ -1204,6 +1519,15 @@ export const yellowSlugs: Slug[] = [
     z: 9177.44140625,
     obstructed: false,
     originId: "PE2_CMK2_29_37",
+    type: "yellow",
+    collected: false
+  },
+  {
+    x: -141919.203125,
+    y: 47726.4140625,
+    z: 19458.55078125,
+    obstructed: false,
+    originId: "PE2_CMK2_29_84",
     type: "yellow",
     collected: false
   },
