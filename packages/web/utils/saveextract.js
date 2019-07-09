@@ -175,6 +175,19 @@ function getExtractData(arrBuff) {
           })
           
         break;
+
+        case '/Game/FactoryGame/Buildable/Factory/MinerMk3/Build_MinerMk3.Build_MinerMk3_C':
+          target = getTargetObject(object.prop.levelName, object.prop.pathName);
+          typeID = getOriginTypeAndId(target.pathName)
+          
+          extractData.miners.push({
+            "targetType": typeID.type,
+            "targetID": typeID.id,
+            "type": 'miner',
+            "level": 3
+          })
+          
+        break;
         
         case '/Game/FactoryGame/Buildable/Factory/OilPump/Build_OilPump.Build_OilPump_C':
           target = getTargetObject(object.prop.levelName, object.prop.pathName);

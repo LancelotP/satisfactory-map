@@ -39,7 +39,7 @@ export const NodeMarker: React.FunctionComponent<Props> = props => {
         </p>
         <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
           <li>ID: {marker.originId}</li>
-          <li>Obstructed: {marker.obstructed ? "true" : "false"}</li>
+          {/* <li>Obstructed: {marker.obstructed ? "true" : "false"}</li> */}
         </ul>
       </Popup>
     </Marker>
