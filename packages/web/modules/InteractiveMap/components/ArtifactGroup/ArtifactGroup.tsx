@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext } from "react";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import { Artifact } from "../../data/markers";
 import { SelectionContext } from "../../InteractiveMap";
@@ -10,16 +10,17 @@ type Props = {
 
 export const ArtifactGroup = React.memo(
   (props: Props) => {
+    const { markers } = props;
     const { selection } = useContext(SelectionContext);
 
-    const markers = useMemo(() => {
-      return props.markers.filter(m => {
-        // if (m.obstructed && selection.a_blocked) return false;
-        // if (m.exploited && selection.n_exploited) return false;
+    // const markers = useMemo(() => {
+    //   return props.markers.filter(m => {
+    //     // if (m.obstructed && selection.a_blocked) return false;
+    //     // if (m.exploited && selection.n_exploited) return false;
 
-        return true;
-      });
-    }, [selection.a_collected, selection.a_blocked]);
+    //     return true;
+    //   });
+    // }, [selection.a_collected, selection.a_blocked]);
 
     // @ts-ignore
     if (!selection[`a_${props.markers[0].type}`]) {
