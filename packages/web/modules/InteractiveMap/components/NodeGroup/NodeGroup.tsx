@@ -14,7 +14,7 @@ export const NodeGroup = (props: Props) => {
 
   const markers = useMemo(() => {
     return props.markers.filter(m => {
-      if (m.obstructed && selection.n_blocked) return false;
+      // if (m.obstructed && selection.n_blocked) return false;
       if (m.exploited && selection.n_exploited) return false;
       if (m.purity === "impure" && !selection.q_impure) return false;
       if (m.purity === "normal" && !selection.q_normal) return false;

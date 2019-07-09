@@ -14,7 +14,7 @@ export const SlugGroup =
 
     const markers = useMemo(() => {
       return props.markers.filter(m => {
-        if (m.obstructed && selection.s_blocked) return false;
+        // if (m.obstructed && selection.s_blocked) return false;
         if (m.collected && selection.s_collected) return false;
 
         return true;

@@ -14,7 +14,7 @@ export const ArtifactGroup = React.memo(
 
     const markers = useMemo(() => {
       return props.markers.filter(m => {
-        if (m.obstructed && selection.a_blocked) return false;
+        // if (m.obstructed && selection.a_blocked) return false;
         // if (m.exploited && selection.n_exploited) return false;
 
         return true;

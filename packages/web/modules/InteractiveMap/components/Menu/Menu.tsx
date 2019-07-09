@@ -56,10 +56,10 @@ export const Menu = (props: Props) => {
             <input type="checkbox" {...generateHandle("n_exploited")} />
             Hide exploited
           </label> */}
-          <S.ToggleBtn>
+          {/* <S.ToggleBtn>
             <input type="checkbox" {...generateHandle("n_blocked")} />
             <div>{selection.n_blocked ? "Show" : "Hide"} blocked ones</div>
-          </S.ToggleBtn>
+          </S.ToggleBtn> */}
           <br />
           <S.ToggleBtn>
             <input type="checkbox" {...generateHandle("n_exploited")} />
@@ -303,10 +303,10 @@ export const Menu = (props: Props) => {
             <div>{selection.s_collected ? "Show" : "Hide"} collected ones</div>
           </S.ToggleBtn>
           <br />
-          <S.ToggleBtn>
+          {/* <S.ToggleBtn>
             <input type="checkbox" {...generateHandle("s_blocked")} />
             <div>{selection.s_blocked ? "Show" : "Hide"} blocked ones</div>
-          </S.ToggleBtn>
+          </S.ToggleBtn> */}
         </S.Section>
         <S.Section>
           <S.Slugs>
@@ -372,10 +372,10 @@ export const Menu = (props: Props) => {
             <input type="checkbox" {...generateHandle("a_collected")} />
             Hide collected
           </label> */}
-          <S.ToggleBtn>
+          {/* <S.ToggleBtn>
             <input type="checkbox" {...generateHandle("a_blocked")} />
             <div>{selection.a_blocked ? "Show" : "Hide"} blocked ones</div>
-          </S.ToggleBtn>
+          </S.ToggleBtn> */}
           <S.Artifacts>
             <S.ToggleBtn>
               <input type="checkbox" {...generateHandle("a_somer")} />
