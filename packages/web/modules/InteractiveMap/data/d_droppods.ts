@@ -918,6 +918,8 @@ export const dropPods: DropPod[] = [
   {
     type: "droppod",
     originId: "PE2_DP_5_26",
+    itemQuantity: 7,
+    itemName: "SuperComputer",
     x: 35082.1328125,
     y: 16211.3359375,
     z: 22759.03515625,
