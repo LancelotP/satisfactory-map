@@ -152,6 +152,10 @@ function getExtractData(arrBuff) {
         
         case '/Game/FactoryGame/Buildable/Factory/MinerMK1/Build_MinerMk1.Build_MinerMk1_C':
           target = getTargetObject(object.prop.levelName, object.prop.pathName);
+
+          if (!target)
+            break;
+
           typeID = getOriginTypeAndId(target.pathName)
           
           extractData.miners.push({
@@ -165,6 +169,10 @@ function getExtractData(arrBuff) {
         
         case '/Game/FactoryGame/Buildable/Factory/MinerMk2/Build_MinerMk2.Build_MinerMk2_C':
           target = getTargetObject(object.prop.levelName, object.prop.pathName);
+
+          if (!target)
+            break;
+
           typeID = getOriginTypeAndId(target.pathName)
           
           extractData.miners.push({
@@ -178,6 +186,10 @@ function getExtractData(arrBuff) {
 
         case '/Game/FactoryGame/Buildable/Factory/MinerMk3/Build_MinerMk3.Build_MinerMk3_C':
           target = getTargetObject(object.prop.levelName, object.prop.pathName);
+
+          if (!target)
+            break;
+          
           typeID = getOriginTypeAndId(target.pathName)
           
           extractData.miners.push({
@@ -191,6 +203,10 @@ function getExtractData(arrBuff) {
         
         case '/Game/FactoryGame/Buildable/Factory/OilPump/Build_OilPump.Build_OilPump_C':
           target = getTargetObject(object.prop.levelName, object.prop.pathName);
+
+          if (!target)
+            break;
+          
           typeID = getOriginTypeAndId(target.pathName)
           
           extractData.miners.push({
@@ -203,7 +219,15 @@ function getExtractData(arrBuff) {
         
         case '/Game/FactoryGame/Buildable/Factory/GeneratorGeoThermal/Build_GeneratorGeoThermal.Build_GeneratorGeoThermal_C':
           node = getGeyserNode(object.levelName, object.pathName);
+
+          if (!node)
+            break;
+
           target = getTargetObject(node.levelName, node.pathName);
+
+          if (!target)
+            break;
+          
           typeID = getOriginTypeAndId(target.pathName)
           
           extractData.miners.push({
@@ -426,8 +450,8 @@ function getExtractData(arrBuff) {
       
       default:
         toReturn = false;
-        console.error('undef type : ' + type);
-        console.log(pathName);
+        // console.error('undef type : ' + type);
+        // console.log(pathName);
       break;
     }
     
