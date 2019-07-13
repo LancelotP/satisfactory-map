@@ -3550,5 +3550,15 @@ export const nodes: Node[] = [
     purity: "pure",
     type: "coal",
     exploited: false
+  },
+  {
+    x: -26897.671875,
+    y: -145468.75,
+    z: 8397.134765625,
+    originId: "PE_RN_69",
+    obstructed: false,
+    purity: "pure",
+    type: "copper",
+    exploited: false,
   }
 ];
