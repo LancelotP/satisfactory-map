@@ -3545,7 +3545,7 @@ export const nodes: Node[] = [
     x: -113215.828125,
     y: -44145,
     z: 16295.931640625,
-    originId: "PL_RN__700",
+    originId: "PL_RN_700",
     obstructed: false,
     purity: "pure",
     type: "coal",
