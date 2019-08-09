@@ -403,7 +403,7 @@ export const dropPods: DropPod[] = [
   },
   {
     type: "droppod",
-    itemQuantity: 29,
+    itemQuantity: 20,
     itemName: "CircuitBoard",
     originId: "PE_DP_4_8033",
     powerNeeded: 48,
@@ -823,6 +823,8 @@ export const dropPods: DropPod[] = [
     x: -78236.40625,
     y: 90857.046875,
     z: 20305.7734375,
+    itemName: "Radio Control Unit",
+    itemQuantity: 6,
     obstructed: false,
     collected: false
   },
@@ -865,7 +867,8 @@ export const dropPods: DropPod[] = [
     x: -94708.8515625,
     y: 40337.609375,
     z: 19832.365234375,
-    powerNeeded: 138,
+    itemName: "Heat Sink",
+    itemQuantity: 2,
     obstructed: false,
     collected: false
   },
@@ -888,7 +891,7 @@ export const dropPods: DropPod[] = [
     y: 114177.2265625,
     z: 26721.71875,
     itemName: "A.I. limiter",
-    itemQuantity: 8,
+    itemQuantity: 9,
     powerNeeded: 267,
     obstructed: false,
     collected: false
