@@ -1,4 +1,5 @@
 const Int64LE = require("int64-buffer").Int64LE;
+const pako = require('pako');
 
 class SavefileBuffer {
   constructor(buffer) {
@@ -133,6 +134,32 @@ class SavefileBuffer {
       'outerPathName': outerPathName
     }
   }
+
+  readChunkInfo() {
+    return {
+      compressedSize: this.readLong(),
+      uncompressedSize: this.readLong()
+    };
+  }
+
+  readChunk() {
+    const header = this.readChunkInfo();
+    if (header.compressedSize != 0x9E2A83C1) {
+      throw new Error(`Unexpected header: ${header}`);
+    }
+
+    const summary = this.readChunkInfo();
+    const subChunk = this.readChunkInfo();
+
+    if (summary.uncompressedSize != subChunk.uncompressedSize) {
+      throw new Error(`Summary uncompressed size doesn't match subchunk uncompressed size`);
+    }
+
+    const compressedData = this.buffer.slice(this.bytesRead, this.bytesRead + subChunk.compressedSize);
+    this.bytesRead += subChunk.compressedSize;
+    const uncompressedData = pako.inflate(compressedData);
+    return uncompressedData;
+  }
   
   readHeader() {
     this.data = {
@@ -147,12 +174,29 @@ class SavefileBuffer {
       sessionVisibility: this.readByte(),
       objects: [],
       collected: [],
-  };
+    };
+    if (this.data.saveVersion >= 21) {
+      const chunks = [];
+      while (this.bytesRead < this.buffer.length) {
+        chunks.push(this.readChunk());
+      }
+      const uncompressedSize = chunks.reduce((total, chunk) => total + chunk.length, 0)
+      this.buffer = new Buffer(uncompressedSize);
+      let offset = 0;
+      for (const chunk of chunks) {
+        this.buffer.set(chunk, offset);
+        offset += chunk.length;
+      }
+      this.bytesRead = 0;
+      if (this.readInt() + 4 != uncompressedSize) {
+        throw new Error(`Uncompressed size doesn't match`);
+      }
+    }
   }
   
   readObjects() {
     let objectCount = this.readInt();
-    
+
     for (let i = 0; i < objectCount; i++) {
       let type = this.readInt();
       

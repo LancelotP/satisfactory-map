@@ -20,6 +20,7 @@
     "leaflet.markercluster": "^1.4.1",
     "next": "^8.0.4",
     "next-optimized-images": "^2.4.0",
+    "pako": "^1.0.10",
     "polished": "^3.2.0",
     "prop-types": "^15.7.2",
     "qs": "^6.7.0",
