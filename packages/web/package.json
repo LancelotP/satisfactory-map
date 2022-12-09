@@ -11,7 +11,7 @@
     "@zeit/next-typescript": "^1.1.1",
     "arraybuffer-to-buffer": "^0.0.5",
     "cross-env": "^5.2.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "imagemin-optipng": "^6.0.0",
     "imagemin-svgo": "^7.0.0",
     "int64-buffer": "^0.99.1007",
